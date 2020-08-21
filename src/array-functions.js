@@ -264,6 +264,14 @@ function appendTo(arr) {
     return item => [...arr, item]
 }
 
+function prepend(item) {
+    return arr => [item, ...arr]
+}
+
+function prependTo(arr) {
+    return item => [item, ...arr]
+}
+
 function concat(as) {
     return bs => as.concat(bs)
 }
@@ -386,6 +394,8 @@ module.exports = {
 
     append,
     appendTo,
+    prepend,
+    prependTo,
 
     intoArray,
 
