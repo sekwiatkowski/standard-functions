@@ -1,5 +1,5 @@
-const {fold} = require('./array-functions')
-const {constant, appendTo} = require('./higher-order-functions')
+const {fold, appendTo} = require('./array-functions')
+const {constant} = require('./higher-order-functions')
 
 function some(value) {
     return {
