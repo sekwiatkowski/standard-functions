@@ -10,8 +10,16 @@ function filter(predicate) {
     return arr => arr.filter(predicate)
 }
 
-function reduce(f) {
-    return initialValue => arr => arr.reduce(f, initialValue)
+function fold(f) {
+    return initialValue => arr => {
+        let result = initialValue
+
+        for (let i = 0; i < arr.length; i++) {
+            result = f(result)(arr[i])
+        }
+
+        return result
+    }
 }
 
 function unique(arr) {
@@ -293,7 +301,7 @@ function intoArray(value) {
 module.exports = {
     map,
     filter,
-    reduce,
+    fold,
 
     // Check type
     isArray,
