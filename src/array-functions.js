@@ -220,14 +220,6 @@ function hasSameItems(arr) {
     }
 }
 
-function join(separator) {
-    return arr => arr.join(separator)
-}
-
-const joinWithComma = join(',')
-const joinWithCommaSpace = join(', ')
-const joinWithSpace = join(' ')
-
 function all(p) {
     return arr => {
         for (let i = 0; i < arr.length; i += 1) {
@@ -354,11 +346,6 @@ module.exports = {
     // Combine
     cartesianProduct,
     zip,
-
-    // Join to string
-    joinWithComma,
-    joinWithCommaSpace,
-    joinWithSpace,
 
     // Check items
     all,
