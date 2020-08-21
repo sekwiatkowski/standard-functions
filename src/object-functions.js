@@ -1,5 +1,3 @@
-const {some, None} = require('./option')
-
 function isObject(candidate) {
     return typeof candidate === 'object'
 }
@@ -10,10 +8,6 @@ function get(key) {
 
 function getFrom(obj) {
     return key => obj[key]
-}
-
-function maybeGetFrom(obj) {
-    return property => obj.hasOwnProperty(property) ? some(obj[property]) : None
 }
 
 function keys (obj) {
@@ -75,9 +69,7 @@ module.exports = {
     mapValues,
 
     get,
-
     getFrom,
-    maybeGetFrom,
 
     keyValue,
 
