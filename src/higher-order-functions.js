@@ -31,10 +31,6 @@ function perform(f) {
     }
 }
 
-function identity(x) {
-    return x
-}
-
 module.exports = {
     isFunction,
 
@@ -45,7 +41,5 @@ module.exports = {
     applyTo,
 
     compose,
-    perform,
-
-    identity
+    perform
 }
