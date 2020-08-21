@@ -34,14 +34,32 @@ function foldPair(f) {
     return ([a, b]) => f(a) (b)
 }
 
+function invertPairs(pairs) {
+    const numberOfPairs = pairs.length
+    const as = new Array(numberOfPairs)
+    const bs = new Array(numberOfPairs)
+
+    for (let i = 0; i < numberOfPairs; i++) {
+        const [a, b] = pairs[i]
+
+        as[i] = a
+        bs[i] = b
+    }
+
+    return [as, bs]
+}
+
 module.exports = {
     pair,
     pairWith,
     pairBy,
     duplicate,
+
     mapFirst,
     mapSecond,
     mapPair,
     bimap,
-    foldPair
+    foldPair,
+
+    invertPairs
 }
