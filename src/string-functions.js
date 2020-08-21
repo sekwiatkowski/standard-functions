@@ -16,6 +16,12 @@ const joinWithCommaSpace = join(', ')
 const joinWithSpace = join(' ')
 const joinWithNewline = join('\n')
 
+function surroundWith(beginning) {
+    return end => str = beginning + str + end
+}
+
+const surroundWithParentheses = surroundWith('(')(')')
+
 module.exports = {
     split,
     splitByComma,
@@ -27,5 +33,8 @@ module.exports = {
     joinWithComma,
     joinWithCommaSpace,
     joinWithSpace,
-    joinWithNewline
+    joinWithNewline,
+
+    surroundWith,
+    surroundWithParentheses
 }
