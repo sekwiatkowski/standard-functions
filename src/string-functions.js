@@ -17,7 +17,7 @@ const joinWithSpace = join(' ')
 const joinWithNewline = join('\n')
 
 function surroundWith(beginning) {
-    return end => str = beginning + str + end
+    return end => str => beginning + str + end
 }
 
 const surroundWithParentheses = surroundWith('(')(')')
