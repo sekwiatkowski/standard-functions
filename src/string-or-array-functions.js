@@ -16,9 +16,9 @@ function prependTo(arr) {
     return item => isString(item) ? item + arr :  [item, ...arr]
 }
 
-module.exports = [
+module.exports = {
     append,
     appendTo,
     prepend,
     prependTo
-]
+}
