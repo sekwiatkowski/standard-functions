@@ -96,7 +96,6 @@ module.exports = {
     entries,
 
     mapValues,
-    mapEntries,
 
     get,
     getFrom,
