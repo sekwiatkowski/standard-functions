@@ -1,9 +1,7 @@
+const {some, None} = require('./option')
+
 function isObject(candidate) {
     return typeof candidate === 'object'
-}
-
-function isPropertyOf(obj) {
-    return property => obj.hasOwnProperty(property)
 }
 
 function get(key) {
@@ -12,6 +10,10 @@ function get(key) {
 
 function getFrom(obj) {
     return key => obj[key]
+}
+
+function maybeGetFrom(obj) {
+    return property => obj.hasOwnProperty(property) ? some(obj[property]) : None
 }
 
 function keys (obj) {
@@ -66,8 +68,6 @@ function keyValue(key) {
 module.exports = {
     isObject,
 
-    isPropertyOf,
-
     keys,
     values,
     entries,
@@ -75,7 +75,9 @@ module.exports = {
     mapValues,
 
     get,
+
     getFrom,
+    maybeGetFrom,
 
     keyValue,
 
