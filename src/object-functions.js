@@ -51,7 +51,7 @@ function mergeWith(f) {
             const keyInA = keysInA[indexA]
 
             if (b.hasOwnProperty(keyInA)) {
-                merged[keyInA] = f(a[keyInA], b[keyInA])
+                merged[keyInA] = f(a[keyInA])(b[keyInA])
             }
             else {
                 merged[keyInA] = a[keyInA]
