@@ -305,7 +305,7 @@ function indices(arr) {
 
     const indices = Array(length)
     for (let i = 0; i < length; i++) {
-        indices[i] = 0
+        indices[i] = i
     }
 
     return indices
