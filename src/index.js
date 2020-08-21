@@ -4,6 +4,7 @@ const booleanFunctions = require('./boolean-functions')
 const higherOrderFunctions = require('./higher-order-functions')
 const stringFunctions = require('./string-functions')
 const stringOrArrayFunctions = require('./string-or-array-functions')
+const numberFunctions = require('./number-functions')
 
 const pair = require('./pair')
 
@@ -19,6 +20,8 @@ module.exports = {
     ...objectFunctions,
 
     ...booleanFunctions,
+
+    ...numberFunctions,
 
     ...higherOrderFunctions,
 
