@@ -264,6 +264,10 @@ function appendTo(arr) {
     return item => [...arr, item]
 }
 
+function concat(as) {
+    return bs => as.concat(bs)
+}
+
 function cartesianProduct(as) {
     return bs => {
         const aLength = as.length
@@ -361,6 +365,7 @@ module.exports = {
     splitAt,
 
     // Combine
+    concat,
     cartesianProduct,
     zip,
 
