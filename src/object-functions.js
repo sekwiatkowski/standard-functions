@@ -2,6 +2,10 @@ function isObject(candidate) {
     return typeof candidate === 'object'
 }
 
+function isPropertyOf(obj) {
+    return property => obj.hasOwnProperty(property)
+}
+
 function get(key) {
     return obj => obj[key]
 }
@@ -61,6 +65,8 @@ function keyValue(key) {
 
 module.exports = {
     isObject,
+
+    isPropertyOf,
 
     keys,
     values,
