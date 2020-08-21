@@ -23,7 +23,7 @@ function mapSecond(g) {
 }
 
 function mapPair(g) {
-    return ([a, b]) => [a, g(a, b)]
+    return ([a, b]) => [a, g(a) (b)]
 }
 
 function bimap(f, g) {
@@ -31,7 +31,7 @@ function bimap(f, g) {
 }
 
 function foldPair(f) {
-    return ([a, b]) => f(a, b)
+    return ([a, b]) => f(a) (b)
 }
 
 module.exports = {
