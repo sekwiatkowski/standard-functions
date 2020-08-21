@@ -1,3 +1,6 @@
+const {fold} = require('./array-functions')
+const {constant, appendTo} = require('./higher-order-functions')
+
 function some(value) {
     return {
         value,
@@ -37,6 +40,12 @@ function alternativeOption(f) {
     return opt => opt.kind === 'Some' ? opt : f()
 }
 
+/*
+    [ some(x), some(y) ] = some([x, y])
+    [ None, None ] = None
+    [ None, some(x) ] = None
+    [ some(x), None ] = None
+ */
 function invertOptions(arr) {
     return arr.reduce(
         (acc, maybe) => chainOption(inner => mapOption(value => [...inner, value])(maybe))(acc),
@@ -44,13 +53,32 @@ function invertOptions(arr) {
     )
 }
 
+/*
+    [ some(x), some(y) ] = [x, y]
+    [ None, None ] = []
+    [ None, some(x) ] = [x]
+    [ some(x), None ] = [x]
+ */
+function concatOptions(options) {
+    return fold
+        (acc => secondOpt => foldOption
+            (appendTo(acc))
+            (constant(acc))
+            (secondOpt))
+        ([])
+        (options)
+}
+
 module.exports = {
     some,
     None,
+
     chainOption,
     mapOption,
     testOption,
     foldOption,
     alternativeOption,
-    invertOptions
+
+    invertOptions,
+    concatOptions
 }
