@@ -1,3 +1,5 @@
+const {isString} = require('./string-functions')
+
 function isArray(val) {
     return Array.isArray(val)
 }
@@ -256,22 +258,6 @@ function any(p) {
     }
 }
 
-function append(item) {
-    return arr => [...arr, item]
-}
-
-function appendTo(arr) {
-    return item => [...arr, item]
-}
-
-function prepend(item) {
-    return arr => [item, ...arr]
-}
-
-function prependTo(arr) {
-    return item => [item, ...arr]
-}
-
 function concat(as) {
     return bs => as.concat(bs)
 }
@@ -391,11 +377,6 @@ module.exports = {
     // Check items
     all,
     any,
-
-    append,
-    appendTo,
-    prepend,
-    prependTo,
 
     intoArray,
 
