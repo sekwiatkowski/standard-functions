@@ -260,6 +260,10 @@ function append(item) {
     return arr => [...arr, item]
 }
 
+function appendTo(arr) {
+    return item => [...arr, item]
+}
+
 function cartesianProduct(as) {
     return bs => {
         const aLength = as.length
@@ -365,6 +369,7 @@ module.exports = {
     any,
 
     append,
+    appendTo,
 
     intoArray
 }

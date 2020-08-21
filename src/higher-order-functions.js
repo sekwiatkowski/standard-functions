@@ -31,6 +31,14 @@ function perform(f) {
     }
 }
 
+function identity(x) {
+    return x
+}
+
+function constant(x) {
+    return () => x
+}
+
 module.exports = {
     isFunction,
 
@@ -41,5 +49,8 @@ module.exports = {
     applyTo,
 
     compose,
-    perform
+    perform,
+
+    identity,
+    constant
 }
