@@ -306,6 +306,17 @@ function intoArray(value) {
     return [ value ]
 }
 
+function indices(arr) {
+    const length = arr.length
+
+    const indices = Array(length)
+    for (let i = 0; i < length; i++) {
+        indices[i] = 0
+    }
+
+    return indices
+}
+
 module.exports = {
     map,
     filter,
@@ -376,5 +387,7 @@ module.exports = {
     append,
     appendTo,
 
-    intoArray
+    intoArray,
+
+    indices
 }
