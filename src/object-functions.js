@@ -19,7 +19,7 @@ function values (obj) {
 }
 
 function entries (obj) {
-    return keys(obj)
+    return Object.keys(obj)
         .map(key => [ key, obj[key] ])
 }
 
@@ -40,6 +40,35 @@ function mapValues(f) {
 
 function merge(a) {
     return b => ({...a, ...b})
+}
+
+function mergeWith(f) {
+    return a => b => {
+        const merged = {}
+
+        const keysInA = Object.keys(a)
+        for (let indexA = 0; indexA < keysInA.length; indexA++) {
+            const keyInA = keysInA[indexA]
+
+            if (b.hasOwnProperty(keyInA)) {
+                merged[keyInA] = f(a[keyInA], b[keyInA])
+            }
+            else {
+                merged[keyInA] = a[keyInA]
+            }
+        }
+
+        const keysInB = Object.keys(b)
+        for (let indexB = 0; indexB < keysInB.length; indexB++) {
+            const keyInB = keysInB[indexB]
+
+            if (!merged.hasOwnProperty(keyInB)) {
+                merged[keyInB] = b[keysInB]
+            }
+        }
+
+        return merged
+    }
 }
 
 function pick(keys) {
@@ -67,6 +96,7 @@ module.exports = {
     entries,
 
     mapValues,
+    mapEntries,
 
     get,
     getFrom,
@@ -74,6 +104,7 @@ module.exports = {
     keyValue,
 
     merge,
+    mergeWith,
 
     pick
 }
