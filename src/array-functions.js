@@ -6,6 +6,10 @@ function map(f) {
     return arr => arr.map(f)
 }
 
+function filter(predicate) {
+    return arr => arr.filter(predicate)
+}
+
 function reduce(f) {
     return initialValue => arr => arr.reduce(f, initialValue)
 }
@@ -288,6 +292,7 @@ function intoArray(value) {
 
 module.exports = {
     map,
+    filter,
     reduce,
 
     // Check type
