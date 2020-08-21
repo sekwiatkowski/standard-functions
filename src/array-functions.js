@@ -8,6 +8,23 @@ function map(f) {
     return arr => arr.map(f)
 }
 
+function accumulativeMap(f) {
+    return initialValue => arr => {
+        const numberOfItems = arr.length
+        const result = Array(numberOfItems)
+        let acc = initialValue
+
+        for (let i = 0; i < numberOfItems; i++) {
+            const [updatedAcc, mappedItem] = f(acc, arr[i])
+
+            acc = updatedAcc
+            result[i] = mappedItem
+        }
+
+        return result
+    }
+}
+
 function filter(predicate) {
     return arr => arr.filter(predicate)
 }
@@ -313,6 +330,8 @@ function indices(arr) {
 
 module.exports = {
     map,
+    accumulativeMap,
+
     filter,
     fold,
 
