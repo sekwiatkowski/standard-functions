@@ -121,18 +121,6 @@ function difference(as) {
     return bs => as.filter(a => !bs.includes(a))
 }
 
-function isEmpty(arr) {
-    return arr.length ===  0
-}
-
-function isNotEmpty(arr) {
-    return arr.length > 0
-}
-
-function isOfLength(length) {
-    return arr => arr.length === length
-}
-
 function maxBy(f) {
     return arr => {
         let highestScore = Number.NEGATIVE_INFINITY
@@ -149,10 +137,6 @@ function maxBy(f) {
 
         return arr[index]
     }
-}
-
-function length(arr) {
-    return arr.length
 }
 
 function chunk(size) {
@@ -233,10 +217,6 @@ function any(p) {
     }
 }
 
-function concat(as) {
-    return bs => as.concat(bs)
-}
-
 function cartesianProduct(as) {
     return bs => {
         const aLength = as.length
@@ -291,6 +271,7 @@ module.exports = {
     accumulativeMap,
 
     filter,
+
     fold,
 
     // Check type
@@ -314,14 +295,6 @@ module.exports = {
     unique,
     difference,
 
-    // Get length
-    length,
-
-    // Length-based predicates
-    isEmpty,
-    isNotEmpty,
-    isOfLength,
-
     // Item-based predicates
     contains,
     containsAll,
@@ -336,7 +309,6 @@ module.exports = {
     splitAt,
 
     // Combine
-    concat,
     cartesianProduct,
     zip,
 

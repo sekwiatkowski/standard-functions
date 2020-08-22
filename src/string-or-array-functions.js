@@ -56,6 +56,26 @@ function prependTo(arr) {
     return item => isString(item) ? item + arr :  [item, ...arr]
 }
 
+function isEmpty(arr) {
+    return arr.length ===  0
+}
+
+function isNotEmpty(arr) {
+    return arr.length > 0
+}
+
+function isOfLength(length) {
+    return arr => arr.length === length
+}
+
+function length(arr) {
+    return arr.length
+}
+
+function concat(as) {
+    return bs => as.concat(bs)
+}
+
 module.exports = {
     take,
     takeLast,
@@ -69,5 +89,12 @@ module.exports = {
     append,
     appendTo,
     prepend,
-    prependTo
+    prependTo,
+
+    length,
+    concat,
+
+    isEmpty,
+    isNotEmpty,
+    isOfLength
 }
