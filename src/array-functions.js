@@ -238,8 +238,8 @@ function zip(as) {
     }
 }
 
-function intoArray(value) {
-    return [ value ]
+function arrayOf(...values) {
+    return [ values ]
 }
 
 function range(inclusiveStart) {
@@ -305,7 +305,7 @@ module.exports = {
     all,
     any,
 
-    intoArray,
+    arrayOf,
 
     range
 }
