@@ -10,6 +10,10 @@ function flatMap(f) {
     return arr => arr.flatMap(f)
 }
 
+function flatten(arr) {
+    return arr.flat()
+}
+
 function filter(predicate) {
     return arr => arr.filter(predicate)
 }
@@ -257,7 +261,9 @@ function range(inclusiveStart) {
 
 module.exports = {
     map,
+
     flatMap,
+    flatten,
 
     filter,
 
