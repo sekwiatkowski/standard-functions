@@ -6,6 +6,10 @@ function map(f) {
     return arr => arr.map(f)
 }
 
+function flatMap(f) {
+    return arr => arr.flatMap(f)
+}
+
 function filter(predicate) {
     return arr => arr.filter(predicate)
 }
@@ -24,6 +28,10 @@ function fold(f) {
 
 function unique(arr) {
     return arr.filter((item, index) => index === arr.indexOf(item))
+}
+
+function difference(as) {
+    return bs => as.filter(a => !bs.includes(a))
 }
 
 function head(arr) {
@@ -98,10 +106,6 @@ function partition(predicate) {
 
         return [positive, negative]
     }
-}
-
-function difference(as) {
-    return bs => as.filter(a => !bs.includes(a))
 }
 
 function maxBy(f) {
@@ -253,6 +257,7 @@ function range(inclusiveStart) {
 
 module.exports = {
     map,
+    flatMap,
 
     filter,
 
