@@ -41,19 +41,19 @@ function after(n) {
 }
 
 function append(item) {
-    return arr => isString(item) ? arr + item : [...arr, item]
+    return collection => isString(collection) ? collection + item : [...collection, item]
 }
 
-function appendTo(arr) {
-    return item => isString(item) ? arr + item : [...arr, item]
+function appendTo(collection) {
+    return item => isString(collection) ? collection + item : [...collection, item]
 }
 
 function prepend(item) {
-    return arr => isString(item) ? item + arr : [item, ...arr]
+    return collection => isString(collection) ? item + collection : [item, ...collection]
 }
 
-function prependTo(arr) {
-    return item => isString(item) ? item + arr :  [item, ...arr]
+function prependTo(collection) {
+    return item => isString(collection) ? item + collection :  [item, ...collection]
 }
 
 function isEmpty(arr) {
