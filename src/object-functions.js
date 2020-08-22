@@ -2,12 +2,28 @@ function isObject(candidate) {
     return typeof candidate === 'object'
 }
 
-function get(key) {
+function property(key) {
     return obj => obj[key]
 }
 
-function getFrom(obj) {
-    return key => obj[key]
+function properties(keys) {
+    return obj => {
+        const result = []
+
+        for (let i = 0; i < keys.length; i++) {
+            result[i] = obj[keys[i]]
+        }
+
+        return result
+    }
+}
+
+function propertyOf(obj) {
+    return key => property(key)(obj)
+}
+
+function propertiesOf(obj) {
+    return keys => properties(keys)(obj)
 }
 
 function keys (obj) {
@@ -97,8 +113,10 @@ module.exports = {
 
     mapValues,
 
-    get,
-    getFrom,
+    property,
+    propertyOf,
+    properties,
+    propertiesOf,
 
     keyValue,
 
