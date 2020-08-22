@@ -238,15 +238,17 @@ function intoArray(value) {
     return [ value ]
 }
 
-function indices(arr) {
-    const length = arr.length
+function range(inclusiveStart) {
+    return exclusiveEnd => {
+        const size = exclusiveEnd - inclusiveStart
+        const result = Array(size)
 
-    const indices = Array(length)
-    for (let i = 0; i < length; i++) {
-        indices[i] = i
+        for (let i = 0; i < size; i++) {
+            result[i] = inclusiveStart + i
+        }
+
+        return result
     }
-
-    return indices
 }
 
 module.exports = {
@@ -300,5 +302,5 @@ module.exports = {
 
     intoArray,
 
-    indices
+    range
 }
