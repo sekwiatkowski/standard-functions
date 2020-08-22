@@ -239,7 +239,7 @@ function zip(as) {
 }
 
 function arrayOf(...values) {
-    return [ values ]
+    return [ ...values ]
 }
 
 function range(inclusiveStart) {
