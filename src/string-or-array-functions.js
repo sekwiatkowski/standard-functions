@@ -90,9 +90,9 @@ module.exports = {
     appendTo,
     prepend,
     prependTo,
+    concat,
 
     length,
-    concat,
 
     isEmpty,
     isNotEmpty,
