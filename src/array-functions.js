@@ -1,5 +1,3 @@
-const {isString} = require('./string-functions')
-
 function isArray(val) {
     return Array.isArray(val)
 }
@@ -15,7 +13,7 @@ function accumulativeMap(f) {
         let acc = initialValue
 
         for (let i = 0; i < numberOfItems; i++) {
-            const [updatedAcc, mappedItem] = f(acc, arr[i])
+            const [updatedAcc, mappedItem] = f(acc)(arr[i])
 
             acc = updatedAcc
             result[i] = mappedItem
@@ -100,46 +98,6 @@ function indexOf(item) {
         }
         return null
     }
-}
-
-function take(n) {
-    return arr => arr.slice(0, n)
-}
-
-function takeLast(n) {
-    return arr => arr.slice(Math.max(arr.length - n, 0))
-}
-
-function takeWhile(predicate) {
-    return arr => {
-        const res = []
-        for (let i = 0; i < arr.length; i++) {
-            const item = arr[i]
-            if (!predicate(item, i)) {
-                return res
-            }
-
-            res.push(item)
-        }
-
-        return res
-    }
-}
-
-function drop(n) {
-    return arr => arr.slice(n)
-}
-
-function dropLast(n) {
-    return arr => arr.slice(0, -n)
-}
-
-function before(n) {
-    return arr => arr.slice(0, n)
-}
-
-function after(n) {
-    return arr => arr.slice(n+1)
 }
 
 function partition(predicate) {
@@ -341,17 +299,6 @@ module.exports = {
     // Select n items
     tail,
     headAndTail,
-
-    take,
-    takeLast,
-
-    takeWhile,
-
-    drop,
-    dropLast,
-
-    after,
-    before,
 
     // Select a single item
     head,
