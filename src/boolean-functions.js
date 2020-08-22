@@ -30,9 +30,14 @@ function and(...predicates) {
     }
 }
 
+function when(predicate) {
+    return input => f => predicate(input) ? f(input) : input
+}
+
 module.exports = {
     not,
     or,
     and,
-    equals
+    equals,
+    when
 }
