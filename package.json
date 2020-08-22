@@ -1,5 +1,5 @@
 {
     "name": "compose-functions",
-    "version": "0.5.4",
+    "version": "0.5.5",
     "main": "src/index.js"
 }

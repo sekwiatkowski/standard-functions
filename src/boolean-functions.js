@@ -31,7 +31,7 @@ function and(...predicates) {
 }
 
 function when(predicate) {
-    return input => f => predicate(input) ? f(input) : input
+    return f => input => predicate(input) ? f(input) : input
 }
 
 module.exports = {
