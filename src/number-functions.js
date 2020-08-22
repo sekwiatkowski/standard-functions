@@ -3,7 +3,7 @@ function toString(input) {
 }
 
 function add(x) {
-    return y = x + y
+    return y => x + y
 }
 
 function increment(x) {
