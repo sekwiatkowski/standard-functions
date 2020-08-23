@@ -1,6 +1,6 @@
+const {isFunction} = require('./higher-order-functions')
 const {fold} = require('./array-functions')
 const {appendTo} = require('./string-or-array-functions')
-const {constant} = require('./higher-order-functions')
 
 function some(value) {
     return {
@@ -33,8 +33,8 @@ function testOption(p) {
 
 function foldOption(ifSome) {
     return ifNone => opt => opt.kind === 'Some'
-        ? ifSome(opt.value)
-        : ifNone()
+        ? (isFunction(ifSome) ? ifSome(opt.value) : ifSome)
+        : (isFunction(ifNone) ? ifNone() : ifNone)
 }
 
 function alternativeOption(f) {
@@ -64,7 +64,7 @@ function concatOptions(options) {
     return fold
         (acc => secondOpt => foldOption
             (appendTo(acc))
-            (constant(acc))
+            (acc)
             (secondOpt))
         ([])
         (options)
