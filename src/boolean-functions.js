@@ -1,3 +1,5 @@
+const {isFunction} = require('./higher-order-functions')
+
 function equals(b) {
     return a => a === b
 }
@@ -44,7 +46,7 @@ function match(pairs) {
             const [ predicate, transformer ] = pairs[i]
 
             if (predicate(input)) {
-                return transformer(input)
+                return isFunction(transformer) ? transformer(input) : transformer
             }
         }
     }
