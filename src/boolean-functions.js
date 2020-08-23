@@ -38,6 +38,18 @@ function ifElse(predicate) {
     return ifTrue => ifFalse => input => predicate(input) ? ifTrue : ifFalse
 }
 
+function match(pairs) {
+    return input => {
+        for (let i = 0; i < pairs.length; i++) {
+            const [ predicate, transformer ] = pairs[i]
+
+            if (predicate(input)) {
+                return transformer(input)
+            }
+        }
+    }
+}
+
 module.exports = {
     not,
     or,
@@ -46,5 +58,6 @@ module.exports = {
     equals,
 
     onlyIf,
-    ifElse
+    ifElse,
+    match
 }
