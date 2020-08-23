@@ -64,7 +64,7 @@ function mapEntries(f) {
         for (let index = 0; index < keys.length; index++) {
             const key = keys[index]
             const value = obj[key]
-            result[index] = f(key)(value)
+            result[index] = f([key, value])
         }
 
         return result
