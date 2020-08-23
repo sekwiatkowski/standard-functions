@@ -1,3 +1,7 @@
+function isArray(input) {
+    return Array.isArray(input)
+}
+
 function map(f) {
     return arr => arr.map(f)
 }
@@ -256,6 +260,8 @@ function range(inclusiveStart) {
 }
 
 module.exports = {
+    isArray,
+
     map,
 
     flatMap,

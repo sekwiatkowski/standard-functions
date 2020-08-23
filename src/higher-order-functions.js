@@ -1,3 +1,7 @@
+function isFunction(input) {
+    return typeof input === 'function'
+}
+
 function apply(arg) {
     return f => f(arg)
 }
@@ -36,6 +40,8 @@ function constant(x) {
 }
 
 module.exports = {
+    isFunction,
+
     applyPair,
     applyPairTo,
 
