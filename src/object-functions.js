@@ -41,16 +41,33 @@ function entries (obj) {
 
 function mapValues(f) {
     return obj => {
-        const mapped = {}
+        const result = {}
 
         const keys = Object.keys(obj)
         for (let index = 0; index < keys.length; index++) {
             const key = keys[index]
             const value = obj[key]
-            mapped[key] = f(value)
+            result[key] = f(value)
         }
 
-        return mapped
+        return result
+    }
+}
+
+function mapEntries(f) {
+    return obj => {
+        const keys = Object.keys(obj)
+
+        const numberOfEntries = keys.length
+        const result = Array(numberOfEntries)
+
+        for (let index = 0; index < keys.length; index++) {
+            const key = keys[index]
+            const value = obj[key]
+            result[index] = f(key)(value)
+        }
+
+        return result
     }
 }
 
@@ -112,6 +129,7 @@ module.exports = {
     entries,
 
     mapValues,
+    mapEntries,
 
     property,
     propertyOf,
