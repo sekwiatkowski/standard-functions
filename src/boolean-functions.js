@@ -34,10 +34,15 @@ function when(predicate) {
     return f => input => predicate(input) ? f(input) : input
 }
 
+function ifElse(predicate) {
+    return ifTrue => ifFalse => input => predicate(input) ? ifTrue : ifFalse
+}
+
 module.exports = {
     not,
     or,
     and,
     equals,
-    when
+    when,
+    ifElse
 }

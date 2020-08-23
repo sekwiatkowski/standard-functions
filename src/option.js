@@ -70,11 +70,11 @@ function concatOptions(options) {
         (options)
 }
 
-function fromNullable(nullable) {
+function maybeNullable(nullable) {
     return nullable === null ? None : some(nullable)
 }
 
-function fromUndefinable(undefinable) {
+function maybeUndefined(undefinable) {
     return undefinable === undefined ? None : some(undefinable)
 }
 
@@ -91,6 +91,6 @@ module.exports = {
     invertOptions,
     concatOptions,
 
-    fromNullable,
-    fromUndefinable
+    maybeNullable,
+    maybeUndefined
 }
