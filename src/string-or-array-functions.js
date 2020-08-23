@@ -49,6 +49,23 @@ function dropLastFrom(arr) {
     return n => dropLast(n) (arr)
 }
 
+function dropWhile(predicate) {
+    return arr => {
+        let dropped = 0
+        while (dropped < arr.length) {
+            const item = arr[dropped]
+            if (predicate(item, dropped)) {
+                dropped++
+            }
+            else {
+                break
+            }
+        }
+
+        return arr.slice(dropped)
+    }
+}
+
 function before(n) {
     return arr => arr.slice(0, n)
 }
@@ -104,6 +121,7 @@ module.exports = {
     dropFrom,
     dropLast,
     dropLastFrom,
+    dropWhile,
 
     before,
     after,
