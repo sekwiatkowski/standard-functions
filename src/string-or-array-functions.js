@@ -4,8 +4,17 @@ function take(n) {
     return arr => arr.slice(0, n)
 }
 
+function takeFrom(arr) {
+    return n => take(n) (arr)
+}
+
 function takeLast(n) {
     return arr => arr.slice(Math.max(arr.length - n, 0))
+}
+
+
+function takeLastFrom(arr) {
+    return n => takeLast(n) (arr)
 }
 
 function takeWhile(predicate) {
@@ -28,8 +37,16 @@ function drop(n) {
     return arr => arr.slice(n)
 }
 
+function dropFrom(arr) {
+    return n => drop(n) (arr)
+}
+
 function dropLast(n) {
     return arr => arr.slice(0, -n)
+}
+
+function dropLastFrom(arr) {
+    return n => dropLast(n) (arr)
 }
 
 function before(n) {
@@ -78,10 +95,15 @@ function concat(as) {
 
 module.exports = {
     take,
+    takeFrom,
     takeLast,
+    takeLastFrom,
     takeWhile,
+
     drop,
+    dropFrom,
     dropLast,
+    dropLastFrom,
 
     before,
     after,
