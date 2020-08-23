@@ -1,7 +1,3 @@
-function isArray(val) {
-    return Array.isArray(val)
-}
-
 function map(f) {
     return arr => arr.map(f)
 }
@@ -270,7 +266,6 @@ module.exports = {
     fold,
 
     // Check type
-    isArray,
 
     // Select n items
     tail,

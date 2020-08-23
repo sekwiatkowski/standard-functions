@@ -1,7 +1,3 @@
-function isObject(candidate) {
-    return typeof candidate === 'object'
-}
-
 function property(key) {
     return obj => obj[key]
 }
@@ -105,8 +101,6 @@ function keyValue(key) {
 }
 
 module.exports = {
-    isObject,
-
     keys,
     values,
     entries,

@@ -1,4 +1,4 @@
-const {isString} = require('./string-functions')
+const {isString} = require('./type-functions')
 
 function take(n) {
     return arr => arr.slice(0, n)

@@ -1,7 +1,3 @@
-function isString(input) {
-    return typeof input === 'string'
-}
-
 function split(separator) {
     return s => s.split(separator)
 }
@@ -27,8 +23,6 @@ function surroundWith(beginning) {
 const surroundWithParentheses = surroundWith('(')(')')
 
 module.exports = {
-    isString,
-
     split,
     splitByComma,
     splitBySpace,
