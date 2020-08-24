@@ -37,6 +37,14 @@ function foldOption(ifSome) {
         : (isFunction(ifNone) ? ifNone() : ifNone)
 }
 
+function isSome(opt) {
+    return opt.kind === 'Some'
+}
+
+function isNone(opt) {
+    return opt.kind === 'None'
+}
+
 function alternativeOption(f) {
     return opt => opt.kind === 'Some' ? opt : f()
 }
@@ -87,6 +95,9 @@ module.exports = {
     testOption,
     foldOption,
     alternativeOption,
+
+    isSome,
+    isNone,
 
     invertOptions,
     concatOptions,
