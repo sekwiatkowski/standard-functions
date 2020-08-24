@@ -30,6 +30,22 @@ function fold(f) {
     }
 }
 
+function foldWhile(predicate) {
+    return f => initialValue => arr => {
+        let result = initialValue
+
+        for (let i = 0; i < arr.length; i++) {
+            result = f(result)(arr[i])
+
+            if (!predicate(result)) {
+                return result
+            }
+        }
+
+        return result
+    }
+}
+
 function unique(arr) {
     return arr.filter((item, index) => index === arr.indexOf(item))
 }
@@ -168,22 +184,6 @@ function containsAll(arr) {
     }
 }
 
-function hasSameItems(arr) {
-    return other => {
-        if (arr.length !== other.length) {
-            return false
-        }
-
-        for (let i = 0; i < arr.length; i++) {
-            if (arr[i] !== other[i]) {
-                return false
-            }
-        }
-
-        return true
-    }
-}
-
 function all(p) {
     return arr => {
         for (let i = 0; i < arr.length; i += 1) {
@@ -270,6 +270,7 @@ module.exports = {
     filter,
 
     fold,
+    foldWhile,
 
     // Check type
 
@@ -294,7 +295,6 @@ module.exports = {
     // Item-based predicates
     contains,
     containsAll,
-    hasSameItems,
 
     // Sort
     maxBy,
