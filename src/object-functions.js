@@ -2,6 +2,14 @@ function isObject(input) {
     return typeof input === 'object'
 }
 
+function hasProperty(key) {
+    return obj => obj.hasOwnProperty(key)
+}
+
+function isPropertyOf(obj) {
+    return key => obj.hasOwnProperty(key)
+}
+
 function property(key) {
     return obj => obj[key]
 }
@@ -130,6 +138,9 @@ module.exports = {
 
     mapValues,
     mapEntries,
+
+    hasProperty,
+    isPropertyOf,
 
     property,
     propertyOf,
