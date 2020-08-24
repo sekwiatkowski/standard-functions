@@ -14,6 +14,10 @@ function duplicate(a) {
     return [a, a]
 }
 
+function second([a, b]) {
+    return b
+}
+
 function mapFirst(f) {
     return ([a, b]) => [f(a), b]
 }
@@ -54,6 +58,8 @@ module.exports = {
     pairWith,
     pairBy,
     duplicate,
+
+    second,
 
     mapFirst,
     mapSecond,
