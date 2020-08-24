@@ -37,16 +37,18 @@ function foldOption(ifSome) {
         : (isFunction(ifNone) ? ifNone() : ifNone)
 }
 
+function alternativeOption(functionOrOption) {
+    return opt => opt.kind === 'Some'
+        ? opt
+        : (isFunction(functionOrOption) ? functionOrOption() : functionOrOption)
+}
+
 function isSome(opt) {
     return opt.kind === 'Some'
 }
 
 function isNone(opt) {
     return opt.kind === 'None'
-}
-
-function alternativeOption(f) {
-    return opt => opt.kind === 'Some' ? opt : f()
 }
 
 /*
