@@ -20,29 +20,30 @@ function filter(predicate) {
 
 function fold(f) {
     return initialValue => arr => {
-        let result = initialValue
+        let acc = initialValue
 
         for (let i = 0; i < arr.length; i++) {
-            result = f(result)(arr[i])
+            acc = f(acc, arr[i])
         }
 
-        return result
+        return acc
     }
 }
 
 function foldWhile(predicate) {
     return f => initialValue => arr => {
-        let result = initialValue
+        let acc = initialValue
 
         for (let i = 0; i < arr.length; i++) {
-            result = f(result)(arr[i])
+            const item = arr[i]
+            acc = f(acc, item)
 
-            if (!predicate(result)) {
-                return result
+            if (!predicate(acc, item)) {
+                return acc
             }
         }
 
-        return result
+        return acc
     }
 }
 
