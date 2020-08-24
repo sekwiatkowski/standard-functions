@@ -1,4 +1,4 @@
-const {isFunction} = require('./object-functions')
+const {isFunction} = require('./higher-order-functions')
 const {fold} = require('./array-functions')
 const {appendTo} = require('./string-or-array-functions')
 
