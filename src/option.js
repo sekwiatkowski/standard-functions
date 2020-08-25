@@ -72,10 +72,10 @@ function invertOptions(arr) {
  */
 function concatOptions(options) {
     return fold
-        (acc => secondOpt => foldOption
+        ((acc, opt) => foldOption
             (appendTo(acc))
             (acc)
-            (secondOpt))
+            (opt))
         ([])
         (options)
 }
