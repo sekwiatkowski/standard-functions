@@ -42,6 +42,10 @@ function foldPair(f) {
     return ([a, b]) => f(a) (b)
 }
 
+function betweenPair(between) {
+    return ([a, b]) => [a, between, b]
+}
+
 function invertPairs(pairs) {
     const numberOfPairs = pairs.length
     const as = new Array(numberOfPairs)
@@ -71,6 +75,7 @@ module.exports = {
     flipPair,
     bimap,
     foldPair,
+    betweenPair,
 
     invertPairs
 }
