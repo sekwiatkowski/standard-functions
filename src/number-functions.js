@@ -6,7 +6,6 @@ function add(x) {
     return y => x + y
 }
 
-
 function multiply(x) {
     return y => x * y
 }

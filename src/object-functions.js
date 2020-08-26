@@ -129,6 +129,89 @@ function keyValue(key) {
     return value => ({[key]: value})
 }
 
+/*
+    {
+        a: 1,
+        b: {
+            c: 2
+            d: 3
+        },
+        e: {
+            f: {
+                g: 4
+            }
+        }
+    }
+ */
+function flattenObject(unflattened, parent = '', flattened = {}) {
+    const unflattenedKeys = Object.keys(unflattened)
+
+    for (let indexKey = 0; indexKey < unflattenedKeys.length; indexKey++) {
+        const key = unflattenedKeys[indexKey]
+        const value = unflattened[key]
+
+        if (isObject(value)) {
+            flattenObject(value, parent + key + '.', flattened)
+        }
+        else {
+            const path = parent + key
+            flattened[path] = value
+        }
+    }
+
+    return flattened
+}
+
+/*
+    {
+        'a': 1,
+        'b.c': 2,
+        'b.d': 3,
+        'e.f.g': 4
+    }
+
+    {
+        a: 1,
+        b: {
+            c: 2
+            d: 3
+        },
+        e: {
+            f: {
+                g: 4
+            }
+        }
+    }
+ */
+function unflattenObject(flattened) {
+    const unflattened = {}
+
+    const flattenedKeys = Object.keys(flattened)
+
+    for (let indexKey = 0; indexKey < flattenedKeys.length; indexKey++) {
+        const key = flattenedKeys[indexKey]
+        const value = flattened[key]
+        const fragments = key.split('.')
+        const numberOfFragments = fragments.length
+
+        let current = unflattened
+
+        for (let indexFragment = 0; indexFragment < numberOfFragments-1; indexFragment++) {
+            const fragment = fragments[indexFragment]
+
+            if (!current.hasOwnProperty(fragment)) {
+                current[fragment] = {}
+            }
+
+            current = current[fragment]
+        }
+
+        current[fragments[numberOfFragments-1]] = value
+    }
+
+    return unflattened
+}
+
 module.exports = {
     isObject,
 
@@ -152,5 +235,8 @@ module.exports = {
     merge,
     mergeWith,
 
-    pick
+    pick,
+
+    flattenObject,
+    unflattenObject
 }
