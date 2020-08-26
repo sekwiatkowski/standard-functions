@@ -4,6 +4,14 @@ function equals(b) {
     return a => a === b
 }
 
+function greaterThan(value) {
+    return x => x > value
+}
+
+function lessThan(value) {
+    return x => x < value
+}
+
 function not(predicate) {
     return x => !predicate(x)
 }
@@ -54,10 +62,13 @@ function match(pairs) {
 
 module.exports = {
     not,
-    or,
-    and,
 
     equals,
+    greaterThan,
+    lessThan,
+
+    or,
+    and,
 
     onlyIf,
     ifElse,
