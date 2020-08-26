@@ -30,6 +30,10 @@ function mapPair(g) {
     return ([a, b]) => [a, g(a) (b)]
 }
 
+function flipPair([a, b]) {
+    return [b, a]
+}
+
 function bimap(f, g) {
     return ([a, b]) => [f(a), g(b)]
 }
@@ -64,6 +68,7 @@ module.exports = {
     mapFirst,
     mapSecond,
     mapPair,
+    flipPair,
     bimap,
     foldPair,
 
