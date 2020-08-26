@@ -25,6 +25,8 @@ function surroundWith(beginning) {
 }
 
 const surroundWithParentheses = surroundWith('(')(')')
+const surroundWithSingleQuotes = surroundWith("'")("'")
+const surroundWithDoubleQuotes = surroundWith('"')('"')
 
 module.exports = {
     isString,
@@ -42,5 +44,7 @@ module.exports = {
     joinWithNewline,
 
     surroundWith,
-    surroundWithParentheses
+    surroundWithParentheses,
+    surroundWithSingleQuotes,
+    surroundWithDoubleQuotes
 }
