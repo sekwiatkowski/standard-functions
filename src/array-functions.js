@@ -169,12 +169,16 @@ function splitAt(position) {
     return arr => [ arr.slice(0, position), arr.slice(position) ]
 }
 
-function contains(arr) {
-    return item => arr.includes(item)
+function contains(item) {
+    return arr => arr.includes(item)
 }
 
-function containsAll(arr) {
-    return items => {
+function isContainedIn(arr) {
+    return item => contains(item)(arr)
+}
+
+function containsAll(items) {
+    return arr => {
         for (let i = 0; i < items.length; i++) {
             if (!arr.includes(items[i])) {
                 return false
@@ -183,6 +187,10 @@ function containsAll(arr) {
 
         return true
     }
+}
+
+function areContainedIn(arr) {
+    return items => containsAll(items)(arr)
 }
 
 function all(p) {
@@ -295,7 +303,10 @@ module.exports = {
 
     // Item-based predicates
     contains,
+    isContainedIn,
+
     containsAll,
+    areContainedIn,
 
     // Sort
     maxBy,
