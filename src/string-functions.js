@@ -28,6 +28,10 @@ const surroundWithParentheses = surroundWith('(')(')')
 const surroundWithSingleQuotes = surroundWith("'")("'")
 const surroundWithDoubleQuotes = surroundWith('"')('"')
 
+function lower(input) {
+    return input.toLowerCase()
+}
+
 module.exports = {
     isString,
 
@@ -46,5 +50,7 @@ module.exports = {
     surroundWith,
     surroundWithParentheses,
     surroundWithSingleQuotes,
-    surroundWithDoubleQuotes
+    surroundWithDoubleQuotes,
+
+    lower
 }
