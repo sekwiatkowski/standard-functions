@@ -3,6 +3,12 @@ const {first, last, find, findIndex, drop, after} = require('./array-functions')
 
 function safeFirst(arr) {
     return arr.length >= 1
+        ? some(arr)
+        : None
+}
+
+function safeSingle(arr) {
+    return arr.length === 1
         ? some(first(arr))
         : None
 }
@@ -46,6 +52,7 @@ function safeAfter(index) {
 
 module.exports = {
     safeFirst,
+    safeSingle,
     safeLast,
     safeDrop,
     safeFind,
