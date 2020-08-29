@@ -67,8 +67,8 @@ module.exports = {
     greaterThan,
     lessThan,
 
-    or,
-    and,
+    anyPass,
+    allPass,
 
     onlyIf,
     ifElse,
