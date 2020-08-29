@@ -74,8 +74,24 @@ function headAndTail(arr) {
     return [ head(arr), tail(arr) ]
 }
 
+function init(arr) {
+    let size = arr.length-1
+
+    const res = Array(size)
+
+    for (let i = 0; i < size; i++) {
+        res[i] = arr[i]
+    }
+
+    return res
+}
+
 function last(arr) {
     return arr[arr.length - 1]
+}
+
+function initAndLast(arr) {
+    return [ init(arr), last(arr) ]
 }
 
 function find(predicate) {
@@ -281,46 +297,37 @@ module.exports = {
     fold,
     foldWhile,
 
-    // Check type
-
-    // Select n items
+    head,
+    first: head,
     tail,
     headAndTail,
 
-    // Select a single item
-    head,
-    first: head,
+    init,
     last,
+    initAndLast,
 
-    // Search using a predicate
     find,
     findIndex,
     indexOf,
 
-    // Set-like operations
     unique,
     difference,
 
-    // Item-based predicates
     contains,
     isContainedIn,
 
     containsAll,
     areContainedIn,
 
-    // Sort
     maxBy,
 
-    // Split
     partition,
     chunk,
     splitAt,
 
-    // Combine
     cartesianProduct,
     zip,
 
-    // Check items
     all,
     any,
 
