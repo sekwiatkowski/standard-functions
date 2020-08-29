@@ -16,7 +16,7 @@ function not(predicate) {
     return x => !predicate(x)
 }
 
-function or(...predicates) {
+function anyPass(predicates) {
     return (x, i_x) => {
         for(let i_p = 0; i_p < predicates.length; i_p++) {
             if (predicates[i_p](x, i_x)) {
@@ -28,7 +28,7 @@ function or(...predicates) {
     }
 }
 
-function and(...predicates) {
+function allPass(...predicates) {
     return (x, i_x) => {
         for(let i_p = 0; i_p < predicates.length; i_p++) {
             if (!predicates[i_p](x, i_x)) {
