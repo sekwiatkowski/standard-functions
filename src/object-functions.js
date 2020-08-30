@@ -94,6 +94,10 @@ function mapObject(f) {
     }
 }
 
+function addProperty(key) {
+    return value => obj => ({...obj, [key]: value})
+}
+
 function merge(a) {
     return b => ({...a, ...b})
 }
@@ -237,6 +241,8 @@ module.exports = {
     mapValues,
     mapEntries,
     mapObject,
+
+    addProperty,
 
     hasProperty,
     isPropertyOf,
