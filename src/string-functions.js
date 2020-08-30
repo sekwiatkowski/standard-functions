@@ -10,6 +10,7 @@ const splitByComma = split(',')
 const splitByCommaSpace = split(', ')
 const splitBySpace = split(' ')
 const splitByNewline = split('\n')
+const splitByEqualitySign = split('=')
 
 function join(separator) {
     return arr => arr.join(separator)
@@ -19,6 +20,7 @@ const joinWithComma = join(',')
 const joinWithCommaSpace = join(', ')
 const joinWithSpace = join(' ')
 const joinWithNewline = join('\n')
+const joinWithEqualitySign = join('=')
 
 function surroundWith(beginning) {
     return end => str => beginning + str + end
@@ -40,12 +42,14 @@ module.exports = {
     splitBySpace,
     splitByCommaSpace,
     splitByNewline,
+    splitByEqualitySign,
 
     join,
     joinWithComma,
     joinWithCommaSpace,
     joinWithSpace,
     joinWithNewline,
+    joinWithEqualitySign,
 
     surroundWith,
     surroundWithParentheses,
