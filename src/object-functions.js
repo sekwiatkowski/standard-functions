@@ -2,6 +2,32 @@ function isObject(input) {
     return typeof input === 'object'
 }
 
+function associate(f) {
+    return items => {
+        const res = {}
+
+        for (let i = 0; i < items.length; i++) {
+            const [key, value] = f(items[i])
+            res[key] = value
+        }
+
+        return res
+    }
+}
+
+function associateWith(f) {
+    return items => {
+        const res = {}
+
+        for (let i = 0; i < items.length; i++) {
+            const key = items[i]
+            res[key] = f(key)
+        }
+
+        return res
+    }
+}
+
 function hasProperty(key) {
     return obj => obj.hasOwnProperty(key)
 }
@@ -233,6 +259,9 @@ function unflattenObject(flattened) {
 
 module.exports = {
     isObject,
+
+    associate,
+    associateWith,
 
     keys,
     values,
