@@ -64,15 +64,30 @@ function mapValues(f) {
 
 function mapEntries(f) {
     return obj => {
-        const keys = Object.keys(obj)
+        const entries = Object.entries(obj)
+        const numberOfEntries = entries.length
 
-        const numberOfEntries = keys.length
         const result = Array(numberOfEntries)
 
-        for (let index = 0; index < keys.length; index++) {
-            const key = keys[index]
-            const value = obj[key]
+        for (let index = 0; index < numberOfEntries; index++) {
+            const [key, value] = entries[index]
             result[index] = f([key, value])
+        }
+
+        return result
+    }
+}
+
+function mapObject(f) {
+    return obj => {
+        const entries = Object.entries(obj)
+        const numberOfEntries = entries.length
+
+        const result = {}
+
+        for (let index = 0; index < numberOfEntries; index++) {
+            const [key, value] = entries[index]
+            result[key] = f([key, value])
         }
 
         return result
@@ -221,6 +236,7 @@ module.exports = {
 
     mapValues,
     mapEntries,
+    mapObject,
 
     hasProperty,
     isPropertyOf,
