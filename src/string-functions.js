@@ -34,6 +34,14 @@ function lower(input) {
     return input.toLowerCase()
 }
 
+function upper(input) {
+    return input.toUpperCase()
+}
+
+function capitalize(input) {
+    return input.charAt(0).toUpperCase() + input.slice(1)
+}
+
 module.exports = {
     isString,
 
@@ -56,5 +64,7 @@ module.exports = {
     surroundWithSingleQuotes,
     surroundWithDoubleQuotes,
 
-    lower
+    lower,
+    upper,
+    capitalize
 }
