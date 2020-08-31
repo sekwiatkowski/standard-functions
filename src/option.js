@@ -1,3 +1,4 @@
+const {identity} = require('./higher-order-functions')
 const {isFunction} = require('./higher-order-functions')
 const {fold} = require('./array-functions')
 const {appendTo} = require('./string-or-array-functions')
@@ -14,33 +15,37 @@ const None = {
 }
 
 function chainOption(f) {
-    return opt => opt.kind === 'Some'
+    return opt => isSome(opt)
         ? f(opt.value)
         : None
 }
 
 function mapOption(f) {
-    return opt => opt.kind === 'Some'
+    return opt => isSome(opt)
         ? some(f(opt.value))
         : None
 }
 
 function testOption(p) {
-    return opt => opt.kind === 'Some' && p(opt.value)
+    return opt => isSome(opt) && p(opt.value)
         ? opt
         : None
 }
 
 function foldOption(ifSome) {
-    return ifNone => opt => opt.kind === 'Some'
+    return ifNone => opt => isSome(opt)
         ? (isFunction(ifSome) ? ifSome(opt.value) : ifSome)
         : (isFunction(ifNone) ? ifNone() : ifNone)
 }
 
 function alternativeOption(functionOrOption) {
-    return opt => opt.kind === 'Some'
+    return opt => isSome(opt)
         ? opt
         : (isFunction(functionOrOption) ? functionOrOption() : functionOrOption)
+}
+
+function alternativeValue(functionOrValue) {
+    return opt => foldOption(identity) (functionOrValue) (opt)
 }
 
 function isSome(opt) {
@@ -93,10 +98,15 @@ module.exports = {
     None,
 
     chainOption,
+
     mapOption,
+
     testOption,
-    foldOption,
+
     alternativeOption,
+
+    foldOption,
+    alternativeValue,
 
     isSome,
     isNone,

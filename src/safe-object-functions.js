@@ -5,7 +5,7 @@ function safeProperty(key) {
 }
 
 function safePropertyOf(obj) {
-    return key => obj.hasOwnProperty(key) ? some(obj[key]) : None
+    return key => safePropertyOf(obj) (key)
 }
 
 module.exports = {
