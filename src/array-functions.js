@@ -7,7 +7,7 @@ function map(f) {
 }
 
 function mapOf(arr) {
-    return f => map(arr)(f)
+    return f => map(f)(arr)
 }
 
 function flatMap(f) {
