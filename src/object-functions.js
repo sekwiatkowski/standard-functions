@@ -73,11 +73,28 @@ function entries (obj) {
         .map(key => [ key, obj[key] ])
 }
 
+function mapKeys(f) {
+    return obj => {
+        const result = {}
+
+        const keys = Object.keys(obj)
+
+        for (let index = 0; index < keys.length; index++) {
+            const key = keys[index]
+            const value = obj[key]
+            result[f(key)] = value
+        }
+
+        return result
+    }
+}
+
 function mapValues(f) {
     return obj => {
         const result = {}
 
         const keys = Object.keys(obj)
+
         for (let index = 0; index < keys.length; index++) {
             const key = keys[index]
             const value = obj[key]
@@ -267,6 +284,7 @@ module.exports = {
     values,
     entries,
 
+    mapKeys,
     mapValues,
     mapEntries,
     mapObject,
