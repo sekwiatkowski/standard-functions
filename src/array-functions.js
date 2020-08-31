@@ -6,10 +6,6 @@ function map(f) {
     return arr => arr.map(f)
 }
 
-function mapOf(arr) {
-    return f => map(f)(arr)
-}
-
 function flatMap(f) {
     return arr => arr.flatMap(f)
 }
@@ -292,7 +288,6 @@ module.exports = {
     isArray,
 
     map,
-    mapOf,
 
     flatMap,
     flatten,
