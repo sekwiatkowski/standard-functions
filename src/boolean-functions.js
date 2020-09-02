@@ -45,7 +45,7 @@ function onlyIf(predicate) {
 }
 
 function ifElse(predicate) {
-    return ifTrue => ifFalse => input => predicate(input) ? ifTrue : ifFalse
+    return ifTrue => ifFalse => input => predicate(input) ? ifTrue(input) : ifFalse(input)
 }
 
 function match(pairs) {
