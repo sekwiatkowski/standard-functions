@@ -191,6 +191,10 @@ function keyValue(key) {
     return value => ({[key]: value})
 }
 
+function fromEntries(entries) {
+    return Object.fromEntries(entries)
+}
+
 /*
     {
         a: 1,
@@ -300,6 +304,7 @@ module.exports = {
     propertiesOf,
 
     keyValue,
+    fromEntries,
 
     merge,
     mergeWith,
