@@ -12,6 +12,8 @@ const option = require('./option')
 const safeArrayFunctions = require('./safe-array-functions')
 const safeObjectFunctions = require('./safe-object-functions')
 
+const treeFunctions = require('./tree-functions')
+
 module.exports = {
     ...stringFunctions,
     ...arrayFunctions,
@@ -29,5 +31,7 @@ module.exports = {
 
     ...option,
     ...safeArrayFunctions,
-    ...safeObjectFunctions
+    ...safeObjectFunctions,
+
+    ...treeFunctions
 }
