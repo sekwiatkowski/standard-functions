@@ -267,6 +267,23 @@ function zip(as) {
     }
 }
 
+function zipObject(as) {
+    return bs => {
+        const aLength = as.length
+        const bLength = bs.length
+
+        const zipLength = Math.min(aLength, bLength)
+
+        const result = {}
+
+        for (let i = 0; i < zipLength; i += 1) {
+            result[as[i]] = bs[i]
+        }
+
+        return result
+    }
+}
+
 function arrayOf(...values) {
     return [ ...values ]
 }
@@ -327,6 +344,7 @@ module.exports = {
 
     cartesianProduct,
     zip,
+    zipObject,
 
     all,
     any,
