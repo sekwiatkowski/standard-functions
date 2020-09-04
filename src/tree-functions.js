@@ -24,3 +24,8 @@ function foldLeaves(operation) {
 }
 
 const concatLeaves = foldLeaves(concat) ([]) ([])
+
+module.exports = {
+    foldLeaves,
+    concatLeaves
+}
