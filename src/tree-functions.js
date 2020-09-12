@@ -9,7 +9,7 @@ function foldLeaves(operation) {
         fold
             ((acc, [key, value]) => {
                 if (isLeaf(value)) {
-                    return operation(acc) ([onLeaf([key, value, path])])
+                    return operation(acc) ([onLeaf(value, key, path)])
                 }
                 else if (isObject(value)) {
                     const updatedPath = append(key)(path)
