@@ -8,6 +8,8 @@ function split(separator) {
 
 const splitByComma = split(',')
 const splitByCommaSpace = split(', ')
+const splitBySemicolon = split('; ')
+const splitBySemicolonSpace = split('; ')
 const splitBySpace = split(' ')
 const splitByNewline = split('\n')
 const splitByEqualitySign = split('=')
@@ -18,6 +20,8 @@ function join(separator) {
 
 const joinWithComma = join(',')
 const joinWithCommaSpace = join(', ')
+const joinWithSemicolon = join(';')
+const joinWithSemicolonSpace = join('; ')
 const joinWithSpace = join(' ')
 const joinWithNewline = join('\n')
 const joinWithEqualitySign = join('=')
@@ -47,14 +51,18 @@ module.exports = {
 
     split,
     splitByComma,
-    splitBySpace,
     splitByCommaSpace,
+    splitBySemicolon,
+    splitBySemicolonSpace,
+    splitBySpace,
     splitByNewline,
     splitByEqualitySign,
 
     join,
     joinWithComma,
     joinWithCommaSpace,
+    joinWithSemicolon,
+    joinWithSemicolonSpace,
     joinWithSpace,
     joinWithNewline,
     joinWithEqualitySign,
