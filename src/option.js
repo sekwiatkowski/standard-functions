@@ -85,7 +85,7 @@ function concatOptions(options) {
         (options)
 }
 
-function maybeNullable(nullable) {
+function maybeNull(nullable) {
     return nullable === null ? None : some(nullable)
 }
 
@@ -114,6 +114,6 @@ module.exports = {
     invertOptions,
     concatOptions,
 
-    maybeNullable,
+    maybeNull,
     maybeUndefined
 }
