@@ -5,7 +5,7 @@ function safeProperty(key) {
 }
 
 function safePropertyOf(obj) {
-    return key => safePropertyOf(obj) (key)
+    return key => safeProperty(key) (obj)
 }
 
 module.exports = {
