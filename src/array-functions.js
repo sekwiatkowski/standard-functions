@@ -3,11 +3,19 @@ function isArray(input) {
 }
 
 function map(f) {
-    return arr => arr.map(f)
+    return arr => arr.map(x => f(x))
+}
+
+function mapIndexed(f) {
+    return arr => arr.map((x, i) => f(i, x))
 }
 
 function flatMap(f) {
-    return arr => arr.flatMap(f)
+    return arr => arr.flatMap(x => f(x))
+}
+
+function flatMapIndexed(f) {
+    return arr => arr.flatMap((x, i) => f(i, x))
 }
 
 function flatten(arr) {
@@ -15,7 +23,11 @@ function flatten(arr) {
 }
 
 function filter(predicate) {
-    return arr => arr.filter(predicate)
+    return arr => arr.filter(x => predicate(x))
+}
+
+function filterIndexed(predicate) {
+    return arr => arr.filter((x, i) => predicate(i, x))
 }
 
 function fold(f) {
@@ -24,6 +36,18 @@ function fold(f) {
 
         for (let i = 0; i < arr.length; i++) {
             acc = f(acc, arr[i])
+        }
+
+        return acc
+    }
+}
+
+function foldIndexed(f) {
+    return initialValue => arr => {
+        let acc = initialValue
+
+        for (let i = 0; i < arr.length; i++) {
+            acc = f(i, acc, arr[i])
         }
 
         return acc
@@ -285,7 +309,7 @@ function zipObject(as) {
 }
 
 function arrayOf(...values) {
-    return [ ...values ]
+    return values
 }
 
 function range(inclusiveStart) {
@@ -305,13 +329,18 @@ module.exports = {
     isArray,
 
     map,
+    mapIndexed,
 
     flatMap,
+    flatMapIndexed,
+
     flatten,
 
     filter,
+    filterIndexed,
 
     fold,
+    foldIndexed,
     foldWhile,
 
     head,
