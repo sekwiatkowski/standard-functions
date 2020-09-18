@@ -180,6 +180,21 @@ function pick(keys) {
 
         for (let index = 0; index < keys.length; index++) {
             const key = keys[index]
+            if (obj.hasOwnProperty(key)) {
+                partialObject[key] = obj[key]
+            }
+        }
+
+        return partialObject
+    }
+}
+
+function pickAll(keys) {
+    return obj => {
+        const partialObject = {}
+
+        for (let index = 0; index < keys.length; index++) {
+            const key = keys[index]
             partialObject[key] = obj[key]
         }
 
@@ -310,6 +325,7 @@ module.exports = {
     mergeWith,
 
     pick,
+    pickAll,
 
     flattenObject,
     unflattenObject
