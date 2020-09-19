@@ -30,19 +30,23 @@ function mergeRecursivelyStep(acc) {
 
 const mergeRecursively = mergeRecursivelyStep([])
 
-function mergeRecursivelyWithPathStep(acc) {
-    return path => property => {
+function mergeRecursivelyWithPathStep([ path, previousMerge ]) {
+    return property => {
         const omitRecursiveProperty = omit([property])
 
         return node => {
             const withoutRecursiveProperty = omitRecursiveProperty(node)
 
-            const ownResult = [path, merge(acc)(withoutRecursiveProperty)]
+            const updatedMerge = merge(previousMerge)(withoutRecursiveProperty)
+
+            const ownResult = [path, updatedMerge]
 
             if (hasProperty(property)(node)) {
                 const sub = node[property]
 
-                const childResults = flatMap(([key, value]) => mergeRecursivelyWithPathStep(ownResult)(appendTo(path)(key))(property)(value))(entries(sub))
+                const childResults = flatMap
+                    (([key, value]) => mergeRecursivelyWithPathStep([appendTo(path)(key), updatedMerge])(property)(value))
+                    (entries(sub))
 
                 return [ownResult, ...childResults]
             } else {
@@ -52,7 +56,7 @@ function mergeRecursivelyWithPathStep(acc) {
     }
 }
 
-const mergeRecursivelyWithPath = mergeRecursivelyWithPathStep([])([])
+const mergeRecursivelyWithPath = mergeRecursivelyWithPathStep([ [], [] ])
 
 function recursiveProperty(name) {
     const omitRecursiveProperty = omit([name])
