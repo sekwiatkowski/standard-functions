@@ -28,7 +28,7 @@ function mergeRecursivelyStep(acc) {
     }
 }
 
-const mergeRecursively = mergeRecursivelyStep([])([])
+const mergeRecursively = mergeRecursivelyStep([])
 
 function mergeRecursivelyWithPathStep(acc) {
     return path => property => {
