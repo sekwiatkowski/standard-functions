@@ -42,7 +42,7 @@ function mergeRecursivelyWithPathStep(acc) {
             if (hasProperty(property)(node)) {
                 const sub = node[property]
 
-                const childResults = flatMap(([key, value]) => mergeRecursivelyStep(ownResult)(appendTo(path)(key))(property)(value))(entries(sub))
+                const childResults = flatMap(([key, value]) => mergeRecursivelyWithPathStep(ownResult)(appendTo(path)(key))(property)(value))(entries(sub))
 
                 return [ownResult, ...childResults]
             } else {
