@@ -12,7 +12,7 @@ const option = require('./option')
 const safeArrayFunctions = require('./safe-array-functions')
 const safeObjectFunctions = require('./safe-object-functions')
 
-const treeFunctions = require('./tree-functions')
+const recursiveObjectFunctions = require('./recursive-object-functions')
 
 module.exports = {
     ...stringFunctions,
@@ -33,5 +33,5 @@ module.exports = {
     ...safeArrayFunctions,
     ...safeObjectFunctions,
 
-    ...treeFunctions
+    ...recursiveObjectFunctions
 }

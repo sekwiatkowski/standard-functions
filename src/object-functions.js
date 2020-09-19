@@ -174,6 +174,23 @@ function mergeWith(f) {
     }
 }
 
+function omit(omittedKeys) {
+    return obj => {
+        const partialObject = {}
+
+        const keys = Object.keys(obj)
+
+        for (let index = 0; index < keys.length; index++) {
+            const key = keys[index]
+            if (!omittedKeys.includes(key)) {
+                partialObject[key] = obj[key]
+            }
+        }
+
+        return partialObject
+    }
+}
+
 function pick(keys) {
     return obj => {
         const partialObject = {}
@@ -324,6 +341,7 @@ module.exports = {
     merge,
     mergeWith,
 
+    omit,
     pick,
     pickAll,
 
