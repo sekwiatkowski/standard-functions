@@ -1,37 +1,21 @@
-const arrayFunctions = require('./array-functions')
-const objectFunctions = require('./object-functions')
-const booleanFunctions = require('./boolean-functions')
-const higherOrderFunctions = require('./higher-order-functions')
-const stringFunctions = require('./string-functions')
-const stringOrArrayFunctions = require('./string-or-array-functions')
-const numberFunctions = require('./number-functions')
+export * from './array-functions'
 
-const pair = require('./pair')
+export * from './boolean-functions'
 
-const option = require('./option')
-const safeArrayFunctions = require('./safe-array-functions')
-const safeObjectFunctions = require('./safe-object-functions')
+export * from './higher-order-functions'
 
-const recursiveObjectFunctions = require('./recursive-object-functions')
+export * from './number-functions'
 
-module.exports = {
-    ...stringFunctions,
-    ...arrayFunctions,
-    ...stringOrArrayFunctions,
+export * from './object-functions'
 
-    ...objectFunctions,
+export * from './option'
 
-    ...booleanFunctions,
+export * from './pair'
 
-    ...numberFunctions,
+export * from './recursive-object-functions'
 
-    ...higherOrderFunctions,
+export * from './safe-array-functions'
+export * from './safe-object-functions'
 
-    ...pair,
-
-    ...option,
-    ...safeArrayFunctions,
-    ...safeObjectFunctions,
-
-    ...recursiveObjectFunctions
-}
+export * from './string-functions'
+export * from './string-or-array-functions'

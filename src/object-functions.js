@@ -1,8 +1,8 @@
-function isObject(input) {
+export function isObject(input) {
     return typeof input === 'object'
 }
 
-function associate(f) {
+export function associate(f) {
     return items => {
         const res = {}
 
@@ -15,7 +15,7 @@ function associate(f) {
     }
 }
 
-function associateWith(f) {
+export function associateWith(f) {
     return items => {
         const res = {}
 
@@ -28,19 +28,19 @@ function associateWith(f) {
     }
 }
 
-function hasProperty(key) {
+export function hasProperty(key) {
     return obj => obj.hasOwnProperty(key)
 }
 
-function isPropertyOf(obj) {
+export function isPropertyOf(obj) {
     return key => obj.hasOwnProperty(key)
 }
 
-function property(key) {
+export function property(key) {
     return obj => obj[key]
 }
 
-function properties(keys) {
+export function properties(keys) {
     return obj => {
         const result = []
 
@@ -52,28 +52,28 @@ function properties(keys) {
     }
 }
 
-function propertyOf(obj) {
+export function propertyOf(obj) {
     return key => property(key)(obj)
 }
 
-function propertiesOf(obj) {
+export function propertiesOf(obj) {
     return keys => properties(keys)(obj)
 }
 
-function keys (obj) {
+export function keys (obj) {
     return Object.keys(obj)
 }
 
-function values (obj) {
+export function values (obj) {
     return Object.values(obj)
 }
 
-function entries (obj) {
+export function entries (obj) {
     return Object.keys(obj)
         .map(key => [ key, obj[key] ])
 }
 
-function mapKeys(f) {
+export function mapKeys(f) {
     return obj => {
         const result = {}
 
@@ -89,7 +89,7 @@ function mapKeys(f) {
     }
 }
 
-function mapValues(f) {
+export function mapValues(f) {
     return obj => {
         const result = {}
 
@@ -105,7 +105,7 @@ function mapValues(f) {
     }
 }
 
-function mapEntries(f) {
+export function mapEntries(f) {
     return obj => {
         const entries = Object.entries(obj)
         const numberOfEntries = entries.length
@@ -121,7 +121,7 @@ function mapEntries(f) {
     }
 }
 
-function mapObject(f) {
+export function mapObject(f) {
     return obj => {
         const entries = Object.entries(obj)
         const numberOfEntries = entries.length
@@ -137,15 +137,15 @@ function mapObject(f) {
     }
 }
 
-function addProperty(key) {
+export function addProperty(key) {
     return value => obj => ({...obj, [key]: value})
 }
 
-function merge(a) {
+export function merge(a) {
     return b => ({...a, ...b})
 }
 
-function mergeWith(f) {
+export function mergeWith(f) {
     return a => b => {
         const merged = {}
 
@@ -174,7 +174,7 @@ function mergeWith(f) {
     }
 }
 
-function omit(omittedKeys) {
+export function omit(omittedKeys) {
     return obj => {
         const partialObject = {}
 
@@ -191,7 +191,7 @@ function omit(omittedKeys) {
     }
 }
 
-function pick(keys) {
+export function pick(keys) {
     return obj => {
         const partialObject = {}
 
@@ -206,7 +206,7 @@ function pick(keys) {
     }
 }
 
-function pickAll(keys) {
+export function pickAll(keys) {
     return obj => {
         const partialObject = {}
 
@@ -219,11 +219,11 @@ function pickAll(keys) {
     }
 }
 
-function keyValue(key) {
+export function keyValue(key) {
     return value => ({[key]: value})
 }
 
-function fromEntries(entries) {
+export function fromEntries(entries) {
     return Object.fromEntries(entries)
 }
 
@@ -241,7 +241,7 @@ function fromEntries(entries) {
         }
     }
  */
-function flattenObject(unflattened, parent = '', flattened = {}) {
+export function flattenObject(unflattened, parent = '', flattened = {}) {
     const unflattenedKeys = Object.keys(unflattened)
 
     for (let indexKey = 0; indexKey < unflattenedKeys.length; indexKey++) {
@@ -281,7 +281,7 @@ function flattenObject(unflattened, parent = '', flattened = {}) {
         }
     }
  */
-function unflattenObject(flattened) {
+export function unflattenObject(flattened) {
     const unflattened = {}
 
     const flattenedKeys = Object.keys(flattened)
@@ -294,7 +294,7 @@ function unflattenObject(flattened) {
 
         let current = unflattened
 
-        for (let indexFragment = 0; indexFragment < numberOfFragments-1; indexFragment++) {
+        for (let indexFragment = 0; indexFragment < numberOfFragments - 1; indexFragment++) {
             const fragment = fragments[indexFragment]
 
             if (!current.hasOwnProperty(fragment)) {
@@ -304,47 +304,8 @@ function unflattenObject(flattened) {
             current = current[fragment]
         }
 
-        current[fragments[numberOfFragments-1]] = value
+        current[fragments[numberOfFragments - 1]] = value
     }
 
     return unflattened
-}
-
-module.exports = {
-    isObject,
-
-    associate,
-    associateWith,
-
-    keys,
-    values,
-    entries,
-
-    mapKeys,
-    mapValues,
-    mapEntries,
-    mapObject,
-
-    addProperty,
-
-    hasProperty,
-    isPropertyOf,
-
-    property,
-    propertyOf,
-    properties,
-    propertiesOf,
-
-    keyValue,
-    fromEntries,
-
-    merge,
-    mergeWith,
-
-    omit,
-    pick,
-    pickAll,
-
-    flattenObject,
-    unflattenObject
 }

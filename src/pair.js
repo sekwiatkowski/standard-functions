@@ -1,48 +1,48 @@
-function pair(a) {
+export function pair(a) {
     return b => [a, b]
 }
 
-function pairWith(b) {
+export function pairWith(b) {
     return a => [a, b]
 }
 
-function pairBy(f) {
+export function pairBy(f) {
     return x => [x, f(x)]
 }
 
-function duplicate(a) {
+export function duplicate(a) {
     return [a, a]
 }
 
-function second([a, b]) {
+export function second([a, b]) {
     return b
 }
 
-function mapFirst(f) {
+export function mapFirst(f) {
     return ([a, b]) => [f(a), b]
 }
 
-function mapSecond(g) {
+export function mapSecond(g) {
     return ([a, b]) => [a, g(b)]
 }
 
-function mapPair(g) {
+export function mapPair(g) {
     return ([a, b]) => [a, g(a) (b)]
 }
 
-function flipPair([a, b]) {
+export function flipPair([a, b]) {
     return [b, a]
 }
 
-function bimap(f, g) {
+export function bimap(f, g) {
     return ([a, b]) => [f(a), g(b)]
 }
 
-function foldPair(f) {
+export function foldPair(f) {
     return ([a, b]) => f(a) (b)
 }
 
-function invertPairs(pairs) {
+export function invertPairs(pairs) {
     const numberOfPairs = pairs.length
     const as = new Array(numberOfPairs)
     const bs = new Array(numberOfPairs)
@@ -55,22 +55,4 @@ function invertPairs(pairs) {
     }
 
     return [as, bs]
-}
-
-module.exports = {
-    pair,
-    pairWith,
-    pairBy,
-    duplicate,
-
-    second,
-
-    mapFirst,
-    mapSecond,
-    mapPair,
-    flipPair,
-    bimap,
-    foldPair,
-
-    invertPairs
 }

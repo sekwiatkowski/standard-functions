@@ -1,14 +1,9 @@
-const {some, None} = require('./option')
+import {None, some} from './option'
 
-function safeProperty(key) {
+export function safeProperty(key) {
     return obj => obj.hasOwnProperty(key) ? some(obj[key]): None
 }
 
-function safePropertyOf(obj) {
+export function safePropertyOf(obj) {
     return key => safeProperty(key) (obj)
-}
-
-module.exports = {
-    safeProperty,
-    safePropertyOf
 }

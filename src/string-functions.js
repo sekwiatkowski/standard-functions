@@ -1,78 +1,51 @@
-function isString(input) {
+export function isString(input) {
     return typeof input === 'string'
 }
 
-function split(separator) {
+export function toString(input) {
+    return input.toString()
+}
+
+export function split(separator) {
     return s => s.split(separator)
 }
 
-const splitByComma = split(',')
-const splitByCommaSpace = split(', ')
-const splitBySemicolon = split('; ')
-const splitBySemicolonSpace = split('; ')
-const splitBySpace = split(' ')
-const splitByNewline = split('\n')
-const splitByEqualitySign = split('=')
+export const splitByComma = split(',')
+export const splitByCommaSpace = split(', ')
+export const splitBySemicolon = split('; ')
+export const splitBySemicolonSpace = split('; ')
+export const splitBySpace = split(' ')
+export const splitByNewline = split('\n')
+export const splitByEqualitySign = split('=')
 
-function join(separator) {
+export function join(separator) {
     return arr => arr.join(separator)
 }
 
-const joinWithComma = join(',')
-const joinWithCommaSpace = join(', ')
-const joinWithSemicolon = join(';')
-const joinWithSemicolonSpace = join('; ')
-const joinWithSpace = join(' ')
-const joinWithNewline = join('\n')
-const joinWithEqualitySign = join('=')
+export const joinWithComma = join(',')
+export const joinWithCommaSpace = join(', ')
+export const joinWithSemicolon = join(';')
+export const joinWithSemicolonSpace = join('; ')
+export const joinWithSpace = join(' ')
+export const joinWithNewline = join('\n')
+export const joinWithEqualitySign = join('=')
 
-function surroundWith(beginning) {
+export function surroundWith(beginning) {
     return end => str => beginning + str + end
 }
 
-const surroundWithParentheses = surroundWith('(')(')')
-const surroundWithSingleQuotes = surroundWith("'")("'")
-const surroundWithDoubleQuotes = surroundWith('"')('"')
+export const surroundWithParentheses = surroundWith('(')(')')
+export const surroundWithSingleQuotes = surroundWith("'")("'")
+export const surroundWithDoubleQuotes = surroundWith('"')('"')
 
-function lower(input) {
+export function lower(input) {
     return input.toLowerCase()
 }
 
-function upper(input) {
+export function upper(input) {
     return input.toUpperCase()
 }
 
-function capitalize(input) {
+export function capitalize(input) {
     return input.charAt(0).toUpperCase() + input.slice(1)
-}
-
-module.exports = {
-    isString,
-
-    split,
-    splitByComma,
-    splitByCommaSpace,
-    splitBySemicolon,
-    splitBySemicolonSpace,
-    splitBySpace,
-    splitByNewline,
-    splitByEqualitySign,
-
-    join,
-    joinWithComma,
-    joinWithCommaSpace,
-    joinWithSemicolon,
-    joinWithSemicolonSpace,
-    joinWithSpace,
-    joinWithNewline,
-    joinWithEqualitySign,
-
-    surroundWith,
-    surroundWithParentheses,
-    surroundWithSingleQuotes,
-    surroundWithDoubleQuotes,
-
-    lower,
-    upper,
-    capitalize
 }

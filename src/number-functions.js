@@ -1,17 +1,7 @@
-function toString(input) {
-    return input.toString()
-}
-
-function add(x) {
+export function add(x) {
     return y => x + y
 }
 
-function multiply(x) {
+export function multiply(x) {
     return y => x * y
-}
-
-module.exports = {
-    toString,
-    add,
-    multiply
 }

@@ -1,58 +1,57 @@
-const {identity} = require('./higher-order-functions')
-const {isFunction} = require('./higher-order-functions')
-const {fold} = require('./array-functions')
-const {appendTo} = require('./string-or-array-functions')
+import {identity, isFunction} from './higher-order-functions'
+import {fold} from './array-functions'
+import {appendTo} from './string-or-array-functions'
 
-function some(value) {
+export function some(value) {
     return {
         value,
         kind: 'Some'
     }
 }
 
-const None = {
+export const None = {
     kind: 'None'
 }
 
-function chainOption(f) {
+export function chainOption(f) {
     return opt => isSome(opt)
         ? f(opt.value)
         : None
 }
 
-function mapOption(f) {
+export function mapOption(f) {
     return opt => isSome(opt)
         ? some(f(opt.value))
         : None
 }
 
-function testOption(p) {
+export function testOption(p) {
     return opt => isSome(opt) && p(opt.value)
         ? opt
         : None
 }
 
-function foldOption(ifSome) {
+export function foldOption(ifSome) {
     return ifNone => opt => isSome(opt)
         ? (isFunction(ifSome) ? ifSome(opt.value) : ifSome)
         : (isFunction(ifNone) ? ifNone() : ifNone)
 }
 
-function alternativeOption(functionOrOption) {
+export function alternativeOption(functionOrOption) {
     return opt => isSome(opt)
         ? opt
         : (isFunction(functionOrOption) ? functionOrOption() : functionOrOption)
 }
 
-function alternativeValue(functionOrValue) {
+export function alternativeValue(functionOrValue) {
     return opt => foldOption(identity) (functionOrValue) (opt)
 }
 
-function isSome(opt) {
+export function isSome(opt) {
     return opt.kind === 'Some'
 }
 
-function isNone(opt) {
+export function isNone(opt) {
     return opt.kind === 'None'
 }
 
@@ -62,7 +61,7 @@ function isNone(opt) {
     [ None, some(x) ] = None
     [ some(x), None ] = None
  */
-function invertOptions(arr) {
+export function invertOptions(arr) {
     return arr.reduce(
         (acc, maybe) => chainOption(inner => mapOption(value => [...inner, value])(maybe))(acc),
         some([])
@@ -75,7 +74,7 @@ function invertOptions(arr) {
     [ None, some(x) ] = [x]
     [ some(x), None ] = [x]
  */
-function concatOptions(options) {
+export function concatOptions(options) {
     return fold
         ((acc, opt) => foldOption
             (appendTo(acc))
@@ -85,11 +84,11 @@ function concatOptions(options) {
         (options)
 }
 
-function maybeNull(nullable) {
+export function maybeNull(nullable) {
     return nullable === null ? None : some(nullable)
 }
 
-function maybeUndefined(undefinable) {
+export function maybeUndefined(undefinable) {
     return undefinable === undefined ? None : some(undefinable)
 }
 

@@ -1,23 +1,23 @@
-const {isString} = require('./string-functions')
+import {isString} from './string-functions'
 
-function take(n) {
+export function take(n) {
     return arr => arr.slice(0, n)
 }
 
-function takeFrom(arr) {
+export function takeFrom(arr) {
     return n => take(n) (arr)
 }
 
-function takeLast(n) {
+export function takeLast(n) {
     return arr => arr.slice(Math.max(arr.length - n, 0))
 }
 
 
-function takeLastFrom(arr) {
+export function takeLastFrom(arr) {
     return n => takeLast(n) (arr)
 }
 
-function takeWhile(predicate) {
+export function takeWhile(predicate) {
     return arr => {
         const res = []
         for (let i = 0; i < arr.length; i++) {
@@ -33,23 +33,23 @@ function takeWhile(predicate) {
     }
 }
 
-function drop(n) {
+export function drop(n) {
     return arr => arr.slice(n)
 }
 
-function dropFrom(arr) {
+export function dropFrom(arr) {
     return n => drop(n) (arr)
 }
 
-function dropLast(n) {
+export function dropLast(n) {
     return arr => arr.slice(0, -n)
 }
 
-function dropLastFrom(arr) {
+export function dropLastFrom(arr) {
     return n => dropLast(n) (arr)
 }
 
-function dropWhile(predicate) {
+export function dropWhile(predicate) {
     return arr => {
         let dropped = 0
         while (dropped < arr.length) {
@@ -66,75 +66,46 @@ function dropWhile(predicate) {
     }
 }
 
-function before(n) {
+export function before(n) {
     return arr => arr.slice(0, n)
 }
 
-function after(n) {
+export function after(n) {
     return arr => arr.slice(n+1)
 }
 
-function append(item) {
+export function append(item) {
     return collection => isString(collection) ? collection + item : [...collection, item]
 }
 
-function appendTo(collection) {
+export function appendTo(collection) {
     return item => isString(collection) ? collection + item : [...collection, item]
 }
 
-function prepend(item) {
+export function prepend(item) {
     return collection => isString(collection) ? item + collection : [item, ...collection]
 }
 
-function prependTo(collection) {
+export function prependTo(collection) {
     return item => isString(collection) ? item + collection :  [item, ...collection]
 }
 
-function isEmpty(arr) {
+export function isEmpty(arr) {
     return arr.length ===  0
 }
 
-function isNotEmpty(arr) {
+export function isNotEmpty(arr) {
     return arr.length > 0
 }
 
-function isOfLength(length) {
+export function isOfLength(length) {
     return arr => arr.length === length
 }
 
-function length(arr) {
+export function length(arr) {
     return arr.length
 }
 
-function concat(as) {
+export function concat(as) {
     return bs => as.concat(bs)
-}
-
-module.exports = {
-    take,
-    takeFrom,
-    takeLast,
-    takeLastFrom,
-    takeWhile,
-
-    drop,
-    dropFrom,
-    dropLast,
-    dropLastFrom,
-    dropWhile,
-
-    before,
-    after,
-
-    append,
-    appendTo,
-    prepend,
-    prependTo,
-    concat,
-
-    length,
-
-    isEmpty,
-    isNotEmpty,
-    isOfLength
 }

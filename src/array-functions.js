@@ -1,36 +1,36 @@
-function isArray(input) {
+export function isArray(input) {
     return Array.isArray(input)
 }
 
-function map(f) {
+export function map(f) {
     return arr => arr.map(x => f(x))
 }
 
-function mapIndexed(f) {
+export function mapIndexed(f) {
     return arr => arr.map((x, i) => f(i, x))
 }
 
-function flatMap(f) {
+export function flatMap(f) {
     return arr => arr.flatMap(x => f(x))
 }
 
-function flatMapIndexed(f) {
+export function flatMapIndexed(f) {
     return arr => arr.flatMap((x, i) => f(i, x))
 }
 
-function flatten(arr) {
+export function flatten(arr) {
     return arr.flat()
 }
 
-function filter(predicate) {
+export function filter(predicate) {
     return arr => arr.filter(x => predicate(x))
 }
 
-function filterIndexed(predicate) {
+export function filterIndexed(predicate) {
     return arr => arr.filter((x, i) => predicate(i, x))
 }
 
-function fold(f) {
+export function fold(f) {
     return initialValue => arr => {
         let acc = initialValue
 
@@ -42,7 +42,7 @@ function fold(f) {
     }
 }
 
-function foldIndexed(f) {
+export function foldIndexed(f) {
     return initialValue => arr => {
         let acc = initialValue
 
@@ -54,7 +54,7 @@ function foldIndexed(f) {
     }
 }
 
-function foldWhile(predicate) {
+export function foldWhile(predicate) {
     return f => initialValue => arr => {
         let acc = initialValue
 
@@ -71,19 +71,21 @@ function foldWhile(predicate) {
     }
 }
 
-function unique(arr) {
+export function unique(arr) {
     return arr.filter((item, index) => index === arr.indexOf(item))
 }
 
-function difference(as) {
+export function difference(as) {
     return bs => as.filter(a => !bs.includes(a))
 }
 
-function head(arr) {
+export function head(arr) {
     return arr[0]
 }
 
-function tail(arr) {
+export const first = head
+
+export function tail(arr) {
     let size = arr.length-1
     const res = Array(size)
 
@@ -94,11 +96,11 @@ function tail(arr) {
     return res
 }
 
-function headAndTail(arr) {
+export function headAndTail(arr) {
     return [ head(arr), tail(arr) ]
 }
 
-function init(arr) {
+export function init(arr) {
     let size = arr.length-1
 
     const res = Array(size)
@@ -110,15 +112,15 @@ function init(arr) {
     return res
 }
 
-function last(arr) {
+export function last(arr) {
     return arr[arr.length - 1]
 }
 
-function initAndLast(arr) {
+export function initAndLast(arr) {
     return [ init(arr), last(arr) ]
 }
 
-function find(predicate) {
+export function find(predicate) {
     return arr => {
         for (let i = 0; i < arr.length; i++) {
             const item = arr[i]
@@ -130,7 +132,7 @@ function find(predicate) {
     }
 }
 
-function findIndex(predicate) {
+export function findIndex(predicate) {
     return arr => {
         for (let i = 0; i < arr.length; i++) {
             if (predicate(arr[i])) {
@@ -141,7 +143,7 @@ function findIndex(predicate) {
     }
 }
 
-function indexOf(item) {
+export function indexOf(item) {
     return arr => {
         for (let i = 0; i < arr.length; i++) {
             if (item === arr[i]) {
@@ -152,7 +154,7 @@ function indexOf(item) {
     }
 }
 
-function partition(predicate) {
+export function partition(predicate) {
     return arr => {
         const positive = []
         const negative = []
@@ -169,7 +171,7 @@ function partition(predicate) {
     }
 }
 
-function maxBy(f) {
+export function maxBy(f) {
     return arr => {
         let highestScore = Number.NEGATIVE_INFINITY
         let index = -1
@@ -187,7 +189,7 @@ function maxBy(f) {
     }
 }
 
-function chunk(size) {
+export function chunk(size) {
     return arr => {
         const chunks = []
 
@@ -205,19 +207,19 @@ function chunk(size) {
     }
 }
 
-function splitAt(position) {
+export function splitAt(position) {
     return arr => [ arr.slice(0, position), arr.slice(position) ]
 }
 
-function contains(item) {
+export function contains(item) {
     return arr => arr.includes(item)
 }
 
-function isContainedIn(arr) {
+export function isContainedIn(arr) {
     return item => contains(item)(arr)
 }
 
-function containsAll(items) {
+export function containsAll(items) {
     return arr => {
         for (let i = 0; i < items.length; i++) {
             if (!arr.includes(items[i])) {
@@ -229,11 +231,11 @@ function containsAll(items) {
     }
 }
 
-function areContainedIn(arr) {
+export function areContainedIn(arr) {
     return items => containsAll(items)(arr)
 }
 
-function all(p) {
+export function all(p) {
     return arr => {
         for (let i = 0; i < arr.length; i += 1) {
             if (!p(arr[i])) {
@@ -245,7 +247,7 @@ function all(p) {
     }
 }
 
-function any(p) {
+export function any(p) {
     return arr => {
         for (let i = 0; i < arr.length; i += 1) {
             if (p(arr[i])) {
@@ -257,7 +259,7 @@ function any(p) {
     }
 }
 
-function cartesianProduct(as) {
+export function cartesianProduct(as) {
     return bs => {
         const aLength = as.length
         const bLength = bs.length
@@ -274,7 +276,7 @@ function cartesianProduct(as) {
     }
 }
 
-function zip(as) {
+export function zip(as) {
     return bs => {
         const aLength = as.length
         const bLength = bs.length
@@ -291,7 +293,7 @@ function zip(as) {
     }
 }
 
-function zipObject(as) {
+export function zipObject(as) {
     return bs => {
         const aLength = as.length
         const bLength = bs.length
@@ -308,11 +310,11 @@ function zipObject(as) {
     }
 }
 
-function arrayOf(...values) {
+export function arrayOf(...values) {
     return values
 }
 
-function range(inclusiveStart) {
+export function range(inclusiveStart) {
     return exclusiveEnd => {
         const size = exclusiveEnd - inclusiveStart
         const result = Array(size)
@@ -323,62 +325,4 @@ function range(inclusiveStart) {
 
         return result
     }
-}
-
-module.exports = {
-    isArray,
-
-    map,
-    mapIndexed,
-
-    flatMap,
-    flatMapIndexed,
-
-    flatten,
-
-    filter,
-    filterIndexed,
-
-    fold,
-    foldIndexed,
-    foldWhile,
-
-    head,
-    first: head,
-    tail,
-    headAndTail,
-
-    init,
-    last,
-    initAndLast,
-
-    find,
-    findIndex,
-    indexOf,
-
-    unique,
-    difference,
-
-    contains,
-    isContainedIn,
-
-    containsAll,
-    areContainedIn,
-
-    maxBy,
-
-    partition,
-    chunk,
-    splitAt,
-
-    cartesianProduct,
-    zip,
-    zipObject,
-
-    all,
-    any,
-
-    arrayOf,
-
-    range
 }

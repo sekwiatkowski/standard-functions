@@ -1,24 +1,24 @@
-function isFunction(input) {
+export function isFunction(input) {
     return typeof input === 'function'
 }
 
-function apply(arg) {
+export function apply(arg) {
     return f => f(arg)
 }
 
-function applyTo(f) {
+export function applyTo(f) {
     return x => f(x)
 }
 
-function applyPair([a, b]) {
+export function applyPair([a, b]) {
     return f => f(a)(b)
 }
 
-function applyPairTo(f) {
+export function applyPairTo(f) {
     return ([a, b]) => f(a) (b)
 }
 
-function applyMany(fs) {
+export function applyMany(fs) {
     return arr => {
         const numberOfFunctions = fs.length
         const numberOfValues = arr.length
@@ -39,41 +39,23 @@ function applyMany(fs) {
     }
 }
 
-function compose() {
+export function compose() {
     const arr = Array.prototype.slice.call(arguments)
 
     return x => arr.reduce((acc, f) => f(acc), x)
 }
 
-function perform(f) {
+export function perform(f) {
     return x => {
         f(x)
         return x
     }
 }
 
-function identity(x) {
+export function identity(x) {
     return x
 }
 
-function constant(x) {
+export function constant(x) {
     return () => x
-}
-
-module.exports = {
-    isFunction,
-
-    applyPair,
-    applyPairTo,
-
-    apply,
-    applyTo,
-
-    applyMany,
-
-    compose,
-    perform,
-
-    identity,
-    constant
 }

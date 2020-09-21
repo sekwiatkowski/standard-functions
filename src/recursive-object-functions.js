@@ -1,10 +1,6 @@
-const {appendTo} = require('./string-or-array-functions')
-const {entries} = require('./object-functions')
-const {merge} = require('./object-functions')
-const {hasProperty} = require('./object-functions')
-const {omit} = require('./object-functions')
-const {values} = require('./object-functions')
-const {flatMap} = require('./array-functions')
+import {entries, hasProperty, merge, omit, values} from './object-functions'
+import {appendTo} from './string-or-array-functions'
+import {flatMap} from './array-functions'
 
 function mergeRecursivelyStep(acc) {
     return property => {
@@ -28,7 +24,7 @@ function mergeRecursivelyStep(acc) {
     }
 }
 
-const mergeRecursively = mergeRecursivelyStep([])
+export const mergeRecursively = mergeRecursivelyStep([])
 
 function mergeRecursivelyWithPathStep([ path, previousMerge ]) {
     return property => {
@@ -56,9 +52,9 @@ function mergeRecursivelyWithPathStep([ path, previousMerge ]) {
     }
 }
 
-const mergeRecursivelyWithPath = mergeRecursivelyWithPathStep([ [], [] ])
+export const mergeRecursivelyWithPath = mergeRecursivelyWithPathStep([ [], [] ])
 
-function recursiveProperty(name) {
+export function recursiveProperty(name) {
     const omitRecursiveProperty = omit([name])
 
     return node => {
@@ -75,10 +71,4 @@ function recursiveProperty(name) {
             return [withoutRecursiveProperty]
         }
     }
-}
-
-module.exports = {
-    recursiveProperty,
-    mergeRecursively,
-    mergeRecursivelyWithPath
 }
