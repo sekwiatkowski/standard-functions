@@ -1,3 +1,5 @@
+import {fold} from './array-functions.js'
+
 export function isObject(input) {
     return typeof input === 'object'
 }
@@ -142,7 +144,12 @@ export function addProperty(key) {
 }
 
 export function merge(a) {
-    return b => ({...a, ...b})
+    if (arguments.length > 1) {
+        return fold((acc, style) => merge(acc)(style))({})(Array.prototype.slice.call(arguments))
+    }
+    else {
+        return b => ({...a, ...b})
+    }
 }
 
 export function mergeWith(f) {
