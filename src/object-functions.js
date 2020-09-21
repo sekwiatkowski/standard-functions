@@ -143,12 +143,13 @@ export function addProperty(key) {
     return value => obj => ({...obj, [key]: value})
 }
 
-export function merge(a) {
+export function merge() {
     if (arguments.length > 1) {
-        return fold((acc, style) => merge(acc)(style))({})(Array.prototype.slice.call(arguments))
+        const args = Array.prototype.slice.call(arguments)
+        return fold((acc, style) => merge(acc)(style))({})(args)
     }
     else {
-        return b => ({...a, ...b})
+        return b => ({...arguments[0], ...b})
     }
 }
 
