@@ -91,28 +91,3 @@ export function maybeNull(nullable) {
 export function maybeUndefined(undefinable) {
     return undefinable === undefined ? None : some(undefinable)
 }
-
-module.exports = {
-    some,
-    None,
-
-    chainOption,
-
-    mapOption,
-
-    testOption,
-
-    alternativeOption,
-
-    foldOption,
-    alternativeValue,
-
-    isSome,
-    isNone,
-
-    invertOptions,
-    concatOptions,
-
-    maybeNull,
-    maybeUndefined
-}
