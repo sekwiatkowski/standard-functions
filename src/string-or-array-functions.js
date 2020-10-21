@@ -106,6 +106,17 @@ export function length(arr) {
     return arr.length
 }
 
-export function concat(as) {
-    return bs => as.concat(bs)
+export function concat(...items) {
+    if (isString(items[0])) {
+        return items.reduce(
+            (acc, s) => acc.concat(s),
+            ''
+        )
+    }
+    else {
+        return items.reduce(
+            (acc, arr) => acc.concat(arr),
+            []
+        )
+    }
 }
