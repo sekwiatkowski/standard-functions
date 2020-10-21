@@ -17,9 +17,9 @@ export function not(predicate) {
 }
 
 export function anyPass(predicates) {
-    return (x, i_x) => {
+    return x => {
         for(let i_p = 0; i_p < predicates.length; i_p++) {
-            if (predicates[i_p](x, i_x)) {
+            if (predicates[i_p](x)) {
                 return true
             }
         }
@@ -29,9 +29,9 @@ export function anyPass(predicates) {
 }
 
 export function allPass(predicates) {
-    return (x, i_x) => {
+    return x => {
         for(let i_p = 0; i_p < predicates.length; i_p++) {
-            if (!predicates[i_p](x, i_x)) {
+            if (!predicates[i_p](x)) {
                 return false
             }
         }
