@@ -102,6 +102,8 @@ export function isOfLength(length) {
     return arr => arr.length === length
 }
 
+export const isOfLengthOne = isOfLength(1)
+
 export function length(arr) {
     return arr.length
 }
