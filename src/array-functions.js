@@ -83,6 +83,8 @@ export function head(arr) {
     return arr[0]
 }
 
+export const first = head
+
 export function tail(arr) {
     let size = arr.length-1
     const res = Array(size)
