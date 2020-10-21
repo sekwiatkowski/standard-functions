@@ -83,8 +83,6 @@ export function head(arr) {
     return arr[0]
 }
 
-export const first = head
-
 export function tail(arr) {
     let size = arr.length-1
     const res = Array(size)
@@ -129,6 +127,20 @@ export function find(predicate) {
             }
         }
         return null
+    }
+}
+
+export function single(predicate) {
+    return arr => {
+        const results = filter(predicate)(arr)
+        const numberOfResults = results.length
+
+        if (numberOfResults === 1) {
+            return results[0]
+        }
+        else {
+            throw Error (`Expected a single search result. Found ${numberOfResults} items.`)
+        }
     }
 }
 
