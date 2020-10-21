@@ -1,6 +1,6 @@
 {
     "name": "compose-functions",
-    "version": "0.15.5",
+    "version": "0.15.6",
     "main": "src/index.js",
     "type": "module"
 }

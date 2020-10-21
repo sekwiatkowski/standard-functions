@@ -251,7 +251,7 @@ export function areContainedIn(arr) {
 
 export function all(p) {
     return arr => {
-        for (let i = 0; i < arr.length; i += 1) {
+        for (let i = 0; i < arr.length; i++) {
             if (!p(arr[i])) {
                 return false
             }
@@ -263,7 +263,7 @@ export function all(p) {
 
 export function any(p) {
     return arr => {
-        for (let i = 0; i < arr.length; i += 1) {
+        for (let i = 0; i < arr.length; i++) {
             if (p(arr[i])) {
                 return true
             }
@@ -280,8 +280,8 @@ export function cartesianProduct(as) {
 
         const product = new Array(aLength * bLength)
 
-        for (let i = 0; i < aLength; i += 1) {
-            for (let j = 0; j < bLength; j += 1) {
+        for (let i = 0; i < aLength; i++) {
+            for (let j = 0; j < bLength; j++) {
                 product[i * bLength + j] = [as[i], bs[j]]
             }
         }
@@ -299,12 +299,26 @@ export function zip(as) {
 
         const result = new Array(zipLength)
 
-        for (let i = 0; i < zipLength; i += 1) {
+        for (let i = 0; i < zipLength; i++) {
             result[i] = [as[i], bs[i]]
         }
 
         return result
     }
+}
+
+export function unzip(arr) {
+    const first = new Array(arr.length)
+    const second = new Array(arr.length)
+
+    for (let i = 0; i < arr.length; i++) {
+        const item = arr[i]
+
+        first[i] = item[0]
+        second[i] = item[1]
+    }
+
+    return [first, second]
 }
 
 export function zipObject(as) {
@@ -316,7 +330,7 @@ export function zipObject(as) {
 
         const result = {}
 
-        for (let i = 0; i < zipLength; i += 1) {
+        for (let i = 0; i < zipLength; i++) {
             result[as[i]] = bs[i]
         }
 
