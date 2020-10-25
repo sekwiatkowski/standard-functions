@@ -7,7 +7,7 @@ export function map(f) {
 }
 
 export function mapIndexed(f) {
-    return arr => arr.map((x, i) => f(i, x))
+    return arr => arr.map((x, i) => f(x, i))
 }
 
 export function flatMap(f) {
@@ -15,7 +15,7 @@ export function flatMap(f) {
 }
 
 export function flatMapIndexed(f) {
-    return arr => arr.flatMap((x, i) => f(i, x))
+    return arr => arr.flatMap((x, i) => f(x, i))
 }
 
 export function flatten(arr) {
@@ -27,7 +27,7 @@ export function filter(predicate) {
 }
 
 export function filterIndexed(predicate) {
-    return arr => arr.filter((x, i) => predicate(i, x))
+    return arr => arr.filter((x, i) => predicate(x, i))
 }
 
 export function fold(f) {
@@ -47,7 +47,7 @@ export function foldIndexed(f) {
         let acc = initialValue
 
         for (let i = 0; i < arr.length; i++) {
-            acc = f(i, acc, arr[i])
+            acc = f(acc, arr[i], i)
         }
 
         return acc
@@ -308,10 +308,12 @@ export function zip(as) {
 }
 
 export function unzip(arr) {
-    const first = new Array(arr.length)
-    const second = new Array(arr.length)
+    const numberOfItems = arr.length
 
-    for (let i = 0; i < arr.length; i++) {
+    const first = new Array(numberOfItems)
+    const second = new Array(numberOfItems)
+
+    for (let i = 0; i < numberOfItems; i++) {
         const item = arr[i]
 
         first[i] = item[0]
