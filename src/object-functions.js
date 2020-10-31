@@ -62,6 +62,10 @@ export function propertiesOf(obj) {
     return keys => properties(keys)(obj)
 }
 
+export function propertyEquals(property) {
+    return value => obj => obj[property] === value
+}
+
 export function keys (obj) {
     return Object.keys(obj)
 }
