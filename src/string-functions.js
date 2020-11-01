@@ -51,3 +51,7 @@ export function upper(input) {
 export function capitalize(input) {
     return input.charAt(0).toUpperCase() + input.slice(1)
 }
+
+export function trim(input) {
+    return input.trim()
+}
