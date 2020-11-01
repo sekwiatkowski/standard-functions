@@ -12,6 +12,8 @@ export * from './option'
 
 export * from './pair'
 
+export * from './promise-functions'
+
 export * from './recursive-object-functions'
 
 export * from './safe-array-functions'
