@@ -356,3 +356,27 @@ export function range(inclusiveStart) {
         return result
     }
 }
+
+export function fill(n) {
+    return value => {
+        const result = Array(n)
+
+        for (let i = 0; i < n; i++) {
+            result[i] = value
+        }
+
+        return result
+    }
+}
+
+export function repeat(n) {
+    return f => {
+        const result = Array(n)
+
+        for (let i = 0; i < n; i++) {
+            result[i] = f(i)
+        }
+
+        return result
+    }
+}
