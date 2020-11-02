@@ -357,8 +357,8 @@ export function range(inclusiveStart) {
     }
 }
 
-export function fill(n) {
-    return value => {
+export function fill(value) {
+    return n => {
         const result = Array(n)
 
         for (let i = 0; i < n; i++) {
