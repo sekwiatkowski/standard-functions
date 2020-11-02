@@ -1,4 +1,5 @@
 import {fold} from './array-functions.js'
+import {not} from './boolean-functions'
 
 export function isObject(input) {
     return typeof input === 'object'
@@ -253,19 +254,19 @@ export function fromEntries(entries) {
         }
     }
  */
-export function flattenObject(unflattened, parent = '', flattened = {}) {
+export function flattenObject(unflattened, stopCondition = not(isObject), parent = '', flattened = {}) {
     const unflattenedKeys = Object.keys(unflattened)
 
     for (let indexKey = 0; indexKey < unflattenedKeys.length; indexKey++) {
         const key = unflattenedKeys[indexKey]
         const value = unflattened[key]
 
-        if (isObject(value)) {
-            flattenObject(value, parent + key + '.', flattened)
-        }
-        else {
+        if (stopCondition) {
             const path = parent + key
             flattened[path] = value
+        }
+        else {
+            flattenObject(value, stopCondition, parent + key + '.', flattened)
         }
     }
 
