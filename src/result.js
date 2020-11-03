@@ -1,3 +1,5 @@
+import {isFunction} from './higher-order-functions'
+
 export function success(value) {
     return {
         value,
@@ -24,4 +26,10 @@ export function mapResult(f) {
     return result => isSuccess(result)
         ? success(result.value)
         : result
+}
+
+export function foldResult(ifSuccess) {
+    return ifFailure => res => isSuccess(res)
+        ? (isFunction(ifSuccess) ? ifSuccess(res.value) : ifSuccess)
+        : (isFunction(ifFailure) ? ifFailure() : ifFailure)
 }
