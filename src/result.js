@@ -31,5 +31,5 @@ export function mapResult(f) {
 export function foldResult(ifSuccess) {
     return ifFailure => res => isSuccess(res)
         ? (isFunction(ifSuccess) ? ifSuccess(res.value) : ifSuccess)
-        : (isFunction(ifFailure) ? ifFailure() : ifFailure)
+        : (isFunction(ifFailure) ? ifFailure(res.error) : ifFailure)
 }
