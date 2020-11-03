@@ -13,15 +13,23 @@ export const None = {
     kind: 'None'
 }
 
-export function chainOption(f) {
-    return opt => isSome(opt)
-        ? f(opt.value)
-        : None
+export function isSome({ kind }) {
+    return kind === 'Some'
+}
+
+export function isNone({ kind }) {
+    return kind === 'None'
 }
 
 export function mapOption(f) {
     return opt => isSome(opt)
         ? some(f(opt.value))
+        : None
+}
+
+export function chainOption(f) {
+    return opt => isSome(opt)
+        ? f(opt.value)
         : None
 }
 
@@ -45,14 +53,6 @@ export function alternativeOption(functionOrOption) {
 
 export function alternativeValue(functionOrValue) {
     return opt => foldOption(identity) (functionOrValue) (opt)
-}
-
-export function isSome(opt) {
-    return opt.kind === 'Some'
-}
-
-export function isNone(opt) {
-    return opt.kind === 'None'
 }
 
 /*
