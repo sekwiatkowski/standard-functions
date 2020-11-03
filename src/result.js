@@ -24,7 +24,7 @@ export function isFailure({ kind }) {
 
 export function mapResult(f) {
     return result => isSuccess(result)
-        ? success(result.value)
+        ? success(f(result.value))
         : result
 }
 
