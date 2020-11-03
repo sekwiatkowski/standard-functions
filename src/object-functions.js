@@ -261,7 +261,7 @@ export function flattenObject(unflattened, stopCondition = not(isObject), parent
         const key = unflattenedKeys[indexKey]
         const value = unflattened[key]
 
-        if (stopCondition) {
+        if (stopCondition(value)) {
             const path = parent + key
             flattened[path] = value
         }
