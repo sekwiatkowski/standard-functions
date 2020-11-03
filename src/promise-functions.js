@@ -4,6 +4,6 @@ export function reject(reason) {
     return Promise.reject(reason)
 }
 
-function transformResultToPromise(f) {
+export function transformResultToPromise(f) {
     return result => foldResult(f) (reject) (result)
 }
