@@ -28,6 +28,26 @@ export function mapResult(f) {
         : result
 }
 
+export function chainResult(f) {
+    return result => isSuccess(result)
+        ? f(result.value)
+        : failure(result.error)
+}
+
+/*
+    [ success(val1), success(val2) ] = success([x, y])
+    [ failure(err1), failure(err2) ] = failure(err)
+    [ failure(err), success(val) ] = failure(err)
+    [ success(val), failure(err) ] = failure(err)
+ */
+export function invertResults(results) {
+    return results.reduce(
+        (acc, result) =>
+            chainResult(arr => mapResult(value => arr.concat(value)) (result)) (acc),
+        success([])
+    )
+}
+
 export function foldResult(ifSuccess) {
     return ifFailure => res => isSuccess(res)
         ? (isFunction(ifSuccess) ? ifSuccess(res.value) : ifSuccess)

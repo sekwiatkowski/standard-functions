@@ -61,9 +61,10 @@ export function alternativeValue(functionOrValue) {
     [ None, some(x) ] = None
     [ some(x), None ] = None
  */
-export function invertOptions(arr) {
-    return arr.reduce(
-        (acc, maybe) => chainOption(inner => mapOption(value => [...inner, value])(maybe))(acc),
+export function invertOptions(options) {
+    return options.reduce(
+        (acc, opt) =>
+            chainOption(arr => mapOption(value => [...arr, value]) (opt)) (acc),
         some([])
     )
 }
