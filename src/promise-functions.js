@@ -19,6 +19,8 @@ export function mapPromise(ifFulfilled) {
         isFunction(ifRejected) ? ifRejected : () => ifRejected)
 }
 
-export function transformResultToPromise(f) {
-    return result => foldResult(f) (reject) (result)
+export function transformResultToPromise(mapOrResult) {
+    return isFunction(mapOrResult)
+        ? result => foldResult(f) (reject) (result)
+        : foldResult(resolve) (reject) (mapOrResult)
 }
