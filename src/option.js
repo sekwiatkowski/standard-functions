@@ -1,6 +1,7 @@
 import {identity, isFunction} from './higher-order-functions'
 import {fold} from './array-functions'
 import {appendTo} from './string-or-array-functions'
+import {failure, success} from './result'
 
 export function some(value) {
     return {
@@ -91,4 +92,8 @@ export function maybeNull(nullable) {
 
 export function maybeUndefined(undefinable) {
     return undefinable === undefined ? None : some(undefinable)
+}
+
+export function transformOptionToResult(errorMessage) {
+    return foldOption(success) (() => failure(errorMessage))(option)
 }
