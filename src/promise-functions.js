@@ -21,6 +21,6 @@ export function mapPromise(ifFulfilled) {
 
 export function transformResultToPromise(mapOrResult) {
     return isFunction(mapOrResult)
-        ? result => foldResult(f) (reject) (result)
+        ? result => foldResult(mapOrResult) (reject) (result)
         : foldResult(resolve) (reject) (mapOrResult)
 }
