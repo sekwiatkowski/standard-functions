@@ -95,5 +95,5 @@ export function maybeUndefined(undefinable) {
 }
 
 export function transformOptionToResult(errorMessage) {
-    return foldOption(success) (() => failure(errorMessage))(option)
+    return foldOption(success) (() => failure(errorMessage))
 }
