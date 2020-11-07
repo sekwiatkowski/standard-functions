@@ -94,6 +94,8 @@ export function maybeUndefined(undefinable) {
     return undefinable === undefined ? None : some(undefinable)
 }
 
-export function transformOptionToResult(errorMessage) {
-    return foldOption(success) (() => failure(errorMessage))
+export function transformOptionToResult(mapOrErrorMessage) {
+    return isFunction(mapOrErrorMessage)
+        ? errorMessage => foldOption(mapOrErrorMessage) (() => failure(errorMessage))
+        : foldOption(success) (() => failure(mapOrErrorMessage))
 }
