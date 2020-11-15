@@ -2,6 +2,8 @@ export * from './array-functions'
 
 export * from './boolean-functions'
 
+export * from './character-functions'
+
 export * from './higher-order-functions'
 
 export * from './number-functions'
