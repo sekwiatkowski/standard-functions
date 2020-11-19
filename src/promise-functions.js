@@ -1,4 +1,3 @@
-import {foldResult} from './result'
 import {isFunction} from './higher-order-functions'
 
 export function resolve(value) {
@@ -19,8 +18,3 @@ export function mapPromise(ifFulfilled) {
         isFunction(ifRejected) ? ifRejected : () => ifRejected)
 }
 
-export function transformResultToPromise(mapOrResult) {
-    return isFunction(mapOrResult)
-        ? result => foldResult(mapOrResult) (reject) (result)
-        : foldResult(resolve) (reject) (mapOrResult)
-}

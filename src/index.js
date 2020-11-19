@@ -1,27 +1,17 @@
 export * from './array-functions'
+export * from './pair-functions'
+
+export * from './string-functions'
+export * from './character-functions'
+
+export * from './string-or-array-functions'
 
 export * from './boolean-functions'
-
-export * from './character-functions'
+export * from './number-functions'
 
 export * from './higher-order-functions'
 
-export * from './number-functions'
-
 export * from './object-functions'
-
-export * from './option'
-
-export * from './pair'
-
-export * from './promise-functions'
-
 export * from './recursive-object-functions'
 
-export * from './result'
-
-export * from './safe-array-functions'
-export * from './safe-object-functions'
-
-export * from './string-functions'
-export * from './string-or-array-functions'
+export * from './promise-functions'

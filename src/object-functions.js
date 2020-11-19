@@ -1,4 +1,4 @@
-import {fold} from './array-functions.js'
+import {fold} from './array-functions'
 import {not} from './boolean-functions'
 
 export function isObject(input) {
