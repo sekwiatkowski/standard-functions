@@ -185,6 +185,27 @@ export function partition(predicate) {
     }
 }
 
+export function groupBy(computeKey) {
+    return arr => {
+        const groups = {}
+
+        for (let i = 0; i < arr.length; i++) {
+            const item = arr[i]
+
+            const key = computeKey(item)
+
+            if (!groups.hasOwnProperty(key)) {
+                groups[key] = [item]
+            }
+            else {
+                groups[key].push(item)
+            }
+        }
+
+        return groups
+    }
+}
+
 export function maxBy(f) {
     return arr => {
         let highestScore = Number.NEGATIVE_INFINITY
