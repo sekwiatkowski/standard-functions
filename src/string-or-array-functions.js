@@ -1,27 +1,26 @@
 import {isString} from './string-functions'
 
 export function take(n) {
-    return arr => arr.slice(0, n)
+    return collection => collection.slice(0, n)
 }
 
-export function takeFrom(arr) {
-    return n => take(n) (arr)
+export function takeFrom(collection) {
+    return n => take(n) (collection)
 }
 
 export function takeLast(n) {
-    return arr => arr.slice(Math.max(arr.length - n, 0))
+    return collection => collection.slice(Math.max(collection.length - n, 0))
 }
 
-
-export function takeLastFrom(arr) {
-    return n => takeLast(n) (arr)
+export function takeLastFrom(collection) {
+    return n => takeLast(n) (collection)
 }
 
 export function takeWhile(predicate) {
-    return arr => {
+    return collection => {
         const res = []
-        for (let i = 0; i < arr.length; i++) {
-            const item = arr[i]
+        for (let i = 0; i < collection.length; i++) {
+            const item = collection[i]
             if (!predicate(item, i)) {
                 return res
             }
@@ -34,7 +33,7 @@ export function takeWhile(predicate) {
 }
 
 export function drop(n) {
-    return arr => arr.slice(n)
+    return collection => collection.slice(n)
 }
 
 export function dropFrom(arr) {
@@ -67,11 +66,11 @@ export function dropWhile(predicate) {
 }
 
 export function before(n) {
-    return arr => arr.slice(0, n)
+    return collection => collection.slice(0, n)
 }
 
 export function after(n) {
-    return arr => arr.slice(n+1)
+    return collection => collection.slice(n+1)
 }
 
 export function append(item) {
@@ -90,35 +89,29 @@ export function prependTo(collection) {
     return item => isString(collection) ? item + collection :  [item, ...collection]
 }
 
-export function isEmpty(arr) {
-    return arr.length ===  0
+export function isEmpty(collection) {
+    return collection.length ===  0
 }
 
-export function isNotEmpty(arr) {
-    return arr.length > 0
+export function isNotEmpty(collection) {
+    return collection.length > 0
 }
 
 export function isOfLength(length) {
-    return arr => arr.length === length
+    return collection => collection.length === length
 }
 
 export const isOfLengthOne = isOfLength(1)
 
-export function length(arr) {
-    return arr.length
+export function length(collection) {
+    return collection.length
 }
 
-export function concat(arr) {
-    if (isString(arr[0])) {
-        return arr.reduce(
-            (acc, s) => acc.concat(s),
-            ''
-        )
-    }
-    else {
-        return arr.reduce(
-            (acc, arr) => acc.concat(arr),
-            []
-        )
-    }
+export function concat(collection) {
+    const initial = isString(collection[0]) ? '' : []
+
+    return collection.reduce(
+        (acc, s) => acc.concat(s),
+        initial
+    )
 }
