@@ -1,5 +1,9 @@
 import {isFunction} from './higher-order-functions'
 
+export function isBoolean(input) {
+    return input === true || input === false
+}
+
 export function equals(b) {
     return a => a === b
 }
