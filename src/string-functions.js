@@ -10,6 +10,7 @@ export function split(separator) {
     return s => s.split(separator)
 }
 
+export const splitByAmpersand = split('&')
 export const splitByComma = split(',')
 export const splitByCommaSpace = split(', ')
 export const splitBySemicolon = split('; ')
@@ -23,6 +24,7 @@ export function join(separator) {
     return arr => arr.join(separator)
 }
 
+export const joinWithAmpersand = join('&')
 export const joinWithComma = join(',')
 export const joinWithCommaSpace = join(', ')
 export const joinWithSemicolon = join(';')
