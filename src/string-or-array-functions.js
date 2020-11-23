@@ -65,14 +65,6 @@ export function dropWhile(predicate) {
     }
 }
 
-export function before(n) {
-    return collection => collection.slice(0, n)
-}
-
-export function after(n) {
-    return collection => collection.slice(n+1)
-}
-
 export function append(item) {
     return collection => isString(collection) ? collection + item : [...collection, item]
 }
@@ -102,6 +94,14 @@ export function isOfLength(length) {
 }
 
 export const isOfLengthOne = isOfLength(1)
+
+export function isShorterThan(length) {
+    return collection => collection.length < length
+}
+
+export function isLongerThan(length) {
+    return collection => collection.length > length
+}
 
 export function length(collection) {
     return collection.length
