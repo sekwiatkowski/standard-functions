@@ -1,5 +1,50 @@
 import {isString} from './string-functions'
 
+export function nth(index) {
+    return arr => arr[index]
+}
+
+export function head(arr) {
+    return arr[0]
+}
+
+export const first = head
+
+export function tail(arr) {
+    let size = arr.length-1
+    const res = Array(size)
+
+    for (let i = 0; i < size; i++) {
+        res[i] = arr[i+1]
+    }
+
+    return res
+}
+
+export function headAndTail(arr) {
+    return [ head(arr), tail(arr) ]
+}
+
+export function init(arr) {
+    let size = arr.length-1
+
+    const res = Array(size)
+
+    for (let i = 0; i < size; i++) {
+        res[i] = arr[i]
+    }
+
+    return res
+}
+
+export function last(arr) {
+    return arr[arr.length - 1]
+}
+
+export function initAndLast(arr) {
+    return [ init(arr), last(arr) ]
+}
+
 export function take(n) {
     return collection => collection.slice(0, n)
 }
