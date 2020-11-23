@@ -90,7 +90,7 @@ export function prependTo(collection) {
 }
 
 export function isEmpty(collection) {
-    return collection.length ===  0
+    return collection.length === 0
 }
 
 export function isNotEmpty(collection) {

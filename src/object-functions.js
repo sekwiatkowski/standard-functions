@@ -5,6 +5,14 @@ export function isObject(input) {
     return typeof input === 'object'
 }
 
+export function isEmptyObject(obj) {
+    let name
+    for (name in obj) {
+        return false
+    }
+    return true
+}
+
 export function associate(f) {
     return items => {
         const res = {}
