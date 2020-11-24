@@ -15,3 +15,5 @@ export * from './object-functions'
 export * from './recursive-object-functions'
 
 export * from './promise-functions'
+
+export * from './null-functions'
