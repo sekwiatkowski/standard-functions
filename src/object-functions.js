@@ -240,7 +240,7 @@ export function pickAll(keys) {
     }
 }
 
-export function formEntry([key, value]) {
+export function fromEntry([key, value]) {
     return {[key]: value}
 }
 
