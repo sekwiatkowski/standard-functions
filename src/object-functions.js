@@ -240,8 +240,8 @@ export function pickAll(keys) {
     }
 }
 
-export function keyValue(key) {
-    return value => ({[key]: value})
+export function formEntry([key, value]) {
+    return {[key]: value}
 }
 
 export function fromEntries(entries) {
