@@ -152,10 +152,16 @@ export function length(collection) {
     return collection.length
 }
 
-export function concat(collection) {
-    const initial = isString(collection[0]) ? '' : []
+export function concat(...items) {
+    if (items.length === 1) {
+        const firstItem = items[0]
 
-    return collection.reduce(
+        return concat(...firstItem)
+    }
+
+    const initial = isString(items[0]) ? '' : []
+
+    return items.reduce(
         (acc, s) => acc.concat(s),
         initial
     )
