@@ -155,33 +155,29 @@ export function mergeTwo(a) {
 }
 
 export function mergeWith(f) {
-    return a => b => {
-        const merged = {}
+    return (...items) => {
+        return fold((acc, item) => {
+            const merged = {...acc}
 
-        const keysInA = Object.keys(a)
-        for (let indexA = 0; indexA < keysInA.length; indexA++) {
-            const keyInA = keysInA[indexA]
+            const keys = Object.keys(item)
+            for (let index = 0; index < keys.length; index++) {
+                const key = keys[index]
 
-            if (b.hasOwnProperty(keyInA)) {
-                merged[keyInA] = f(a[keyInA])(b[keyInA])
+                if (merged.hasOwnProperty(key)) {
+                    merged[key] = f(merged[key])(item[key])
+                }
+                else {
+                    merged[key] = item[key]
+                }
             }
-            else {
-                merged[keyInA] = a[keyInA]
-            }
-        }
 
-        const keysInB = Object.keys(b)
-        for (let indexB = 0; indexB < keysInB.length; indexB++) {
-            const keyInB = keysInB[indexB]
+            return merged
 
-            if (!merged.hasOwnProperty(keyInB)) {
-                merged[keyInB] = b[keysInB]
-            }
-        }
-
-        return merged
+        }) ({}) (items)
     }
 }
+
+export const mergeRecursively = mergeWith(a => b => mergeRecursively(a, b))
 
 export function omit(omittedKeys) {
     return obj => {

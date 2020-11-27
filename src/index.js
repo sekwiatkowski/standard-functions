@@ -12,7 +12,6 @@ export * from './number-functions'
 export * from './higher-order-functions'
 
 export * from './object-functions'
-export * from './recursive-object-functions'
 
 export * from './promise-functions'
 
