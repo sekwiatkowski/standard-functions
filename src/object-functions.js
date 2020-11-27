@@ -5,14 +5,6 @@ export function isObject(input) {
     return typeof input === 'object'
 }
 
-export function isEmptyObject(obj) {
-    let name
-    for (name in obj) {
-        return false
-    }
-    return true
-}
-
 export function associate(f) {
     return items => {
         const res = {}
@@ -152,18 +144,14 @@ export function mapObject(f) {
     }
 }
 
-export function addProperty(key) {
-    return value => obj => ({...obj, [key]: value})
+export function merge() {
+    const args = Array.prototype.slice.call(arguments)
+
+    return fold((acc, item) => ({...acc, ...item})) ({}) (args)
 }
 
-export function merge() {
-    if (arguments.length > 1) {
-        const args = Array.prototype.slice.call(arguments)
-        return fold((acc, style) => merge(acc)(style))({})(args)
-    }
-    else {
-        return b => ({...arguments[0], ...b})
-    }
+export function mergeTwo(a) {
+    return b => merge(a, b)
 }
 
 export function mergeWith(f) {
