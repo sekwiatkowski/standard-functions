@@ -1,4 +1,4 @@
-import {fold} from './array-functions'
+import {fold, isArray} from './array-functions'
 import {not} from './boolean-functions'
 
 export function isObject(input) {
@@ -144,18 +144,26 @@ export function mapObject(f) {
     }
 }
 
-export function merge() {
+export function merge(...items) {
+    const firstItem = items[0]
+
+    if (isArray(firstItem)) {
+        return merge(...firstItem)
+    }
+
     const args = Array.prototype.slice.call(arguments)
 
     return fold((acc, item) => ({...acc, ...item})) ({}) (args)
 }
 
-export function mergeTwo(a) {
-    return b => merge(a, b)
-}
-
 export function mergeWith(f) {
     return (...items) => {
+        const firstItem = items[0]
+
+        if (isArray(firstItem)) {
+            return mergeWith(f) (...firstItem)
+        }
+
         return fold((acc, item) => {
             const merged = {...acc}
 
