@@ -1,3 +1,5 @@
+import {isArray} from './array-functions'
+
 export function isString(input) {
     return typeof input === 'string'
 }
@@ -21,7 +23,15 @@ export const splitByNewline = split('\n')
 export const splitByEqualitySign = split('=')
 
 export function join(separator) {
-    return arr => arr.join(separator)
+    return (...items) => {
+        const firstItem = items[0]
+
+        if (isArray(firstItem)) {
+            return join(separator) (...firstItem)
+        }
+
+        return items.join(separator)
+    }
 }
 
 export const joinWithAmpersand = join('&')
