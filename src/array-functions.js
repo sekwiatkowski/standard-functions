@@ -3,18 +3,10 @@ export function isArray(input) {
 }
 
 export function map(f) {
-    return arr => arr.map(x => f(x))
-}
-
-export function mapIndexed(f) {
     return arr => arr.map((x, i) => f(x, i))
 }
 
 export function flatMap(f) {
-    return arr => arr.flatMap(x => f(x))
-}
-
-export function flatMapIndexed(f) {
     return arr => arr.flatMap((x, i) => f(x, i))
 }
 
@@ -23,26 +15,10 @@ export function flatten(arr) {
 }
 
 export function filter(predicate) {
-    return arr => arr.filter(x => predicate(x))
-}
-
-export function filterIndexed(predicate) {
     return arr => arr.filter((x, i) => predicate(x, i))
 }
 
 export function fold(f) {
-    return initialValue => arr => {
-        let acc = initialValue
-
-        for (let i = 0; i < arr.length; i++) {
-            acc = f(acc, arr[i])
-        }
-
-        return acc
-    }
-}
-
-export function foldIndexed(f) {
     return initialValue => arr => {
         let acc = initialValue
 
