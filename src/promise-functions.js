@@ -1,4 +1,5 @@
 import {isFunction} from './higher-order-functions'
+import {map} from './array-functions'
 
 export function resolve(value) {
     return Promise.resolve(value)
@@ -18,3 +19,6 @@ export function mapPromise(ifFulfilled) {
         isFunction(ifRejected) ? ifRejected : () => ifRejected)
 }
 
+export function asyncMap(f) {
+    return arr => Promise.all(map(f) (arr))
+}
