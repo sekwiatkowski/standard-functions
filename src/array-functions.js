@@ -1,3 +1,6 @@
+import {isOfLengthOne, length} from './string-or-array-functions'
+import {fromEntries} from './object-functions'
+
 export function isArray(input) {
     return Array.isArray(input)
 }
@@ -246,54 +249,60 @@ export function cartesianProduct(as) {
     }
 }
 
-export function zip(as) {
-    return bs => {
-        const aLength = as.length
-        const bLength = bs.length
+export function zip(...input) {
+    // zip([ arr_1, ..., arr_n ])
+    if (isOfLengthOne(input)) {
+        const arrayOfArrays = input[0]
 
-        const zipLength = Math.min(aLength, bLength)
+        /// zip([ arr_1 ])
+        if (!isOfLengthOne(arrayOfArrays)) {
+            return arrayOfArrays[0]
+        }
+        else {
+            return zip(...input)
+        }
+    }
 
-        const result = new Array(zipLength)
+    const numberOArrays = input.length
+    const minimumLength = Math.min(...map(length) (input))
 
-        for (let i = 0; i < zipLength; i++) {
-            result[i] = [as[i], bs[i]]
+    const result = new Array(minimumLength)
+
+    for (let indexItem = 0; indexItem < minimumLength; indexItem++) {
+        const zippedItem = new Array(numberOArrays)
+
+        for (let indexInput = 0; indexInput < numberOArrays; indexInput++) {
+            zippedItem[indexInput] = input[indexInput][indexItem]
         }
 
-        return result
+        result[indexItem] = zippedItem
     }
+
+    return result
 }
 
 export function unzip(arr) {
     const numberOfItems = arr.length
+    const numberOfArrays = Math.min(...map(length) (arr))
 
-    const first = new Array(numberOfItems)
-    const second = new Array(numberOfItems)
-
-    for (let i = 0; i < numberOfItems; i++) {
-        const item = arr[i]
-
-        first[i] = item[0]
-        second[i] = item[1]
+    const result = Array(numberOfArrays)
+    for (let indexArray = 0; indexArray < numberOfArrays; indexArray++) {
+        result[indexArray] = Array(numberOfItems)
     }
 
-    return [first, second]
+    for (let indexArray = 0; indexArray < numberOfArrays; indexArray++) {
+        const resultArray = result[indexArray]
+
+        for (let indexItem = 0; indexItem < numberOfItems; indexItem++) {
+            resultArray[indexItem] = arr[indexItem][indexArray]
+        }
+    }
+
+    return result
 }
 
 export function zipObject(as) {
-    return bs => {
-        const aLength = as.length
-        const bLength = bs.length
-
-        const zipLength = Math.min(aLength, bLength)
-
-        const result = {}
-
-        for (let i = 0; i < zipLength; i++) {
-            result[as[i]] = bs[i]
-        }
-
-        return result
-    }
+    return bs => fromEntries(zip(as, bs))
 }
 
 export function arrayOf(...values) {
