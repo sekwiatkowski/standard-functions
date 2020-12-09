@@ -70,16 +70,28 @@ export function find(predicate) {
     }
 }
 
-export function single(predicate) {
-    return arr => {
-        const results = filter(predicate)(arr)
-        const numberOfResults = results.length
+export function single(predicateOrArray) {
+    if (Array.isArray(predicateOrArray)) {
+        const numberOfItems = predicateOrArray.length
 
-        if (numberOfResults === 1) {
-            return results[0]
+        if (numberOfItems === 1) {
+            return predicateOrArray[0]
         }
         else {
-            throw Error (`Expected a single search result. Found ${numberOfResults} items.`)
+            throw Error(`Expected a single item. Found ${numberOfItems} items.`)
+        }
+    }
+    else {
+        return arr => {
+            const results = arr.filter(predicateOrArray)
+            const numberOfResults = results.length
+
+            if (numberOfResults === 1) {
+                return results[0]
+            }
+            else {
+                throw Error(`Expected a single search result. Found ${numberOfResults} items.`)
+            }
         }
     }
 }
