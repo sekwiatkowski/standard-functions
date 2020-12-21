@@ -153,7 +153,7 @@ export function mergeWith(f) {
         }
 
         return fold((acc, item) => {
-            if (item === null) {
+            if (item === null || item === undefined) {
                 return acc
             }
 
