@@ -153,6 +153,10 @@ export function mergeWith(f) {
         }
 
         return fold((acc, item) => {
+            if (item === null) {
+                return acc
+            }
+
             const merged = {...acc}
 
             const keys = Object.keys(item)
