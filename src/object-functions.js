@@ -144,18 +144,6 @@ export function mapObject(f) {
     }
 }
 
-export function merge(...items) {
-    const firstItem = items[0]
-
-    if (isArray(firstItem)) {
-        return merge(...firstItem)
-    }
-
-    const args = Array.prototype.slice.call(arguments)
-
-    return fold((acc, item) => ({...acc, ...item})) ({}) (args)
-}
-
 export function mergeWith(f) {
     return (...items) => {
         const firstItem = items[0]
@@ -171,11 +159,13 @@ export function mergeWith(f) {
             for (let index = 0; index < keys.length; index++) {
                 const key = keys[index]
 
-                if (merged.hasOwnProperty(key)) {
-                    merged[key] = f(merged[key])(item[key])
+                const itemValue = item[key]
+
+                if (merged.hasOwnProperty(key) && isObject(itemValue)) {
+                    merged[key] = f(merged[key])(itemValue)
                 }
                 else {
-                    merged[key] = item[key]
+                    merged[key] = itemValue
                 }
             }
 
@@ -185,7 +175,7 @@ export function mergeWith(f) {
     }
 }
 
-export const mergeRecursively = mergeWith(a => b => mergeRecursively(a, b))
+export const merge = mergeWith(a => b => merge(a, b))
 
 export function omit(omittedKeys) {
     return obj => {
