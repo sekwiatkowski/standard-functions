@@ -1,5 +1,3 @@
-import {isFunction} from './higher-order-functions'
-
 export function isBoolean(input) {
     return input === true || input === false
 }
@@ -41,25 +39,5 @@ export function allPass(predicates) {
         }
 
         return true
-    }
-}
-
-export function onlyIf(predicate) {
-    return f => input => predicate(input) ? f(input) : input
-}
-
-export function ifElse(predicate) {
-    return ifTrue => ifFalse => input => predicate(input) ? ifTrue(input) : ifFalse(input)
-}
-
-export function match(pairs) {
-    return input => {
-        for (let i = 0; i < pairs.length; i++) {
-            const [ predicate, transformer ] = pairs[i]
-
-            if (predicate(input)) {
-                return isFunction(transformer) ? transformer(input) : transformer
-            }
-        }
     }
 }

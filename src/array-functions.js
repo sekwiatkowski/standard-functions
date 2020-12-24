@@ -1,5 +1,6 @@
 import {isOfLengthOne, length} from './string-or-array-functions'
 import {fromEntries} from './object-functions'
+import {isFunction} from './higher-order-functions'
 
 export function isArray(input) {
     return Array.isArray(input)
@@ -196,12 +197,14 @@ export function splitAt(position) {
     return arr => [ arr.slice(0, position), arr.slice(position) ]
 }
 
-export function contains(item) {
-    return arr => arr.includes(item)
+export function contains(itemOrFunction) {
+    return arr => isFunction(itemOrFunction)
+        ? arr.findIndex(itemOrFunction) !== -1
+        : arr.includes(itemOrFunction)
 }
 
 export function isContainedIn(arr) {
-    return item => contains(item)(arr)
+    return itemOrFunction => contains(itemOrFunction) (arr)
 }
 
 export function containsAll(items) {
