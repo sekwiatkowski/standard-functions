@@ -10,6 +10,10 @@ export function head(arr) {
 
 export const first = head
 
+export function second(arr) {
+    return arr[1]
+}
+
 export function tail(arr) {
     let size = arr.length-1
     const res = Array(size)

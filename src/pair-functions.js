@@ -14,10 +14,6 @@ export function duplicate(a) {
     return [a, a]
 }
 
-export function second([a, b]) {
-    return b
-}
-
 export function mapFirst(f) {
     return ([a, b]) => [f(a), b]
 }
@@ -40,19 +36,4 @@ export function bimap(f, g) {
 
 export function foldPair(f) {
     return ([a, b]) => f(a) (b)
-}
-
-export function invertPairs(pairs) {
-    const numberOfPairs = pairs.length
-    const as = new Array(numberOfPairs)
-    const bs = new Array(numberOfPairs)
-
-    for (let i = 0; i < numberOfPairs; i++) {
-        const [a, b] = pairs[i]
-
-        as[i] = a
-        bs[i] = b
-    }
-
-    return [as, bs]
 }
