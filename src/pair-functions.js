@@ -26,14 +26,6 @@ export function mapPair(g) {
     return ([a, b]) => [a, g(a) (b)]
 }
 
-export function flipPair([a, b]) {
-    return [b, a]
-}
-
-export function bimap(f, g) {
-    return ([a, b]) => [f(a), g(b)]
-}
-
 export function foldPair(f) {
     return ([a, b]) => f(a) (b)
 }

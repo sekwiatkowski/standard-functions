@@ -170,3 +170,24 @@ export function concat(...items) {
         initial
     )
 }
+
+export function reverse(input) {
+    if (isString(input)) {
+        let reversedString = ''
+
+        for (let i = 0; i < input.length; i++) {
+            reversedString += input[input.length - i - 1]
+        }
+
+        return reversedString
+    }
+    else {
+        const reversedArray = []
+
+        for (let i = 0; i < input.length; i++) {
+            reversedArray[i] = input[input.length - i - 1]
+        }
+
+        return reversedArray
+    }
+}

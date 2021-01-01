@@ -6,12 +6,16 @@ export function isArray(input) {
     return Array.isArray(input)
 }
 
+export function forEach(f) {
+    return arr => arr.forEach(f)
+}
+
 export function map(f) {
-    return arr => arr.map((x, i) => f(x, i))
+    return arr => arr.map(f)
 }
 
 export function flatMap(f) {
-    return arr => arr.flatMap((x, i) => f(x, i))
+    return arr => arr.flatMap(f)
 }
 
 export function flatten(arr) {
@@ -19,7 +23,7 @@ export function flatten(arr) {
 }
 
 export function filter(predicate) {
-    return arr => arr.filter((x, i) => predicate(x, i))
+    return arr => arr.filter(predicate)
 }
 
 export function fold(f) {
@@ -199,7 +203,7 @@ export function splitAt(position) {
 
 export function contains(itemOrFunction) {
     return arr => isFunction(itemOrFunction)
-        ? arr.findIndex(itemOrFunction) !== -1
+        ? arr.indexOf(itemOrFunction) !== -1
         : arr.includes(itemOrFunction)
 }
 
