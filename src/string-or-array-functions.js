@@ -71,13 +71,13 @@ export function single(predicateOrInput) {
     }
 }
 
-export function first(functionOrInput) {
-    if (isFunction(functionOrInput)) {
+export function first(predicateOrInput) {
+    if (isFunction(predicateOrInput)) {
         return input => {
             for (let i = 0; i < input.length; i++) {
                 const item = input[i]
 
-                if (functionOrInput(item)) {
+                if (predicateOrInput(item)) {
                     return item
                 }
             }
@@ -86,7 +86,7 @@ export function first(functionOrInput) {
         }
     }
     else {
-        return functionOrInput[0]
+        return predicateOrInput[0]
     }
 }
 
@@ -94,8 +94,23 @@ export function second(input) {
     return input[1]
 }
 
-export function last(input) {
-    return input[input.length - 1]
+export function last(predicateOrInput) {
+    if (isFunction(predicateOrInput)) {
+        return input => {
+            for (let i = input.length - 1; i >= 0; i--) {
+                const item = input[i]
+
+                if (predicateOrInput(item)) {
+                    return item
+                }
+            }
+
+            return null
+        }
+    }
+    else {
+        return predicateOrInput[predicateOrInput.length - 1]
+    }
 }
 
 export function take(n) {
