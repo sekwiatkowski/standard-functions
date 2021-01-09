@@ -2,16 +2,32 @@ export function millisecondsToSecond(ms) {
     return ms / 1_000
 }
 
-export function secondsToMinutes(ms) {
-    return ms / 60
+export function secondsToMilliseconds(seconds) {
+    return seconds * 1_000
 }
 
-export function minutesToHours(ms) {
-    return ms / 60
+export function secondsToMinutes(seconds) {
+    return seconds / 60
 }
 
-export function hoursToDays(ms) {
-    return ms / 24
+export function minutesToSeconds(minutes) {
+    return minutes * 60
+}
+
+export function minutesToHours(minutes) {
+    return minutes / 60
+}
+
+export function hoursToDays(hours) {
+    return hours / 24
+}
+
+export function hoursToMinutes(hours) {
+    return hours * 60
+}
+
+export function daysToHours(days) {
+    return days / 24
 }
 
 export function differenceInMilliseconds(first) {
@@ -52,4 +68,24 @@ export function elapsedHours(d) {
 
 export function elapsedDays(d) {
     return differenceInDays(new Date(), d)
+}
+
+export function addMilliseconds(milliseconds) {
+    return date => new Date(date.getTime() + milliseconds)
+}
+
+export function addSeconds(seconds) {
+    return addMilliseconds(secondsToMilliseconds(seconds))
+}
+
+export function addMinutes(minutes) {
+    return addSeconds(minutesToSeconds(minutes))
+}
+
+export function addHours(hours) {
+    return addMinutes(hoursToMinutes(hours))
+}
+
+export function addDays(days) {
+    return addHours(daysToHours(days))
 }
