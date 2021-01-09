@@ -63,18 +63,6 @@ export function difference(as) {
     return bs => as.filter(a => !bs.includes(a))
 }
 
-export function find(predicate) {
-    return arr => {
-        for (let i = 0; i < arr.length; i++) {
-            const item = arr[i]
-            if (predicate(item)) {
-                return item
-            }
-        }
-        return null
-    }
-}
-
 export function single(predicateOrArray) {
     if (Array.isArray(predicateOrArray)) {
         const numberOfItems = predicateOrArray.length
@@ -98,6 +86,18 @@ export function single(predicateOrArray) {
                 throw Error(`Expected a single search result. Found ${numberOfResults} items.`)
             }
         }
+    }
+}
+
+export function find(predicate) {
+    return arr => {
+        for (let i = 0; i < arr.length; i++) {
+            const item = arr[i]
+            if (predicate(item)) {
+                return item
+            }
+        }
+        return null
     }
 }
 

@@ -1,4 +1,5 @@
 import {isString} from './string-functions'
+import {isFunction} from './higher-order-functions'
 
 export function nth(index) {
     return arr => arr[index]
@@ -6,12 +7,6 @@ export function nth(index) {
 
 export function head(arr) {
     return arr[0]
-}
-
-export const first = head
-
-export function second(arr) {
-    return arr[1]
 }
 
 export function tail(arr) {
@@ -41,12 +36,35 @@ export function init(arr) {
     return res
 }
 
-export function last(arr) {
-    return arr[arr.length - 1]
-}
-
 export function initAndLast(arr) {
     return [ init(arr), last(arr) ]
+}
+
+export function first(functionOrArray) {
+    if (isFunction(functionOrArray)) {
+        return arr => {
+            for (let i = 0; i < arr.length; i++) {
+                const item = arr[i]
+
+                if (functionOrArray(item)) {
+                    return item
+                }
+            }
+
+            return null
+        }
+    }
+    else {
+        return functionOrArray[0]
+    }
+}
+
+export function second(arr) {
+    return arr[1]
+}
+
+export function last(arr) {
+    return arr[arr.length - 1]
 }
 
 export function take(n) {

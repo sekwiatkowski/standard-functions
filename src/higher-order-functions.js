@@ -24,13 +24,6 @@ export function compose() {
     return x => arr.reduce((acc, f) => f(acc), x)
 }
 
-export function perform(f) {
-    return x => {
-        f(x)
-        return x
-    }
-}
-
 export function identity(x) {
     return x
 }

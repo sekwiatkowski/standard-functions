@@ -1,6 +1,6 @@
 {
     "name": "standard-functions",
-    "version": "0.24.2",
+    "version": "0.24.3",
     "main": "src/index.js",
     "type": "module"
 }
