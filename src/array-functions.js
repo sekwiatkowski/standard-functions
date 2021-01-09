@@ -7,7 +7,9 @@ export function isArray(input) {
 }
 
 export function forEach(f) {
-    return arr => arr.forEach(f)
+    return arr => {
+        arr.forEach(f)
+    }
 }
 
 export function map(f) {
@@ -61,32 +63,6 @@ export function unique(arr) {
 
 export function difference(as) {
     return bs => as.filter(a => !bs.includes(a))
-}
-
-export function single(predicateOrArray) {
-    if (Array.isArray(predicateOrArray)) {
-        const numberOfItems = predicateOrArray.length
-
-        if (numberOfItems === 1) {
-            return predicateOrArray[0]
-        }
-        else {
-            throw Error(`Expected a single item. Found ${numberOfItems} items.`)
-        }
-    }
-    else {
-        return arr => {
-            const results = arr.filter(predicateOrArray)
-            const numberOfResults = results.length
-
-            if (numberOfResults === 1) {
-                return results[0]
-            }
-            else {
-                throw Error(`Expected a single search result. Found ${numberOfResults} items.`)
-            }
-        }
-    }
 }
 
 export function find(predicate) {

@@ -1,5 +1,6 @@
 import {isString} from './string-functions'
 import {isFunction} from './higher-order-functions'
+import {isArray} from './array-functions'
 
 export function nth(index) {
     return arr => arr[index]
@@ -40,11 +41,41 @@ export function initAndLast(arr) {
     return [ init(arr), last(arr) ]
 }
 
+export function single(predicateOrInput) {
+    if (isFunction(predicateOrInput)) {
+        return input => {
+            const results = input.filter(predicateOrInput)
+            const numberOfResults = results.length
+
+            if (numberOfResults === 1) {
+                return results[0]
+            }
+            else {
+                throw Error(`Expected a single search result. Found ${numberOfResults} items.`)
+            }
+        }
+    }
+    else {
+        const numberOfItems = predicateOrInput.length
+
+        if (numberOfItems === 1) {
+            return predicateOrInput[0]
+        }
+        else {
+            const message = isArray(predicateOrInput)
+                ? `Expected a single item. Found ${numberOfItems} items.`
+                : `Expected a single character. Found ${numberOfItems} characters.`
+
+            throw Error(message)
+        }
+    }
+}
+
 export function first(functionOrArray) {
     if (isFunction(functionOrArray)) {
-        return arr => {
-            for (let i = 0; i < arr.length; i++) {
-                const item = arr[i]
+        return input => {
+            for (let i = 0; i < input.length; i++) {
+                const item = input[i]
 
                 if (functionOrArray(item)) {
                     return item
@@ -148,6 +179,21 @@ export function prependTo(collection) {
     return item => isString(collection) ? item + collection :  [item, ...collection]
 }
 
+export function concat(...items) {
+    if (items.length === 1) {
+        const firstItem = items[0]
+
+        return concat(...firstItem)
+    }
+
+    const initial = isString(items[0]) ? '' : []
+
+    return items.reduce(
+        (acc, s) => acc.concat(s),
+        initial
+    )
+}
+
 export function isEmpty(collection) {
     return collection.length === 0
 }
@@ -174,38 +220,13 @@ export function length(collection) {
     return collection.length
 }
 
-export function concat(...items) {
-    if (items.length === 1) {
-        const firstItem = items[0]
-
-        return concat(...firstItem)
-    }
-
-    const initial = isString(items[0]) ? '' : []
-
-    return items.reduce(
-        (acc, s) => acc.concat(s),
-        initial
-    )
-}
-
 export function reverse(input) {
-    if (isString(input)) {
-        let reversedString = ''
+    const inputLength = input.length
+    const reversedArray = Array(inputLength)
 
-        for (let i = 0; i < input.length; i++) {
-            reversedString += input[input.length - i - 1]
-        }
-
-        return reversedString
+    for (let i = 0; i < inputLength; i++) {
+        reversedArray[i] = input[inputLength - i - 1]
     }
-    else {
-        const reversedArray = []
 
-        for (let i = 0; i < input.length; i++) {
-            reversedArray[i] = input[input.length - i - 1]
-        }
-
-        return reversedArray
-    }
+    return reversedArray
 }
