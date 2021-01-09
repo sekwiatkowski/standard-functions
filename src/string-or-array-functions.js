@@ -3,42 +3,42 @@ import {isFunction} from './higher-order-functions'
 import {isArray} from './array-functions'
 
 export function nth(index) {
-    return arr => arr[index]
+    return input => input[index]
 }
 
-export function head(arr) {
-    return arr[0]
+export function head(input) {
+    return input[0]
 }
 
-export function tail(arr) {
-    let size = arr.length-1
+export function tail(input) {
+    let size = input.length-1
     const res = Array(size)
 
     for (let i = 0; i < size; i++) {
-        res[i] = arr[i+1]
+        res[i] = input[i+1]
     }
 
     return res
 }
 
-export function headAndTail(arr) {
-    return [ head(arr), tail(arr) ]
+export function headAndTail(input) {
+    return [ head(input), tail(input) ]
 }
 
-export function init(arr) {
-    let size = arr.length-1
+export function init(input) {
+    let size = input.length-1
 
     const res = Array(size)
 
     for (let i = 0; i < size; i++) {
-        res[i] = arr[i]
+        res[i] = input[i]
     }
 
     return res
 }
 
-export function initAndLast(arr) {
-    return [ init(arr), last(arr) ]
+export function initAndLast(input) {
+    return [ init(input), last(input) ]
 }
 
 export function single(predicateOrInput) {
@@ -71,13 +71,13 @@ export function single(predicateOrInput) {
     }
 }
 
-export function first(functionOrArray) {
-    if (isFunction(functionOrArray)) {
+export function first(functionOrInput) {
+    if (isFunction(functionOrInput)) {
         return input => {
             for (let i = 0; i < input.length; i++) {
                 const item = input[i]
 
-                if (functionOrArray(item)) {
+                if (functionOrInput(item)) {
                     return item
                 }
             }
@@ -86,39 +86,39 @@ export function first(functionOrArray) {
         }
     }
     else {
-        return functionOrArray[0]
+        return functionOrInput[0]
     }
 }
 
-export function second(arr) {
-    return arr[1]
+export function second(input) {
+    return input[1]
 }
 
-export function last(arr) {
-    return arr[arr.length - 1]
+export function last(input) {
+    return input[input.length - 1]
 }
 
 export function take(n) {
-    return collection => collection.slice(0, n)
+    return input => input.slice(0, n)
 }
 
-export function takeFrom(collection) {
-    return n => take(n) (collection)
+export function takeFrom(input) {
+    return n => take(n) (input)
 }
 
 export function takeLast(n) {
-    return collection => collection.slice(Math.max(collection.length - n, 0))
+    return input => input.slice(Math.max(input.length - n, 0))
 }
 
-export function takeLastFrom(collection) {
-    return n => takeLast(n) (collection)
+export function takeLastFrom(input) {
+    return n => takeLast(n) (input)
 }
 
 export function takeWhile(predicate) {
-    return collection => {
+    return input => {
         const res = []
-        for (let i = 0; i < collection.length; i++) {
-            const item = collection[i]
+        for (let i = 0; i < input.length; i++) {
+            const item = input[i]
             if (!predicate(item, i)) {
                 return res
             }
@@ -131,26 +131,26 @@ export function takeWhile(predicate) {
 }
 
 export function drop(n) {
-    return collection => collection.slice(n)
+    return input => input.slice(n)
 }
 
-export function dropFrom(arr) {
-    return n => drop(n) (arr)
+export function dropFrom(input) {
+    return n => drop(n) (input)
 }
 
 export function dropLast(n) {
-    return arr => arr.slice(0, -n)
+    return input => input.slice(0, -n)
 }
 
-export function dropLastFrom(arr) {
-    return n => dropLast(n) (arr)
+export function dropLastFrom(input) {
+    return n => dropLast(n) (input)
 }
 
 export function dropWhile(predicate) {
-    return arr => {
+    return input => {
         let dropped = 0
-        while (dropped < arr.length) {
-            const item = arr[dropped]
+        while (dropped < input.length) {
+            const item = input[dropped]
             if (predicate(item, dropped)) {
                 dropped++
             }
@@ -159,24 +159,24 @@ export function dropWhile(predicate) {
             }
         }
 
-        return arr.slice(dropped)
+        return input.slice(dropped)
     }
 }
 
 export function append(item) {
-    return collection => isString(collection) ? collection + item : [...collection, item]
+    return input => isString(input) ? input + item : [...input, item]
 }
 
-export function appendTo(collection) {
-    return item => isString(collection) ? collection + item : [...collection, item]
+export function appendTo(input) {
+    return item => isString(input) ? input + item : [...input, item]
 }
 
 export function prepend(item) {
-    return collection => isString(collection) ? item + collection : [item, ...collection]
+    return input => isString(input) ? item + input : [item, ...input]
 }
 
-export function prependTo(collection) {
-    return item => isString(collection) ? item + collection :  [item, ...collection]
+export function prependTo(input) {
+    return item => isString(input) ? item + input :  [item, ...input]
 }
 
 export function concat(...items) {
