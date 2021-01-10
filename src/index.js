@@ -7,7 +7,6 @@ export * from './character-functions'
 export * from './string-or-array-functions'
 
 export * from './boolean-functions'
-export * from './date-functions'
 export * from './number-functions'
 
 export * from './higher-order-functions'
