@@ -13,3 +13,7 @@ export function greaterThan(value) {
 export function lessThan(value) {
     return x => x < value
 }
+
+export function isNumber(input) {
+    return typeof input === 'number'
+}
