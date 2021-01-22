@@ -6,7 +6,7 @@ export function isUppercase(c) {
     return c === c.toUpperCase()
 }
 
-export function isNumber(c) {
+export function isDigit(c) {
     return c === '0'
         || c === '1'
         || c === '2'
