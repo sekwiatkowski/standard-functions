@@ -1,20 +1,17 @@
-export function isLowercase(c) {
-    return c === c.toLowerCase()
-}
-
-export function isUppercase(c) {
-    return c === c.toUpperCase()
-}
+const digits = '0123456789'
 
 export function isDigit(c) {
-    return c === '0'
-        || c === '1'
-        || c === '2'
-        || c === '3'
-        || c === '4'
-        || c === '5'
-        || c === '6'
-        || c === '7'
-        || c === '8'
-        || c === '9'
+    return digits.includes(c)
+}
+
+const lowercaseEnglishLetters = 'abcdefghijklmnopqrstuvwxyz'
+
+export function isLowercaseEnglishLetter(c) {
+    return lowercaseEnglishLetters.includes(c)
+}
+
+const uppercaseEnglishLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+export function isUppercaseEnglishLetter(c) {
+    return uppercaseEnglishLetters.includes(c)
 }
