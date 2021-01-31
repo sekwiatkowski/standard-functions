@@ -9,14 +9,21 @@ export function reject(reason) {
     return Promise.reject(reason)
 }
 
+export function parallel(promises) {
+    return Promise.all(promises)
+}
+
 export function mapFulfilled(functionOrValue) {
-    return promise => promise.then(isFunction(functionOrValue) ? functionOrValue : () => functionOrValue)
+    return promise => promise.then(
+        isFunction(functionOrValue) ? functionOrValue : () => functionOrValue
+    )
 }
 
 export function mapPromise(ifFulfilled) {
     return ifRejected => promise => promise.then(
         isFunction(ifFulfilled) ? ifFulfilled : () => ifFulfilled,
-        isFunction(ifRejected) ? ifRejected : () => ifRejected)
+        isFunction(ifRejected) ? ifRejected : () => ifRejected
+    )
 }
 
 export function asyncMap(f) {
