@@ -1,5 +1,6 @@
 import {isFunction} from './higher-order-functions'
-import {map} from './array-functions'
+import {isArray, map} from './array-functions'
+import {first, isOfLengthOne} from './string-or-array-functions'
 
 export function resolve(value) {
     return Promise.resolve(value)
@@ -9,7 +10,11 @@ export function reject(reason) {
     return Promise.reject(reason)
 }
 
-export function parallel(promises) {
+export function parallel(...promises) {
+    if (isOfLengthOne(promises) && isArray(first(promises))) {
+        return parallel(...promises)
+    }
+
     return Promise.all(promises)
 }
 
