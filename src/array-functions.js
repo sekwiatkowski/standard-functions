@@ -1,4 +1,4 @@
-import {isOfLengthOne, length} from './string-or-array-functions'
+import {first, isOfLengthOne, length} from './string-or-array-functions'
 import {fromEntries} from './object-functions'
 import {isFunction} from './higher-order-functions'
 
@@ -178,19 +178,43 @@ export function splitAt(position) {
 }
 
 export function contains(itemOrFunction) {
-    return arr => isFunction(itemOrFunction)
-        ? arr.indexOf(itemOrFunction) !== -1
-        : arr.includes(itemOrFunction)
+    return (...itemsOrArray) => {
+        if (isOfLengthOne(itemsOrArray)) {
+            const firstItem = first(itemsOrArray)
+
+            if (isArray(firstItem)) {
+                return contains(itemOrFunction) (...firstItem)
+            }
+        }
+
+        return isFunction(itemOrFunction)
+            ? itemsOrArray.indexOf(itemOrFunction) !== -1
+            : itemsOrArray.includes(itemOrFunction)
+    }
 }
 
 export function isContainedIn(arr) {
     return itemOrFunction => contains(itemOrFunction) (arr)
 }
 
-export function containsAll(items) {
-    return arr => {
-        for (let i = 0; i < items.length; i++) {
-            if (!arr.includes(items[i])) {
+export function containsAll(...candidateItemsOrArray) {
+    if (isOfLengthOne(candidateItemsOrArray)) {
+        const firstCandidateItem = first(candidateItemsOrArray)
+        if (isArray(firstCandidateItem)) {
+            return containsAll(...firstCandidateItem)
+        }
+    }
+
+    return (...itemsOrArray) => {
+        if (isOfLengthOne(itemsOrArray)) {
+            const firstItem = first(itemsOrArray)
+            if (isArray(firstItem)) {
+                return containsAll(candidateItemsOrArray) (...firstItem)
+            }
+        }
+
+        for (let i = 0; i < candidateItemsOrArray.length; i++) {
+            if (!itemsOrArray.includes(candidateItemsOrArray[i])) {
                 return false
             }
         }
@@ -199,8 +223,8 @@ export function containsAll(items) {
     }
 }
 
-export function areContainedIn(arr) {
-    return items => containsAll(items)(arr)
+export function areContainedIn(itemsOrArray) {
+    return candidateItemsOrArray => containsAll(candidateItemsOrArray) (itemsOrArray)
 }
 
 export function all(p) {
