@@ -193,8 +193,8 @@ export function contains(itemOrFunction) {
     }
 }
 
-export function isContainedIn(arr) {
-    return itemOrFunction => contains(itemOrFunction) (arr)
+export function isContainedIn(...itemsOrArray) {
+    return itemOrFunction => contains(itemOrFunction) (...itemsOrArray)
 }
 
 export function containsAll(...candidateItemsOrArray) {
