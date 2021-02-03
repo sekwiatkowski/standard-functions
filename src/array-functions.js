@@ -177,24 +177,34 @@ export function splitAt(position) {
     return arr => [ arr.slice(0, position), arr.slice(position) ]
 }
 
-export function contains(itemOrFunction) {
+export function contains(itemOrPredicate) {
     return (...itemsOrArray) => {
         if (isOfLengthOne(itemsOrArray)) {
             const firstItem = first(itemsOrArray)
 
             if (isArray(firstItem)) {
-                return contains(itemOrFunction) (...firstItem)
+                return contains(itemOrPredicate) (...firstItem)
             }
         }
 
-        return isFunction(itemOrFunction)
-            ? itemsOrArray.indexOf(itemOrFunction) !== -1
-            : itemsOrArray.includes(itemOrFunction)
+        return isFunction(itemOrPredicate)
+            ? findIndex(itemOrPredicate) (itemsOrArray) !== null
+            : itemsOrArray.includes(itemOrPredicate)
     }
 }
 
 export function isContainedIn(...itemsOrArray) {
-    return itemOrFunction => contains(itemOrFunction) (...itemsOrArray)
+    return itemOrPredicate => {
+        if (isOfLengthOne(itemsOrArray)) {
+            const firstItem = first(itemsOrArray)
+
+            if (isArray(firstItem)) {
+                return contains(itemOrPredicate) (firstItem)
+            }
+        }
+
+        return contains(itemOrPredicate)(...itemsOrArray)
+    }
 }
 
 export function containsAll(...candidateItemsOrArray) {
