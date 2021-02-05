@@ -1,7 +1,15 @@
 import {isArray} from './array-functions'
 
 export function isBoolean(input) {
-    return input === true || input === false
+    return input === false || input === true
+}
+
+export function isFalse(input) {
+    return input === false
+}
+
+export function isTrue(input) {
+    return input === true
 }
 
 export function equals(b) {
