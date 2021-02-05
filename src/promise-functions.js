@@ -11,8 +11,12 @@ export function reject(reason) {
 }
 
 export function parallel(...promises) {
-    if (isOfLengthOne(promises) && isArray(first(promises))) {
-        return parallel(...promises)
+    if (isOfLengthOne(promises)) {
+        const firstItem = first(promises)
+
+        if (isArray(firstItem)) {
+            return parallel(...firstItem)
+        }
     }
 
     return Promise.all(promises)
