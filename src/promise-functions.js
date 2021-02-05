@@ -1,5 +1,5 @@
 import {isFunction} from './higher-order-functions'
-import {isArray, map} from './array-functions'
+import {isArray} from './array-functions'
 import {first, isOfLengthOne} from './string-or-array-functions'
 
 export function resolve(value) {
@@ -29,8 +29,4 @@ export function mapPromise(ifFulfilled) {
         isFunction(ifFulfilled) ? ifFulfilled : () => ifFulfilled,
         isFunction(ifRejected) ? ifRejected : () => ifRejected
     )
-}
-
-export function asyncMap(f) {
-    return arr => Promise.all(map(f) (arr))
 }
