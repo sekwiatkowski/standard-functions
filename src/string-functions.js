@@ -71,3 +71,11 @@ export function capitalize(input) {
 export function trim(input) {
     return input.trim()
 }
+
+export function containsSubstring(substring) {
+    return candidate => candidate.includes(substring)
+}
+
+export function isSubstringOf(text) {
+    return candidate => containsSubstring(candidate) (text)
+}
