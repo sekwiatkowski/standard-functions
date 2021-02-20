@@ -56,11 +56,11 @@ export function properties(keys) {
 }
 
 export function propertyOf(obj) {
-    return key => property(key)(obj)
+    return key => property(key) (obj)
 }
 
 export function propertiesOf(obj) {
-    return keys => properties(keys)(obj)
+    return keys => properties(keys) (obj)
 }
 
 export function propertyEquals(property) {

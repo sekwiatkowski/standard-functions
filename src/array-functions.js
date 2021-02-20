@@ -1,6 +1,7 @@
 import {first, isOfLengthOne, length} from './string-or-array-functions'
 import {fromEntries} from './object-functions'
 import {isFunction} from './higher-order-functions'
+import {not} from './boolean-functions'
 
 export function isArray(input) {
     return Array.isArray(input)
@@ -26,6 +27,10 @@ export function flatten(arr) {
 
 export function filter(predicate) {
     return arr => arr.filter(predicate)
+}
+
+export function exclude(predicate) {
+    return arr => arr.filter(not(predicate))
 }
 
 export function fold(f) {
@@ -203,7 +208,7 @@ export function isContainedIn(...itemsOrArray) {
             }
         }
 
-        return contains(itemOrPredicate)(...itemsOrArray)
+        return contains(itemOrPredicate) (...itemsOrArray)
     }
 }
 
