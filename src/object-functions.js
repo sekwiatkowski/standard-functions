@@ -9,8 +9,8 @@ export function associate(f) {
     return items => {
         const res = {}
 
-        for (let i = 0; i < items.length; i++) {
-            const [key, value] = f(items[i])
+        for (const item of items) {
+            const [key, value] = f(item)
             res[key] = value
         }
 
@@ -19,11 +19,10 @@ export function associate(f) {
 }
 
 export function associateWith(f) {
-    return items => {
+    return keys => {
         const res = {}
 
-        for (let i = 0; i < items.length; i++) {
-            const key = items[i]
+        for (const key of keys) {
             res[key] = f(key)
         }
 
@@ -86,10 +85,8 @@ export function mapKeys(f) {
 
         const keys = Object.keys(obj)
 
-        for (let index = 0; index < keys.length; index++) {
-            const key = keys[index]
-            const value = obj[key]
-            result[f(key)] = value
+        for (const key of keys) {
+            result[f(key)] = obj[key]
         }
 
         return result
@@ -102,8 +99,7 @@ export function mapValues(f) {
 
         const keys = Object.keys(obj)
 
-        for (let index = 0; index < keys.length; index++) {
-            const key = keys[index]
+        for (const key of keys) {
             const value = obj[key]
             result[key] = f(value)
         }
@@ -130,13 +126,11 @@ export function mapEntries(f) {
 
 export function mapObject(f) {
     return obj => {
-        const entries = Object.entries(obj)
-        const numberOfEntries = entries.length
-
         const result = {}
 
-        for (let index = 0; index < numberOfEntries; index++) {
-            const [key, value] = entries[index]
+        const entries = Object.entries(obj)
+        for (const entry of entries) {
+            const [key, value] = entry
             result[key] = f([key, value])
         }
 
@@ -160,9 +154,7 @@ export function mergeWith(f) {
             const merged = {...acc}
 
             const keys = Object.keys(item)
-            for (let index = 0; index < keys.length; index++) {
-                const key = keys[index]
-
+            for (const key of keys) {
                 const itemValue = item[key]
 
                 if (merged.hasOwnProperty(key) && isObject(itemValue)) {
@@ -187,8 +179,7 @@ export function omit(omittedKeys) {
 
         const keys = Object.keys(obj)
 
-        for (let index = 0; index < keys.length; index++) {
-            const key = keys[index]
+        for (const key of keys) {
             if (!omittedKeys.includes(key)) {
                 partialObject[key] = obj[key]
             }
@@ -202,8 +193,7 @@ export function pick(keys) {
     return obj => {
         const partialObject = {}
 
-        for (let index = 0; index < keys.length; index++) {
-            const key = keys[index]
+        for (const key of keys) {
             if (obj.hasOwnProperty(key)) {
                 partialObject[key] = obj[key]
             }
@@ -217,8 +207,7 @@ export function pickAll(keys) {
     return obj => {
         const partialObject = {}
 
-        for (let index = 0; index < keys.length; index++) {
-            const key = keys[index]
+        for (const key of keys) {
             partialObject[key] = obj[key]
         }
 
@@ -251,8 +240,7 @@ export function fromEntries(entries) {
 export function flattenObject(unflattened, stopCondition = not(isObject), parent = '', flattened = {}) {
     const unflattenedKeys = Object.keys(unflattened)
 
-    for (let indexKey = 0; indexKey < unflattenedKeys.length; indexKey++) {
-        const key = unflattenedKeys[indexKey]
+    for (const key of unflattenedKeys) {
         const value = unflattened[key]
 
         if (stopCondition(value)) {
@@ -293,8 +281,7 @@ export function unflattenObject(flattened) {
 
     const flattenedKeys = Object.keys(flattened)
 
-    for (let indexKey = 0; indexKey < flattenedKeys.length; indexKey++) {
-        const key = flattenedKeys[indexKey]
+    for (const key of flattenedKeys) {
         const value = flattened[key]
         const fragments = key.split('.')
         const numberOfFragments = fragments.length
@@ -315,4 +302,16 @@ export function unflattenObject(flattened) {
     }
 
     return unflattened
+}
+
+export function reverseObject(input) {
+    const reversed = {}
+
+    const entries = Object.entries(input)
+
+    for (const entry of entries) {
+        reversed[entry[1]] = entry[0]
+    }
+
+    return reversed
 }
