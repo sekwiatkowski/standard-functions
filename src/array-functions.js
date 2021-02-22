@@ -380,16 +380,18 @@ export function repeat(n) {
     }
 }
 
-export function count(predicate) {
-    return arr => {
-        let result = 0
+export function update(index) {
+    return item => arr => {
+        const copy = arr.slice()
+        copy[index] = item
+        return copy
+    }
+}
 
-        for (const item of arr) {
-            if (predicate(item)) {
-                result += 1
-            }
-        }
-
-        return result
+export function updateBy(index) {
+    return f => arr => {
+        const copy = arr.slice()
+        copy[index] = f(arr[index])
+        return copy
     }
 }
