@@ -379,3 +379,17 @@ export function repeat(n) {
         return result
     }
 }
+
+export function count(predicate) {
+    return arr => {
+        let result = 0
+
+        for (const item of arr) {
+            if (predicate(item)) {
+                result += 1
+            }
+        }
+
+        return result
+    }
+}
