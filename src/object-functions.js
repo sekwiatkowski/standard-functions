@@ -316,6 +316,6 @@ export function reverseObject(input) {
     return reversed
 }
 
-export function getOrDefault(property) {
-    return defaultValue => obj => obj[property] ?? defaultValue
+export function getOrDefault(defaultValue) {
+    return property => obj => obj[property] ?? defaultValue
 }
