@@ -42,8 +42,8 @@ export function property(key, defaultValue) {
     return obj => obj.hasOwnProperty(key) ? obj[key] : defaultValue
 }
 
-export function propertyOf(obj) {
-    return (key, defaultValue) => property(key, defaultValue) (obj)
+export function propertyOf(obj, defaultValue) {
+    return key => property(key, defaultValue) (obj)
 }
 
 export function properties(keys) {
