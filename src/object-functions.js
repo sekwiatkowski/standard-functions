@@ -38,8 +38,12 @@ export function isPropertyOf(obj) {
     return key => obj.hasOwnProperty(key)
 }
 
-export function property(key) {
-    return obj => obj[key]
+export function property(key, defaultValue) {
+    return obj => obj.hasOwnProperty(key) ? obj[key] : defaultValue
+}
+
+export function propertyOf(obj) {
+    return (key, defaultValue) => property(key, defaultValue) (obj)
 }
 
 export function properties(keys) {
@@ -52,10 +56,6 @@ export function properties(keys) {
 
         return result
     }
-}
-
-export function propertyOf(obj) {
-    return key => property(key) (obj)
 }
 
 export function propertiesOf(obj) {
@@ -314,8 +314,4 @@ export function reverseObject(input) {
     }
 
     return reversed
-}
-
-export function getOrDefault(defaultValue) {
-    return property => obj => obj[property] ?? defaultValue
 }
