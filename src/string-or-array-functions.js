@@ -41,36 +41,6 @@ export function initAndLast(input) {
     return [ init(input), last(input) ]
 }
 
-export function single(predicateOrInput) {
-    if (isFunction(predicateOrInput)) {
-        return input => {
-            const results = input.filter(predicateOrInput)
-            const numberOfResults = results.length
-
-            if (numberOfResults === 1) {
-                return results[0]
-            }
-            else {
-                throw Error(`Expected a single search result. Found ${numberOfResults} items.`)
-            }
-        }
-    }
-    else {
-        const numberOfItems = predicateOrInput.length
-
-        if (numberOfItems === 1) {
-            return predicateOrInput[0]
-        }
-        else {
-            const message = isArray(predicateOrInput)
-                ? `Expected a single item. Found ${numberOfItems} items.`
-                : `Expected a single character. Found ${numberOfItems} characters.`
-
-            throw Error(message)
-        }
-    }
-}
-
 export function first(predicateOrInput) {
     if (isFunction(predicateOrInput)) {
         return input => {
