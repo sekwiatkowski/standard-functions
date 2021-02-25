@@ -441,8 +441,8 @@ export function update(index) {
     }
 }
 
-export function updateBy(index) {
-    return f => arr => {
+export function updateBy(f) {
+    return index => arr => {
         const copy = arr.slice()
         copy[index] = f(arr[index])
         return copy
