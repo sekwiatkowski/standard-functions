@@ -448,3 +448,11 @@ export function updateBy(f) {
         return copy
     }
 }
+
+export function remove(index) {
+    return arr => {
+        const copy = arr.slice()
+        copy.splice(index, 1)
+        return copy
+    }
+}
