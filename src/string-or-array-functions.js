@@ -165,9 +165,9 @@ export function prependTo(input) {
 }
 
 export function concat(...items) {
-    if (items.length === 1) {
-        const firstItem = items[0]
+    const firstItem = items[0]
 
+    if (items.length === 1 && isArray(firstItem)) {
         return concat(...firstItem)
     }
 
