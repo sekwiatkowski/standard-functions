@@ -26,10 +26,13 @@ export const splitByEqualitySign = split('=')
 
 export function join(separator) {
     return (...items) => {
-        const firstItem = items[0]
 
-        if (isArray(firstItem)) {
-            return join(separator) (...firstItem)
+        if (items.length === 1) {
+            const firstItem = items[0]
+
+            if (isArray(firstItem)) {
+                return join(separator) (...firstItem)
+            }
         }
 
         return items.join(separator)
