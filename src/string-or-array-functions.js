@@ -169,7 +169,13 @@ export function concat(...items) {
         const firstItem = items[0]
 
         if (isArray(firstItem)) {
-            return concat(...firstItem)
+            // 2D array with a single item
+            if (firstItem.length === 1) {
+                return firstItem[0]
+            }
+            else {
+                return concat(...firstItem)
+            }
         }
     }
 
