@@ -112,7 +112,7 @@ export function single(predicateOrInput) {
             const numberOfResults = results.length
 
             if (numberOfResults === 0) {
-                throw Error(`Expected a single search result. Found no ${numberOfResults} matching items.`)
+                throw Error(`Expected a single search result. Found no matching items.`)
             }
             else if (numberOfResults > 1) {
                 throw Error(`Expected a single search result. Found ${numberOfResults} matching items.`)
