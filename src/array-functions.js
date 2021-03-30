@@ -467,3 +467,16 @@ export function indices(arr) {
 
     return result
 }
+
+export function slice(arr) {
+    return indices => {
+        const n = length(indices)
+        const result = Array(n)
+
+        for (let i = 0; i < n; i++) {
+            result[i] = arr[indices[i]]
+        }
+
+        return result
+    }
+}
