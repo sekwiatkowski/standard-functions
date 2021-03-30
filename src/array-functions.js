@@ -468,8 +468,8 @@ export function indices(arr) {
     return result
 }
 
-export function slice(arr) {
-    return indices => {
+export function slice(indices) {
+    return arr => {
         const n = length(indices)
         const result = Array(n)
 
