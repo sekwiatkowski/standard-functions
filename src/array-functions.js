@@ -1,5 +1,5 @@
 import {first, isOfLengthOne, length} from './string-or-array-functions'
-import {fromEntries, property} from './object-functions'
+import {fromEntries} from './object-functions'
 import {isFunction} from './higher-order-functions'
 import {not} from './boolean-functions'
 
@@ -398,10 +398,16 @@ export function arrayOf(...values) {
 
 export function range(inclusiveStart) {
     return exclusiveEnd => {
+        return steps(inclusiveStart) (exclusiveEnd) (1)
+    }
+}
+
+export function steps(inclusiveStart) {
+    return exclusiveEnd => stepSize => {
         const size = exclusiveEnd - inclusiveStart
         const result = Array(size)
 
-        for (let i = 0; i < size; i++) {
+        for (let i = 0; i < size; i = i + stepSize) {
             result[i] = inclusiveStart + i
         }
 
@@ -479,15 +485,4 @@ export function slice(indices) {
 
         return result
     }
-}
-
-export function count(arr) {
-    const counts = {}
-
-    for (let i = 0; i < arr.length; i++) {
-        const item = arr[i]
-        counts[item] = property(item, 0) (counts) + 1
-    }
-
-    return counts
 }
