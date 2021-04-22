@@ -404,11 +404,11 @@ export function range(inclusiveStart) {
 
 export function steps(inclusiveStart) {
     return exclusiveEnd => stepSize => {
-        const size = exclusiveEnd - inclusiveStart
+        const size = Math.ceil((exclusiveEnd - inclusiveStart) / stepSize)
         const result = Array(size)
 
-        for (let i = 0; i < size; i = i + stepSize) {
-            result[i] = inclusiveStart + i
+        for (let i = 0, current = inclusiveStart; i < size; i++, current += stepSize) {
+            result[i] = current
         }
 
         return result
