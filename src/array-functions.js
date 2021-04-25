@@ -455,10 +455,37 @@ export function updateBy(f) {
     }
 }
 
+export function removeFirst(item) {
+    return arr => {
+        const index = indexOf(item) (arr)
+
+        return remove(index) (arr)
+    }
+}
+
+export function removeAll(item) {
+    return arr => {
+        const copy = arr.slice()
+
+        let i = 0
+        while (i < arr.length) {
+            if (arr[i] === item) {
+                arr.splice(i, 1)
+            }
+            else {
+                i++
+            }
+        }
+
+        return copy
+    }
+}
+
 export function remove(index) {
     return arr => {
         const copy = arr.slice()
         copy.splice(index, 1)
+
         return copy
     }
 }

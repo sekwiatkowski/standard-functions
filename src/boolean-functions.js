@@ -12,8 +12,8 @@ export function isTrue(input) {
     return input === true
 }
 
-export function equals(b) {
-    return a => a === b
+export function equals(a) {
+    return b => a === b
 }
 
 export function not(predicate) {
