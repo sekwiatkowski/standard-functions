@@ -1,4 +1,5 @@
-import {isArray} from './array-functions'
+import {is2DArray, isArray} from './array-functions'
+import {isFunction} from './higher-order-functions'
 
 export function isBoolean(input) {
     return input === false || input === true
@@ -51,5 +52,34 @@ export function allPass(...predicates) {
         }
 
         return true
+    }
+}
+
+export function match(...cases) {
+    const firstItem = cases[0]
+    if (is2DArray(firstItem)) {
+        return match(...firstItem)
+    }
+
+    return defaultFunctionOrValue => input => {
+        for(const [ condition, valueOrFunction ] of cases) {
+            const isMatched = (isFunction(condition) && condition(input)) || equals(condition) (input)
+
+            if (isMatched) {
+                if (isFunction(valueOrFunction)) {
+                    return valueOrFunction(input)
+                }
+                else {
+                    return valueOrFunction
+                }
+            }
+        }
+
+        if (isFunction(defaultFunctionOrValue)) {
+            return defaultFunctionOrValue(input)
+        }
+        else {
+            return defaultFunctionOrValue
+        }
     }
 }

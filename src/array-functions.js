@@ -7,6 +7,10 @@ export function isArray(input) {
     return Array.isArray(input)
 }
 
+export function is2DArray(input) {
+    return isArray(input) && isArray(input[0])
+}
+
 export function forEach(f) {
     return arr => {
         arr.forEach(f)
