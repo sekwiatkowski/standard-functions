@@ -1,5 +1,6 @@
 import {fold, isArray} from './array-functions'
 import {not} from './boolean-functions'
+import {isFunction} from './higher-order-functions'
 
 export function isObject(input) {
     return typeof input === 'object'
@@ -64,6 +65,13 @@ export function propertiesOf(obj) {
 
 export function propertyEquals(property) {
     return value => obj => obj[property] === value
+}
+
+export function setProperty(key) {
+    return valueOrFunction => obj => ({
+      ...obj,
+      [key]: isFunction(valueOrFunction) ? valueOrFunction(obj[key]) : valueOrFunction
+    })
 }
 
 export function keys (obj) {
