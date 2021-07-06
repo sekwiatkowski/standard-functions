@@ -467,7 +467,7 @@ export function removeFirst(item) {
     }
 }
 
-export function removeAll(item) {
+export function remove(item) {
     return arr => {
         const copy = arr.slice()
 
@@ -485,7 +485,7 @@ export function removeAll(item) {
     }
 }
 
-export function remove(index) {
+export function removeAt(index) {
     return arr => {
         const copy = arr.slice()
         copy.splice(index, 1)
