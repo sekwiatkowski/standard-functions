@@ -463,7 +463,7 @@ export function removeFirst(item) {
     return arr => {
         const index = indexOf(item) (arr)
 
-        return remove(index) (arr)
+        return removeAt(index) (arr)
     }
 }
 
@@ -471,13 +471,13 @@ export function remove(item) {
     return arr => {
         const copy = arr.slice()
 
-        let i = 0
-        while (i < arr.length) {
-            if (arr[i] === item) {
-                arr.splice(i, 1)
+        let i = copy.length - 1
+        while (i >= 0) {
+            if (copy[i] === item) {
+                copy.splice(i, 1)
             }
             else {
-                i++
+                i--
             }
         }
 
