@@ -199,6 +199,24 @@ export function groupBy(computeKey) {
     }
 }
 
+export function minBy(f) {
+    return arr => {
+        let lowestScore = Number.POSITIVE_INFINITY
+        let index = -1
+
+        for (let i = 0; i < arr.length; i++) {
+            const score = f(arr[i])
+
+            if (score < lowestScore) {
+                lowestScore = score
+                index = i
+            }
+        }
+
+        return arr[index]
+    }
+}
+
 export function maxBy(f) {
     return arr => {
         let highestScore = Number.NEGATIVE_INFINITY
@@ -516,4 +534,20 @@ export function slice(indices) {
 
         return result
     }
+}
+
+export function min(arr) {
+    if (arguments.length > 1) {
+        return Math.min(...Array.prototype.slice.call(arguments))
+    }
+
+    return Math.min(...arr)
+}
+
+export function max(arr) {
+    if (arguments.length > 1) {
+        return Math.max(...Array.prototype.slice.call(arguments))
+    }
+
+    return Math.max(...arr)
 }
