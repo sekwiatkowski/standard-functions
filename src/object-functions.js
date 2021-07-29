@@ -1,6 +1,6 @@
-import {fold, isArray} from './array-functions'
-import {not} from './boolean-functions'
-import {isFunction} from './higher-order-functions'
+import {fold, isArray} from './array-functions.js'
+import {not} from './boolean-functions.js'
+import {isFunction} from './higher-order-functions.js'
 
 export function isObject(input) {
     return typeof input === 'object'
