@@ -17,6 +17,10 @@ export function equals(a) {
     return b => a === b
 }
 
+export function doesNotEqual(a) {
+    return b => a !== b
+}
+
 export function not(predicate) {
     return x => !predicate(x)
 }
