@@ -32,11 +32,11 @@ exports.unflattenObject = unflattenObject;
 exports.reverseObject = reverseObject;
 exports.merge = void 0;
 
-var _arrayFunctions = require("./array-functions");
+var _arrayFunctions = require("./array-functions.js");
 
-var _booleanFunctions = require("./boolean-functions");
+var _booleanFunctions = require("./boolean-functions.js");
 
-var _higherOrderFunctions = require("./higher-order-functions");
+var _higherOrderFunctions = require("./higher-order-functions.js");
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 

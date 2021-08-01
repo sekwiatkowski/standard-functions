@@ -7,6 +7,7 @@ exports.isBoolean = isBoolean;
 exports.isFalse = isFalse;
 exports.isTrue = isTrue;
 exports.equals = equals;
+exports.doesNotEqual = doesNotEqual;
 exports.not = not;
 exports.anyPass = anyPass;
 exports.allPass = allPass;
@@ -53,6 +54,12 @@ function isTrue(input) {
 function equals(a) {
   return function (b) {
     return a === b;
+  };
+}
+
+function doesNotEqual(a) {
+  return function (b) {
+    return a !== b;
   };
 }
 
