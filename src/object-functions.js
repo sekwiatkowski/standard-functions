@@ -146,6 +146,27 @@ export function mapObject(f) {
     }
 }
 
+export function filterValues(predicate) {
+    return obj => {
+        const result = {}
+
+        const entries = Object.entries(obj)
+        for (const entry of entries) {
+            const [key, value] = entry
+
+            if (predicate(value)) {
+                result[key] = value
+            }
+        }
+
+        return result
+    }
+}
+
+export function excludeValues(predicate) {
+    return filterValues(not(predicate))
+}
+
 export function mergeWith(f) {
     return (...items) => {
         const firstItem = items[0]
