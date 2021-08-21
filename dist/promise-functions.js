@@ -41,7 +41,7 @@ function parallel() {
     promises[_key] = arguments[_key];
   }
 
-  if ((0, _stringOrArrayFunctions.isOfLengthOne)(promises)) {
+  if ((0, _stringOrArrayFunctions.isSingle)(promises)) {
     var firstItem = (0, _stringOrArrayFunctions.first)(promises);
 
     if ((0, _arrayFunctions.isArray)(firstItem)) {

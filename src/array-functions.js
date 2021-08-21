@@ -1,4 +1,4 @@
-import {first, isOfLengthOne, length} from './string-or-array-functions'
+import {first, isSingle, length} from './string-or-array-functions'
 import {fromEntries} from './object-functions'
 import {isFunction} from './higher-order-functions'
 import {not} from './boolean-functions'
@@ -284,7 +284,7 @@ export function splitAt(position) {
 
 export function contains(itemOrPredicate) {
     return (...itemsOrArray) => {
-        if (isOfLengthOne(itemsOrArray)) {
+        if (isSingle(itemsOrArray)) {
             const firstItem = first(itemsOrArray)
 
             if (isArray(firstItem)) {
@@ -300,7 +300,7 @@ export function contains(itemOrPredicate) {
 
 export function isContainedIn(...itemsOrArray) {
     return itemOrPredicate => {
-        if (isOfLengthOne(itemsOrArray)) {
+        if (isSingle(itemsOrArray)) {
             const firstItem = first(itemsOrArray)
 
             if (isArray(firstItem)) {
@@ -313,7 +313,7 @@ export function isContainedIn(...itemsOrArray) {
 }
 
 export function containsAll(...candidateItemsOrArray) {
-    if (isOfLengthOne(candidateItemsOrArray)) {
+    if (isSingle(candidateItemsOrArray)) {
         const firstCandidateItem = first(candidateItemsOrArray)
         if (isArray(firstCandidateItem)) {
             return containsAll(...firstCandidateItem)
@@ -321,7 +321,7 @@ export function containsAll(...candidateItemsOrArray) {
     }
 
     return (...itemsOrArray) => {
-        if (isOfLengthOne(itemsOrArray)) {
+        if (isSingle(itemsOrArray)) {
             const firstItem = first(itemsOrArray)
             if (isArray(firstItem)) {
                 return containsAll(candidateItemsOrArray) (...firstItem)
@@ -361,11 +361,11 @@ export function cartesianProduct(as) {
 
 export function zip(...input) {
     // zip([ arr_1, ..., arr_n ])
-    if (isOfLengthOne(input)) {
+    if (isSingle(input)) {
         const arrayOfArrays = input[0]
 
         /// zip([ arr_1 ])
-        if (!isOfLengthOne(arrayOfArrays)) {
+        if (!isSingle(arrayOfArrays)) {
             return arrayOfArrays[0]
         }
         else {

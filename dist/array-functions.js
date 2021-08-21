@@ -376,7 +376,7 @@ function contains(itemOrPredicate) {
       itemsOrArray[_key] = arguments[_key];
     }
 
-    if ((0, _stringOrArrayFunctions.isOfLengthOne)(itemsOrArray)) {
+    if ((0, _stringOrArrayFunctions.isSingle)(itemsOrArray)) {
       var firstItem = (0, _stringOrArrayFunctions.first)(itemsOrArray);
 
       if (isArray(firstItem)) {
@@ -394,7 +394,7 @@ function isContainedIn() {
   }
 
   return function (itemOrPredicate) {
-    if ((0, _stringOrArrayFunctions.isOfLengthOne)(itemsOrArray)) {
+    if ((0, _stringOrArrayFunctions.isSingle)(itemsOrArray)) {
       var firstItem = (0, _stringOrArrayFunctions.first)(itemsOrArray);
 
       if (isArray(firstItem)) {
@@ -411,7 +411,7 @@ function containsAll() {
     candidateItemsOrArray[_key3] = arguments[_key3];
   }
 
-  if ((0, _stringOrArrayFunctions.isOfLengthOne)(candidateItemsOrArray)) {
+  if ((0, _stringOrArrayFunctions.isSingle)(candidateItemsOrArray)) {
     var firstCandidateItem = (0, _stringOrArrayFunctions.first)(candidateItemsOrArray);
 
     if (isArray(firstCandidateItem)) {
@@ -424,7 +424,7 @@ function containsAll() {
       itemsOrArray[_key4] = arguments[_key4];
     }
 
-    if ((0, _stringOrArrayFunctions.isOfLengthOne)(itemsOrArray)) {
+    if ((0, _stringOrArrayFunctions.isSingle)(itemsOrArray)) {
       var firstItem = (0, _stringOrArrayFunctions.first)(itemsOrArray);
 
       if (isArray(firstItem)) {
@@ -470,10 +470,10 @@ function zip() {
   }
 
   // zip([ arr_1, ..., arr_n ])
-  if ((0, _stringOrArrayFunctions.isOfLengthOne)(input)) {
+  if ((0, _stringOrArrayFunctions.isSingle)(input)) {
     var arrayOfArrays = input[0]; /// zip([ arr_1 ])
 
-    if (!(0, _stringOrArrayFunctions.isOfLengthOne)(arrayOfArrays)) {
+    if (!(0, _stringOrArrayFunctions.isSingle)(arrayOfArrays)) {
       return arrayOfArrays[0];
     } else {
       return zip.apply(void 0, input);
