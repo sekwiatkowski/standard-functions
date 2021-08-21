@@ -30,11 +30,12 @@ exports.concat = concat;
 exports.isEmpty = isEmpty;
 exports.isNotEmpty = isNotEmpty;
 exports.isOfLength = isOfLength;
+exports.isSingleOrEmpty = isSingleOrEmpty;
 exports.isShorterThan = isShorterThan;
 exports.isLongerThan = isLongerThan;
 exports.length = length;
 exports.reverse = reverse;
-exports.isOfLengthOne = void 0;
+exports.isSingle = void 0;
 
 var _stringFunctions = require("./string-functions");
 
@@ -280,8 +281,12 @@ function isOfLength(length) {
   };
 }
 
-var isOfLengthOne = isOfLength(1);
-exports.isOfLengthOne = isOfLengthOne;
+var isSingle = isOfLength(1);
+exports.isSingle = isSingle;
+
+function isSingleOrEmpty(collection) {
+  return isEmpty(collection) || isSingle(collection);
+}
 
 function isShorterThan(length) {
   return function (collection) {

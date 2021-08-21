@@ -199,7 +199,11 @@ export function isOfLength(length) {
     return collection => collection.length === length
 }
 
-export const isOfLengthOne = isOfLength(1)
+export const isSingle = isOfLength(1)
+
+export function isSingleOrEmpty(collection) {
+    return isEmpty(collection) || isSingle(collection)
+}
 
 export function isShorterThan(length) {
     return collection => collection.length < length
