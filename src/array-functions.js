@@ -139,6 +139,31 @@ export function single(predicateOrInput) {
     }
 }
 
+export function singleOrNull(predicateOrInput) {
+    if (isFunction(predicateOrInput)) {
+        return input => {
+            const results = input.filter(predicateOrInput)
+
+            const numberOfResults = results.length
+
+            if (numberOfResults > 1) {
+                throw Error(`Expected one or no search results. Found ${numberOfResults} matching items.`)
+            }
+
+            return results[0]
+        }
+    }
+    else {
+        const numberOfItems = predicateOrInput.length
+
+         if (numberOfItems > 1) {
+            throw Error(`Expected one or no items. Found ${numberOfItems} items.`)
+        }
+
+        return predicateOrInput[0]
+    }
+}
+
 export function singleIndex(predicate) {
     return arr => {
         const matches = []
