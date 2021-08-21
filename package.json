@@ -1,8 +1,9 @@
 {
     "name": "standard-functions",
-    "version": "0.32.5",
+    "version": "0.32.6",
     "main": "dist/index.js",
     "module": "src/index.js",
+    "type": "module",
     "scripts": {
         "build": "babel src -d dist"
     },

@@ -25,6 +25,42 @@ export function not(predicate) {
     return x => !predicate(x)
 }
 
+export function all(...items) {
+    if (items.length === 1) {
+        const firstItem = items[0]
+
+        if (isArray(firstItem)) {
+            return all(...firstItem)
+        }
+    }
+
+    for (let i = 0; i < items.length; i++) {
+        if (!items[i]) {
+            return false
+        }
+    }
+
+    return true
+}
+
+export function any(...items) {
+    if (items.length === 1) {
+        const firstItem = items[0]
+
+        if (isArray(firstItem)) {
+            return all(...firstItem)
+        }
+    }
+
+    for (let i = 0; i < items.length; i++) {
+        if (items[i]) {
+            return true
+        }
+    }
+
+    return false
+}
+
 export function anyPass(...predicates) {
     const firstItem = predicates[0]
     if (isArray(firstItem)) {

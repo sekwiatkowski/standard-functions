@@ -9,6 +9,8 @@ exports.isTrue = isTrue;
 exports.equals = equals;
 exports.doesNotEqual = doesNotEqual;
 exports.not = not;
+exports.all = all;
+exports.any = any;
 exports.anyPass = anyPass;
 exports.allPass = allPass;
 exports.match = match;
@@ -67,6 +69,42 @@ function not(predicate) {
   return function (x) {
     return !predicate(x);
   };
+}
+
+function all() {
+  if (arguments.length === 1) {
+    var firstItem = arguments.length <= 0 ? undefined : arguments[0];
+
+    if ((0, _arrayFunctions.isArray)(firstItem)) {
+      return all.apply(void 0, _toConsumableArray(firstItem));
+    }
+  }
+
+  for (var i = 0; i < arguments.length; i++) {
+    if (!(i < 0 || arguments.length <= i ? undefined : arguments[i])) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function any() {
+  if (arguments.length === 1) {
+    var firstItem = arguments.length <= 0 ? undefined : arguments[0];
+
+    if ((0, _arrayFunctions.isArray)(firstItem)) {
+      return all.apply(void 0, _toConsumableArray(firstItem));
+    }
+  }
+
+  for (var i = 0; i < arguments.length; i++) {
+    if (i < 0 || arguments.length <= i ? undefined : arguments[i]) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 function anyPass() {

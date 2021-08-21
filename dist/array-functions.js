@@ -30,8 +30,6 @@ exports.contains = contains;
 exports.isContainedIn = isContainedIn;
 exports.containsAll = containsAll;
 exports.areContainedIn = areContainedIn;
-exports.all = all;
-exports.any = any;
 exports.cartesianProduct = cartesianProduct;
 exports.zip = zip;
 exports.unzip = unzip;
@@ -423,30 +421,6 @@ function containsAll() {
 function areContainedIn(itemsOrArray) {
   return function (candidateItemsOrArray) {
     return containsAll(candidateItemsOrArray)(itemsOrArray);
-  };
-}
-
-function all(p) {
-  return function (arr) {
-    for (var i = 0; i < arr.length; i++) {
-      if (!p(arr[i])) {
-        return false;
-      }
-    }
-
-    return true;
-  };
-}
-
-function any(p) {
-  return function (arr) {
-    for (var i = 0; i < arr.length; i++) {
-      if (p(arr[i])) {
-        return true;
-      }
-    }
-
-    return false;
   };
 }
 

@@ -317,30 +317,6 @@ export function areContainedIn(itemsOrArray) {
     return candidateItemsOrArray => containsAll(candidateItemsOrArray) (itemsOrArray)
 }
 
-export function all(p) {
-    return arr => {
-        for (let i = 0; i < arr.length; i++) {
-            if (!p(arr[i])) {
-                return false
-            }
-        }
-
-        return true
-    }
-}
-
-export function any(p) {
-    return arr => {
-        for (let i = 0; i < arr.length; i++) {
-            if (p(arr[i])) {
-                return true
-            }
-        }
-
-        return false
-    }
-}
-
 export function cartesianProduct(as) {
     return bs => {
         const aLength = as.length
