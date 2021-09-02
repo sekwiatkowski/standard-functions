@@ -11,10 +11,16 @@ export function head(input) {
 }
 
 export function tail(input) {
-    let size = input.length-1
-    const res = Array(size)
+    const length = input.length
+    if (length <= 1) {
+        return []
+    }
 
-    for (let i = 0; i < size; i++) {
+    const tailLength = length - 1
+
+    const res = Array(tailLength)
+
+    for (let i = 0; i < tailLength; i++) {
         res[i] = input[i+1]
     }
 

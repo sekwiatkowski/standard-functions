@@ -66,10 +66,16 @@ function head(input) {
 }
 
 function tail(input) {
-  var size = input.length - 1;
-  var res = Array(size);
+  var length = input.length;
 
-  for (var i = 0; i < size; i++) {
+  if (length <= 1) {
+    return [];
+  }
+
+  var tailLength = length - 1;
+  var res = Array(tailLength);
+
+  for (var i = 0; i < tailLength; i++) {
     res[i] = input[i + 1];
   }
 
