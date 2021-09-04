@@ -552,3 +552,11 @@ export function max(arr) {
 
     return Math.max(...arr)
 }
+
+export function sum(xs) {
+    return fold((acc, x) => acc + x) (0) (xs)
+}
+
+export function product(xs) {
+    return fold((acc, x) => acc * x) (1) (xs)
+}

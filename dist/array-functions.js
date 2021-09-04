@@ -49,6 +49,8 @@ exports.indices = indices;
 exports.slice = slice;
 exports.min = min;
 exports.max = max;
+exports.sum = sum;
+exports.product = product;
 
 var _stringOrArrayFunctions = require("./string-or-array-functions");
 
@@ -666,4 +668,16 @@ function max(arr) {
   }
 
   return Math.max.apply(Math, _toConsumableArray(arr));
+}
+
+function sum(xs) {
+  return fold(function (acc, x) {
+    return acc + x;
+  })(0)(xs);
+}
+
+function product(xs) {
+  return fold(function (acc, x) {
+    return acc * x;
+  })(1)(xs);
 }
