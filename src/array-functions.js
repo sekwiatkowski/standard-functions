@@ -1,8 +1,7 @@
 import {first, isSingle, length} from './string-or-array-functions'
-import {fromEntries, keys, propertyOf} from './object-functions'
-import {isFunction} from './higher-order-functions'
+import {fromEntries, keys} from './object-functions'
+import {identity, isFunction} from './higher-order-functions'
 import {not} from './boolean-functions'
-import {pairBy} from './pair-functions'
 
 export function isArray(input) {
     return Array.isArray(input)
@@ -225,13 +224,17 @@ export function groupBy(computeKey) {
     }
 }
 
-export function groupEntriesBy(computeKey) {
+export function groupEntriesBy(computeKey, deserializeKey = identity) {
     return arr => {
         const grouped = groupBy(computeKey) (arr)
 
-        const sortedKeys = keys(grouped).sort()
+        const groupKeys = keys(grouped)
 
-        return map(pairBy(propertyOf(grouped))) (sortedKeys)
+        const deserializedGroupKeys = map(deserializeKey) (groupKeys)
+
+        return map(([ key, deserialized]) =>
+            [deserialized, grouped[key]]
+        ) (zip(groupKeys, deserializedGroupKeys))
     }
 }
 export function minBy(f) {
