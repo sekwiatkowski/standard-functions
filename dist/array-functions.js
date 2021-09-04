@@ -23,6 +23,7 @@ exports.singleOrNull = singleOrNull;
 exports.singleIndex = singleIndex;
 exports.partition = partition;
 exports.groupBy = groupBy;
+exports.groupEntriesBy = groupEntriesBy;
 exports.minBy = minBy;
 exports.maxBy = maxBy;
 exports.chunk = chunk;
@@ -59,6 +60,8 @@ var _objectFunctions = require("./object-functions");
 var _higherOrderFunctions = require("./higher-order-functions");
 
 var _booleanFunctions = require("./boolean-functions");
+
+var _pairFunctions = require("./pair-functions");
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -306,6 +309,14 @@ function groupBy(computeKey) {
     }
 
     return groups;
+  };
+}
+
+function groupEntriesBy(computeKey) {
+  return function (arr) {
+    var grouped = groupBy(computeKey)(arr);
+    var sortedKeys = (0, _objectFunctions.keys)(grouped).sort();
+    return map((0, _pairFunctions.pairBy)((0, _objectFunctions.propertyOf)(grouped)))(sortedKeys);
   };
 }
 

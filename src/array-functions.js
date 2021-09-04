@@ -1,7 +1,8 @@
 import {first, isSingle, length} from './string-or-array-functions'
-import {fromEntries} from './object-functions'
+import {fromEntries, keys, propertyOf} from './object-functions'
 import {isFunction} from './higher-order-functions'
 import {not} from './boolean-functions'
+import {pairBy} from './pair-functions'
 
 export function isArray(input) {
     return Array.isArray(input)
@@ -224,6 +225,15 @@ export function groupBy(computeKey) {
     }
 }
 
+export function groupEntriesBy(computeKey) {
+    return arr => {
+        const grouped = groupBy(computeKey) (arr)
+
+        const sortedKeys = keys(grouped).sort()
+
+        return map(pairBy(propertyOf(grouped))) (sortedKeys)
+    }
+}
 export function minBy(f) {
     return arr => {
         let lowestScore = Number.POSITIVE_INFINITY
