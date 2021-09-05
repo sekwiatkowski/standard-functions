@@ -25,41 +25,39 @@ export function not(predicate) {
     return x => !predicate(x)
 }
 
-export function all(...items) {
-    if (items.length === 1) {
-        const firstItem = items[0]
+export function all(predicate) {
+    return (...itemsOrArray) => {
+        const items = itemsOrArray.length === 1 && isArray(itemsOrArray[0])
+            ? itemsOrArray[0]
+            : itemsOrArray
 
-        if (isArray(firstItem)) {
-            return all(...firstItem)
+        for (const item of items) {
+            if (!predicate(item)) {
+                return false
+            }
         }
+        return true
     }
-
-    for (let i = 0; i < items.length; i++) {
-        if (!items[i]) {
-            return false
-        }
-    }
-
-    return true
 }
 
-export function any(...items) {
-    if (items.length === 1) {
-        const firstItem = items[0]
+export const allTrue = all(isTrue)
 
-        if (isArray(firstItem)) {
-            return all(...firstItem)
+export function any(predicate) {
+    return (...itemsOrArray) => {
+        const items = itemsOrArray.length === 1 && isArray(itemsOrArray[0])
+            ? itemsOrArray[0]
+            : itemsOrArray
+
+        for (const item of items) {
+            if (predicate(item)) {
+                return true
+            }
         }
+        return false
     }
-
-    for (let i = 0; i < items.length; i++) {
-        if (items[i]) {
-            return true
-        }
-    }
-
-    return false
 }
+
+export const anyTrue = any(isTrue)
 
 export function anyPass(...predicates) {
     const firstItem = predicates[0]
@@ -67,9 +65,9 @@ export function anyPass(...predicates) {
         return anyPass(...firstItem)
     }
 
-    return x => {
+    return items => {
         for(let i = 0; i < predicates.length; i++) {
-            if (predicates[i](x)) {
+            if (predicates[i] (items)) {
                 return true
             }
         }
@@ -84,9 +82,9 @@ export function allPass(...predicates) {
         return allPass(...firstItem)
     }
 
-    return x => {
+    return items => {
         for(let i = 0; i < predicates.length; i++) {
-            if (!predicates[i](x)) {
+            if (!predicates[i] (items)) {
                 return false
             }
         }

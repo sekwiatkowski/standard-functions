@@ -14,6 +14,7 @@ exports.any = any;
 exports.anyPass = anyPass;
 exports.allPass = allPass;
 exports.match = match;
+exports.anyTrue = exports.allTrue = void 0;
 
 var _arrayFunctions = require("./array-functions");
 
@@ -27,17 +28,17 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
@@ -71,45 +72,73 @@ function not(predicate) {
   };
 }
 
-function all() {
-  if (arguments.length === 1) {
-    var firstItem = arguments.length <= 0 ? undefined : arguments[0];
-
-    if ((0, _arrayFunctions.isArray)(firstItem)) {
-      return all.apply(void 0, _toConsumableArray(firstItem));
+function all(predicate) {
+  return function () {
+    for (var _len = arguments.length, itemsOrArray = new Array(_len), _key = 0; _key < _len; _key++) {
+      itemsOrArray[_key] = arguments[_key];
     }
-  }
 
-  for (var i = 0; i < arguments.length; i++) {
-    if (!(i < 0 || arguments.length <= i ? undefined : arguments[i])) {
-      return false;
+    var items = itemsOrArray.length === 1 && (0, _arrayFunctions.isArray)(itemsOrArray[0]) ? itemsOrArray[0] : itemsOrArray;
+
+    var _iterator = _createForOfIteratorHelper(items),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var item = _step.value;
+
+        if (!predicate(item)) {
+          return false;
+        }
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
     }
-  }
 
-  return true;
+    return true;
+  };
 }
 
-function any() {
-  if (arguments.length === 1) {
-    var firstItem = arguments.length <= 0 ? undefined : arguments[0];
+var allTrue = all(isTrue);
+exports.allTrue = allTrue;
 
-    if ((0, _arrayFunctions.isArray)(firstItem)) {
-      return all.apply(void 0, _toConsumableArray(firstItem));
+function any(predicate) {
+  return function () {
+    for (var _len2 = arguments.length, itemsOrArray = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      itemsOrArray[_key2] = arguments[_key2];
     }
-  }
 
-  for (var i = 0; i < arguments.length; i++) {
-    if (i < 0 || arguments.length <= i ? undefined : arguments[i]) {
-      return true;
+    var items = itemsOrArray.length === 1 && (0, _arrayFunctions.isArray)(itemsOrArray[0]) ? itemsOrArray[0] : itemsOrArray;
+
+    var _iterator2 = _createForOfIteratorHelper(items),
+        _step2;
+
+    try {
+      for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+        var item = _step2.value;
+
+        if (predicate(item)) {
+          return true;
+        }
+      }
+    } catch (err) {
+      _iterator2.e(err);
+    } finally {
+      _iterator2.f();
     }
-  }
 
-  return false;
+    return false;
+  };
 }
+
+var anyTrue = any(isTrue);
+exports.anyTrue = anyTrue;
 
 function anyPass() {
-  for (var _len = arguments.length, predicates = new Array(_len), _key = 0; _key < _len; _key++) {
-    predicates[_key] = arguments[_key];
+  for (var _len3 = arguments.length, predicates = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+    predicates[_key3] = arguments[_key3];
   }
 
   var firstItem = predicates[0];
@@ -118,9 +147,9 @@ function anyPass() {
     return anyPass.apply(void 0, _toConsumableArray(firstItem));
   }
 
-  return function (x) {
+  return function (items) {
     for (var i = 0; i < predicates.length; i++) {
-      if (predicates[i](x)) {
+      if (predicates[i](items)) {
         return true;
       }
     }
@@ -130,8 +159,8 @@ function anyPass() {
 }
 
 function allPass() {
-  for (var _len2 = arguments.length, predicates = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-    predicates[_key2] = arguments[_key2];
+  for (var _len4 = arguments.length, predicates = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
+    predicates[_key4] = arguments[_key4];
   }
 
   var firstItem = predicates[0];
@@ -140,9 +169,9 @@ function allPass() {
     return allPass.apply(void 0, _toConsumableArray(firstItem));
   }
 
-  return function (x) {
+  return function (items) {
     for (var i = 0; i < predicates.length; i++) {
-      if (!predicates[i](x)) {
+      if (!predicates[i](items)) {
         return false;
       }
     }
@@ -152,8 +181,8 @@ function allPass() {
 }
 
 function match() {
-  for (var _len3 = arguments.length, cases = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
-    cases[_key3] = arguments[_key3];
+  for (var _len5 = arguments.length, cases = new Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
+    cases[_key5] = arguments[_key5];
   }
 
   var firstItem = cases[0];
@@ -164,14 +193,14 @@ function match() {
 
   return function (defaultFunctionOrValue) {
     return function (input) {
-      var _iterator = _createForOfIteratorHelper(cases),
-          _step;
+      var _iterator3 = _createForOfIteratorHelper(cases),
+          _step3;
 
       try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var _step$value = _slicedToArray(_step.value, 2),
-              condition = _step$value[0],
-              valueOrFunction = _step$value[1];
+        for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+          var _step3$value = _slicedToArray(_step3.value, 2),
+              condition = _step3$value[0],
+              valueOrFunction = _step3$value[1];
 
           var isMatched = (0, _higherOrderFunctions.isFunction)(condition) && condition(input) || equals(condition)(input);
 
@@ -184,9 +213,9 @@ function match() {
           }
         }
       } catch (err) {
-        _iterator.e(err);
+        _iterator3.e(err);
       } finally {
-        _iterator.f();
+        _iterator3.f();
       }
 
       if ((0, _higherOrderFunctions.isFunction)(defaultFunctionOrValue)) {
