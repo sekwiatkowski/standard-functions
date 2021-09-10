@@ -82,3 +82,7 @@ export function containsSubstring(substring) {
 export function isSubstringOf(text) {
     return candidate => containsSubstring(candidate) (text)
 }
+
+export function removeDuplicateWhitespaces(input) {
+    return input.replace(/\s{2,}/g, ' ')
+}
