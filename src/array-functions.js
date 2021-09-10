@@ -573,3 +573,16 @@ export function sum(xs) {
 export function product(xs) {
     return fold((acc, x) => acc * x) (1) (xs)
 }
+
+export function getItem(nth) {
+    return arr => arr[nth]
+}
+
+export function setItem(nth) {
+    return f => arr =>
+        map((item, index) =>
+            index === nth
+                ? f(item)
+                : item
+        ) (arr)
+}

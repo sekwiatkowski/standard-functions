@@ -52,6 +52,8 @@ exports.min = min;
 exports.max = max;
 exports.sum = sum;
 exports.product = product;
+exports.getItem = getItem;
+exports.setItem = setItem;
 
 var _stringOrArrayFunctions = require("./string-or-array-functions");
 
@@ -705,4 +707,20 @@ function product(xs) {
   return fold(function (acc, x) {
     return acc * x;
   })(1)(xs);
+}
+
+function getItem(nth) {
+  return function (arr) {
+    return arr[nth];
+  };
+}
+
+function setItem(nth) {
+  return function (f) {
+    return function (arr) {
+      return map(function (item, index) {
+        return index === nth ? f(item) : item;
+      })(arr);
+    };
+  };
 }
