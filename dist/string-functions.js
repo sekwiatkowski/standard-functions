@@ -175,7 +175,7 @@ function endsWith(searchString) {
 function replaceAll(toBeReplaced) {
   return function (replacement) {
     return function (input) {
-      return input.replaceAll(toBeReplaced, replacement);
+      return input.replace(new RegExp(toBeReplaced, 'g'), replacement);
     };
   };
 }

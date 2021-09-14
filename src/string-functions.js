@@ -96,7 +96,7 @@ export function endsWith(searchString) {
 }
 
 export function replaceAll(toBeReplaced) {
-    return replacement => input => input.replaceAll(toBeReplaced, replacement)
+    return replacement => input => input.replace(new RegExp(toBeReplaced, 'g'), replacement)
 }
 
 export function replaceFirst(toBeReplaced) {
