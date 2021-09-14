@@ -15,6 +15,8 @@ exports.trim = trim;
 exports.containsSubstring = containsSubstring;
 exports.isSubstringOf = isSubstringOf;
 exports.removeDuplicateWhitespaces = removeDuplicateWhitespaces;
+exports.startsWith = startsWith;
+exports.endsWith = endsWith;
 exports.surroundWithDoubleQuotes = exports.surroundWithSingleQuotes = exports.surroundWithParentheses = exports.joinWithEqualitySign = exports.joinWithNewline = exports.joinWithSpace = exports.joinWithSlash = exports.joinWithSemicolonSpace = exports.joinWithSemicolon = exports.joinWithDot = exports.joinWithDash = exports.joinWithCommaSpace = exports.joinWithComma = exports.joinWithAmpersand = exports.splitByEqualitySign = exports.splitByNewline = exports.splitBySpace = exports.splitBySlash = exports.splitBySemicolonSpace = exports.splitBySemicolon = exports.splitByDot = exports.splitByDash = exports.splitByCommaSpace = exports.splitByComma = exports.splitByAmpersand = void 0;
 
 var _arrayFunctions = require("./array-functions");
@@ -154,4 +156,16 @@ function isSubstringOf(text) {
 
 function removeDuplicateWhitespaces(input) {
   return input.replace(/\s{2,}/g, ' ');
+}
+
+function startsWith(searchString) {
+  return function (input) {
+    return input.startsWith(searchString);
+  };
+}
+
+function endsWith(searchString) {
+  return function (input) {
+    return input.endsWith(searchString);
+  };
 }

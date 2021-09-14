@@ -86,3 +86,11 @@ export function isSubstringOf(text) {
 export function removeDuplicateWhitespaces(input) {
     return input.replace(/\s{2,}/g, ' ')
 }
+
+export function startsWith(searchString) {
+    return input => input.startsWith(searchString)
+}
+
+export function endsWith(searchString) {
+    return input => input.endsWith(searchString)
+}
