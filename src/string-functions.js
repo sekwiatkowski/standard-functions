@@ -94,3 +94,11 @@ export function startsWith(searchString) {
 export function endsWith(searchString) {
     return input => input.endsWith(searchString)
 }
+
+export function replaceAll(toBeReplaced) {
+    return replacement => input => input.replaceAll(toBeReplaced, replacement)
+}
+
+export function replaceFirst(toBeReplaced) {
+    return replacement => input => input.replace(toBeReplaced, replacement)
+}

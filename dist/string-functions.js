@@ -17,6 +17,8 @@ exports.isSubstringOf = isSubstringOf;
 exports.removeDuplicateWhitespaces = removeDuplicateWhitespaces;
 exports.startsWith = startsWith;
 exports.endsWith = endsWith;
+exports.replaceAll = replaceAll;
+exports.replaceFirst = replaceFirst;
 exports.surroundWithDoubleQuotes = exports.surroundWithSingleQuotes = exports.surroundWithParentheses = exports.joinWithEqualitySign = exports.joinWithNewline = exports.joinWithSpace = exports.joinWithSlash = exports.joinWithSemicolonSpace = exports.joinWithSemicolon = exports.joinWithDot = exports.joinWithDash = exports.joinWithCommaSpace = exports.joinWithComma = exports.joinWithAmpersand = exports.splitByEqualitySign = exports.splitByNewline = exports.splitBySpace = exports.splitBySlash = exports.splitBySemicolonSpace = exports.splitBySemicolon = exports.splitByDot = exports.splitByDash = exports.splitByCommaSpace = exports.splitByComma = exports.splitByAmpersand = void 0;
 
 var _arrayFunctions = require("./array-functions");
@@ -167,5 +169,21 @@ function startsWith(searchString) {
 function endsWith(searchString) {
   return function (input) {
     return input.endsWith(searchString);
+  };
+}
+
+function replaceAll(toBeReplaced) {
+  return function (replacement) {
+    return function (input) {
+      return input.replaceAll(toBeReplaced, replacement);
+    };
+  };
+}
+
+function replaceFirst(toBeReplaced) {
+  return function (replacement) {
+    return function (input) {
+      return input.replace(toBeReplaced, replacement);
+    };
   };
 }
