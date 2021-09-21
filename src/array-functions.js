@@ -586,3 +586,19 @@ export function setItem(nth) {
                 : item
         ) (arr)
 }
+
+export function containsSublist(sublist) {
+    return arr => {
+        for (const item of sublist) {
+            if (!arr.includes(item)) {
+                return false
+            }
+        }
+
+        return true
+    }
+}
+
+export function isSublistOf(arr) {
+    return sublist => containsSublist(sublist) (arr)
+}
