@@ -95,10 +95,25 @@ export function endsWith(searchString) {
     return input => input.endsWith(searchString)
 }
 
-export function replaceAll(toBeReplaced) {
-    return replacement => input => input.replace(new RegExp(toBeReplaced, 'g'), replacement)
-}
-
 export function replaceFirst(toBeReplaced) {
     return replacement => input => input.replace(toBeReplaced, replacement)
+}
+
+export function replaceLast(toBeReplaced) {
+    return replacement => input => {
+        const lastIndex = input.lastIndexOf(toBeReplaced)
+
+        if (lastIndex === -1) {
+            return input
+        }
+
+        const before = input.substring(0, lastIndex)
+        const after = input.substring(lastIndex + toBeReplaced.length)
+
+        return before + replacement + after
+    }
+}
+
+export function replaceAll(toBeReplaced) {
+    return replacement => input => input.replace(new RegExp(toBeReplaced, 'g'), replacement)
 }
