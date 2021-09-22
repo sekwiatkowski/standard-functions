@@ -10,6 +10,7 @@ exports.map = map;
 exports.flatMap = flatMap;
 exports.flatten = flatten;
 exports.filter = filter;
+exports.filterIndices = filterIndices;
 exports.exclude = exclude;
 exports.fold = fold;
 exports.foldWhile = foldWhile;
@@ -120,6 +121,20 @@ function flatten(arr) {
 function filter(predicate) {
   return function (arr) {
     return arr.filter(predicate);
+  };
+}
+
+function filterIndices(predicate) {
+  return function (arr) {
+    var indices = [];
+
+    for (var i = 0; i < arr.length; i++) {
+      if (predicate(arr[i])) {
+        indices.push(i);
+      }
+    }
+
+    return indices;
   };
 }
 
