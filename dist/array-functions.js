@@ -113,7 +113,7 @@ function mapNotNull(f) {
       var y = f(arr[i]);
 
       if (y) {
-        result.push(i);
+        result.push(y);
       }
     }
 

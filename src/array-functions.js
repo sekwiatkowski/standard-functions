@@ -29,7 +29,7 @@ export function mapNotNull(f) {
             const y = f(arr[i])
 
             if (y) {
-                result.push(i)
+                result.push(y)
             }
         }
 
