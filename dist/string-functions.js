@@ -20,6 +20,7 @@ exports.endsWith = endsWith;
 exports.replaceFirst = replaceFirst;
 exports.replaceLast = replaceLast;
 exports.replaceAll = replaceAll;
+exports.beforeAndAfter = beforeAndAfter;
 exports.surroundWithDoubleQuotes = exports.surroundWithSingleQuotes = exports.surroundWithParentheses = exports.joinWithEqualitySign = exports.joinWithNewline = exports.joinWithSpace = exports.joinWithSlash = exports.joinWithSemicolonSpace = exports.joinWithSemicolon = exports.joinWithDot = exports.joinWithDash = exports.joinWithCommaSpace = exports.joinWithComma = exports.joinWithAmpersand = exports.splitByEqualitySign = exports.splitByNewline = exports.splitBySpace = exports.splitBySlash = exports.splitBySemicolonSpace = exports.splitBySemicolon = exports.splitByDot = exports.splitByDash = exports.splitByCommaSpace = exports.splitByComma = exports.splitByAmpersand = void 0;
 
 var _arrayFunctions = require("./array-functions");
@@ -202,5 +203,14 @@ function replaceAll(toBeReplaced) {
     return function (input) {
       return input.replace(new RegExp(toBeReplaced, 'g'), replacement);
     };
+  };
+}
+
+function beforeAndAfter(separator) {
+  return function (input) {
+    var idx = input.indexOf(separator);
+    var before = input.substring(0, idx);
+    var after = input.substring(idx + separator.length);
+    return [before, after];
   };
 }
