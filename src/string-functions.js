@@ -117,3 +117,14 @@ export function replaceLast(toBeReplaced) {
 export function replaceAll(toBeReplaced) {
     return replacement => input => input.replace(new RegExp(toBeReplaced, 'g'), replacement)
 }
+
+export function beforeAndAfter(separator) {
+    return input => {
+        const idx = input.indexOf(separator)
+
+        const before = input.substring(0, idx)
+        const after = input.substring(idx + separator.length)
+
+        return [before, after]
+    }
+}
