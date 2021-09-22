@@ -7,6 +7,7 @@ exports.isArray = isArray;
 exports.is2DArray = is2DArray;
 exports.forEach = forEach;
 exports.map = map;
+exports.mapNotNull = mapNotNull;
 exports.flatMap = flatMap;
 exports.flatten = flatten;
 exports.filter = filter;
@@ -105,6 +106,22 @@ function forEach(f) {
 function map(f) {
   return function (arr) {
     return arr.map(f);
+  };
+}
+
+function mapNotNull(f) {
+  return function (arr) {
+    var result = [];
+
+    for (var i = 0; i < arr.length; i++) {
+      var y = f(arr[i]);
+
+      if (y) {
+        result.push(i);
+      }
+    }
+
+    return result;
   };
 }
 

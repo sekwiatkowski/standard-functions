@@ -21,6 +21,22 @@ export function map(f) {
     return arr => arr.map(f)
 }
 
+export function mapNotNull(f) {
+    return arr => {
+        const result = []
+
+        for (let i = 0; i < arr.length; i++) {
+            const y = f(arr[i])
+
+            if (y) {
+                result.push(i)
+            }
+        }
+
+        return result
+    }
+}
+
 export function flatMap(f) {
     return arr => arr.flatMap(f)
 }
