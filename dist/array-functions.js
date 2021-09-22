@@ -50,10 +50,6 @@ exports.remove = remove;
 exports.removeAt = removeAt;
 exports.indices = indices;
 exports.slice = slice;
-exports.min = min;
-exports.max = max;
-exports.sum = sum;
-exports.product = product;
 exports.getItem = getItem;
 exports.setItem = setItem;
 exports.containsSublist = containsSublist;
@@ -715,34 +711,6 @@ function slice(indices) {
 
     return result;
   };
-}
-
-function min(arr) {
-  if (arguments.length > 1) {
-    return Math.min.apply(Math, _toConsumableArray(Array.prototype.slice.call(arguments)));
-  }
-
-  return Math.min.apply(Math, _toConsumableArray(arr));
-}
-
-function max(arr) {
-  if (arguments.length > 1) {
-    return Math.max.apply(Math, _toConsumableArray(Array.prototype.slice.call(arguments)));
-  }
-
-  return Math.max.apply(Math, _toConsumableArray(arr));
-}
-
-function sum(xs) {
-  return fold(function (acc, x) {
-    return acc + x;
-  })(0)(xs);
-}
-
-function product(xs) {
-  return fold(function (acc, x) {
-    return acc * x;
-  })(1)(xs);
 }
 
 function getItem(nth) {

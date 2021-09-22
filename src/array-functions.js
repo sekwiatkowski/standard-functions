@@ -580,30 +580,6 @@ export function slice(indices) {
     }
 }
 
-export function min(arr) {
-    if (arguments.length > 1) {
-        return Math.min(...Array.prototype.slice.call(arguments))
-    }
-
-    return Math.min(...arr)
-}
-
-export function max(arr) {
-    if (arguments.length > 1) {
-        return Math.max(...Array.prototype.slice.call(arguments))
-    }
-
-    return Math.max(...arr)
-}
-
-export function sum(xs) {
-    return fold((acc, x) => acc + x) (0) (xs)
-}
-
-export function product(xs) {
-    return fold((acc, x) => acc * x) (1) (xs)
-}
-
 export function getItem(nth) {
     return arr => arr[nth]
 }
