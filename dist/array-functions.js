@@ -57,6 +57,7 @@ exports.getItem = getItem;
 exports.setItem = setItem;
 exports.containsSublist = containsSublist;
 exports.isSublistOf = isSublistOf;
+exports.swap = swap;
 
 var _stringOrArrayFunctions = require("./string-or-array-functions");
 
@@ -776,5 +777,20 @@ function containsSublist(sublist) {
 function isSublistOf(arr) {
   return function (sublist) {
     return containsSublist(sublist)(arr);
+  };
+}
+
+function swap(first) {
+  return function (second) {
+    return function (arr) {
+      if (first >= second) {
+        throw Error('The second index must be greater than the first index.');
+      }
+
+      var beforeFirst = arr.slice(0, first);
+      var between = arr.slice(first + 1, second);
+      var afterSecond = arr.slice(second + 1);
+      return [].concat(_toConsumableArray(beforeFirst), [arr[second]], _toConsumableArray(between), [arr[first]], _toConsumableArray(afterSecond));
+    };
   };
 }

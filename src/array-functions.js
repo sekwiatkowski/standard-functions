@@ -622,3 +622,23 @@ export function containsSublist(sublist) {
 export function isSublistOf(arr) {
     return sublist => containsSublist(sublist) (arr)
 }
+
+export function swap(first) {
+    return second => arr => {
+        if (first >= second) {
+            throw Error('The second index must be greater than the first index.')
+        }
+
+        const beforeFirst = arr.slice(0, first)
+        const between = arr.slice(first+1, second)
+        const afterSecond = arr.slice(second+1)
+
+        return [
+            ...beforeFirst,
+            arr[second],
+            ...between,
+            arr[first],
+            ...afterSecond
+        ]
+    }
+}
