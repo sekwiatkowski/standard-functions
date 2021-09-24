@@ -577,6 +577,10 @@ export function indices(arr) {
     return result
 }
 
+export function lastIndex(arr) {
+    return arr.length-1
+}
+
 export function slice(indices) {
     return arr => {
         const n = length(indices)

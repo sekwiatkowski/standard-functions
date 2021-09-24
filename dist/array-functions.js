@@ -51,6 +51,7 @@ exports.removeFirst = removeFirst;
 exports.remove = remove;
 exports.removeAt = removeAt;
 exports.indices = indices;
+exports.lastIndex = lastIndex;
 exports.slice = slice;
 exports.getItem = getItem;
 exports.setItem = setItem;
@@ -714,6 +715,10 @@ function indices(arr) {
   }
 
   return result;
+}
+
+function lastIndex(arr) {
+  return arr.length - 1;
 }
 
 function slice(indices) {
