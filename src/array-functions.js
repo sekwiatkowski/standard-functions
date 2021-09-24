@@ -468,6 +468,12 @@ export function range(inclusiveStart) {
     }
 }
 
+export function inclusiveRange(inclusiveStart) {
+    return inclusiveEnd => {
+        return range(inclusiveStart) (inclusiveEnd+1)
+    }
+}
+
 export function steps(inclusiveStart) {
     return exclusiveEnd => stepSize => {
         const size = Math.ceil((exclusiveEnd - inclusiveStart) / stepSize)
@@ -479,6 +485,10 @@ export function steps(inclusiveStart) {
 
         return result
     }
+}
+
+export function inclusiveSteps(inclusiveStart) {
+    return inclusiveEnd => stepSize => steps(inclusiveStart) (inclusiveEnd) (stepSize)
 }
 
 export function fill(value) {

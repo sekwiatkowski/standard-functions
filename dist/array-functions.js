@@ -40,7 +40,9 @@ exports.unzip = unzip;
 exports.zipObject = zipObject;
 exports.arrayOf = arrayOf;
 exports.range = range;
+exports.inclusiveRange = inclusiveRange;
 exports.steps = steps;
+exports.inclusiveSteps = inclusiveSteps;
 exports.fill = fill;
 exports.repeat = repeat;
 exports.update = update;
@@ -598,6 +600,12 @@ function range(inclusiveStart) {
   };
 }
 
+function inclusiveRange(inclusiveStart) {
+  return function (inclusiveEnd) {
+    return range(inclusiveStart)(inclusiveEnd + 1);
+  };
+}
+
 function steps(inclusiveStart) {
   return function (exclusiveEnd) {
     return function (stepSize) {
@@ -609,6 +617,14 @@ function steps(inclusiveStart) {
       }
 
       return result;
+    };
+  };
+}
+
+function inclusiveSteps(inclusiveStart) {
+  return function (inclusiveEnd) {
+    return function (stepSize) {
+      return steps(inclusiveStart)(inclusiveEnd)(stepSize);
     };
   };
 }
