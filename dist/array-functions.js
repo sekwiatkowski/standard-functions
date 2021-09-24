@@ -624,7 +624,7 @@ function steps(inclusiveStart) {
 function inclusiveSteps(inclusiveStart) {
   return function (inclusiveEnd) {
     return function (stepSize) {
-      return steps(inclusiveStart)(inclusiveEnd)(stepSize);
+      return steps(inclusiveStart)(inclusiveEnd + 1)(stepSize);
     };
   };
 }

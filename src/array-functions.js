@@ -488,7 +488,7 @@ export function steps(inclusiveStart) {
 }
 
 export function inclusiveSteps(inclusiveStart) {
-    return inclusiveEnd => stepSize => steps(inclusiveStart) (inclusiveEnd) (stepSize)
+    return inclusiveEnd => stepSize => steps(inclusiveStart) (inclusiveEnd+1) (stepSize)
 }
 
 export function fill(value) {
