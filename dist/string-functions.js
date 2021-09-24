@@ -21,7 +21,7 @@ exports.replaceFirst = replaceFirst;
 exports.replaceLast = replaceLast;
 exports.replaceAll = replaceAll;
 exports.beforeAndAfter = beforeAndAfter;
-exports.surroundWithDoubleQuotes = exports.surroundWithSingleQuotes = exports.surroundWithParentheses = exports.joinWithEqualitySign = exports.joinWithNewline = exports.joinWithSpace = exports.joinWithSlash = exports.joinWithSemicolonSpace = exports.joinWithSemicolon = exports.joinWithDot = exports.joinWithDash = exports.joinWithCommaSpace = exports.joinWithComma = exports.joinWithAmpersand = exports.splitByEqualitySign = exports.splitByNewline = exports.splitBySpace = exports.splitBySlash = exports.splitBySemicolonSpace = exports.splitBySemicolon = exports.splitByDot = exports.splitByDash = exports.splitByCommaSpace = exports.splitByComma = exports.splitByAmpersand = void 0;
+exports.surroundWithDoubleQuotes = exports.surroundWithSingleQuotes = exports.surroundWithParentheses = exports.joinWithPlus = exports.joinWithEqualitySign = exports.joinWithNewline = exports.joinWithSpace = exports.joinWithSlash = exports.joinWithSemicolonSpace = exports.joinWithSemicolon = exports.joinWithDot = exports.joinWithDash = exports.joinWithCommaSpace = exports.joinWithComma = exports.joinWithAmpersand = exports.splitByPlus = exports.splitByEqualitySign = exports.splitByNewline = exports.splitBySpace = exports.splitBySlash = exports.splitBySemicolonSpace = exports.splitBySemicolon = exports.splitByDot = exports.splitByDash = exports.splitByCommaSpace = exports.splitByComma = exports.splitByAmpersand = void 0;
 
 var _arrayFunctions = require("./array-functions");
 
@@ -73,6 +73,8 @@ var splitByNewline = split('\n');
 exports.splitByNewline = splitByNewline;
 var splitByEqualitySign = split('=');
 exports.splitByEqualitySign = splitByEqualitySign;
+var splitByPlus = split('+');
+exports.splitByPlus = splitByPlus;
 
 function join(separator) {
   return function () {
@@ -114,6 +116,8 @@ var joinWithNewline = join('\n');
 exports.joinWithNewline = joinWithNewline;
 var joinWithEqualitySign = join('=');
 exports.joinWithEqualitySign = joinWithEqualitySign;
+var joinWithPlus = join('+');
+exports.joinWithPlus = joinWithPlus;
 
 function surroundWith(beginning) {
   return function (end) {

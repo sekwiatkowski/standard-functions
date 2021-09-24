@@ -23,6 +23,7 @@ export const splitBySlash = split('/')
 export const splitBySpace = split(' ')
 export const splitByNewline = split('\n')
 export const splitByEqualitySign = split('=')
+export const splitByPlus = split('+')
 
 export function join(separator) {
     return (...items) => {
@@ -50,6 +51,7 @@ export const joinWithSlash = join('/')
 export const joinWithSpace = join(' ')
 export const joinWithNewline = join('\n')
 export const joinWithEqualitySign = join('=')
+export const joinWithPlus = join('+')
 
 export function surroundWith(beginning) {
     return end => str => beginning + str + end
