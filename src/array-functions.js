@@ -531,41 +531,6 @@ export function updateBy(f) {
     }
 }
 
-export function removeFirst(item) {
-    return arr => {
-        const index = indexOf(item) (arr)
-
-        return removeAt(index) (arr)
-    }
-}
-
-export function remove(item) {
-    return arr => {
-        const copy = arr.slice()
-
-        let i = copy.length - 1
-        while (i >= 0) {
-            if (copy[i] === item) {
-                copy.splice(i, 1)
-            }
-            else {
-                i--
-            }
-        }
-
-        return copy
-    }
-}
-
-export function removeAt(index) {
-    return arr => {
-        const copy = arr.slice()
-        copy.splice(index, 1)
-
-        return copy
-    }
-}
-
 export function indices(arr) {
     const n = arr.length
     const result = Array(n)

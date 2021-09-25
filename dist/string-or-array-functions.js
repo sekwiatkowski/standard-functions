@@ -26,6 +26,10 @@ exports.append = append;
 exports.appendTo = appendTo;
 exports.prepend = prepend;
 exports.prependTo = prependTo;
+exports.insertAt = insertAt;
+exports.remove = remove;
+exports.removeAt = removeAt;
+exports.removeFirst = removeFirst;
 exports.concat = concat;
 exports.isEmpty = isEmpty;
 exports.isNotEmpty = isNotEmpty;
@@ -246,6 +250,48 @@ function prepend(item) {
 function prependTo(input) {
   return function (item) {
     return (0, _stringFunctions.isString)(input) ? item + input : [item].concat(_toConsumableArray(input));
+  };
+}
+
+function insertAt(index) {
+  return function (item) {
+    return function (arr) {
+      var before = arr.slice(0, index);
+      var after = arr.slice(index);
+      return [].concat(_toConsumableArray(before), [item], _toConsumableArray(after));
+    };
+  };
+}
+
+function remove(item) {
+  return function (arr) {
+    var copy = arr.slice();
+    var i = copy.length - 1;
+
+    while (i >= 0) {
+      if (copy[i] === item) {
+        copy.splice(i, 1);
+      } else {
+        i--;
+      }
+    }
+
+    return copy;
+  };
+}
+
+function removeAt(index) {
+  return function (arr) {
+    var copy = arr.slice();
+    copy.splice(index, 1);
+    return copy;
+  };
+}
+
+function removeFirst(item) {
+  return function (arr) {
+    var index = (0, _arrayFunctions.indexOf)(item)(arr);
+    return removeAt(index)(arr);
   };
 }
 

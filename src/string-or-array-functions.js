@@ -1,6 +1,6 @@
 import {isString} from './string-functions'
 import {isFunction} from './higher-order-functions'
-import {isArray} from './array-functions'
+import {indexOf, isArray} from './array-functions'
 
 export function nth(index) {
     return input => input[index]
@@ -168,6 +168,54 @@ export function prepend(item) {
 
 export function prependTo(input) {
     return item => isString(input) ? item + input :  [item, ...input]
+}
+
+export function insertAt(index) {
+    return item => arr => {
+        const before = arr.slice(0, index)
+        const after = arr.slice(index)
+
+        return [
+            ...before,
+            item,
+            ...after
+        ]
+    }
+}
+
+export function remove(item) {
+    return arr => {
+        const copy = arr.slice()
+
+        let i = copy.length - 1
+        while (i >= 0) {
+            if (copy[i] === item) {
+                copy.splice(i, 1)
+            }
+            else {
+                i--
+            }
+        }
+
+        return copy
+    }
+}
+
+export function removeAt(index) {
+    return arr => {
+        const copy = arr.slice()
+        copy.splice(index, 1)
+
+        return copy
+    }
+}
+
+export function removeFirst(item) {
+    return arr => {
+        const index = indexOf(item) (arr)
+
+        return removeAt(index) (arr)
+    }
 }
 
 export function concat(...items) {

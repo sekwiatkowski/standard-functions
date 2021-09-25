@@ -47,9 +47,6 @@ exports.fill = fill;
 exports.repeat = repeat;
 exports.update = update;
 exports.updateBy = updateBy;
-exports.removeFirst = removeFirst;
-exports.remove = remove;
-exports.removeAt = removeAt;
 exports.indices = indices;
 exports.lastIndex = lastIndex;
 exports.slice = slice;
@@ -672,38 +669,6 @@ function updateBy(f) {
       copy[index] = f(arr[index]);
       return copy;
     };
-  };
-}
-
-function removeFirst(item) {
-  return function (arr) {
-    var index = indexOf(item)(arr);
-    return removeAt(index)(arr);
-  };
-}
-
-function remove(item) {
-  return function (arr) {
-    var copy = arr.slice();
-    var i = copy.length - 1;
-
-    while (i >= 0) {
-      if (copy[i] === item) {
-        copy.splice(i, 1);
-      } else {
-        i--;
-      }
-    }
-
-    return copy;
-  };
-}
-
-function removeAt(index) {
-  return function (arr) {
-    var copy = arr.slice();
-    copy.splice(index, 1);
-    return copy;
   };
 }
 
