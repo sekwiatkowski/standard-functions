@@ -154,6 +154,10 @@ export function dropWhile(predicate) {
     }
 }
 
+export const removeFirst = drop(1)
+
+export const removeLast = dropLast(1)
+
 export function append(item) {
     return input => isString(input) ? input + item : [...input, item]
 }
@@ -210,7 +214,15 @@ export function removeAt(index) {
     }
 }
 
-export function removeFirst(item) {
+export function removeFirstOccurrence(item) {
+    return arr => {
+        const index = indexOf(item) (arr)
+
+        return removeAt(index) (arr)
+    }
+}
+
+export function removeLastOccurrence(item) {
     return arr => {
         const index = indexOf(item) (arr)
 

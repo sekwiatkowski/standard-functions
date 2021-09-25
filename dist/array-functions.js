@@ -20,6 +20,7 @@ exports.difference = difference;
 exports.find = find;
 exports.findIndex = findIndex;
 exports.indexOf = indexOf;
+exports.lastIndexOf = lastIndexOf;
 exports.single = single;
 exports.singleOrNull = singleOrNull;
 exports.singleIndex = singleIndex;
@@ -236,6 +237,18 @@ function findIndex(predicate) {
 function indexOf(item) {
   return function (arr) {
     for (var i = 0; i < arr.length; i++) {
+      if (item === arr[i]) {
+        return i;
+      }
+    }
+
+    return null;
+  };
+}
+
+function lastIndexOf(item) {
+  return function (arr) {
+    for (var i = arr.length - 1; i >= 0; i--) {
       if (item === arr[i]) {
         return i;
       }

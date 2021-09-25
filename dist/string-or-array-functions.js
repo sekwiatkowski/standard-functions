@@ -29,7 +29,8 @@ exports.prependTo = prependTo;
 exports.insertAt = insertAt;
 exports.remove = remove;
 exports.removeAt = removeAt;
-exports.removeFirst = removeFirst;
+exports.removeFirstOccurrence = removeFirstOccurrence;
+exports.removeLastOccurrence = removeLastOccurrence;
 exports.concat = concat;
 exports.isEmpty = isEmpty;
 exports.isNotEmpty = isNotEmpty;
@@ -39,7 +40,7 @@ exports.isShorterThan = isShorterThan;
 exports.isLongerThan = isLongerThan;
 exports.length = length;
 exports.reverse = reverse;
-exports.isSingle = void 0;
+exports.isSingle = exports.removeLast = exports.removeFirst = void 0;
 
 var _stringFunctions = require("./string-functions");
 
@@ -229,6 +230,11 @@ function dropWhile(predicate) {
   };
 }
 
+var removeFirst = drop(1);
+exports.removeFirst = removeFirst;
+var removeLast = dropLast(1);
+exports.removeLast = removeLast;
+
 function append(item) {
   return function (input) {
     return (0, _stringFunctions.isString)(input) ? input + item : [].concat(_toConsumableArray(input), [item]);
@@ -288,7 +294,14 @@ function removeAt(index) {
   };
 }
 
-function removeFirst(item) {
+function removeFirstOccurrence(item) {
+  return function (arr) {
+    var index = (0, _arrayFunctions.indexOf)(item)(arr);
+    return removeAt(index)(arr);
+  };
+}
+
+function removeLastOccurrence(item) {
   return function (arr) {
     var index = (0, _arrayFunctions.indexOf)(item)(arr);
     return removeAt(index)(arr);

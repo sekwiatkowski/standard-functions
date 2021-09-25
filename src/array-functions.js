@@ -138,6 +138,17 @@ export function indexOf(item) {
     }
 }
 
+export function lastIndexOf(item) {
+    return arr => {
+        for (let i = arr.length - 1; i >=  0; i--) {
+            if (item === arr[i]) {
+                return i
+            }
+        }
+        return null
+    }
+}
+
 export function single(predicateOrInput) {
     if (isFunction(predicateOrInput)) {
         return input => {
