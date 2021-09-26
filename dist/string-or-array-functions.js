@@ -48,6 +48,8 @@ var _higherOrderFunctions = require("./higher-order-functions");
 
 var _arrayFunctions = require("./array-functions");
 
+var _booleanFunctions = require("./boolean-functions");
+
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -269,13 +271,14 @@ function insertAt(index) {
   };
 }
 
-function remove(item) {
+function remove(itemOrPredicate) {
   return function (arr) {
     var copy = arr.slice();
     var i = copy.length - 1;
+    var predicate = (0, _higherOrderFunctions.isFunction)(itemOrPredicate) ? itemOrPredicate : (0, _booleanFunctions.equals)(itemOrPredicate);
 
     while (i >= 0) {
-      if (copy[i] === item) {
+      if (predicate(copy[i])) {
         copy.splice(i, 1);
       } else {
         i--;

@@ -1,6 +1,7 @@
 import {isString} from './string-functions'
 import {isFunction} from './higher-order-functions'
 import {indexOf, isArray} from './array-functions'
+import {equals} from './boolean-functions'
 
 export function nth(index) {
     return input => input[index]
@@ -187,13 +188,16 @@ export function insertAt(index) {
     }
 }
 
-export function remove(item) {
+export function remove(itemOrPredicate) {
     return arr => {
         const copy = arr.slice()
 
         let i = copy.length - 1
+
+        const predicate = isFunction(itemOrPredicate) ? itemOrPredicate : equals(itemOrPredicate)
+
         while (i >= 0) {
-            if (copy[i] === item) {
+            if (predicate(copy[i])) {
                 copy.splice(i, 1)
             }
             else {
