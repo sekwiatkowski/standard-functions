@@ -192,7 +192,7 @@ export function remove(itemOrPredicate) {
     return arr => {
         const copy = arr.slice()
 
-        const predicate = isFunction(itemOrPredicate) ? itemOrPredicate : equals(itemOrPredicate)
+        const predicate = isFunction(itemOrPredicate) ? itemOrPredicate : equals(itemOrPredicate);
 
         let i = arr.length - 1
 
