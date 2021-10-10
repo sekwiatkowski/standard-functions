@@ -20,7 +20,6 @@ exports.difference = difference;
 exports.find = find;
 exports.findIndex = findIndex;
 exports.indexOf = indexOf;
-exports.lastIndexOf = lastIndexOf;
 exports.single = single;
 exports.singleOrNull = singleOrNull;
 exports.singleIndex = singleIndex;
@@ -246,18 +245,6 @@ function indexOf(item) {
   };
 }
 
-function lastIndexOf(item) {
-  return function (arr) {
-    for (var i = arr.length - 1; i >= 0; i--) {
-      if (item === arr[i]) {
-        return i;
-      }
-    }
-
-    return null;
-  };
-}
-
 function single(predicateOrInput) {
   if ((0, _higherOrderFunctions.isFunction)(predicateOrInput)) {
     return function (input) {
@@ -446,44 +433,20 @@ function splitAt(position) {
 }
 
 function contains(itemOrPredicate) {
-  return function () {
-    for (var _len = arguments.length, itemsOrArray = new Array(_len), _key = 0; _key < _len; _key++) {
-      itemsOrArray[_key] = arguments[_key];
-    }
-
-    if ((0, _stringOrArrayFunctions.isSingle)(itemsOrArray)) {
-      var firstItem = (0, _stringOrArrayFunctions.first)(itemsOrArray);
-
-      if (isArray(firstItem)) {
-        return contains(itemOrPredicate).apply(void 0, _toConsumableArray(firstItem));
-      }
-    }
-
-    return (0, _higherOrderFunctions.isFunction)(itemOrPredicate) ? findIndex(itemOrPredicate)(itemsOrArray) !== null : itemsOrArray.includes(itemOrPredicate);
+  return function (arr) {
+    return (0, _higherOrderFunctions.isFunction)(itemOrPredicate) ? findIndex(itemOrPredicate)(arr) !== null : arr.includes(itemOrPredicate);
   };
 }
 
-function isContainedIn() {
-  for (var _len2 = arguments.length, itemsOrArray = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-    itemsOrArray[_key2] = arguments[_key2];
-  }
-
+function isContainedIn(arr) {
   return function (itemOrPredicate) {
-    if ((0, _stringOrArrayFunctions.isSingle)(itemsOrArray)) {
-      var firstItem = (0, _stringOrArrayFunctions.first)(itemsOrArray);
-
-      if (isArray(firstItem)) {
-        return contains(itemOrPredicate)(firstItem);
-      }
-    }
-
-    return contains(itemOrPredicate).apply(void 0, itemsOrArray);
+    return contains(itemOrPredicate)(arr);
   };
 }
 
 function containsAll() {
-  for (var _len3 = arguments.length, candidateItemsOrArray = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
-    candidateItemsOrArray[_key3] = arguments[_key3];
+  for (var _len = arguments.length, candidateItemsOrArray = new Array(_len), _key = 0; _key < _len; _key++) {
+    candidateItemsOrArray[_key] = arguments[_key];
   }
 
   if ((0, _stringOrArrayFunctions.isSingle)(candidateItemsOrArray)) {
@@ -495,8 +458,8 @@ function containsAll() {
   }
 
   return function () {
-    for (var _len4 = arguments.length, itemsOrArray = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
-      itemsOrArray[_key4] = arguments[_key4];
+    for (var _len2 = arguments.length, itemsOrArray = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      itemsOrArray[_key2] = arguments[_key2];
     }
 
     if ((0, _stringOrArrayFunctions.isSingle)(itemsOrArray)) {
@@ -540,8 +503,8 @@ function cartesianProduct(as) {
 }
 
 function zip() {
-  for (var _len5 = arguments.length, input = new Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
-    input[_key5] = arguments[_key5];
+  for (var _len3 = arguments.length, input = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+    input[_key3] = arguments[_key3];
   }
 
   // zip([ arr_1, ..., arr_n ])
@@ -599,8 +562,8 @@ function zipObject(as) {
 }
 
 function arrayOf() {
-  for (var _len6 = arguments.length, values = new Array(_len6), _key6 = 0; _key6 < _len6; _key6++) {
-    values[_key6] = arguments[_key6];
+  for (var _len4 = arguments.length, values = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
+    values[_key4] = arguments[_key4];
   }
 
   return values;
