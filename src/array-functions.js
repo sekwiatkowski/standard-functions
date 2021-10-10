@@ -138,17 +138,6 @@ export function indexOf(item) {
     }
 }
 
-export function lastIndexOf(item) {
-    return arr => {
-        for (let i = arr.length - 1; i >=  0; i--) {
-            if (item === arr[i]) {
-                return i
-            }
-        }
-        return null
-    }
-}
-
 export function single(predicateOrInput) {
     if (isFunction(predicateOrInput)) {
         return input => {
@@ -337,33 +326,15 @@ export function splitAt(position) {
 }
 
 export function contains(itemOrPredicate) {
-    return (...itemsOrArray) => {
-        if (isSingle(itemsOrArray)) {
-            const firstItem = first(itemsOrArray)
-
-            if (isArray(firstItem)) {
-                return contains(itemOrPredicate) (...firstItem)
-            }
-        }
-
+    return arr => {
         return isFunction(itemOrPredicate)
-            ? findIndex(itemOrPredicate) (itemsOrArray) !== null
-            : itemsOrArray.includes(itemOrPredicate)
+            ? findIndex(itemOrPredicate) (arr) !== null
+            : arr.includes(itemOrPredicate)
     }
 }
 
-export function isContainedIn(...itemsOrArray) {
-    return itemOrPredicate => {
-        if (isSingle(itemsOrArray)) {
-            const firstItem = first(itemsOrArray)
-
-            if (isArray(firstItem)) {
-                return contains(itemOrPredicate) (firstItem)
-            }
-        }
-
-        return contains(itemOrPredicate) (...itemsOrArray)
-    }
+export function isContainedIn(arr) {
+    return itemOrPredicate => contains(itemOrPredicate) (arr)
 }
 
 export function containsAll(...candidateItemsOrArray) {
