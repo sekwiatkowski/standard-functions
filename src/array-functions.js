@@ -326,11 +326,9 @@ export function splitAt(position) {
 }
 
 export function contains(itemOrPredicate) {
-    return arr => {
-        return isFunction(itemOrPredicate)
-            ? findIndex(itemOrPredicate) (arr) !== null
-            : arr.includes(itemOrPredicate)
-    }
+    return arr => isFunction(itemOrPredicate)
+        ? findIndex(itemOrPredicate) (arr) !== null
+        : arr.includes(itemOrPredicate)
 }
 
 export function isContainedIn(arr) {

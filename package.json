@@ -1,6 +1,6 @@
 {
     "name": "standard-functions",
-    "version": "0.36.4",
+    "version": "0.36.5",
     "main": "dist/index.js",
     "module": "src/index.js",
     "scripts": {
