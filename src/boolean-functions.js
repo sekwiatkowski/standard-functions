@@ -21,6 +21,14 @@ export function doesNotEqual(a) {
     return b => a !== b
 }
 
+export function isGreaterThan(a) {
+    return b => b > a
+}
+
+export function isLessThan(a) {
+    return b => b < a
+}
+
 export function not(predicate) {
     return x => !predicate(x)
 }

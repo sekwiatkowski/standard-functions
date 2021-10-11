@@ -8,6 +8,8 @@ exports.isFalse = isFalse;
 exports.isTrue = isTrue;
 exports.equals = equals;
 exports.doesNotEqual = doesNotEqual;
+exports.isGreaterThan = isGreaterThan;
+exports.isLessThan = isLessThan;
 exports.not = not;
 exports.all = all;
 exports.any = any;
@@ -63,6 +65,18 @@ function equals(a) {
 function doesNotEqual(a) {
   return function (b) {
     return a !== b;
+  };
+}
+
+function isGreaterThan(a) {
+  return function (b) {
+    return b > a;
+  };
+}
+
+function isLessThan(a) {
+  return function (b) {
+    return b < a;
   };
 }
 
