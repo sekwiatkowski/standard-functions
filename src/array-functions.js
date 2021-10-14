@@ -544,10 +544,10 @@ export function getItem(nth) {
 }
 
 export function setItem(nth) {
-    return f => arr =>
+    return itemOrFunction => arr =>
         map((item, index) =>
             index === nth
-                ? f(item)
+                ? isFunction(itemOrFunction) ? itemOrFunction(item) : itemOrFunction
                 : item
         ) (arr)
 }

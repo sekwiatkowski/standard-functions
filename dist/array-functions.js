@@ -683,10 +683,10 @@ function getItem(nth) {
 }
 
 function setItem(nth) {
-  return function (f) {
+  return function (itemOrFunction) {
     return function (arr) {
       return map(function (item, index) {
-        return index === nth ? f(item) : item;
+        return index === nth ? (0, _higherOrderFunctions.isFunction)(itemOrFunction) ? itemOrFunction(item) : itemOrFunction : item;
       })(arr);
     };
   };
