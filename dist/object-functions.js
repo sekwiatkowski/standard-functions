@@ -40,6 +40,8 @@ var _booleanFunctions = require("./boolean-functions.js");
 
 var _higherOrderFunctions = require("./higher-order-functions.js");
 
+var _stringOrArrayFunctions = require("./string-or-array-functions");
+
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -331,7 +333,19 @@ var merge = mergeWith(function (a) {
 });
 exports.merge = merge;
 
-function omit(omittedKeys) {
+function omit() {
+  for (var _len2 = arguments.length, omittedKeys = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+    omittedKeys[_key2] = arguments[_key2];
+  }
+
+  if ((0, _stringOrArrayFunctions.isSingle)(omittedKeys)) {
+    var firstItem = (0, _stringOrArrayFunctions.first)(omittedKeys);
+
+    if ((0, _arrayFunctions.isArray)(firstItem)) {
+      return omit.apply(void 0, _toConsumableArray(firstItem));
+    }
+  }
+
   return function (obj) {
     var partialObject = {};
     var keys = Object.keys(obj);
@@ -348,7 +362,19 @@ function omit(omittedKeys) {
   };
 }
 
-function pick(keys) {
+function pick() {
+  for (var _len3 = arguments.length, keys = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+    keys[_key3] = arguments[_key3];
+  }
+
+  if ((0, _stringOrArrayFunctions.isSingle)(keys)) {
+    var firstItem = (0, _stringOrArrayFunctions.first)(keys);
+
+    if ((0, _arrayFunctions.isArray)(firstItem)) {
+      return pick.apply(void 0, _toConsumableArray(firstItem));
+    }
+  }
+
   return function (obj) {
     var partialObject = {};
 
@@ -373,7 +399,19 @@ function pick(keys) {
   };
 }
 
-function pickAll(keys) {
+function pickAll() {
+  for (var _len4 = arguments.length, keys = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
+    keys[_key4] = arguments[_key4];
+  }
+
+  if ((0, _stringOrArrayFunctions.isSingle)(keys)) {
+    var firstItem = (0, _stringOrArrayFunctions.first)(keys);
+
+    if ((0, _arrayFunctions.isArray)(firstItem)) {
+      return pick.apply(void 0, _toConsumableArray(firstItem));
+    }
+  }
+
   return function (obj) {
     var partialObject = {};
 

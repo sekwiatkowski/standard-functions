@@ -1,6 +1,7 @@
 import {fold, isArray} from './array-functions.js'
 import {not} from './boolean-functions.js'
 import {isFunction} from './higher-order-functions.js'
+import {first, isSingle} from './string-or-array-functions'
 
 export function isObject(input) {
     return typeof input === 'object'
@@ -202,7 +203,15 @@ export function mergeWith(f) {
 
 export const merge = mergeWith(a => b => merge(a, b))
 
-export function omit(omittedKeys) {
+export function omit(...omittedKeys) {
+    if (isSingle(omittedKeys)) {
+        const firstItem = first(omittedKeys)
+
+        if (isArray(firstItem)) {
+            return omit(...firstItem)
+        }
+    }
+
     return obj => {
         const partialObject = {}
 
@@ -218,7 +227,15 @@ export function omit(omittedKeys) {
     }
 }
 
-export function pick(keys) {
+export function pick(...keys) {
+    if (isSingle(keys)) {
+        const firstItem = first(keys)
+
+        if (isArray(firstItem)) {
+            return pick(...firstItem)
+        }
+    }
+
     return obj => {
         const partialObject = {}
 
@@ -232,7 +249,15 @@ export function pick(keys) {
     }
 }
 
-export function pickAll(keys) {
+export function pickAll(...keys) {
+    if (isSingle(keys)) {
+        const firstItem = first(keys)
+
+        if (isArray(firstItem)) {
+            return pick(...firstItem)
+        }
+    }
+
     return obj => {
         const partialObject = {}
 
