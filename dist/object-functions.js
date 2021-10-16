@@ -122,6 +122,8 @@ function associateBy(f) {
     } finally {
       _iterator2.f();
     }
+
+    return obj;
   };
 }
 

@@ -27,6 +27,8 @@ export function associateBy(f) {
         for (const value of values) {
             obj[f(value)] = value
         }
+
+        return obj
     }
 }
 
