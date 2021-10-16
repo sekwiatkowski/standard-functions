@@ -9,26 +9,36 @@ export function isObject(input) {
 
 export function associate(f) {
     return items => {
-        const res = {}
+        const obj = {}
 
         for (const item of items) {
             const [key, value] = f(item)
-            res[key] = value
+            obj[key] = value
         }
 
-        return res
+        return obj
+    }
+}
+
+export function associateBy(f) {
+    return values => {
+        const obj = {}
+
+        for (const value of values) {
+            obj[f(value)] = value
+        }
     }
 }
 
 export function associateWith(f) {
     return keys => {
-        const res = {}
+        const obj = {}
 
         for (const key of keys) {
-            res[key] = f(key)
+            obj[key] = f(key)
         }
 
-        return res
+        return obj
     }
 }
 

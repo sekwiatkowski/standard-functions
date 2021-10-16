@@ -5,6 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.isObject = isObject;
 exports.associate = associate;
+exports.associateBy = associateBy;
 exports.associateWith = associateWith;
 exports.hasProperty = hasProperty;
 exports.isPropertyOf = isPropertyOf;
@@ -78,7 +79,7 @@ function isObject(input) {
 
 function associate(f) {
   return function (items) {
-    var res = {};
+    var obj = {};
 
     var _iterator = _createForOfIteratorHelper(items),
         _step;
@@ -92,7 +93,7 @@ function associate(f) {
             key = _f2[0],
             value = _f2[1];
 
-        res[key] = value;
+        obj[key] = value;
       }
     } catch (err) {
       _iterator.e(err);
@@ -100,29 +101,49 @@ function associate(f) {
       _iterator.f();
     }
 
-    return res;
+    return obj;
   };
 }
 
-function associateWith(f) {
-  return function (keys) {
-    var res = {};
+function associateBy(f) {
+  return function (values) {
+    var obj = {};
 
-    var _iterator2 = _createForOfIteratorHelper(keys),
+    var _iterator2 = _createForOfIteratorHelper(values),
         _step2;
 
     try {
       for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-        var key = _step2.value;
-        res[key] = f(key);
+        var value = _step2.value;
+        obj[f(value)] = value;
       }
     } catch (err) {
       _iterator2.e(err);
     } finally {
       _iterator2.f();
     }
+  };
+}
 
-    return res;
+function associateWith(f) {
+  return function (keys) {
+    var obj = {};
+
+    var _iterator3 = _createForOfIteratorHelper(keys),
+        _step3;
+
+    try {
+      for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+        var key = _step3.value;
+        obj[key] = f(key);
+      }
+    } catch (err) {
+      _iterator3.e(err);
+    } finally {
+      _iterator3.f();
+    }
+
+    return obj;
   };
 }
 
@@ -378,21 +399,21 @@ function pick() {
   return function (obj) {
     var partialObject = {};
 
-    var _iterator3 = _createForOfIteratorHelper(keys),
-        _step3;
+    var _iterator4 = _createForOfIteratorHelper(keys),
+        _step4;
 
     try {
-      for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-        var key = _step3.value;
+      for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+        var key = _step4.value;
 
         if (obj.hasOwnProperty(key)) {
           partialObject[key] = obj[key];
         }
       }
     } catch (err) {
-      _iterator3.e(err);
+      _iterator4.e(err);
     } finally {
-      _iterator3.f();
+      _iterator4.f();
     }
 
     return partialObject;
@@ -415,18 +436,18 @@ function pickAll() {
   return function (obj) {
     var partialObject = {};
 
-    var _iterator4 = _createForOfIteratorHelper(keys),
-        _step4;
+    var _iterator5 = _createForOfIteratorHelper(keys),
+        _step5;
 
     try {
-      for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-        var key = _step4.value;
+      for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
+        var key = _step5.value;
         partialObject[key] = obj[key];
       }
     } catch (err) {
-      _iterator4.e(err);
+      _iterator5.e(err);
     } finally {
-      _iterator4.f();
+      _iterator5.f();
     }
 
     return partialObject;
