@@ -159,20 +159,44 @@ export const removeFirst = drop(1)
 
 export const removeLast = dropLast(1)
 
-export function append(item) {
-    return input => isString(input) ? input + item : [...input, item]
+export function append(after) {
+    return before => {
+        if (isString(before)) {
+            return before + after
+        }
+        else {
+            if (isArray(after)) {
+                return [...before, ...after]
+            }
+            else {
+                return [...before, after]
+            }
+        }
+    }
 }
 
-export function appendTo(input) {
-    return item => isString(input) ? input + item : [...input, item]
+export function appendTo(before) {
+    return after => append(after) (before)
 }
 
-export function prepend(item) {
-    return input => isString(input) ? item + input : [item, ...input]
+export function prepend(before) {
+    return after => {
+        if (isString(after)) {
+            return before + after
+        }
+        else {
+            if (isArray(before)) {
+                return [...after, ...before]
+            }
+            else {
+                return [...after, before]
+            }
+        }
+    }
 }
 
-export function prependTo(input) {
-    return item => isString(input) ? item + input :  [item, ...input]
+export function prependTo(after) {
+    return before => prepend(before) (after)
 }
 
 export function insertAt(index) {

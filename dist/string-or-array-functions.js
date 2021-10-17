@@ -237,27 +237,43 @@ exports.removeFirst = removeFirst;
 var removeLast = dropLast(1);
 exports.removeLast = removeLast;
 
-function append(item) {
-  return function (input) {
-    return (0, _stringFunctions.isString)(input) ? input + item : [].concat(_toConsumableArray(input), [item]);
+function append(after) {
+  return function (before) {
+    if ((0, _stringFunctions.isString)(before)) {
+      return before + after;
+    } else {
+      if ((0, _arrayFunctions.isArray)(after)) {
+        return [].concat(_toConsumableArray(before), _toConsumableArray(after));
+      } else {
+        return [].concat(_toConsumableArray(before), [after]);
+      }
+    }
   };
 }
 
-function appendTo(input) {
-  return function (item) {
-    return (0, _stringFunctions.isString)(input) ? input + item : [].concat(_toConsumableArray(input), [item]);
+function appendTo(before) {
+  return function (after) {
+    return append(after)(before);
   };
 }
 
-function prepend(item) {
-  return function (input) {
-    return (0, _stringFunctions.isString)(input) ? item + input : [item].concat(_toConsumableArray(input));
+function prepend(before) {
+  return function (after) {
+    if ((0, _stringFunctions.isString)(after)) {
+      return before + after;
+    } else {
+      if ((0, _arrayFunctions.isArray)(before)) {
+        return [].concat(_toConsumableArray(after), _toConsumableArray(before));
+      } else {
+        return [].concat(_toConsumableArray(after), [before]);
+      }
+    }
   };
 }
 
-function prependTo(input) {
-  return function (item) {
-    return (0, _stringFunctions.isString)(input) ? item + input : [item].concat(_toConsumableArray(input));
+function prependTo(after) {
+  return function (before) {
+    return prepend(before)(after);
   };
 }
 
