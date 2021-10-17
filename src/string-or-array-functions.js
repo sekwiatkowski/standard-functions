@@ -159,44 +159,44 @@ export const removeFirst = drop(1)
 
 export const removeLast = dropLast(1)
 
-export function append(after) {
-    return before => {
-        if (isString(before)) {
-            return before + after
+export function append(appendix) {
+    return original => {
+        if (isString(original)) {
+            return original + appendix
         }
         else {
-            if (isArray(after)) {
-                return [...before, ...after]
+            if (isArray(appendix)) {
+                return [...original, ...appendix]
             }
             else {
-                return [...before, after]
+                return [...original, appendix]
             }
         }
     }
 }
 
-export function appendTo(before) {
-    return after => append(after) (before)
+export function appendTo(original) {
+    return appendix => append(appendix) (original)
 }
 
-export function prepend(before) {
-    return after => {
-        if (isString(after)) {
-            return before + after
+export function prepend(prefix) {
+    return original => {
+        if (isString(original)) {
+            return prefix + original
         }
         else {
-            if (isArray(before)) {
-                return [...after, ...before]
+            if (isArray(prefix)) {
+                return [...prefix, ...original]
             }
             else {
-                return [...after, before]
+                return [prefix, ...original]
             }
         }
     }
 }
 
-export function prependTo(after) {
-    return before => prepend(before) (after)
+export function prependTo(original) {
+    return prefix => prepend(prefix) (original)
 }
 
 export function insertAt(index) {

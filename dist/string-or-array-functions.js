@@ -237,43 +237,43 @@ exports.removeFirst = removeFirst;
 var removeLast = dropLast(1);
 exports.removeLast = removeLast;
 
-function append(after) {
-  return function (before) {
-    if ((0, _stringFunctions.isString)(before)) {
-      return before + after;
+function append(appendix) {
+  return function (original) {
+    if ((0, _stringFunctions.isString)(original)) {
+      return original + appendix;
     } else {
-      if ((0, _arrayFunctions.isArray)(after)) {
-        return [].concat(_toConsumableArray(before), _toConsumableArray(after));
+      if ((0, _arrayFunctions.isArray)(appendix)) {
+        return [].concat(_toConsumableArray(original), _toConsumableArray(appendix));
       } else {
-        return [].concat(_toConsumableArray(before), [after]);
+        return [].concat(_toConsumableArray(original), [appendix]);
       }
     }
   };
 }
 
-function appendTo(before) {
-  return function (after) {
-    return append(after)(before);
+function appendTo(original) {
+  return function (appendix) {
+    return append(appendix)(original);
   };
 }
 
-function prepend(before) {
-  return function (after) {
-    if ((0, _stringFunctions.isString)(after)) {
-      return before + after;
+function prepend(prefix) {
+  return function (original) {
+    if ((0, _stringFunctions.isString)(original)) {
+      return prefix + original;
     } else {
-      if ((0, _arrayFunctions.isArray)(before)) {
-        return [].concat(_toConsumableArray(after), _toConsumableArray(before));
+      if ((0, _arrayFunctions.isArray)(prefix)) {
+        return [].concat(_toConsumableArray(prefix), _toConsumableArray(original));
       } else {
-        return [].concat(_toConsumableArray(after), [before]);
+        return [prefix].concat(_toConsumableArray(original));
       }
     }
   };
 }
 
-function prependTo(after) {
-  return function (before) {
-    return prepend(before)(after);
+function prependTo(original) {
+  return function (prefix) {
+    return prepend(prefix)(original);
   };
 }
 
