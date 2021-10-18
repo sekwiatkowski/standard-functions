@@ -4,7 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.add = add;
+exports.subtract = subtract;
 exports.multiply = multiply;
+exports.divide = divide;
 exports.greaterThan = greaterThan;
 exports.lessThan = lessThan;
 exports.isNumber = isNumber;
@@ -30,15 +32,27 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-function add(x) {
-  return function (y) {
+function add(y) {
+  return function (x) {
     return x + y;
   };
 }
 
-function multiply(x) {
-  return function (y) {
-    return x * y;
+function subtract(y) {
+  return function (x) {
+    return x - y;
+  };
+}
+
+function multiply(y) {
+  return function (x) {
+    return y * x;
+  };
+}
+
+function divide(y) {
+  return function (x) {
+    return y / x;
   };
 }
 

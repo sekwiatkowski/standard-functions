@@ -1,12 +1,20 @@
 import {fold} from './array-functions'
 import {identity} from './higher-order-functions'
 
-export function add(x) {
-    return y => x + y
+export function add(y) {
+    return x => x + y
 }
 
-export function multiply(x) {
-    return y => x * y
+export function subtract(y) {
+    return x => x - y
+}
+
+export function multiply(y) {
+    return x => y * x
+}
+
+export function divide(y) {
+    return x => y / x
 }
 
 export function greaterThan(value) {
