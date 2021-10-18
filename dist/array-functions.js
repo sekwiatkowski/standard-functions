@@ -738,16 +738,18 @@ function swap(first) {
   };
 }
 
-function sortBy(compare) {
+function sortBy(f) {
   return function (arr) {
-    return arr.sort(compare);
+    return arr.sort(function (a, b) {
+      return f(a) - f(b);
+    });
   };
 }
 
-function sortDescendinglyBy(compare) {
+function sortDescendinglyBy(f) {
   return function (arr) {
     return arr.sort(function (a, b) {
-      return -compare(a, b);
+      return -(f(a) - f(b));
     });
   };
 }
