@@ -588,10 +588,14 @@ export function swap(first) {
     }
 }
 
+export function sort(arr) {
+    return arr.slice().sort()
+}
+
 export function sortBy(f) {
-    return arr => arr.sort((a, b) => f(a) - f(b))
+    return arr => arr.slice().sort((a, b) => f(a) - f(b))
 }
 
 export function sortDescendinglyBy(f) {
-    return arr => arr.sort((a, b) => -(f(a) - f(b)))
+    return arr => arr.slice().sort((a, b) => -(f(a) - f(b)))
 }

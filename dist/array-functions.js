@@ -55,6 +55,7 @@ exports.setItem = setItem;
 exports.containsSublist = containsSublist;
 exports.isSublistOf = isSublistOf;
 exports.swap = swap;
+exports.sort = sort;
 exports.sortBy = sortBy;
 exports.sortDescendinglyBy = sortDescendinglyBy;
 
@@ -738,9 +739,13 @@ function swap(first) {
   };
 }
 
+function sort(arr) {
+  return arr.slice().sort();
+}
+
 function sortBy(f) {
   return function (arr) {
-    return arr.sort(function (a, b) {
+    return arr.slice().sort(function (a, b) {
       return f(a) - f(b);
     });
   };
@@ -748,7 +753,7 @@ function sortBy(f) {
 
 function sortDescendinglyBy(f) {
   return function (arr) {
-    return arr.sort(function (a, b) {
+    return arr.slice().sort(function (a, b) {
       return -(f(a) - f(b));
     });
   };
