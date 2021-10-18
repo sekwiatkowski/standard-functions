@@ -3,16 +3,17 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.isNumber = isNumber;
+exports.greaterThan = greaterThan;
+exports.lessThan = lessThan;
+exports.isBetween = isBetween;
+exports.min = min;
+exports.max = max;
+exports.sumBy = sumBy;
 exports.add = add;
 exports.subtract = subtract;
 exports.multiply = multiply;
 exports.divide = divide;
-exports.greaterThan = greaterThan;
-exports.lessThan = lessThan;
-exports.isNumber = isNumber;
-exports.min = min;
-exports.max = max;
-exports.sumBy = sumBy;
 exports.productBy = productBy;
 exports.product = exports.sum = void 0;
 
@@ -32,28 +33,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-function add(y) {
-  return function (x) {
-    return x + y;
-  };
-}
-
-function subtract(y) {
-  return function (x) {
-    return x - y;
-  };
-}
-
-function multiply(y) {
-  return function (x) {
-    return y * x;
-  };
-}
-
-function divide(y) {
-  return function (x) {
-    return y / x;
-  };
+function isNumber(input) {
+  return typeof input === 'number';
 }
 
 function greaterThan(value) {
@@ -68,8 +49,12 @@ function lessThan(value) {
   };
 }
 
-function isNumber(input) {
-  return typeof input === 'number';
+function isBetween(start) {
+  return function (end) {
+    return function (x) {
+      return start < x && x < end;
+    };
+  };
 }
 
 function min(arr) {
@@ -93,6 +78,30 @@ function sumBy(f) {
     return (0, _arrayFunctions.fold)(function (acc, x) {
       return acc + f(x);
     })(0)(xs);
+  };
+}
+
+function add(y) {
+  return function (x) {
+    return x + y;
+  };
+}
+
+function subtract(y) {
+  return function (x) {
+    return x - y;
+  };
+}
+
+function multiply(y) {
+  return function (x) {
+    return y * x;
+  };
+}
+
+function divide(y) {
+  return function (x) {
+    return y / x;
   };
 }
 
