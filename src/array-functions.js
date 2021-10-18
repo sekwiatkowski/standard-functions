@@ -587,3 +587,11 @@ export function swap(first) {
         ]
     }
 }
+
+export function sortBy(compare) {
+    return arr => arr.sort(compare)
+}
+
+export function sortDescendinglyBy(compare) {
+    return arr => arr.sort((a, b) => -compare(a, b))
+}

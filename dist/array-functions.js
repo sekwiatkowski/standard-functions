@@ -55,6 +55,8 @@ exports.setItem = setItem;
 exports.containsSublist = containsSublist;
 exports.isSublistOf = isSublistOf;
 exports.swap = swap;
+exports.sortBy = sortBy;
+exports.sortDescendinglyBy = sortDescendinglyBy;
 
 var _stringOrArrayFunctions = require("./string-or-array-functions");
 
@@ -733,5 +735,19 @@ function swap(first) {
       var afterSecond = arr.slice(second + 1);
       return [].concat(_toConsumableArray(beforeFirst), [arr[second]], _toConsumableArray(between), [arr[first]], _toConsumableArray(afterSecond));
     };
+  };
+}
+
+function sortBy(compare) {
+  return function (arr) {
+    return arr.sort(compare);
+  };
+}
+
+function sortDescendinglyBy(compare) {
+  return function (arr) {
+    return arr.sort(function (a, b) {
+      return -compare(a, b);
+    });
   };
 }
