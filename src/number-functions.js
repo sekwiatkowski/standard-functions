@@ -49,6 +49,8 @@ export function multiply(y) {
     return x => y * x
 }
 
+export const changeSign = multiply(-1)
+
 export function divide(y) {
     return x => y / x
 }

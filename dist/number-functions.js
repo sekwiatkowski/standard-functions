@@ -15,7 +15,7 @@ exports.subtract = subtract;
 exports.multiply = multiply;
 exports.divide = divide;
 exports.productBy = productBy;
-exports.product = exports.sum = void 0;
+exports.product = exports.sum = exports.changeSign = void 0;
 
 var _arrayFunctions = require("./array-functions");
 
@@ -98,6 +98,9 @@ function multiply(y) {
     return y * x;
   };
 }
+
+var changeSign = multiply(-1);
+exports.changeSign = changeSign;
 
 function divide(y) {
   return function (x) {
