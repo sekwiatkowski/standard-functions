@@ -599,3 +599,17 @@ export function sortBy(f) {
 export function sortDescendinglyBy(f) {
     return arr => arr.slice().sort((a, b) => -(f(a) - f(b)))
 }
+
+export function count(predicate) {
+    return arr => {
+        let counter = 0
+
+        for (const item of arr) {
+            if (predicate(item)) {
+                counter += 1
+            }
+        }
+
+        return counter
+    }
+}

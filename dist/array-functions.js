@@ -58,6 +58,7 @@ exports.swap = swap;
 exports.sort = sort;
 exports.sortBy = sortBy;
 exports.sortDescendinglyBy = sortDescendinglyBy;
+exports.count = count;
 
 var _stringOrArrayFunctions = require("./string-or-array-functions");
 
@@ -756,5 +757,30 @@ function sortDescendinglyBy(f) {
     return arr.slice().sort(function (a, b) {
       return -(f(a) - f(b));
     });
+  };
+}
+
+function count(predicate) {
+  return function (arr) {
+    var counter = 0;
+
+    var _iterator2 = _createForOfIteratorHelper(arr),
+        _step2;
+
+    try {
+      for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+        var item = _step2.value;
+
+        if (predicate(item)) {
+          counter += 1;
+        }
+      }
+    } catch (err) {
+      _iterator2.e(err);
+    } finally {
+      _iterator2.f();
+    }
+
+    return counter;
   };
 }
