@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.isNull = isNull;
 exports.isNotNull = isNotNull;
 exports.excludeNull = excludeNull;
+exports.defaultValue = defaultValue;
 
 var _arrayFunctions = require("./array-functions");
 
@@ -35,4 +36,10 @@ function excludeNull(input) {
   } else {
     return excludeNull(Array.prototype.slice.call(arguments));
   }
+}
+
+function defaultValue(value) {
+  return function (input) {
+    return input !== null && input !== void 0 ? input : value;
+  };
 }

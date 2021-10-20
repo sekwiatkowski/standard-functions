@@ -29,3 +29,7 @@ export function excludeNull(input) {
         return excludeNull(Array.prototype.slice.call(arguments))
     }
 }
+
+export function defaultValue(value) {
+    return input => input ?? value
+}
