@@ -163,7 +163,7 @@ export function filterKeys(predicate) {
     return obj => {
         const result = {}
 
-        const entries = Object.keys(obj)
+        const entries = Object.entries(obj)
         for (const entry of entries) {
             const [key, value] = entry
 

@@ -292,7 +292,7 @@ function mapObject(f) {
 function filterKeys(predicate) {
   return function (obj) {
     var result = {};
-    var entries = Object.keys(obj);
+    var entries = Object.entries(obj);
 
     for (var _i5 = 0, _entries2 = entries; _i5 < _entries2.length; _i5++) {
       var entry = _entries2[_i5];
