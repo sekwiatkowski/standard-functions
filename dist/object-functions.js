@@ -26,16 +26,17 @@ exports.filterKeys = filterKeys;
 exports.excludeKeys = excludeKeys;
 exports.filterValues = filterValues;
 exports.excludeValues = excludeValues;
+exports.merge = merge;
 exports.mergeWith = mergeWith;
 exports.omit = omit;
 exports.pick = pick;
 exports.pickAll = pickAll;
+exports.fromProperty = fromProperty;
 exports.fromEntry = fromEntry;
 exports.fromEntries = fromEntries;
 exports.flattenObject = flattenObject;
 exports.unflattenObject = unflattenObject;
 exports.reverseObject = reverseObject;
-exports.merge = void 0;
 
 var _arrayFunctions = require("./array-functions.js");
 
@@ -339,49 +340,61 @@ function excludeValues(predicate) {
   return filterValues((0, _booleanFunctions.not)(predicate));
 }
 
-function mergeWith(f) {
-  return function () {
-    for (var _len = arguments.length, items = new Array(_len), _key = 0; _key < _len; _key++) {
-      items[_key] = arguments[_key];
+function merge() {
+  for (var _len = arguments.length, firstOrArray = new Array(_len), _key = 0; _key < _len; _key++) {
+    firstOrArray[_key] = arguments[_key];
+  }
+
+  if ((0, _stringOrArrayFunctions.isSingle)(firstOrArray)) {
+    var singleItem = (0, _arrayFunctions.single)(firstOrArray);
+
+    if ((0, _arrayFunctions.isArray)(singleItem)) {
+      return merge.apply(void 0, _toConsumableArray(singleItem));
+    } else if (isObject(singleItem)) {
+      return function (second) {
+        return merge(firstOrArray, second);
+      };
     }
-
-    var firstItem = items[0];
-
-    if ((0, _arrayFunctions.isArray)(firstItem)) {
-      return mergeWith(f).apply(void 0, _toConsumableArray(firstItem));
-    }
-
-    return (0, _arrayFunctions.fold)(function (acc, item) {
-      if (item === null || item === undefined) {
-        return acc;
-      }
-
-      var merged = _objectSpread({}, acc);
-
-      var keys = Object.keys(item);
-
-      for (var _i7 = 0, _keys3 = keys; _i7 < _keys3.length; _i7++) {
-        var key = _keys3[_i7];
-        var itemValue = item[key];
-
-        if (merged.hasOwnProperty(key) && isObject(itemValue)) {
-          merged[key] = f(merged[key])(itemValue);
-        } else {
-          merged[key] = itemValue;
-        }
-      }
-
-      return merged;
-    })({})(items);
-  };
+  } else {
+    return (0, _arrayFunctions.fold)(function (acc, obj) {
+      return _objectSpread(_objectSpread({}, acc), obj);
+    })({})(firstOrArray);
+  }
 }
 
-var merge = mergeWith(function (a) {
-  return function (b) {
-    return merge(a, b);
+function mergeWith(f) {
+  return function (firstOrArray) {
+    if ((0, _stringOrArrayFunctions.isSingle)(firstOrArray)) {
+      var singleItem = (0, _arrayFunctions.single)(firstOrArray);
+
+      if ((0, _arrayFunctions.isArray)(singleItem)) {
+        return merge.apply(void 0, _toConsumableArray(singleItem));
+      } else if (isObject(singleItem)) {
+        return function (second) {
+          return mergeWith(f)(firstOrArray, second);
+        };
+      }
+    } else {
+      return (0, _arrayFunctions.fold)(function (acc, item) {
+        if (item === null || item === undefined) {
+          return acc;
+        }
+
+        var merged = _objectSpread({}, acc);
+
+        for (var _i7 = 0, _Object$entries = Object.entries(item); _i7 < _Object$entries.length; _i7++) {
+          var _Object$entries$_i = _slicedToArray(_Object$entries[_i7], 2),
+              itemKey = _Object$entries$_i[0],
+              itemValue = _Object$entries$_i[1];
+
+          merged[itemKey] = acc.hasOwnProperty(itemKey) ? f(acc[itemKey])(itemValue) : itemValue;
+        }
+
+        return merged;
+      })({})(firstOrArray);
+    }
   };
-});
-exports.merge = merge;
+}
 
 function omit() {
   for (var _len2 = arguments.length, omittedKeys = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
@@ -400,8 +413,8 @@ function omit() {
     var partialObject = {};
     var keys = Object.keys(obj);
 
-    for (var _i8 = 0, _keys4 = keys; _i8 < _keys4.length; _i8++) {
-      var key = _keys4[_i8];
+    for (var _i8 = 0, _keys3 = keys; _i8 < _keys3.length; _i8++) {
+      var key = _keys3[_i8];
 
       if (!omittedKeys.includes(key)) {
         partialObject[key] = obj[key];
@@ -483,10 +496,16 @@ function pickAll() {
   };
 }
 
-function fromEntry(_ref) {
-  var _ref2 = _slicedToArray(_ref, 2),
-      key = _ref2[0],
-      value = _ref2[1];
+function fromProperty(key) {
+  return function (value) {
+    return _defineProperty({}, key, value);
+  };
+}
+
+function fromEntry(_ref2) {
+  var _ref3 = _slicedToArray(_ref2, 2),
+      key = _ref3[0],
+      value = _ref3[1];
 
   return _defineProperty({}, key, value);
 }

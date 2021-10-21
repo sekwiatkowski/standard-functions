@@ -1,4 +1,4 @@
-import {fold, isArray} from './array-functions.js'
+import {fold, isArray, single} from './array-functions.js'
 import {not} from './boolean-functions.js'
 import {isFunction} from './higher-order-functions.js'
 import {first, isSingle} from './string-or-array-functions'
@@ -201,40 +201,57 @@ export function excludeValues(predicate) {
     return filterValues(not(predicate))
 }
 
-export function mergeWith(f) {
-    return (...items) => {
-        const firstItem = items[0]
+export function merge(...firstOrArray) {
+    if (isSingle(firstOrArray)) {
+        const singleItem = single(firstOrArray)
 
-        if (isArray(firstItem)) {
-            return mergeWith(f) (...firstItem)
+        if (isArray(singleItem)) {
+            return merge(...singleItem)
         }
-
-        return fold((acc, item) => {
-            if (item === null || item === undefined) {
-                return acc
-            }
-
-            const merged = {...acc}
-
-            const keys = Object.keys(item)
-            for (const key of keys) {
-                const itemValue = item[key]
-
-                if (merged.hasOwnProperty(key) && isObject(itemValue)) {
-                    merged[key] = f(merged[key])(itemValue)
-                }
-                else {
-                    merged[key] = itemValue
-                }
-            }
-
-            return merged
-
-        }) ({}) (items)
+        else if (isObject(singleItem)) {
+            return second => merge(firstOrArray, second)
+        }
+    }
+    else {
+       return fold((acc, obj) => ({
+           ...acc,
+           ...obj
+       })) ({}) (firstOrArray)
     }
 }
 
-export const merge = mergeWith(a => b => merge(a, b))
+export function mergeWith(f) {
+    return firstOrArray => {
+        if (isSingle(firstOrArray)) {
+            const singleItem = single(firstOrArray)
+
+            if (isArray(singleItem)) {
+                return merge(...singleItem)
+            }
+        else if (isObject(singleItem)) {
+                return second => mergeWith(f) (firstOrArray, second)
+            }
+        }
+        else {
+            return fold((acc, item) => {
+                if (item === null || item === undefined) {
+                    return acc
+                }
+
+                const merged = {...acc}
+
+                for (const [itemKey, itemValue] of Object.entries(item)) {
+                    merged[itemKey] = acc.hasOwnProperty(itemKey)
+                        ? f(acc[itemKey])(itemValue)
+                        : itemValue
+                }
+
+                return merged
+
+            }) ({}) (firstOrArray)
+        }
+    }
+}
 
 export function omit(...omittedKeys) {
     if (isSingle(omittedKeys)) {
@@ -300,6 +317,10 @@ export function pickAll(...keys) {
 
         return partialObject
     }
+}
+
+export function fromProperty(key) {
+    return value => ({[key]: value})
 }
 
 export function fromEntry([key, value]) {
