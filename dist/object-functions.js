@@ -363,7 +363,11 @@ function merge() {
 }
 
 function mergeWith(f) {
-  return function (firstOrArray) {
+  return function () {
+    for (var _len2 = arguments.length, firstOrArray = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      firstOrArray[_key2] = arguments[_key2];
+    }
+
     if ((0, _stringOrArrayFunctions.isSingle)(firstOrArray)) {
       var singleItem = (0, _arrayFunctions.single)(firstOrArray);
 
@@ -371,7 +375,7 @@ function mergeWith(f) {
         return merge.apply(void 0, _toConsumableArray(singleItem));
       } else if (isObject(singleItem)) {
         return function (second) {
-          return mergeWith(f)(firstOrArray, second);
+          return mergeWith(f)(singleItem, second);
         };
       }
     } else {
@@ -397,8 +401,8 @@ function mergeWith(f) {
 }
 
 function omit() {
-  for (var _len2 = arguments.length, omittedKeys = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-    omittedKeys[_key2] = arguments[_key2];
+  for (var _len3 = arguments.length, omittedKeys = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+    omittedKeys[_key3] = arguments[_key3];
   }
 
   if ((0, _stringOrArrayFunctions.isSingle)(omittedKeys)) {
@@ -426,8 +430,8 @@ function omit() {
 }
 
 function pick() {
-  for (var _len3 = arguments.length, keys = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
-    keys[_key3] = arguments[_key3];
+  for (var _len4 = arguments.length, keys = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
+    keys[_key4] = arguments[_key4];
   }
 
   if ((0, _stringOrArrayFunctions.isSingle)(keys)) {
@@ -463,8 +467,8 @@ function pick() {
 }
 
 function pickAll() {
-  for (var _len4 = arguments.length, keys = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
-    keys[_key4] = arguments[_key4];
+  for (var _len5 = arguments.length, keys = new Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
+    keys[_key5] = arguments[_key5];
   }
 
   if ((0, _stringOrArrayFunctions.isSingle)(keys)) {

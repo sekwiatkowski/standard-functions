@@ -221,7 +221,7 @@ export function merge(...firstOrArray) {
 }
 
 export function mergeWith(f) {
-    return firstOrArray => {
+    return (...firstOrArray) => {
         if (isSingle(firstOrArray)) {
             const singleItem = single(firstOrArray)
 
@@ -229,7 +229,7 @@ export function mergeWith(f) {
                 return merge(...singleItem)
             }
         else if (isObject(singleItem)) {
-                return second => mergeWith(f) (firstOrArray, second)
+                return second => mergeWith(f) (singleItem, second)
             }
         }
         else {
