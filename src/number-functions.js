@@ -14,7 +14,7 @@ export function lessThan(value) {
 }
 
 export function isBetween(start) {
-    return end => x => start < x && x < end
+    return end => x => start <= x && x < end
 }
 
 export function min(arr) {

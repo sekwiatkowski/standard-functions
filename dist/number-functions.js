@@ -52,7 +52,7 @@ function lessThan(value) {
 function isBetween(start) {
   return function (end) {
     return function (x) {
-      return start < x && x < end;
+      return start <= x && x < end;
     };
   };
 }
