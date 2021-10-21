@@ -206,14 +206,14 @@ export function merge(...firstOrArray) {
     if (isSingle(firstOrArray)) {
         const singleItem = single(firstOrArray)
 
-        if (isArray(singleItem)) {
+        if (isNull(singleItem) || isUndefined(singleItem)) {
+            return {}
+        }
+        else if (isArray(singleItem)) {
             return merge(...singleItem)
         }
         else if (isObject(singleItem)) {
             return singleItem
-        }
-        else if (isNull(singleItem) || isUndefined(singleItem)) {
-            return {}
         }
         else {
             throw Error(`Expected either an array, an object, null or undefined. Received: ${singleItem}`)

@@ -350,12 +350,12 @@ function merge() {
   if ((0, _stringOrArrayFunctions.isSingle)(firstOrArray)) {
     var singleItem = (0, _arrayFunctions.single)(firstOrArray);
 
-    if ((0, _arrayFunctions.isArray)(singleItem)) {
+    if ((0, _nullFunctions.isNull)(singleItem) || (0, _nullFunctions.isUndefined)(singleItem)) {
+      return {};
+    } else if ((0, _arrayFunctions.isArray)(singleItem)) {
       return merge.apply(void 0, _toConsumableArray(singleItem));
     } else if (isObject(singleItem)) {
       return singleItem;
-    } else if ((0, _nullFunctions.isNull)(singleItem) || (0, _nullFunctions.isUndefined)(singleItem)) {
-      return {};
     } else {
       throw Error("Expected either an array, an object, null or undefined. Received: ".concat(singleItem));
     }
