@@ -215,6 +215,9 @@ export function merge(...firstOrArray) {
         else if (isNull(singleItem)) {
             return {}
         }
+        else {
+            throw Error(`Expected either an array or an object or null. Received: ${singleItem}`)
+        }
     }
     else {
        return fold((acc, obj) =>

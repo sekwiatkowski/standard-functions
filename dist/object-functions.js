@@ -356,6 +356,8 @@ function merge() {
       return singleItem;
     } else if ((0, _nullFunctions.isNull)(singleItem)) {
       return {};
+    } else {
+      throw Error("Expected either an array or an object or null. Received: ".concat(singleItem));
     }
   } else {
     return (0, _arrayFunctions.fold)(function (acc, obj) {
