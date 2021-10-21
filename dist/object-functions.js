@@ -355,7 +355,7 @@ function merge() {
     }
   } else {
     return (0, _arrayFunctions.fold)(function (acc, obj) {
-      return _objectSpread(_objectSpread({}, acc), obj);
+      return obj === null || obj === undefined ? acc : _objectSpread(_objectSpread({}, acc), obj);
     })({})(firstOrArray);
   }
 }

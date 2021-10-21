@@ -213,10 +213,11 @@ export function merge(...firstOrArray) {
         }
     }
     else {
-       return fold((acc, obj) => ({
-           ...acc,
-           ...obj
-       })) ({}) (firstOrArray)
+       return fold((acc, obj) =>
+           (obj === null || obj === undefined)
+               ? acc
+               : {...acc, ...obj}
+       ) ({}) (firstOrArray)
     }
 }
 
