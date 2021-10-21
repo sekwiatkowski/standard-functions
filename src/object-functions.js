@@ -2,6 +2,7 @@ import {fold, isArray, single} from './array-functions.js'
 import {not} from './boolean-functions.js'
 import {isFunction} from './higher-order-functions.js'
 import {first, isSingle} from './string-or-array-functions'
+import {isNull} from './null-functions'
 
 export function isObject(input) {
     return typeof input === 'object'
@@ -210,6 +211,9 @@ export function merge(...firstOrArray) {
         }
         else if (isObject(singleItem)) {
             return singleItem
+        }
+        else if (isNull(singleItem)) {
+            return {}
         }
     }
     else {

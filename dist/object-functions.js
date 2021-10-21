@@ -46,6 +46,8 @@ var _higherOrderFunctions = require("./higher-order-functions.js");
 
 var _stringOrArrayFunctions = require("./string-or-array-functions");
 
+var _nullFunctions = require("./null-functions");
+
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -352,6 +354,8 @@ function merge() {
       return merge.apply(void 0, _toConsumableArray(singleItem));
     } else if (isObject(singleItem)) {
       return singleItem;
+    } else if ((0, _nullFunctions.isNull)(singleItem)) {
+      return {};
     }
   } else {
     return (0, _arrayFunctions.fold)(function (acc, obj) {
