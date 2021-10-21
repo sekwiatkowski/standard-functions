@@ -209,7 +209,7 @@ export function merge(...firstOrArray) {
             return merge(...singleItem)
         }
         else if (isObject(singleItem)) {
-            return second => merge(firstOrArray, second)
+            return singleItem
         }
     }
     else {
@@ -229,7 +229,7 @@ export function mergeWith(f) {
                 return merge(...singleItem)
             }
         else if (isObject(singleItem)) {
-                return second => mergeWith(f) (singleItem, second)
+                return singleItem
             }
         }
         else {

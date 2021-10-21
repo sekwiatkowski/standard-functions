@@ -351,9 +351,7 @@ function merge() {
     if ((0, _arrayFunctions.isArray)(singleItem)) {
       return merge.apply(void 0, _toConsumableArray(singleItem));
     } else if (isObject(singleItem)) {
-      return function (second) {
-        return merge(firstOrArray, second);
-      };
+      return singleItem;
     }
   } else {
     return (0, _arrayFunctions.fold)(function (acc, obj) {
@@ -374,9 +372,7 @@ function mergeWith(f) {
       if ((0, _arrayFunctions.isArray)(singleItem)) {
         return merge.apply(void 0, _toConsumableArray(singleItem));
       } else if (isObject(singleItem)) {
-        return function (second) {
-          return mergeWith(f)(singleItem, second);
-        };
+        return singleItem;
       }
     } else {
       return (0, _arrayFunctions.fold)(function (acc, item) {
