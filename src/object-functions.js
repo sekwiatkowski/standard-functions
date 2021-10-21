@@ -2,7 +2,7 @@ import {fold, isArray, single} from './array-functions.js'
 import {not} from './boolean-functions.js'
 import {isFunction} from './higher-order-functions.js'
 import {first, isSingle} from './string-or-array-functions'
-import {isNull} from './null-functions'
+import {isNull, isUndefined} from './null-functions'
 
 export function isObject(input) {
     return typeof input === 'object'
@@ -212,16 +212,16 @@ export function merge(...firstOrArray) {
         else if (isObject(singleItem)) {
             return singleItem
         }
-        else if (isNull(singleItem)) {
+        else if (isNull(singleItem) || isUndefined(singleItem)) {
             return {}
         }
         else {
-            throw Error(`Expected either an array or an object or null. Received: ${singleItem}`)
+            throw Error(`Expected either an array, an object, null or undefined. Received: ${singleItem}`)
         }
     }
     else {
        return fold((acc, obj) =>
-           (obj === null || obj === undefined)
+           (isNull(obj) || isUndefined(obj))
                ? acc
                : {...acc, ...obj}
        ) ({}) (firstOrArray)
@@ -234,10 +234,16 @@ export function mergeWith(f) {
             const singleItem = single(firstOrArray)
 
             if (isArray(singleItem)) {
-                return merge(...singleItem)
+                return mergeWith (f) (...singleItem)
             }
-        else if (isObject(singleItem)) {
+            else if (isObject(singleItem)) {
                 return singleItem
+            }
+            else if (isNull(singleItem) || isUndefined(singleItem)) {
+                return {}
+            }
+            else {
+                throw Error(`Expected either an array, an object, null or undefined. Received: ${singleItem}`)
             }
         }
         else {

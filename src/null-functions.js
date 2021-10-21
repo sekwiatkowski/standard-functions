@@ -10,6 +10,14 @@ export function isNotNull(input) {
     return input !== null
 }
 
+export function isDefined(input) {
+    return input !== undefined
+}
+
+export function isUndefined(input) {
+    return input === undefined
+}
+
 export function excludeNull(input) {
     if (isSingle(arguments)) {
         if (isNull(input)) {

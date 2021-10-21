@@ -5,6 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.isNull = isNull;
 exports.isNotNull = isNotNull;
+exports.isDefined = isDefined;
+exports.isUndefined = isUndefined;
 exports.excludeNull = excludeNull;
 exports.defaultValue = defaultValue;
 
@@ -20,6 +22,14 @@ function isNull(input) {
 
 function isNotNull(input) {
   return input !== null;
+}
+
+function isDefined(input) {
+  return input !== undefined;
+}
+
+function isUndefined(input) {
+  return input === undefined;
 }
 
 function excludeNull(input) {

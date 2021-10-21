@@ -354,14 +354,14 @@ function merge() {
       return merge.apply(void 0, _toConsumableArray(singleItem));
     } else if (isObject(singleItem)) {
       return singleItem;
-    } else if ((0, _nullFunctions.isNull)(singleItem)) {
+    } else if ((0, _nullFunctions.isNull)(singleItem) || (0, _nullFunctions.isUndefined)(singleItem)) {
       return {};
     } else {
-      throw Error("Expected either an array or an object or null. Received: ".concat(singleItem));
+      throw Error("Expected either an array, an object, null or undefined. Received: ".concat(singleItem));
     }
   } else {
     return (0, _arrayFunctions.fold)(function (acc, obj) {
-      return obj === null || obj === undefined ? acc : _objectSpread(_objectSpread({}, acc), obj);
+      return (0, _nullFunctions.isNull)(obj) || (0, _nullFunctions.isUndefined)(obj) ? acc : _objectSpread(_objectSpread({}, acc), obj);
     })({})(firstOrArray);
   }
 }
@@ -376,9 +376,13 @@ function mergeWith(f) {
       var singleItem = (0, _arrayFunctions.single)(firstOrArray);
 
       if ((0, _arrayFunctions.isArray)(singleItem)) {
-        return merge.apply(void 0, _toConsumableArray(singleItem));
+        return mergeWith(f).apply(void 0, _toConsumableArray(singleItem));
       } else if (isObject(singleItem)) {
         return singleItem;
+      } else if ((0, _nullFunctions.isNull)(singleItem) || (0, _nullFunctions.isUndefined)(singleItem)) {
+        return {};
+      } else {
+        throw Error("Expected either an array, an object, null or undefined. Received: ".concat(singleItem));
       }
     } else {
       return (0, _arrayFunctions.fold)(function (acc, item) {
