@@ -248,7 +248,7 @@ export function mergeWith(f) {
         }
         else {
             return fold((acc, item) => {
-                if (item === null || item === undefined) {
+                if (isNull(item) || isUndefined(item)) {
                     return acc
                 }
 
@@ -264,6 +264,29 @@ export function mergeWith(f) {
 
             }) ({}) (firstOrArray)
         }
+    }
+}
+
+export function extend(b) {
+    return a => ({
+        ...a,
+        ...(b ?? {})
+    })
+}
+
+export function extendWith(f) {
+    return b => a => {
+        const definiteB = b ?? {}
+
+        const result = {...a}
+
+        for (const [key, value] of Object.entries(definiteB)) {
+            result[key] = result.hasOwnProperty(key)
+                ? f(result[key]) (value)
+                : value
+        }
+
+        return result
     }
 }
 

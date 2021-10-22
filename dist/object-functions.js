@@ -28,6 +28,8 @@ exports.filterValues = filterValues;
 exports.excludeValues = excludeValues;
 exports.merge = merge;
 exports.mergeWith = mergeWith;
+exports.extend = extend;
+exports.extendWith = extendWith;
 exports.omit = omit;
 exports.pick = pick;
 exports.pickAll = pickAll;
@@ -386,7 +388,7 @@ function mergeWith(f) {
       }
     } else {
       return (0, _arrayFunctions.fold)(function (acc, item) {
-        if (item === null || item === undefined) {
+        if ((0, _nullFunctions.isNull)(item) || (0, _nullFunctions.isUndefined)(item)) {
           return acc;
         }
 
@@ -403,6 +405,32 @@ function mergeWith(f) {
         return merged;
       })({})(firstOrArray);
     }
+  };
+}
+
+function extend(b) {
+  return function (a) {
+    return _objectSpread(_objectSpread({}, a), b !== null && b !== void 0 ? b : {});
+  };
+}
+
+function extendWith(f) {
+  return function (b) {
+    return function (a) {
+      var definiteB = b !== null && b !== void 0 ? b : {};
+
+      var result = _objectSpread({}, a);
+
+      for (var _i8 = 0, _Object$entries2 = Object.entries(definiteB); _i8 < _Object$entries2.length; _i8++) {
+        var _Object$entries2$_i = _slicedToArray(_Object$entries2[_i8], 2),
+            key = _Object$entries2$_i[0],
+            value = _Object$entries2$_i[1];
+
+        result[key] = result.hasOwnProperty(key) ? f(result[key])(value) : value;
+      }
+
+      return result;
+    };
   };
 }
 
@@ -423,8 +451,8 @@ function omit() {
     var partialObject = {};
     var keys = Object.keys(obj);
 
-    for (var _i8 = 0, _keys3 = keys; _i8 < _keys3.length; _i8++) {
-      var key = _keys3[_i8];
+    for (var _i9 = 0, _keys3 = keys; _i9 < _keys3.length; _i9++) {
+      var key = _keys3[_i9];
 
       if (!omittedKeys.includes(key)) {
         partialObject[key] = obj[key];
@@ -545,8 +573,8 @@ function flattenObject(unflattened) {
   var flattened = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
   var unflattenedKeys = Object.keys(unflattened);
 
-  for (var _i9 = 0, _unflattenedKeys = unflattenedKeys; _i9 < _unflattenedKeys.length; _i9++) {
-    var key = _unflattenedKeys[_i9];
+  for (var _i10 = 0, _unflattenedKeys = unflattenedKeys; _i10 < _unflattenedKeys.length; _i10++) {
+    var key = _unflattenedKeys[_i10];
     var value = unflattened[key];
 
     if (stopCondition(value)) {
@@ -586,8 +614,8 @@ function unflattenObject(flattened) {
   var unflattened = {};
   var flattenedKeys = Object.keys(flattened);
 
-  for (var _i10 = 0, _flattenedKeys = flattenedKeys; _i10 < _flattenedKeys.length; _i10++) {
-    var key = _flattenedKeys[_i10];
+  for (var _i11 = 0, _flattenedKeys = flattenedKeys; _i11 < _flattenedKeys.length; _i11++) {
+    var key = _flattenedKeys[_i11];
     var value = flattened[key];
     var fragments = key.split('.');
     var numberOfFragments = fragments.length;
@@ -613,8 +641,8 @@ function reverseObject(input) {
   var reversed = {};
   var entries = Object.entries(input);
 
-  for (var _i11 = 0, _entries4 = entries; _i11 < _entries4.length; _i11++) {
-    var entry = _entries4[_i11];
+  for (var _i12 = 0, _entries4 = entries; _i12 < _entries4.length; _i12++) {
+    var entry = _entries4[_i12];
     reversed[entry[1]] = entry[0];
   }
 
