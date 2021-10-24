@@ -1,5 +1,4 @@
 import {exclude, isArray} from './array-functions'
-import {excludeValues, isObject} from './object-functions'
 import {isSingle} from './string-or-array-functions'
 
 export function isNull(input) {
@@ -25,9 +24,6 @@ export function excludeNull(input) {
         }
         else if (isArray(input)) {
             return exclude(isNull) (input)
-        }
-        else if (isObject(input)) {
-            return excludeValues(isNull) (input)
         }
         else {
             return [input]

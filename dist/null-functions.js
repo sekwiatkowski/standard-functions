@@ -12,8 +12,6 @@ exports.defaultValue = defaultValue;
 
 var _arrayFunctions = require("./array-functions");
 
-var _objectFunctions = require("./object-functions");
-
 var _stringOrArrayFunctions = require("./string-or-array-functions");
 
 function isNull(input) {
@@ -38,8 +36,6 @@ function excludeNull(input) {
       return [];
     } else if ((0, _arrayFunctions.isArray)(input)) {
       return (0, _arrayFunctions.exclude)(isNull)(input);
-    } else if ((0, _objectFunctions.isObject)(input)) {
-      return (0, _objectFunctions.excludeValues)(isNull)(input);
     } else {
       return [input];
     }
