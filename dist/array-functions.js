@@ -59,6 +59,8 @@ exports.sort = sort;
 exports.sortBy = sortBy;
 exports.sortDescendinglyBy = sortDescendinglyBy;
 exports.count = count;
+exports.after = after;
+exports.before = before;
 
 var _stringOrArrayFunctions = require("./string-or-array-functions");
 
@@ -67,6 +69,8 @@ var _objectFunctions = require("./object-functions");
 var _higherOrderFunctions = require("./higher-order-functions");
 
 var _booleanFunctions = require("./boolean-functions");
+
+var _nullFunctions = require("./null-functions");
 
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
@@ -589,7 +593,10 @@ function steps(inclusiveStart) {
   return function (exclusiveEnd) {
     return function (stepSize) {
       var size = Math.ceil((exclusiveEnd - inclusiveStart) / stepSize);
-      var result = Array(size);
+
+      if (size < 1) {
+        return [];
+      }
 
       for (var i = 0, current = inclusiveStart; i < size; i++, current += stepSize) {
         result[i] = current;
@@ -680,17 +687,17 @@ function slice(indices) {
   };
 }
 
-function getItem(nth) {
+function getItem(index) {
   return function (arr) {
-    return arr[nth];
+    return arr[index];
   };
 }
 
-function setItem(nth) {
+function setItem(index) {
   return function (itemOrFunction) {
     return function (arr) {
-      return map(function (item, index) {
-        return index === nth ? (0, _higherOrderFunctions.isFunction)(itemOrFunction) ? itemOrFunction(item) : itemOrFunction : item;
+      return map(function (item, itemIndex) {
+        return itemIndex === index ? (0, _higherOrderFunctions.isFunction)(itemOrFunction) ? itemOrFunction(item) : itemOrFunction : item;
       })(arr);
     };
   };
@@ -782,5 +789,29 @@ function count(predicate) {
     }
 
     return counter;
+  };
+}
+
+function after(indexOrPredicate) {
+  return function (arr) {
+    var index = (0, _higherOrderFunctions.isFunction)(indexOrPredicate) ? findIndex(indexOrPredicate)(arr) : indexOrPredicate;
+
+    if ((0, _nullFunctions.isNull)(index)) {
+      return [];
+    }
+
+    return slice(range(index + 1)((0, _stringOrArrayFunctions.length)(arr)))(arr);
+  };
+}
+
+function before(indexOrPredicate) {
+  return function (arr) {
+    var index = (0, _higherOrderFunctions.isFunction)(indexOrPredicate) ? findIndex(indexOrPredicate)(arr) : indexOrPredicate;
+
+    if ((0, _nullFunctions.isNull)(index)) {
+      return [];
+    }
+
+    return slice(range(0)(index))(arr);
   };
 }

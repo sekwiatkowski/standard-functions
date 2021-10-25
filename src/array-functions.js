@@ -2,6 +2,7 @@ import {first, isSingle, length} from './string-or-array-functions'
 import {fromEntries, keys} from './object-functions'
 import {identity, isFunction} from './higher-order-functions'
 import {not} from './boolean-functions'
+import {isNull} from './null-functions'
 
 export function isArray(input) {
     return Array.isArray(input)
@@ -457,7 +458,10 @@ export function inclusiveRange(inclusiveStart) {
 export function steps(inclusiveStart) {
     return exclusiveEnd => stepSize => {
         const size = Math.ceil((exclusiveEnd - inclusiveStart) / stepSize)
-        const result = Array(size)
+
+        if (size < 1) {
+            return []
+        }
 
         for (let i = 0, current = inclusiveStart; i < size; i++, current += stepSize) {
             result[i] = current
@@ -539,14 +543,14 @@ export function slice(indices) {
     }
 }
 
-export function getItem(nth) {
-    return arr => arr[nth]
+export function getItem(index) {
+    return arr => arr[index]
 }
 
-export function setItem(nth) {
+export function setItem(index) {
     return itemOrFunction => arr =>
-        map((item, index) =>
-            index === nth
+        map((item, itemIndex) =>
+            itemIndex === index
                 ? isFunction(itemOrFunction) ? itemOrFunction(item) : itemOrFunction
                 : item
         ) (arr)
@@ -611,5 +615,29 @@ export function count(predicate) {
         }
 
         return counter
+    }
+}
+
+export function after(indexOrPredicate) {
+    return arr => {
+        const index = isFunction(indexOrPredicate) ? findIndex(indexOrPredicate) (arr) : indexOrPredicate
+
+        if (isNull(index)) {
+            return []
+        }
+
+        return slice(range(index+1) (length(arr))) (arr)
+    }
+}
+
+export function before(indexOrPredicate) {
+    return arr => {
+        const index = isFunction(indexOrPredicate) ? findIndex(indexOrPredicate) (arr) : indexOrPredicate
+
+        if (isNull(index)) {
+            return []
+        }
+
+        return slice(range(0) (index)) (arr)
     }
 }
