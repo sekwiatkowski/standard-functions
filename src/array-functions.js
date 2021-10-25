@@ -643,3 +643,15 @@ export function before(indexOrPredicate) {
         return slice(range(0) (index)) (arr)
     }
 }
+
+export function upTo(indexOrPredicate) {
+    return arr => {
+        const index = isFunction(indexOrPredicate) ? findIndex(indexOrPredicate) (arr) : indexOrPredicate
+
+        if (isNull(index)) {
+            return []
+        }
+
+        return slice(inclusiveRange(0) (index)) (arr)
+    }
+}

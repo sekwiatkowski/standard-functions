@@ -61,6 +61,7 @@ exports.sortDescendinglyBy = sortDescendinglyBy;
 exports.count = count;
 exports.after = after;
 exports.before = before;
+exports.upTo = upTo;
 
 var _stringOrArrayFunctions = require("./string-or-array-functions");
 
@@ -598,6 +599,8 @@ function steps(inclusiveStart) {
         return [];
       }
 
+      var result = Array(size);
+
       for (var i = 0, current = inclusiveStart; i < size; i++, current += stepSize) {
         result[i] = current;
       }
@@ -813,5 +816,17 @@ function before(indexOrPredicate) {
     }
 
     return slice(range(0)(index))(arr);
+  };
+}
+
+function upTo(indexOrPredicate) {
+  return function (arr) {
+    var index = (0, _higherOrderFunctions.isFunction)(indexOrPredicate) ? findIndex(indexOrPredicate)(arr) : indexOrPredicate;
+
+    if ((0, _nullFunctions.isNull)(index)) {
+      return [];
+    }
+
+    return slice(inclusiveRange(0)(index))(arr);
   };
 }
