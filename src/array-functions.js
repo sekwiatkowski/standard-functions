@@ -463,6 +463,8 @@ export function steps(inclusiveStart) {
             return []
         }
 
+        const result = Array(size)
+
         for (let i = 0, current = inclusiveStart; i < size; i++, current += stepSize) {
             result[i] = current
         }
