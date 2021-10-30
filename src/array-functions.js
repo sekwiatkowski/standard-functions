@@ -1,7 +1,7 @@
 import {first, isSingle, length} from './string-or-array-functions'
 import {fromEntries, keys} from './object-functions'
 import {identity, isFunction} from './higher-order-functions'
-import {not} from './boolean-functions'
+import {equals, not} from './boolean-functions'
 import {isNull} from './null-functions'
 
 export function isArray(input) {
@@ -606,9 +606,13 @@ export function sortDescendinglyBy(f) {
     return arr => arr.slice().sort((a, b) => -(f(a) - f(b)))
 }
 
-export function count(predicate) {
+export function count(itemOrPredicate) {
     return arr => {
         let counter = 0
+
+        const predicate = isFunction(itemOrPredicate)
+            ? itemOrPredicate
+            : equals(itemOrPredicate)
 
         for (const item of arr) {
             if (predicate(item)) {

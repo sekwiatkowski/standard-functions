@@ -11,6 +11,7 @@ exports.doesNotEqual = doesNotEqual;
 exports.isGreaterThan = isGreaterThan;
 exports.isLessThan = isLessThan;
 exports.not = not;
+exports.negate = negate;
 exports.all = all;
 exports.any = any;
 exports.anyPass = anyPass;
@@ -84,6 +85,10 @@ function not(predicate) {
   return function (x) {
     return !predicate(x);
   };
+}
+
+function negate(value) {
+  return !value;
 }
 
 function all(predicate) {

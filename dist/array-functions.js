@@ -770,9 +770,10 @@ function sortDescendinglyBy(f) {
   };
 }
 
-function count(predicate) {
+function count(itemOrPredicate) {
   return function (arr) {
     var counter = 0;
+    var predicate = (0, _higherOrderFunctions.isFunction)(itemOrPredicate) ? itemOrPredicate : (0, _booleanFunctions.equals)(itemOrPredicate);
 
     var _iterator2 = _createForOfIteratorHelper(arr),
         _step2;
