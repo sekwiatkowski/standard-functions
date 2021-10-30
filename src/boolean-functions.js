@@ -105,6 +105,14 @@ export function allPass(...predicates) {
     }
 }
 
+export function alwaysTrue() {
+    return true
+}
+
+export function alwaysFalse() {
+    return false
+}
+
 export function match(...cases) {
     const firstItem = cases[0]
     if (is2DArray(firstItem)) {

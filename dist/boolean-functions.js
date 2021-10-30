@@ -16,6 +16,8 @@ exports.all = all;
 exports.any = any;
 exports.anyPass = anyPass;
 exports.allPass = allPass;
+exports.alwaysTrue = alwaysTrue;
+exports.alwaysFalse = alwaysFalse;
 exports.match = match;
 exports.anyTrue = exports.allTrue = void 0;
 
@@ -197,6 +199,14 @@ function allPass() {
 
     return true;
   };
+}
+
+function alwaysTrue() {
+  return true;
+}
+
+function alwaysFalse() {
+  return false;
 }
 
 function match() {
