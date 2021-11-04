@@ -62,6 +62,7 @@ exports.count = count;
 exports.after = after;
 exports.before = before;
 exports.upTo = upTo;
+exports.intersperse = intersperse;
 
 var _stringOrArrayFunctions = require("./string-or-array-functions");
 
@@ -829,5 +830,36 @@ function upTo(indexOrPredicate) {
     }
 
     return slice(inclusiveRange(0)(index))(arr);
+  };
+} // [] => [] 0
+// [a] => [] 0
+// [a, a] => [a, b, a]  3
+// [a, a, a] => [a, b, a, b, a] 5
+
+
+function intersperse(interspersion) {
+  return function (arr) {
+    if ((0, _stringOrArrayFunctions.isEmpty)(arr) || (0, _stringOrArrayFunctions.isOfLength)(1)(arr)) {
+      return _toConsumableArray(arr);
+    }
+
+    var arrLength = (0, _stringOrArrayFunctions.length)(arr);
+    var newSize = arrLength + arrLength - 1;
+    var result = new Array(newSize);
+    var indexArray = 0;
+
+    while (indexArray < arrLength) {
+      result[2 * indexArray] = arr[indexArray];
+      indexArray++;
+    }
+
+    var indexInterspersion = 1;
+
+    while (indexInterspersion < newSize - 1) {
+      result[indexInterspersion] = interspersion;
+      indexInterspersion += 2;
+    }
+
+    return result;
   };
 }

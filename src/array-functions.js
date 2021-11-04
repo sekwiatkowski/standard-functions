@@ -1,4 +1,4 @@
-import {first, isSingle, length} from './string-or-array-functions'
+import {first, isEmpty, isOfLength, isSingle, last, length} from './string-or-array-functions'
 import {fromEntries, keys} from './object-functions'
 import {identity, isFunction} from './higher-order-functions'
 import {equals, not} from './boolean-functions'
@@ -657,5 +657,39 @@ export function upTo(indexOrPredicate) {
         }
 
         return slice(inclusiveRange(0) (index)) (arr)
+    }
+}
+
+// [] => [] 0
+// [a] => [] 0
+// [a, a] => [a, b, a]  3
+// [a, a, a] => [a, b, a, b, a] 5
+export function intersperse(interspersion) {
+    return arr => {
+        if (isEmpty(arr) || isOfLength(1) (arr)) {
+            return [...arr]
+        }
+
+        const arrLength = length(arr)
+
+        const newSize = arrLength + arrLength - 1
+
+        const result = new Array(newSize)
+
+        let indexArray = 0
+        while(indexArray < arrLength) {
+            result[2 * indexArray] = arr[indexArray]
+
+            indexArray++
+        }
+
+        let indexInterspersion = 1
+        while(indexInterspersion < newSize - 1) {
+            result[indexInterspersion] = interspersion
+
+            indexInterspersion += 2
+        }
+
+        return result
     }
 }
