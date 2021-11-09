@@ -7,6 +7,7 @@ exports.isNumber = isNumber;
 exports.greaterThan = greaterThan;
 exports.lessThan = lessThan;
 exports.isBetween = isBetween;
+exports.abs = abs;
 exports.min = min;
 exports.max = max;
 exports.sumBy = sumBy;
@@ -57,9 +58,13 @@ function isBetween(start) {
   };
 }
 
+function abs(value) {
+  return Math.abs(value);
+}
+
 function min(arr) {
   if (arguments.length > 1) {
-    return Math.min.apply(Math, _toConsumableArray(Array.prototype.slice.call(arguments)));
+    return min(Array.prototype.slice.call(arguments));
   }
 
   return Math.min.apply(Math, _toConsumableArray(arr));
@@ -67,7 +72,7 @@ function min(arr) {
 
 function max(arr) {
   if (arguments.length > 1) {
-    return Math.max.apply(Math, _toConsumableArray(Array.prototype.slice.call(arguments)));
+    return max(Array.prototype.slice.call(arguments));
   }
 
   return Math.max.apply(Math, _toConsumableArray(arr));

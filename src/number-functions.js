@@ -17,9 +17,13 @@ export function isBetween(start) {
     return end => x => start <= x && x < end
 }
 
+export function abs(value) {
+    return Math.abs(value)
+}
+
 export function min(arr) {
     if (arguments.length > 1) {
-        return Math.min(...Array.prototype.slice.call(arguments))
+        return min(Array.prototype.slice.call(arguments))
     }
 
     return Math.min(...arr)
@@ -27,7 +31,7 @@ export function min(arr) {
 
 export function max(arr) {
     if (arguments.length > 1) {
-        return Math.max(...Array.prototype.slice.call(arguments))
+        return max(Array.prototype.slice.call(arguments))
     }
 
     return Math.max(...arr)

@@ -831,11 +831,7 @@ function upTo(indexOrPredicate) {
 
     return slice(inclusiveRange(0)(index))(arr);
   };
-} // [] => [] 0
-// [a] => [] 0
-// [a, a] => [a, b, a]  3
-// [a, a, a] => [a, b, a, b, a] 5
-
+}
 
 function intersperse(interspersion) {
   return function (arr) {
@@ -844,7 +840,7 @@ function intersperse(interspersion) {
     }
 
     var arrLength = (0, _stringOrArrayFunctions.length)(arr);
-    var newSize = arrLength + arrLength - 1;
+    var newSize = 2 * arrLength - 1;
     var result = new Array(newSize);
     var indexArray = 0;
 
