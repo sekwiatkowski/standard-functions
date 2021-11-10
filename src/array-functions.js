@@ -3,6 +3,7 @@ import {fromEntries, keys} from './object-functions'
 import {identity, isFunction} from './higher-order-functions'
 import {equals, not} from './boolean-functions'
 import {isNull} from './null-functions'
+import {isNumber} from './number-functions'
 
 export function isArray(input) {
     return Array.isArray(input)
@@ -595,7 +596,31 @@ export function swap(first) {
 }
 
 export function sort(arr) {
-    return arr.slice().sort()
+    const copy = arr.slice()
+
+    if (isEmpty(arr)) {
+        return copy
+    }
+
+    if (isNumber(arr[0])) {
+        return copy.sort((a, b) => a - b)
+    }
+
+    return copy.sort()
+}
+
+export function sortDescendingly(arr) {
+    const copy = arr.slice()
+
+    if (isEmpty(arr)) {
+        return copy
+    }
+
+    if (isNumber(arr[0])) {
+        return copy.sort((a, b) => -(a - b))
+    }
+
+    return copy.sort((a, b) => (a > b ? -1 : 1))
 }
 
 export function sortBy(f) {
