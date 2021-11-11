@@ -120,6 +120,18 @@ export function replaceAll(toBeReplaced) {
     return replacement => input => input.replace(new RegExp(toBeReplaced, 'g'), replacement)
 }
 
+export function removeFirst(toBeRemoved) {
+    return replaceFirst(toBeRemoved) ('')
+}
+
+export function removeLast(toBeRemoved) {
+    return replaceLast(toBeRemoved) ('')
+}
+
+export function removeAll(toBeRemoved) {
+    return replaceAll(toBeRemoved) ('')
+}
+
 export function beforeAndAfter(separator) {
     return input => {
         const idx = input.indexOf(separator)

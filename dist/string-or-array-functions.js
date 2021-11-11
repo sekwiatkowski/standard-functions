@@ -40,7 +40,7 @@ exports.isShorterThan = isShorterThan;
 exports.isLongerThan = isLongerThan;
 exports.length = length;
 exports.reverse = reverse;
-exports.isSingle = exports.removeLast = exports.removeFirst = void 0;
+exports.isSingle = void 0;
 
 var _stringFunctions = require("./string-functions");
 
@@ -231,11 +231,6 @@ function dropWhile(predicate) {
     return input.slice(dropped);
   };
 }
-
-var removeFirst = drop(1);
-exports.removeFirst = removeFirst;
-var removeLast = dropLast(1);
-exports.removeLast = removeLast;
 
 function append(appendix) {
   return function (original) {

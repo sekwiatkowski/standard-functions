@@ -155,10 +155,6 @@ export function dropWhile(predicate) {
     }
 }
 
-export const removeFirst = drop(1)
-
-export const removeLast = dropLast(1)
-
 export function append(appendix) {
     return original => {
         if (isString(original)) {
