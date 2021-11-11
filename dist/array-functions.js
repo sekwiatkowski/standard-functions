@@ -44,7 +44,7 @@ exports.inclusiveRange = inclusiveRange;
 exports.steps = steps;
 exports.inclusiveSteps = inclusiveSteps;
 exports.fill = fill;
-exports.repeat = repeat;
+exports.loop = loop;
 exports.update = update;
 exports.updateBy = updateBy;
 exports.indices = indices;
@@ -60,8 +60,9 @@ exports.sortDescendingly = sortDescendingly;
 exports.sortBy = sortBy;
 exports.sortDescendinglyBy = sortDescendinglyBy;
 exports.count = count;
-exports.after = after;
 exports.before = before;
+exports.after = after;
+exports.beforeAndAfter = beforeAndAfter;
 exports.upTo = upTo;
 exports.intersperse = intersperse;
 
@@ -634,7 +635,7 @@ function fill(value) {
   };
 }
 
-function repeat(n) {
+function loop(n) {
   return function (f) {
     var result = Array(n);
 
@@ -830,6 +831,18 @@ function count(itemOrPredicate) {
   };
 }
 
+function before(indexOrPredicate) {
+  return function (arr) {
+    var index = (0, _higherOrderFunctions.isFunction)(indexOrPredicate) ? findIndex(indexOrPredicate)(arr) : indexOrPredicate;
+
+    if ((0, _nullFunctions.isNull)(index)) {
+      return [];
+    }
+
+    return slice(range(0)(index))(arr);
+  };
+}
+
 function after(indexOrPredicate) {
   return function (arr) {
     var index = (0, _higherOrderFunctions.isFunction)(indexOrPredicate) ? findIndex(indexOrPredicate)(arr) : indexOrPredicate;
@@ -842,15 +855,12 @@ function after(indexOrPredicate) {
   };
 }
 
-function before(indexOrPredicate) {
-  return function (arr) {
-    var index = (0, _higherOrderFunctions.isFunction)(indexOrPredicate) ? findIndex(indexOrPredicate)(arr) : indexOrPredicate;
-
-    if ((0, _nullFunctions.isNull)(index)) {
-      return [];
-    }
-
-    return slice(range(0)(index))(arr);
+function beforeAndAfter(separator) {
+  return function (input) {
+    var idx = input.indexOf(separator);
+    var before = input.substring(0, idx);
+    var after = input.substring(idx + separator.length);
+    return [before, after];
   };
 }
 

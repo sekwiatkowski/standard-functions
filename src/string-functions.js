@@ -132,13 +132,14 @@ export function removeAll(toBeRemoved) {
     return replaceAll(toBeRemoved) ('')
 }
 
-export function beforeAndAfter(separator) {
-    return input => {
-        const idx = input.indexOf(separator)
+export function repeat(n) {
+    return s => {
+        let result = ''
 
-        const before = input.substring(0, idx)
-        const after = input.substring(idx + separator.length)
+        for (let i = 0; i < n; i++) {
+            result += s
+        }
 
-        return [before, after]
+        return result
     }
 }

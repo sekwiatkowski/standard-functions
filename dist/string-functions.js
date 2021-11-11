@@ -23,7 +23,7 @@ exports.replaceAll = replaceAll;
 exports.removeFirst = removeFirst;
 exports.removeLast = removeLast;
 exports.removeAll = removeAll;
-exports.beforeAndAfter = beforeAndAfter;
+exports.repeat = repeat;
 exports.surroundWithDoubleQuotes = exports.surroundWithSingleQuotes = exports.surroundWithParentheses = exports.joinWithPlus = exports.joinWithEqualitySign = exports.joinWithNewline = exports.joinWithSpace = exports.joinWithSlash = exports.joinWithSemicolonSpace = exports.joinWithSemicolon = exports.joinWithDot = exports.joinWithDash = exports.joinWithCommaSpace = exports.joinWithComma = exports.joinWithAmpersand = exports.splitByPlus = exports.splitByEqualitySign = exports.splitByNewline = exports.splitBySpace = exports.splitBySlash = exports.splitBySemicolonSpace = exports.splitBySemicolon = exports.splitByDot = exports.splitByDash = exports.splitByCommaSpace = exports.splitByComma = exports.splitByAmpersand = void 0;
 
 var _arrayFunctions = require("./array-functions");
@@ -225,11 +225,14 @@ function removeAll(toBeRemoved) {
   return replaceAll(toBeRemoved)('');
 }
 
-function beforeAndAfter(separator) {
-  return function (input) {
-    var idx = input.indexOf(separator);
-    var before = input.substring(0, idx);
-    var after = input.substring(idx + separator.length);
-    return [before, after];
+function repeat(n) {
+  return function (s) {
+    var result = '';
+
+    for (var i = 0; i < n; i++) {
+      result += s;
+    }
+
+    return result;
   };
 }

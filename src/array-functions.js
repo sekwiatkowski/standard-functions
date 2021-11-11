@@ -490,7 +490,7 @@ export function fill(value) {
     }
 }
 
-export function repeat(n) {
+export function loop(n) {
     return f => {
         const result = Array(n)
 
@@ -649,6 +649,18 @@ export function count(itemOrPredicate) {
     }
 }
 
+export function before(indexOrPredicate) {
+    return arr => {
+        const index = isFunction(indexOrPredicate) ? findIndex(indexOrPredicate) (arr) : indexOrPredicate
+
+        if (isNull(index)) {
+            return []
+        }
+
+        return slice(range(0) (index)) (arr)
+    }
+}
+
 export function after(indexOrPredicate) {
     return arr => {
         const index = isFunction(indexOrPredicate) ? findIndex(indexOrPredicate) (arr) : indexOrPredicate
@@ -661,15 +673,14 @@ export function after(indexOrPredicate) {
     }
 }
 
-export function before(indexOrPredicate) {
-    return arr => {
-        const index = isFunction(indexOrPredicate) ? findIndex(indexOrPredicate) (arr) : indexOrPredicate
+export function beforeAndAfter(separator) {
+    return input => {
+        const idx = input.indexOf(separator)
 
-        if (isNull(index)) {
-            return []
-        }
+        const before = input.substring(0, idx)
+        const after = input.substring(idx + separator.length)
 
-        return slice(range(0) (index)) (arr)
+        return [before, after]
     }
 }
 
