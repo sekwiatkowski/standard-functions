@@ -9,7 +9,9 @@ exports.isTrue = isTrue;
 exports.equals = equals;
 exports.doesNotEqual = doesNotEqual;
 exports.isGreaterThan = isGreaterThan;
+exports.isGreaterThanOrEqualTo = isGreaterThanOrEqualTo;
 exports.isLessThan = isLessThan;
+exports.isLessThanOrEqualTo = isLessThanOrEqualTo;
 exports.not = not;
 exports.negate = negate;
 exports.all = all;
@@ -77,9 +79,21 @@ function isGreaterThan(a) {
   };
 }
 
+function isGreaterThanOrEqualTo(a) {
+  return function (b) {
+    return b >= a;
+  };
+}
+
 function isLessThan(a) {
   return function (b) {
     return b < a;
+  };
+}
+
+function isLessThanOrEqualTo(a) {
+  return function (b) {
+    return b <= a;
   };
 }
 

@@ -25,8 +25,16 @@ export function isGreaterThan(a) {
     return b => b > a
 }
 
+export function isGreaterThanOrEqualTo(a) {
+    return b => b >= a
+}
+
 export function isLessThan(a) {
     return b => b < a
+}
+
+export function isLessThanOrEqualTo(a) {
+    return b => b <= a
 }
 
 export function not(predicate) {
