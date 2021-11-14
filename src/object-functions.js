@@ -61,8 +61,16 @@ export function propertyOf(obj, defaultValue) {
     return key => property(key, defaultValue) (obj)
 }
 
-export function properties(keys) {
+export function properties(...keys) {
     return obj => {
+        if (isSingle(keys)) {
+            const singleItem = single(keys)
+
+            if (isArray(singleItem)) {
+                return properties(...singleItem) (obj)
+            }
+        }
+
         const result = []
 
         for (let i = 0; i < keys.length; i++) {

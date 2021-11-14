@@ -50,6 +50,12 @@ var _stringOrArrayFunctions = require("./string-or-array-functions");
 
 var _nullFunctions = require("./null-functions");
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -57,12 +63,6 @@ function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread n
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -180,8 +180,20 @@ function propertyOf(obj, defaultValue) {
   };
 }
 
-function properties(keys) {
+function properties() {
+  for (var _len = arguments.length, keys = new Array(_len), _key = 0; _key < _len; _key++) {
+    keys[_key] = arguments[_key];
+  }
+
   return function (obj) {
+    if ((0, _stringOrArrayFunctions.isSingle)(keys)) {
+      var singleItem = (0, _arrayFunctions.single)(keys);
+
+      if ((0, _arrayFunctions.isArray)(singleItem)) {
+        return properties.apply(void 0, _toConsumableArray(singleItem))(obj);
+      }
+    }
+
     var result = [];
 
     for (var i = 0; i < keys.length; i++) {
@@ -345,8 +357,8 @@ function excludeValues(predicate) {
 }
 
 function merge() {
-  for (var _len = arguments.length, firstOrArray = new Array(_len), _key = 0; _key < _len; _key++) {
-    firstOrArray[_key] = arguments[_key];
+  for (var _len2 = arguments.length, firstOrArray = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+    firstOrArray[_key2] = arguments[_key2];
   }
 
   if ((0, _stringOrArrayFunctions.isSingle)(firstOrArray)) {
@@ -370,8 +382,8 @@ function merge() {
 
 function mergeWith(f) {
   return function () {
-    for (var _len2 = arguments.length, firstOrArray = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-      firstOrArray[_key2] = arguments[_key2];
+    for (var _len3 = arguments.length, firstOrArray = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+      firstOrArray[_key3] = arguments[_key3];
     }
 
     if ((0, _stringOrArrayFunctions.isSingle)(firstOrArray)) {
@@ -435,8 +447,8 @@ function extendWith(f) {
 }
 
 function omit() {
-  for (var _len3 = arguments.length, omittedKeys = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
-    omittedKeys[_key3] = arguments[_key3];
+  for (var _len4 = arguments.length, omittedKeys = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
+    omittedKeys[_key4] = arguments[_key4];
   }
 
   if ((0, _stringOrArrayFunctions.isSingle)(omittedKeys)) {
@@ -464,8 +476,8 @@ function omit() {
 }
 
 function pick() {
-  for (var _len4 = arguments.length, keys = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
-    keys[_key4] = arguments[_key4];
+  for (var _len5 = arguments.length, keys = new Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
+    keys[_key5] = arguments[_key5];
   }
 
   if ((0, _stringOrArrayFunctions.isSingle)(keys)) {
@@ -501,8 +513,8 @@ function pick() {
 }
 
 function pickAll() {
-  for (var _len5 = arguments.length, keys = new Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
-    keys[_key5] = arguments[_key5];
+  for (var _len6 = arguments.length, keys = new Array(_len6), _key6 = 0; _key6 < _len6; _key6++) {
+    keys[_key6] = arguments[_key6];
   }
 
   if ((0, _stringOrArrayFunctions.isSingle)(keys)) {
