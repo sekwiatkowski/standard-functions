@@ -290,6 +290,8 @@ export function isOfLength(length) {
 
 export const isSingle = isOfLength(1)
 
+export const isMultiple = isLongerThan(1)
+
 export function isSingleOrEmpty(collection) {
     return isEmpty(collection) || isSingle(collection)
 }

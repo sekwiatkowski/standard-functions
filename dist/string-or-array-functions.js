@@ -40,7 +40,7 @@ exports.isShorterThan = isShorterThan;
 exports.isLongerThan = isLongerThan;
 exports.length = length;
 exports.reverse = reverse;
-exports.isSingle = void 0;
+exports.isMultiple = exports.isSingle = void 0;
 
 var _stringFunctions = require("./string-functions");
 
@@ -362,6 +362,8 @@ function isOfLength(length) {
 
 var isSingle = isOfLength(1);
 exports.isSingle = isSingle;
+var isMultiple = isLongerThan(1);
+exports.isMultiple = isMultiple;
 
 function isSingleOrEmpty(collection) {
   return isEmpty(collection) || isSingle(collection);
