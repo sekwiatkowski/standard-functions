@@ -1,3 +1,6 @@
+import {isSingle} from './string-or-array-functions'
+import {isArray, single} from './array-functions'
+
 export function isFunction(input) {
     return typeof input === 'function'
 }
@@ -18,10 +21,16 @@ export function applyPairTo(f) {
     return ([a, b]) => f(a) (b)
 }
 
-export function compose() {
-    const arr = Array.prototype.slice.call(arguments)
+export function compose(...functionsOrArray) {
+    if (isSingle(functionsOrArray)) {
+        const singleItem = single(functionsOrArray)
 
-    return x => arr.reduce((acc, f) => f(acc), x)
+        if (isArray(singleItem)) {
+            return compose(...singleItem)
+        }
+    }
+
+    return x => functionsOrArray.reduce((acc, f) => f(acc), x)
 }
 
 export function identity(x) {

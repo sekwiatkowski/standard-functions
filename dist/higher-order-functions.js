@@ -12,6 +12,18 @@ exports.compose = compose;
 exports.identity = identity;
 exports.constant = constant;
 
+var _stringOrArrayFunctions = require("./string-or-array-functions");
+
+var _arrayFunctions = require("./array-functions");
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -61,9 +73,20 @@ function applyPairTo(f) {
 }
 
 function compose() {
-  var arr = Array.prototype.slice.call(arguments);
+  for (var _len = arguments.length, functionsOrArray = new Array(_len), _key = 0; _key < _len; _key++) {
+    functionsOrArray[_key] = arguments[_key];
+  }
+
+  if ((0, _stringOrArrayFunctions.isSingle)(functionsOrArray)) {
+    var singleItem = (0, _arrayFunctions.single)(functionsOrArray);
+
+    if ((0, _arrayFunctions.isArray)(singleItem)) {
+      return compose.apply(void 0, _toConsumableArray(singleItem));
+    }
+  }
+
   return function (x) {
-    return arr.reduce(function (acc, f) {
+    return functionsOrArray.reduce(function (acc, f) {
       return f(acc);
     }, x);
   };
