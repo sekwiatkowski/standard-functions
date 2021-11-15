@@ -1,4 +1,5 @@
 import {isArray} from './array-functions'
+import {length} from './string-or-array-functions'
 
 export function isString(input) {
     return typeof input === 'string'
@@ -141,5 +142,19 @@ export function repeat(n) {
         }
 
         return result
+    }
+}
+
+export function pad(character) {
+    return minimumLength => input => {
+        const remaining = minimumLength - length(input)
+
+        if (remaining <= 0) {
+            return input
+        }
+
+        const start = repeat(remaining) (character)
+
+        return start + input
     }
 }

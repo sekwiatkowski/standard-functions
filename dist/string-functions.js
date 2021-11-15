@@ -24,9 +24,12 @@ exports.removeFirst = removeFirst;
 exports.removeLast = removeLast;
 exports.removeAll = removeAll;
 exports.repeat = repeat;
+exports.pad = pad;
 exports.surroundWithDoubleQuotes = exports.surroundWithSingleQuotes = exports.surroundWithParentheses = exports.joinWithPlus = exports.joinWithEqualitySign = exports.joinWithNewline = exports.joinWithSpace = exports.joinWithSlash = exports.joinWithSemicolonSpace = exports.joinWithSemicolon = exports.joinWithDot = exports.joinWithDash = exports.joinWithCommaSpace = exports.joinWithComma = exports.joinWithAmpersand = exports.splitByPlus = exports.splitByEqualitySign = exports.splitByNewline = exports.splitBySpace = exports.splitBySlash = exports.splitBySemicolonSpace = exports.splitBySemicolon = exports.splitByDot = exports.splitByDash = exports.splitByCommaSpace = exports.splitByComma = exports.splitByAmpersand = void 0;
 
 var _arrayFunctions = require("./array-functions");
+
+var _stringOrArrayFunctions = require("./string-or-array-functions");
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -234,5 +237,20 @@ function repeat(n) {
     }
 
     return result;
+  };
+}
+
+function pad(character) {
+  return function (minimumLength) {
+    return function (input) {
+      var remaining = minimumLength - (0, _stringOrArrayFunctions.length)(input);
+
+      if (remaining <= 0) {
+        return input;
+      }
+
+      var start = repeat(remaining)(character);
+      return start + input;
+    };
   };
 }
