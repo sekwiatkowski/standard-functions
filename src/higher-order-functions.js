@@ -5,12 +5,8 @@ export function isFunction(input) {
     return typeof input === 'function'
 }
 
-export function apply(arg) {
-    return f => f(arg)
-}
-
-export function applyTo(f) {
-    return x => f(x)
+export function applyTo(x) {
+    return f => f(x)
 }
 
 export function applyPair([a, b]) {

@@ -4,7 +4,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.isFunction = isFunction;
-exports.apply = apply;
 exports.applyTo = applyTo;
 exports.applyPair = applyPair;
 exports.applyPairTo = applyPairTo;
@@ -40,14 +39,8 @@ function isFunction(input) {
   return typeof input === 'function';
 }
 
-function apply(arg) {
+function applyTo(x) {
   return function (f) {
-    return f(arg);
-  };
-}
-
-function applyTo(f) {
-  return function (x) {
     return f(x);
   };
 }
