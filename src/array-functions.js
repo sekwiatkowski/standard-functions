@@ -98,6 +98,18 @@ export function foldWhile(predicate) {
     }
 }
 
+export function reduce(f) {
+    return arr => {
+        let acc = arr[0]
+
+        for (let i = 1; i < arr.length; i++) {
+            acc = f(acc, arr[i], i)
+        }
+
+        return acc
+    }
+}
+
 export function unique(arr) {
     return arr.filter((item, index) => index === arr.indexOf(item))
 }

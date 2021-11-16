@@ -15,6 +15,7 @@ exports.filterIndices = filterIndices;
 exports.exclude = exclude;
 exports.fold = fold;
 exports.foldWhile = foldWhile;
+exports.reduce = reduce;
 exports.unique = unique;
 exports.difference = difference;
 exports.intersect = intersect;
@@ -205,6 +206,18 @@ function foldWhile(predicate) {
         return acc;
       };
     };
+  };
+}
+
+function reduce(f) {
+  return function (arr) {
+    var acc = arr[0];
+
+    for (var i = 1; i < arr.length; i++) {
+      acc = f(acc, arr[i], i);
+    }
+
+    return acc;
   };
 }
 
