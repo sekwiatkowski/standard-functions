@@ -46,12 +46,9 @@ exports.steps = steps;
 exports.inclusiveSteps = inclusiveSteps;
 exports.fill = fill;
 exports.loop = loop;
-exports.update = update;
-exports.updateBy = updateBy;
 exports.indices = indices;
 exports.lastIndex = lastIndex;
 exports.slice = slice;
-exports.setItem = setItem;
 exports.containsSublist = containsSublist;
 exports.isSublistOf = isSublistOf;
 exports.swap = swap;
@@ -60,10 +57,6 @@ exports.sortDescendingly = sortDescendingly;
 exports.sortBy = sortBy;
 exports.sortDescendinglyBy = sortDescendinglyBy;
 exports.count = count;
-exports.before = before;
-exports.after = after;
-exports.beforeAndAfter = beforeAndAfter;
-exports.upTo = upTo;
 exports.intersperse = intersperse;
 
 var _objectFunctions = require("./object-functions");
@@ -667,26 +660,6 @@ function loop(n) {
   };
 }
 
-function update(index) {
-  return function (item) {
-    return function (arr) {
-      var copy = arr.slice();
-      copy[index] = item;
-      return copy;
-    };
-  };
-}
-
-function updateBy(f) {
-  return function (index) {
-    return function (arr) {
-      var copy = arr.slice();
-      copy[index] = f(arr[index]);
-      return copy;
-    };
-  };
-}
-
 function indices(arr) {
   var n = arr.length;
   var result = Array(n);
@@ -712,16 +685,6 @@ function slice(indices) {
     }
 
     return result;
-  };
-}
-
-function setItem(index) {
-  return function (itemOrFunction) {
-    return function (arr) {
-      return map(function (item, itemIndex) {
-        return itemIndex === index ? (0, _typeFunctions.isFunction)(itemOrFunction) ? itemOrFunction(item) : itemOrFunction : item;
-      })(arr);
-    };
   };
 }
 
@@ -842,51 +805,6 @@ function count(itemOrPredicate) {
     }
 
     return counter;
-  };
-}
-
-function before(indexOrPredicate) {
-  return function (arr) {
-    var index = (0, _typeFunctions.isFunction)(indexOrPredicate) ? findIndex(indexOrPredicate)(arr) : indexOrPredicate;
-
-    if ((0, _typeFunctions.isNull)(index)) {
-      return [];
-    }
-
-    return slice(range(0)(index))(arr);
-  };
-}
-
-function after(indexOrPredicate) {
-  return function (arr) {
-    var index = (0, _typeFunctions.isFunction)(indexOrPredicate) ? findIndex(indexOrPredicate)(arr) : indexOrPredicate;
-
-    if ((0, _typeFunctions.isNull)(index)) {
-      return [];
-    }
-
-    return slice(range(index + 1)((0, _lengthFunctions.length)(arr)))(arr);
-  };
-}
-
-function beforeAndAfter(separator) {
-  return function (input) {
-    var idx = input.indexOf(separator);
-    var before = input.substring(0, idx);
-    var after = input.substring(idx + separator.length);
-    return [before, after];
-  };
-}
-
-function upTo(indexOrPredicate) {
-  return function (arr) {
-    var index = (0, _typeFunctions.isFunction)(indexOrPredicate) ? findIndex(indexOrPredicate)(arr) : indexOrPredicate;
-
-    if ((0, _typeFunctions.isNull)(index)) {
-      return [];
-    }
-
-    return slice(inclusiveRange(0)(index))(arr);
   };
 }
 

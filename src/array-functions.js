@@ -492,22 +492,6 @@ export function loop(n) {
     }
 }
 
-export function update(index) {
-    return item => arr => {
-        const copy = arr.slice()
-        copy[index] = item
-        return copy
-    }
-}
-
-export function updateBy(f) {
-    return index => arr => {
-        const copy = arr.slice()
-        copy[index] = f(arr[index])
-        return copy
-    }
-}
-
 export function indices(arr) {
     const n = arr.length
     const result = Array(n)
@@ -534,15 +518,6 @@ export function slice(indices) {
 
         return result
     }
-}
-
-export function setItem(index) {
-    return itemOrFunction => arr =>
-        map((item, itemIndex) =>
-            itemIndex === index
-                ? isFunction(itemOrFunction) ? itemOrFunction(item) : itemOrFunction
-                : item
-        ) (arr)
 }
 
 export function containsSublist(sublist) {

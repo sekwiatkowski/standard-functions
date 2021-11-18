@@ -3,6 +3,8 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.update = update;
+exports.updateBy = updateBy;
 exports.append = append;
 exports.appendTo = appendTo;
 exports.prepend = prepend;
@@ -31,6 +33,26 @@ function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symb
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function update(index) {
+  return function (item) {
+    return function (arr) {
+      var copy = arr.slice();
+      copy[index] = item;
+      return copy;
+    };
+  };
+}
+
+function updateBy(f) {
+  return function (index) {
+    return function (arr) {
+      var copy = arr.slice();
+      copy[index] = f(arr[index]);
+      return copy;
+    };
+  };
+}
 
 function append(appendix) {
   return function (original) {

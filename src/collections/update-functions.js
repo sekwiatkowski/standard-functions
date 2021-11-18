@@ -2,6 +2,22 @@ import {isArray, isString} from '../type-functions'
 import {equals} from '../boolean-functions'
 import {indexOf} from '../array-functions'
 
+export function update(index) {
+    return item => arr => {
+        const copy = arr.slice()
+        copy[index] = item
+        return copy
+    }
+}
+
+export function updateBy(f) {
+    return index => arr => {
+        const copy = arr.slice()
+        copy[index] = f(arr[index])
+        return copy
+    }
+}
+
 export function append(appendix) {
     return original => {
         if (isString(original)) {
