@@ -15,7 +15,7 @@ var _objectFunctions = require("../object-functions");
 
 var _mappingFunctions = require("./mapping-functions");
 
-var _arrayFunctions = require("../array-functions");
+var _joinFunctions = require("./join-functions");
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -77,7 +77,7 @@ function groupEntriesBy(computeKey) {
           deserialized = _ref2[1];
 
       return [deserialized, grouped[key]];
-    })((0, _arrayFunctions.zip)(groupKeys, deserializedGroupKeys));
+    })((0, _joinFunctions.zip)(groupKeys, deserializedGroupKeys));
   };
 }
 

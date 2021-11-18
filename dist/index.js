@@ -186,15 +186,15 @@ Object.keys(_lengthFunctions).forEach(function (key) {
   });
 });
 
-var _multiCollectionFunctions = require("./collections/multi-collection-functions");
+var _joinFunctions = require("./collections/join-functions");
 
-Object.keys(_multiCollectionFunctions).forEach(function (key) {
+Object.keys(_joinFunctions).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _multiCollectionFunctions[key]) return;
+  if (key in exports && exports[key] === _joinFunctions[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _multiCollectionFunctions[key];
+      return _joinFunctions[key];
     }
   });
 });
@@ -299,6 +299,19 @@ Object.keys(_groupingFunctions).forEach(function (key) {
     enumerable: true,
     get: function get() {
       return _groupingFunctions[key];
+    }
+  });
+});
+
+var _joinFunctions2 = require("./arrays/join-functions");
+
+Object.keys(_joinFunctions2).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _joinFunctions2[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _joinFunctions2[key];
     }
   });
 });
