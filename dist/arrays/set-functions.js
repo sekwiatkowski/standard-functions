@@ -19,10 +19,10 @@ function unique(arr) {
   });
 }
 
-function difference(as) {
-  return function (bs) {
-    return as.filter(function (a) {
-      return !bs.includes(a);
+function difference(A) {
+  return function (B) {
+    return A.filter(function (a) {
+      return !B.includes(a);
     });
   };
 }

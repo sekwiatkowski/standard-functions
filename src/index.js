@@ -1,7 +1,7 @@
 export * from './type-functions'
 
 export * from './array-functions'
-export * from './pair-functions'
+export * from './arrays/pair-functions'
 
 export * from './string-functions'
 export * from './character-functions'
@@ -31,3 +31,4 @@ export * from './arrays/mapping-functions'
 export * from './arrays/grouping-functions'
 export * from './arrays/join-functions'
 export * from './arrays/range-functions'
+export * from './arrays/for-each'

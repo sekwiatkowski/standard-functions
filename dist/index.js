@@ -30,7 +30,7 @@ Object.keys(_arrayFunctions).forEach(function (key) {
   });
 });
 
-var _pairFunctions = require("./pair-functions");
+var _pairFunctions = require("./arrays/pair-functions");
 
 Object.keys(_pairFunctions).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -325,6 +325,19 @@ Object.keys(_rangeFunctions).forEach(function (key) {
     enumerable: true,
     get: function get() {
       return _rangeFunctions[key];
+    }
+  });
+});
+
+var _forEach = require("./arrays/for-each");
+
+Object.keys(_forEach).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _forEach[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _forEach[key];
     }
   });
 });

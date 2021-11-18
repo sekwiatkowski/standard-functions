@@ -2,8 +2,8 @@ export function unique(arr) {
     return arr.filter((item, index) => index === arr.indexOf(item))
 }
 
-export function difference(as) {
-    return bs => as.filter(a => !bs.includes(a))
+export function difference(A) {
+    return B => A.filter(a => !B.includes(a))
 }
 
 export function intersect(A) {

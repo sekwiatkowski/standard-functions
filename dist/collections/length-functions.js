@@ -8,6 +8,7 @@ exports.isOfLength = isOfLength;
 exports.isShorterThan = isShorterThan;
 exports.isLongerThan = isLongerThan;
 exports.isSingleOrEmpty = isSingleOrEmpty;
+exports.indices = indices;
 exports.lastIndex = lastIndex;
 exports.isMultiple = exports.isSingle = exports.isNotEmpty = exports.isEmpty = void 0;
 
@@ -44,6 +45,17 @@ exports.isMultiple = isMultiple;
 
 function isSingleOrEmpty(collection) {
   return isEmpty(collection) || isSingle(collection);
+}
+
+function indices(arr) {
+  var n = arr.length;
+  var result = Array(n);
+
+  for (var i = 0; i < n; i++) {
+    result[i] = i;
+  }
+
+  return result;
 }
 
 function lastIndex(arr) {
