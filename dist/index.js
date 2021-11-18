@@ -172,3 +172,16 @@ Object.keys(_multiAccessFunctions).forEach(function (key) {
     }
   });
 });
+
+var _updateFunctions = require("./update-functions");
+
+Object.keys(_updateFunctions).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _updateFunctions[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _updateFunctions[key];
+    }
+  });
+});
