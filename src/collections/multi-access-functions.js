@@ -1,4 +1,7 @@
 import {head, last} from './single-access-functions'
+import {isFunction, isNull} from '../type-functions'
+import {length} from './length-functions'
+import {findIndex, inclusiveRange, range, slice} from '../array-functions'
 
 export function tail(input) {
     const length = input.length
@@ -98,5 +101,52 @@ export function dropWhile(predicate) {
         }
 
         return input.slice(dropped)
+    }
+}
+
+export function before(indexOrPredicate) {
+    return arr => {
+        const index = isFunction(indexOrPredicate) ? findIndex(indexOrPredicate)(arr) : indexOrPredicate
+
+        if (isNull(index)) {
+            return []
+        }
+
+        return slice(range(0)(index))(arr)
+    }
+}
+
+export function after(indexOrPredicate) {
+    return arr => {
+        const index = isFunction(indexOrPredicate) ? findIndex(indexOrPredicate)(arr) : indexOrPredicate
+
+        if (isNull(index)) {
+            return []
+        }
+
+        return slice(range(index + 1)(length(arr)))(arr)
+    }
+}
+
+export function beforeAndAfter(separator) {
+    return input => {
+        const idx = input.indexOf(separator)
+
+        const before = input.substring(0, idx)
+        const after = input.substring(idx + separator.length)
+
+        return [before, after]
+    }
+}
+
+export function upTo(indexOrPredicate) {
+    return arr => {
+        const index = isFunction(indexOrPredicate) ? findIndex(indexOrPredicate)(arr) : indexOrPredicate
+
+        if (isNull(index)) {
+            return []
+        }
+
+        return slice(inclusiveRange(0)(index))(arr)
     }
 }
