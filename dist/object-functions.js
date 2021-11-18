@@ -44,11 +44,9 @@ var _arrayFunctions = require("./array-functions.js");
 
 var _booleanFunctions = require("./boolean-functions.js");
 
-var _higherOrderFunctions = require("./higher-order-functions.js");
-
 var _stringOrArrayFunctions = require("./string-or-array-functions");
 
-var _nullFunctions = require("./null-functions");
+var _typeFunctions = require("./type-functions");
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
@@ -189,7 +187,7 @@ function properties() {
     if ((0, _stringOrArrayFunctions.isSingle)(keys)) {
       var singleItem = (0, _arrayFunctions.single)(keys);
 
-      if ((0, _arrayFunctions.isArray)(singleItem)) {
+      if ((0, _typeFunctions.isArray)(singleItem)) {
         return properties.apply(void 0, _toConsumableArray(singleItem))(obj);
       }
     }
@@ -221,7 +219,7 @@ function propertyEquals(property) {
 function setProperty(key) {
   return function (valueOrFunction) {
     return function (obj) {
-      return _objectSpread(_objectSpread({}, obj), {}, _defineProperty({}, key, (0, _higherOrderFunctions.isFunction)(valueOrFunction) ? valueOrFunction(obj[key]) : valueOrFunction));
+      return _objectSpread(_objectSpread({}, obj), {}, _defineProperty({}, key, (0, _typeFunctions.isFunction)(valueOrFunction) ? valueOrFunction(obj[key]) : valueOrFunction));
     };
   };
 }
@@ -364,9 +362,9 @@ function merge() {
   if ((0, _stringOrArrayFunctions.isSingle)(firstOrArray)) {
     var singleItem = (0, _arrayFunctions.single)(firstOrArray);
 
-    if ((0, _nullFunctions.isNull)(singleItem) || (0, _nullFunctions.isUndefined)(singleItem)) {
+    if ((0, _typeFunctions.isNull)(singleItem) || (0, _typeFunctions.isUndefined)(singleItem)) {
       return {};
-    } else if ((0, _arrayFunctions.isArray)(singleItem)) {
+    } else if ((0, _typeFunctions.isArray)(singleItem)) {
       return merge.apply(void 0, _toConsumableArray(singleItem));
     } else if (isObject(singleItem)) {
       return singleItem;
@@ -375,7 +373,7 @@ function merge() {
     }
   } else {
     return (0, _arrayFunctions.fold)(function (acc, obj) {
-      return (0, _nullFunctions.isNull)(obj) || (0, _nullFunctions.isUndefined)(obj) ? acc : _objectSpread(_objectSpread({}, acc), obj);
+      return (0, _typeFunctions.isNull)(obj) || (0, _typeFunctions.isUndefined)(obj) ? acc : _objectSpread(_objectSpread({}, acc), obj);
     })({})(firstOrArray);
   }
 }
@@ -389,18 +387,18 @@ function mergeWith(f) {
     if ((0, _stringOrArrayFunctions.isSingle)(firstOrArray)) {
       var singleItem = (0, _arrayFunctions.single)(firstOrArray);
 
-      if ((0, _arrayFunctions.isArray)(singleItem)) {
+      if ((0, _typeFunctions.isArray)(singleItem)) {
         return mergeWith(f).apply(void 0, _toConsumableArray(singleItem));
       } else if (isObject(singleItem)) {
         return singleItem;
-      } else if ((0, _nullFunctions.isNull)(singleItem) || (0, _nullFunctions.isUndefined)(singleItem)) {
+      } else if ((0, _typeFunctions.isNull)(singleItem) || (0, _typeFunctions.isUndefined)(singleItem)) {
         return {};
       } else {
         throw Error("Expected either an array, an object, null or undefined. Received: ".concat(singleItem));
       }
     } else {
       return (0, _arrayFunctions.fold)(function (acc, item) {
-        if ((0, _nullFunctions.isNull)(item) || (0, _nullFunctions.isUndefined)(item)) {
+        if ((0, _typeFunctions.isNull)(item) || (0, _typeFunctions.isUndefined)(item)) {
           return acc;
         }
 
@@ -454,7 +452,7 @@ function omit() {
   if ((0, _stringOrArrayFunctions.isSingle)(omittedKeys)) {
     var firstItem = (0, _stringOrArrayFunctions.first)(omittedKeys);
 
-    if ((0, _arrayFunctions.isArray)(firstItem)) {
+    if ((0, _typeFunctions.isArray)(firstItem)) {
       return omit.apply(void 0, _toConsumableArray(firstItem));
     }
   }
@@ -483,7 +481,7 @@ function pick() {
   if ((0, _stringOrArrayFunctions.isSingle)(keys)) {
     var firstItem = (0, _stringOrArrayFunctions.first)(keys);
 
-    if ((0, _arrayFunctions.isArray)(firstItem)) {
+    if ((0, _typeFunctions.isArray)(firstItem)) {
       return pick.apply(void 0, _toConsumableArray(firstItem));
     }
   }
@@ -520,7 +518,7 @@ function pickAll() {
   if ((0, _stringOrArrayFunctions.isSingle)(keys)) {
     var firstItem = (0, _stringOrArrayFunctions.first)(keys);
 
-    if ((0, _arrayFunctions.isArray)(firstItem)) {
+    if ((0, _typeFunctions.isArray)(firstItem)) {
       return pick.apply(void 0, _toConsumableArray(firstItem));
     }
   }

@@ -4,6 +4,19 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _typeFunctions = require("./type-functions");
+
+Object.keys(_typeFunctions).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _typeFunctions[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _typeFunctions[key];
+    }
+  });
+});
+
 var _arrayFunctions = require("./array-functions");
 
 Object.keys(_arrayFunctions).forEach(function (key) {
@@ -130,19 +143,6 @@ Object.keys(_promiseFunctions).forEach(function (key) {
     enumerable: true,
     get: function get() {
       return _promiseFunctions[key];
-    }
-  });
-});
-
-var _nullFunctions = require("./null-functions");
-
-Object.keys(_nullFunctions).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _nullFunctions[key]) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _nullFunctions[key];
     }
   });
 });

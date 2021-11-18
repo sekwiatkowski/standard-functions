@@ -1,9 +1,6 @@
 import {isSingle} from './string-or-array-functions'
-import {isArray, single} from './array-functions'
-
-export function isFunction(input) {
-    return typeof input === 'function'
-}
+import {single} from './array-functions'
+import {isArray} from './type-functions'
 
 export function applyTo(x) {
     return f => f(x)

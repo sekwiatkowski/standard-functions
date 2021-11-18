@@ -42,13 +42,11 @@ exports.length = length;
 exports.reverse = reverse;
 exports.isMultiple = exports.isSingle = void 0;
 
-var _stringFunctions = require("./string-functions");
-
-var _higherOrderFunctions = require("./higher-order-functions");
-
 var _arrayFunctions = require("./array-functions");
 
 var _booleanFunctions = require("./boolean-functions");
+
+var _typeFunctions = require("./type-functions");
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -109,7 +107,7 @@ function initAndLast(input) {
 }
 
 function first(predicateOrInput) {
-  if ((0, _higherOrderFunctions.isFunction)(predicateOrInput)) {
+  if ((0, _typeFunctions.isFunction)(predicateOrInput)) {
     return function (input) {
       for (var i = 0; i < input.length; i++) {
         var item = input[i];
@@ -131,7 +129,7 @@ function second(input) {
 }
 
 function last(predicateOrInput) {
-  if ((0, _higherOrderFunctions.isFunction)(predicateOrInput)) {
+  if ((0, _typeFunctions.isFunction)(predicateOrInput)) {
     return function (input) {
       for (var i = input.length - 1; i >= 0; i--) {
         var item = input[i];
@@ -234,10 +232,10 @@ function dropWhile(predicate) {
 
 function append(appendix) {
   return function (original) {
-    if ((0, _stringFunctions.isString)(original)) {
+    if ((0, _typeFunctions.isString)(original)) {
       return original + appendix;
     } else {
-      if ((0, _arrayFunctions.isArray)(appendix)) {
+      if ((0, _typeFunctions.isArray)(appendix)) {
         return [].concat(_toConsumableArray(original), _toConsumableArray(appendix));
       } else {
         return [].concat(_toConsumableArray(original), [appendix]);
@@ -254,10 +252,10 @@ function appendTo(original) {
 
 function prepend(prefix) {
   return function (original) {
-    if ((0, _stringFunctions.isString)(original)) {
+    if ((0, _typeFunctions.isString)(original)) {
       return prefix + original;
     } else {
-      if ((0, _arrayFunctions.isArray)(prefix)) {
+      if ((0, _typeFunctions.isArray)(prefix)) {
         return [].concat(_toConsumableArray(prefix), _toConsumableArray(original));
       } else {
         return [prefix].concat(_toConsumableArray(original));
@@ -285,7 +283,7 @@ function insertAt(index) {
 function remove(itemOrPredicate) {
   return function (arr) {
     var copy = arr.slice();
-    var predicate = (0, _higherOrderFunctions.isFunction)(itemOrPredicate) ? itemOrPredicate : (0, _booleanFunctions.equals)(itemOrPredicate);
+    var predicate = (0, _typeFunctions.isFunction)(itemOrPredicate) ? itemOrPredicate : (0, _booleanFunctions.equals)(itemOrPredicate);
     var i = arr.length - 1;
 
     while (i >= 0) {
@@ -330,7 +328,7 @@ function concat() {
   if (items.length === 1) {
     var firstItem = items[0];
 
-    if ((0, _arrayFunctions.isArray)(firstItem)) {
+    if ((0, _typeFunctions.isArray)(firstItem)) {
       // 2D array with a single item
       if (firstItem.length === 1) {
         return firstItem[0];
@@ -340,7 +338,7 @@ function concat() {
     }
   }
 
-  var initial = (0, _stringFunctions.isString)(items[0]) ? '' : [];
+  var initial = (0, _typeFunctions.isString)(items[0]) ? '' : [];
   return items.reduce(function (acc, s) {
     return acc.concat(s);
   }, initial);

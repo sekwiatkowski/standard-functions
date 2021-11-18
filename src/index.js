@@ -1,3 +1,5 @@
+export * from './type-functions'
+
 export * from './array-functions'
 export * from './pair-functions'
 
@@ -14,5 +16,3 @@ export * from './higher-order-functions'
 export * from './object-functions'
 
 export * from './promise-functions'
-
-export * from './null-functions'

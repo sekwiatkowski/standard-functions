@@ -1,9 +1,5 @@
-import {isArray} from './array-functions'
 import {length} from './string-or-array-functions'
-
-export function isString(input) {
-    return typeof input === 'string'
-}
+import {isArray} from './type-functions'
 
 export function toString(input) {
     return input.toString()

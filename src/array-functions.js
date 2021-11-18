@@ -1,17 +1,8 @@
 import {first, isEmpty, isOfLength, isSingle, length} from './string-or-array-functions'
 import {fromEntries, keys} from './object-functions'
-import {identity, isFunction} from './higher-order-functions'
-import {equals, not} from './boolean-functions'
-import {isNull} from './null-functions'
-import {isNumber} from './number-functions'
-
-export function isArray(input) {
-    return Array.isArray(input)
-}
-
-export function is2DArray(input) {
-    return isArray(input) && isArray(input[0])
-}
+import {identity} from './higher-order-functions'
+import {equals, none, not, some} from './boolean-functions'
+import {isArray, isFunction, isNull, isNumber} from './type-functions'
 
 export function forEach(f) {
     return arr => {
@@ -67,6 +58,23 @@ export function filterIndices(predicate) {
 
 export function exclude(predicate) {
     return arr => arr.filter(not(predicate))
+}
+
+export function excludeNull(input) {
+    if (isSingle(arguments)) {
+        if (isNull(input)) {
+            return []
+        }
+        else if (isArray(input)) {
+            return exclude(isNull) (input)
+        }
+        else {
+            return [input]
+        }
+    }
+    else {
+        return excludeNull(Array.prototype.slice.call(arguments))
+    }
 }
 
 export function fold(f) {
@@ -358,14 +366,20 @@ export function splitAt(position) {
     return arr => [ arr.slice(0, position), arr.slice(position) ]
 }
 
-export function contains(itemOrPredicate) {
-    return arr => isFunction(itemOrPredicate)
-        ? findIndex(itemOrPredicate) (arr) !== null
-        : arr.includes(itemOrPredicate)
+export function contains(item) {
+    return arr => some(equals(item)) (arr)
 }
 
 export function isContainedIn(arr) {
-    return itemOrPredicate => contains(itemOrPredicate) (arr)
+    return item => contains(item) (arr)
+}
+
+export function doesNotContain(item) {
+    return arr => none(equals(item)) (arr)
+}
+
+export function isNotContainedIn(arr) {
+    return item => doesNotContain(item) (arr)
 }
 
 export function containsAll(...candidateItemsOrArray) {

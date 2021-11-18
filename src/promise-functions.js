@@ -1,6 +1,7 @@
-import {isFunction} from './higher-order-functions'
-import {isArray, map} from './array-functions'
+
+import {map} from './array-functions'
 import {first, isSingle} from './string-or-array-functions'
+import {isArray, isFunction} from './type-functions'
 
 export function resolve(value) {
     return Promise.resolve(value)

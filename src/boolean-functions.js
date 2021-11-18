@@ -1,9 +1,4 @@
-import {is2DArray, isArray} from './array-functions'
-import {isFunction} from './higher-order-functions'
-
-export function isBoolean(input) {
-    return input === false || input === true
-}
+import {is2DArray, isArray, isFunction} from './type-functions'
 
 export function isFalse(input) {
     return input === false
@@ -62,7 +57,7 @@ export function all(predicate) {
 
 export const allTrue = all(isTrue)
 
-export function any(predicate) {
+export function some(predicate) {
     return (...itemsOrArray) => {
         const items = itemsOrArray.length === 1 && isArray(itemsOrArray[0])
             ? itemsOrArray[0]
@@ -77,22 +72,20 @@ export function any(predicate) {
     }
 }
 
-export const anyTrue = any(isTrue)
+export const someTrue = some(isTrue)
 
-export function anyPass(...predicates) {
-    const firstItem = predicates[0]
-    if (isArray(firstItem)) {
-        return anyPass(...firstItem)
-    }
+export function none(predicate) {
+    return (...itemsOrArray) => {
+        const items = itemsOrArray.length === 1 && isArray(itemsOrArray[0])
+            ? itemsOrArray[0]
+            : itemsOrArray
 
-    return items => {
-        for(let i = 0; i < predicates.length; i++) {
-            if (predicates[i] (items)) {
-                return true
+        for (const item of items) {
+            if (predicate(item)) {
+                return false
             }
         }
-
-        return false
+        return true
     }
 }
 
@@ -110,6 +103,40 @@ export function allPass(...predicates) {
         }
 
         return true
+    }
+}
+
+export function allFail(...predicates) {
+    const firstItem = predicates[0]
+    if (isArray(firstItem)) {
+        return allPass(...firstItem)
+    }
+
+    return items => {
+        for(let i = 0; i < predicates.length; i++) {
+            if (predicates[i] (items)) {
+                return false
+            }
+        }
+
+        return true
+    }
+}
+
+export function somePass(...predicates) {
+    const firstItem = predicates[0]
+    if (isArray(firstItem)) {
+        return somePass(...firstItem)
+    }
+
+    return items => {
+        for(let i = 0; i < predicates.length; i++) {
+            if (predicates[i] (items)) {
+                return true
+            }
+        }
+
+        return false
     }
 }
 

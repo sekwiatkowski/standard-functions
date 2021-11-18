@@ -3,8 +3,6 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.isArray = isArray;
-exports.is2DArray = is2DArray;
 exports.forEach = forEach;
 exports.map = map;
 exports.mapNotNull = mapNotNull;
@@ -13,6 +11,7 @@ exports.flatten = flatten;
 exports.filter = filter;
 exports.filterIndices = filterIndices;
 exports.exclude = exclude;
+exports.excludeNull = excludeNull;
 exports.fold = fold;
 exports.foldWhile = foldWhile;
 exports.reduce = reduce;
@@ -34,6 +33,8 @@ exports.chunk = chunk;
 exports.splitAt = splitAt;
 exports.contains = contains;
 exports.isContainedIn = isContainedIn;
+exports.doesNotContain = doesNotContain;
+exports.isNotContainedIn = isNotContainedIn;
 exports.containsAll = containsAll;
 exports.areContainedIn = areContainedIn;
 exports.cartesianProduct = cartesianProduct;
@@ -76,9 +77,7 @@ var _higherOrderFunctions = require("./higher-order-functions");
 
 var _booleanFunctions = require("./boolean-functions");
 
-var _nullFunctions = require("./null-functions");
-
-var _numberFunctions = require("./number-functions");
+var _typeFunctions = require("./type-functions");
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -101,14 +100,6 @@ function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function isArray(input) {
-  return Array.isArray(input);
-}
-
-function is2DArray(input) {
-  return isArray(input) && isArray(input[0]);
-}
 
 function forEach(f) {
   return function (arr) {
@@ -172,6 +163,20 @@ function exclude(predicate) {
   return function (arr) {
     return arr.filter((0, _booleanFunctions.not)(predicate));
   };
+}
+
+function excludeNull(input) {
+  if ((0, _stringOrArrayFunctions.isSingle)(arguments)) {
+    if ((0, _typeFunctions.isNull)(input)) {
+      return [];
+    } else if ((0, _typeFunctions.isArray)(input)) {
+      return exclude(_typeFunctions.isNull)(input);
+    } else {
+      return [input];
+    }
+  } else {
+    return excludeNull(Array.prototype.slice.call(arguments));
+  }
 }
 
 function fold(f) {
@@ -314,7 +319,7 @@ function indexOf(item) {
 }
 
 function single(predicateOrInput) {
-  if ((0, _higherOrderFunctions.isFunction)(predicateOrInput)) {
+  if ((0, _typeFunctions.isFunction)(predicateOrInput)) {
     return function (input) {
       var results = input.filter(predicateOrInput);
       var numberOfResults = results.length;
@@ -341,7 +346,7 @@ function single(predicateOrInput) {
 }
 
 function singleOrNull(predicateOrInput) {
-  if ((0, _higherOrderFunctions.isFunction)(predicateOrInput)) {
+  if ((0, _typeFunctions.isFunction)(predicateOrInput)) {
     return function (input) {
       var results = input.filter(predicateOrInput);
       var numberOfResults = results.length;
@@ -500,15 +505,27 @@ function splitAt(position) {
   };
 }
 
-function contains(itemOrPredicate) {
+function contains(item) {
   return function (arr) {
-    return (0, _higherOrderFunctions.isFunction)(itemOrPredicate) ? findIndex(itemOrPredicate)(arr) !== null : arr.includes(itemOrPredicate);
+    return (0, _booleanFunctions.some)((0, _booleanFunctions.equals)(item))(arr);
   };
 }
 
 function isContainedIn(arr) {
-  return function (itemOrPredicate) {
-    return contains(itemOrPredicate)(arr);
+  return function (item) {
+    return contains(item)(arr);
+  };
+}
+
+function doesNotContain(item) {
+  return function (arr) {
+    return (0, _booleanFunctions.none)((0, _booleanFunctions.equals)(item))(arr);
+  };
+}
+
+function isNotContainedIn(arr) {
+  return function (item) {
+    return doesNotContain(item)(arr);
   };
 }
 
@@ -520,7 +537,7 @@ function containsAll() {
   if ((0, _stringOrArrayFunctions.isSingle)(candidateItemsOrArray)) {
     var firstCandidateItem = (0, _stringOrArrayFunctions.first)(candidateItemsOrArray);
 
-    if (isArray(firstCandidateItem)) {
+    if ((0, _typeFunctions.isArray)(firstCandidateItem)) {
       return containsAll.apply(void 0, _toConsumableArray(firstCandidateItem));
     }
   }
@@ -533,7 +550,7 @@ function containsAll() {
     if ((0, _stringOrArrayFunctions.isSingle)(itemsOrArray)) {
       var firstItem = (0, _stringOrArrayFunctions.first)(itemsOrArray);
 
-      if (isArray(firstItem)) {
+      if ((0, _typeFunctions.isArray)(firstItem)) {
         return containsAll(candidateItemsOrArray).apply(void 0, _toConsumableArray(firstItem));
       }
     }
@@ -759,7 +776,7 @@ function setItem(index) {
   return function (itemOrFunction) {
     return function (arr) {
       return map(function (item, itemIndex) {
-        return itemIndex === index ? (0, _higherOrderFunctions.isFunction)(itemOrFunction) ? itemOrFunction(item) : itemOrFunction : item;
+        return itemIndex === index ? (0, _typeFunctions.isFunction)(itemOrFunction) ? itemOrFunction(item) : itemOrFunction : item;
       })(arr);
     };
   };
@@ -816,7 +833,7 @@ function sort(arr) {
     return copy;
   }
 
-  if ((0, _numberFunctions.isNumber)(arr[0])) {
+  if ((0, _typeFunctions.isNumber)(arr[0])) {
     return copy.sort(function (a, b) {
       return a - b;
     });
@@ -832,7 +849,7 @@ function sortDescendingly(arr) {
     return copy;
   }
 
-  if ((0, _numberFunctions.isNumber)(arr[0])) {
+  if ((0, _typeFunctions.isNumber)(arr[0])) {
     return copy.sort(function (a, b) {
       return -(a - b);
     });
@@ -862,7 +879,7 @@ function sortDescendinglyBy(f) {
 function count(itemOrPredicate) {
   return function (arr) {
     var counter = 0;
-    var predicate = (0, _higherOrderFunctions.isFunction)(itemOrPredicate) ? itemOrPredicate : (0, _booleanFunctions.equals)(itemOrPredicate);
+    var predicate = (0, _typeFunctions.isFunction)(itemOrPredicate) ? itemOrPredicate : (0, _booleanFunctions.equals)(itemOrPredicate);
 
     var _iterator4 = _createForOfIteratorHelper(arr),
         _step4;
@@ -887,9 +904,9 @@ function count(itemOrPredicate) {
 
 function before(indexOrPredicate) {
   return function (arr) {
-    var index = (0, _higherOrderFunctions.isFunction)(indexOrPredicate) ? findIndex(indexOrPredicate)(arr) : indexOrPredicate;
+    var index = (0, _typeFunctions.isFunction)(indexOrPredicate) ? findIndex(indexOrPredicate)(arr) : indexOrPredicate;
 
-    if ((0, _nullFunctions.isNull)(index)) {
+    if ((0, _typeFunctions.isNull)(index)) {
       return [];
     }
 
@@ -899,9 +916,9 @@ function before(indexOrPredicate) {
 
 function after(indexOrPredicate) {
   return function (arr) {
-    var index = (0, _higherOrderFunctions.isFunction)(indexOrPredicate) ? findIndex(indexOrPredicate)(arr) : indexOrPredicate;
+    var index = (0, _typeFunctions.isFunction)(indexOrPredicate) ? findIndex(indexOrPredicate)(arr) : indexOrPredicate;
 
-    if ((0, _nullFunctions.isNull)(index)) {
+    if ((0, _typeFunctions.isNull)(index)) {
       return [];
     }
 
@@ -920,9 +937,9 @@ function beforeAndAfter(separator) {
 
 function upTo(indexOrPredicate) {
   return function (arr) {
-    var index = (0, _higherOrderFunctions.isFunction)(indexOrPredicate) ? findIndex(indexOrPredicate)(arr) : indexOrPredicate;
+    var index = (0, _typeFunctions.isFunction)(indexOrPredicate) ? findIndex(indexOrPredicate)(arr) : indexOrPredicate;
 
-    if ((0, _nullFunctions.isNull)(index)) {
+    if ((0, _typeFunctions.isNull)(index)) {
       return [];
     }
 

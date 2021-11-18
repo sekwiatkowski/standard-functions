@@ -3,7 +3,6 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.isNumber = isNumber;
 exports.greaterThan = greaterThan;
 exports.lessThan = lessThan;
 exports.isBetween = isBetween;
@@ -33,10 +32,6 @@ function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symb
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function isNumber(input) {
-  return typeof input === 'number';
-}
 
 function greaterThan(value) {
   return function (x) {

@@ -1,10 +1,6 @@
 import {fold} from './array-functions'
 import {identity} from './higher-order-functions'
 
-export function isNumber(input) {
-    return typeof input === 'number'
-}
-
 export function greaterThan(value) {
     return x => x > value
 }

@@ -1,7 +1,7 @@
-import {isString} from './string-functions'
-import {isFunction} from './higher-order-functions'
-import {indexOf, isArray} from './array-functions'
+
+import {indexOf} from './array-functions'
 import {equals} from './boolean-functions'
+import {isArray, isFunction, isString} from './type-functions'
 
 export function nth(index) {
     return input => input[index]

@@ -10,11 +10,11 @@ exports.mapFulfilled = mapFulfilled;
 exports.mapPromise = mapPromise;
 exports.parallelMap = parallelMap;
 
-var _higherOrderFunctions = require("./higher-order-functions");
-
 var _arrayFunctions = require("./array-functions");
 
 var _stringOrArrayFunctions = require("./string-or-array-functions");
+
+var _typeFunctions = require("./type-functions");
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -44,7 +44,7 @@ function parallel() {
   if ((0, _stringOrArrayFunctions.isSingle)(promises)) {
     var firstItem = (0, _stringOrArrayFunctions.first)(promises);
 
-    if ((0, _arrayFunctions.isArray)(firstItem)) {
+    if ((0, _typeFunctions.isArray)(firstItem)) {
       return parallel.apply(void 0, _toConsumableArray(firstItem));
     }
   }
@@ -54,7 +54,7 @@ function parallel() {
 
 function mapFulfilled(functionOrValue) {
   return function (promise) {
-    return promise.then((0, _higherOrderFunctions.isFunction)(functionOrValue) ? functionOrValue : function () {
+    return promise.then((0, _typeFunctions.isFunction)(functionOrValue) ? functionOrValue : function () {
       return functionOrValue;
     });
   };
@@ -63,9 +63,9 @@ function mapFulfilled(functionOrValue) {
 function mapPromise(ifFulfilled) {
   return function (ifRejected) {
     return function (promise) {
-      return promise.then((0, _higherOrderFunctions.isFunction)(ifFulfilled) ? ifFulfilled : function () {
+      return promise.then((0, _typeFunctions.isFunction)(ifFulfilled) ? ifFulfilled : function () {
         return ifFulfilled;
-      }, (0, _higherOrderFunctions.isFunction)(ifRejected) ? ifRejected : function () {
+      }, (0, _typeFunctions.isFunction)(ifRejected) ? ifRejected : function () {
         return ifRejected;
       });
     };

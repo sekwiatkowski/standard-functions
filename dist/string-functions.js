@@ -3,7 +3,6 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.isString = isString;
 exports.toString = toString;
 exports.split = split;
 exports.join = join;
@@ -27,9 +26,9 @@ exports.repeat = repeat;
 exports.pad = pad;
 exports.surroundWithDoubleQuotes = exports.surroundWithSingleQuotes = exports.surroundWithParentheses = exports.joinWithPlus = exports.joinWithEqualitySign = exports.joinWithNewline = exports.joinWithSpace = exports.joinWithSlash = exports.joinWithSemicolonSpace = exports.joinWithSemicolon = exports.joinWithDot = exports.joinWithDash = exports.joinWithCommaSpace = exports.joinWithComma = exports.joinWithAmpersand = exports.splitByPlus = exports.splitByEqualitySign = exports.splitByNewline = exports.splitBySpace = exports.splitBySlash = exports.splitBySemicolonSpace = exports.splitBySemicolon = exports.splitByDot = exports.splitByDash = exports.splitByCommaSpace = exports.splitByComma = exports.splitByAmpersand = void 0;
 
-var _arrayFunctions = require("./array-functions");
-
 var _stringOrArrayFunctions = require("./string-or-array-functions");
+
+var _typeFunctions = require("./type-functions");
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -42,10 +41,6 @@ function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symb
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function isString(input) {
-  return typeof input === 'string';
-}
 
 function toString(input) {
   return input.toString();
@@ -91,7 +86,7 @@ function join(separator) {
     if (items.length === 1) {
       var firstItem = items[0];
 
-      if ((0, _arrayFunctions.isArray)(firstItem)) {
+      if ((0, _typeFunctions.isArray)(firstItem)) {
         return join(separator).apply(void 0, _toConsumableArray(firstItem));
       }
     }
