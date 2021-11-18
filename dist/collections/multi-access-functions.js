@@ -30,6 +30,8 @@ var _lengthFunctions = require("./length-functions");
 
 var _arrayFunctions = require("../array-functions");
 
+var _searchFunctions = require("../arrays/search-functions");
+
 function tail(input) {
   var length = input.length;
 
@@ -152,7 +154,7 @@ function dropWhile(predicate) {
 
 function before(indexOrPredicate) {
   return function (arr) {
-    var index = (0, _typeFunctions.isFunction)(indexOrPredicate) ? (0, _arrayFunctions.findIndex)(indexOrPredicate)(arr) : indexOrPredicate;
+    var index = (0, _typeFunctions.isFunction)(indexOrPredicate) ? (0, _searchFunctions.findIndex)(indexOrPredicate)(arr) : indexOrPredicate;
 
     if ((0, _typeFunctions.isNull)(index)) {
       return [];
@@ -164,7 +166,7 @@ function before(indexOrPredicate) {
 
 function after(indexOrPredicate) {
   return function (arr) {
-    var index = (0, _typeFunctions.isFunction)(indexOrPredicate) ? (0, _arrayFunctions.findIndex)(indexOrPredicate)(arr) : indexOrPredicate;
+    var index = (0, _typeFunctions.isFunction)(indexOrPredicate) ? (0, _searchFunctions.findIndex)(indexOrPredicate)(arr) : indexOrPredicate;
 
     if ((0, _typeFunctions.isNull)(index)) {
       return [];
@@ -185,7 +187,7 @@ function beforeAndAfter(separator) {
 
 function upTo(indexOrPredicate) {
   return function (arr) {
-    var index = (0, _typeFunctions.isFunction)(indexOrPredicate) ? (0, _arrayFunctions.findIndex)(indexOrPredicate)(arr) : indexOrPredicate;
+    var index = (0, _typeFunctions.isFunction)(indexOrPredicate) ? (0, _searchFunctions.findIndex)(indexOrPredicate)(arr) : indexOrPredicate;
 
     if ((0, _typeFunctions.isNull)(index)) {
       return [];

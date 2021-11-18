@@ -21,7 +21,7 @@ var _typeFunctions = require("../type-functions");
 
 var _booleanFunctions = require("../boolean-functions");
 
-var _arrayFunctions = require("../array-functions");
+var _searchFunctions = require("../arrays/search-functions");
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -147,14 +147,14 @@ function removeAt(index) {
 
 function removeFirstOccurrence(item) {
   return function (arr) {
-    var index = (0, _arrayFunctions.indexOf)(item)(arr);
+    var index = (0, _searchFunctions.indexOf)(item)(arr);
     return removeAt(index)(arr);
   };
 }
 
 function removeLastOccurrence(item) {
   return function (arr) {
-    var index = (0, _arrayFunctions.indexOf)(item)(arr);
+    var index = (0, _searchFunctions.indexOf)(item)(arr);
     return removeAt(index)(arr);
   };
 }

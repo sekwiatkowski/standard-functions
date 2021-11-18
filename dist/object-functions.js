@@ -40,8 +40,6 @@ exports.flattenObject = flattenObject;
 exports.unflattenObject = unflattenObject;
 exports.reverseObject = reverseObject;
 
-var _arrayFunctions = require("./array-functions.js");
-
 var _booleanFunctions = require("./boolean-functions.js");
 
 var _typeFunctions = require("./type-functions");
@@ -49,6 +47,8 @@ var _typeFunctions = require("./type-functions");
 var _singleAccessFunctions = require("./collections/single-access-functions");
 
 var _lengthFunctions = require("./collections/length-functions");
+
+var _reductionFunctions = require("./arrays/reduction-functions");
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
@@ -374,7 +374,7 @@ function merge() {
       throw Error("Expected either an array, an object, null or undefined. Received: ".concat(singleItem));
     }
   } else {
-    return (0, _arrayFunctions.fold)(function (acc, obj) {
+    return (0, _reductionFunctions.fold)(function (acc, obj) {
       return (0, _typeFunctions.isNull)(obj) || (0, _typeFunctions.isUndefined)(obj) ? acc : _objectSpread(_objectSpread({}, acc), obj);
     })({})(firstOrArray);
   }
@@ -399,7 +399,7 @@ function mergeWith(f) {
         throw Error("Expected either an array, an object, null or undefined. Received: ".concat(singleItem));
       }
     } else {
-      return (0, _arrayFunctions.fold)(function (acc, item) {
+      return (0, _reductionFunctions.fold)(function (acc, item) {
         if ((0, _typeFunctions.isNull)(item) || (0, _typeFunctions.isUndefined)(item)) {
           return acc;
         }

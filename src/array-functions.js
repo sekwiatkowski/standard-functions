@@ -2,36 +2,13 @@ import {fromEntries, keys} from './object-functions'
 import {identity} from './higher-order-functions'
 import {equals} from './boolean-functions'
 import {isFunction} from './type-functions'
-import {isEmpty, isOfLength, isSingle, length} from './collections/length-functions'
+import {isSingle, length} from './collections/length-functions'
+import {map} from './arrays/mapping-functions'
 
 export function forEach(f) {
     return arr => {
         arr.forEach(f)
     }
-}
-
-export function map(f) {
-    return arr => arr.map(f)
-}
-
-export function mapNotNull(f) {
-    return arr => {
-        const result = []
-
-        for (let i = 0; i < arr.length; i++) {
-            const y = f(arr[i])
-
-            if (y) {
-                result.push(y)
-            }
-        }
-
-        return result
-    }
-}
-
-export function flatMap(f) {
-    return arr => arr.flatMap(f)
 }
 
 export function flatten(arr) {
@@ -235,18 +212,6 @@ export function fill(value) {
     }
 }
 
-export function loop(n) {
-    return f => {
-        const result = Array(n)
-
-        for (let i = 0; i < n; i++) {
-            result[i] = f(i)
-        }
-
-        return result
-    }
-}
-
 export function indices(arr) {
     const n = arr.length
     const result = Array(n)
@@ -293,32 +258,3 @@ export function count(itemOrPredicate) {
     }
 }
 
-export function intersperse(interspersion) {
-    return arr => {
-        if (isEmpty(arr) || isOfLength(1) (arr)) {
-            return [...arr]
-        }
-
-        const arrLength = length(arr)
-
-        const newSize = 2 * arrLength - 1
-
-        const result = new Array(newSize)
-
-        let indexArray = 0
-        while(indexArray < arrLength) {
-            result[2 * indexArray] = arr[indexArray]
-
-            indexArray++
-        }
-
-        let indexInterspersion = 1
-        while(indexInterspersion < newSize - 1) {
-            result[indexInterspersion] = interspersion
-
-            indexInterspersion += 2
-        }
-
-        return result
-    }
-}

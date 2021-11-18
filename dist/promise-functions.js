@@ -10,13 +10,13 @@ exports.mapFulfilled = mapFulfilled;
 exports.mapPromise = mapPromise;
 exports.parallelMap = parallelMap;
 
-var _arrayFunctions = require("./array-functions");
-
 var _typeFunctions = require("./type-functions");
 
 var _singleAccessFunctions = require("./collections/single-access-functions");
 
 var _lengthFunctions = require("./collections/length-functions");
+
+var _mappingFunctions = require("./arrays/mapping-functions");
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -76,6 +76,6 @@ function mapPromise(ifFulfilled) {
 
 function parallelMap(f) {
   return function (arr) {
-    return parallel((0, _arrayFunctions.map)(f)(arr));
+    return parallel((0, _mappingFunctions.map)(f)(arr));
   };
 }

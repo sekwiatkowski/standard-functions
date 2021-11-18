@@ -4,23 +4,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.forEach = forEach;
-exports.map = map;
-exports.mapNotNull = mapNotNull;
-exports.flatMap = flatMap;
 exports.flatten = flatten;
-exports.fold = fold;
-exports.foldWhile = foldWhile;
-exports.reduce = reduce;
-exports.find = find;
-exports.findLast = findLast;
-exports.findIndex = findIndex;
-exports.indexOf = indexOf;
-exports.singleIndex = singleIndex;
 exports.partition = partition;
 exports.groupBy = groupBy;
 exports.groupEntriesBy = groupEntriesBy;
-exports.minBy = minBy;
-exports.maxBy = maxBy;
 exports.chunk = chunk;
 exports.splitAt = splitAt;
 exports.cartesianProduct = cartesianProduct;
@@ -33,14 +20,10 @@ exports.inclusiveRange = inclusiveRange;
 exports.steps = steps;
 exports.inclusiveSteps = inclusiveSteps;
 exports.fill = fill;
-exports.loop = loop;
 exports.indices = indices;
 exports.lastIndex = lastIndex;
 exports.slice = slice;
-exports.containsSublist = containsSublist;
-exports.isSublistOf = isSublistOf;
 exports.count = count;
-exports.intersperse = intersperse;
 
 var _objectFunctions = require("./object-functions");
 
@@ -51,6 +34,8 @@ var _booleanFunctions = require("./boolean-functions");
 var _typeFunctions = require("./type-functions");
 
 var _lengthFunctions = require("./collections/length-functions");
+
+var _mappingFunctions = require("./arrays/mapping-functions");
 
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
@@ -80,157 +65,8 @@ function forEach(f) {
   };
 }
 
-function map(f) {
-  return function (arr) {
-    return arr.map(f);
-  };
-}
-
-function mapNotNull(f) {
-  return function (arr) {
-    var result = [];
-
-    for (var i = 0; i < arr.length; i++) {
-      var y = f(arr[i]);
-
-      if (y) {
-        result.push(y);
-      }
-    }
-
-    return result;
-  };
-}
-
-function flatMap(f) {
-  return function (arr) {
-    return arr.flatMap(f);
-  };
-}
-
 function flatten(arr) {
   return arr.flat();
-}
-
-function fold(f) {
-  return function (initialValue) {
-    return function (arr) {
-      var acc = initialValue;
-
-      for (var i = 0; i < arr.length; i++) {
-        acc = f(acc, arr[i], i);
-      }
-
-      return acc;
-    };
-  };
-}
-
-function foldWhile(predicate) {
-  return function (f) {
-    return function (initialValue) {
-      return function (arr) {
-        var acc = initialValue;
-
-        for (var i = 0; i < arr.length; i++) {
-          var item = arr[i];
-          acc = f(acc, item);
-
-          if (!predicate(acc, item)) {
-            return acc;
-          }
-        }
-
-        return acc;
-      };
-    };
-  };
-}
-
-function reduce(f) {
-  return function (arr) {
-    var acc = arr[0];
-
-    for (var i = 1; i < arr.length; i++) {
-      acc = f(acc, arr[i], i);
-    }
-
-    return acc;
-  };
-}
-
-function find(predicate) {
-  return function (arr) {
-    for (var i = 0; i < arr.length; i++) {
-      var item = arr[i];
-
-      if (predicate(item)) {
-        return item;
-      }
-    }
-
-    return null;
-  };
-}
-
-function findLast(predicate) {
-  return function (input) {
-    for (var i = input.length - 1; i >= 0; i--) {
-      var item = input[i];
-
-      if (predicate(item)) {
-        return item;
-      }
-    }
-
-    return null;
-  };
-}
-
-function findIndex(predicate) {
-  return function (arr) {
-    for (var i = 0; i < arr.length; i++) {
-      if (predicate(arr[i])) {
-        return i;
-      }
-    }
-
-    return null;
-  };
-}
-
-function indexOf(item) {
-  return function (arr) {
-    for (var i = 0; i < arr.length; i++) {
-      if (item === arr[i]) {
-        return i;
-      }
-    }
-
-    return null;
-  };
-}
-
-function singleIndex(predicate) {
-  return function (arr) {
-    var matches = [];
-
-    for (var i = 0; i < arr.length; i++) {
-      if (predicate(arr[i])) {
-        matches.push(i);
-      }
-    }
-
-    var numberOfResults = matches.length;
-
-    if (numberOfResults === 0) {
-      throw Error("Expected a single search result. Found no ".concat(numberOfResults, " matching items."));
-    } else if (numberOfResults > 1) {
-      throw Error("Expected a single search result. Found ".concat(numberOfResults, " matching items."));
-    }
-
-    return matches[0];
-  };
 }
 
 function partition(predicate) {
@@ -274,50 +110,14 @@ function groupEntriesBy(computeKey) {
   return function (arr) {
     var grouped = groupBy(computeKey)(arr);
     var groupKeys = (0, _objectFunctions.keys)(grouped);
-    var deserializedGroupKeys = map(deserializeKey)(groupKeys);
-    return map(function (_ref) {
+    var deserializedGroupKeys = (0, _mappingFunctions.map)(deserializeKey)(groupKeys);
+    return (0, _mappingFunctions.map)(function (_ref) {
       var _ref2 = _slicedToArray(_ref, 2),
           key = _ref2[0],
           deserialized = _ref2[1];
 
       return [deserialized, grouped[key]];
     })(zip(groupKeys, deserializedGroupKeys));
-  };
-}
-
-function minBy(f) {
-  return function (arr) {
-    var lowestScore = Number.POSITIVE_INFINITY;
-    var index = -1;
-
-    for (var i = 0; i < arr.length; i++) {
-      var score = f(arr[i]);
-
-      if (score < lowestScore) {
-        lowestScore = score;
-        index = i;
-      }
-    }
-
-    return arr[index];
-  };
-}
-
-function maxBy(f) {
-  return function (arr) {
-    var highestScore = Number.NEGATIVE_INFINITY;
-    var index = -1;
-
-    for (var i = 0; i < arr.length; i++) {
-      var score = f(arr[i]);
-
-      if (score > highestScore) {
-        highestScore = score;
-        index = i;
-      }
-    }
-
-    return arr[index];
   };
 }
 
@@ -381,7 +181,7 @@ function zip() {
   }
 
   var numberOArrays = input.length;
-  var minimumLength = Math.min.apply(Math, _toConsumableArray(map(_lengthFunctions.length)(input)));
+  var minimumLength = Math.min.apply(Math, _toConsumableArray((0, _mappingFunctions.map)(_lengthFunctions.length)(input)));
   var result = new Array(minimumLength);
 
   for (var indexItem = 0; indexItem < minimumLength; indexItem++) {
@@ -399,7 +199,7 @@ function zip() {
 
 function unzip(arr) {
   var numberOfItems = arr.length;
-  var numberOfArrays = Math.min.apply(Math, _toConsumableArray(map(_lengthFunctions.length)(arr)));
+  var numberOfArrays = Math.min.apply(Math, _toConsumableArray((0, _mappingFunctions.map)(_lengthFunctions.length)(arr)));
   var result = Array(numberOfArrays);
 
   for (var indexArray = 0; indexArray < numberOfArrays; indexArray++) {
@@ -483,18 +283,6 @@ function fill(value) {
   };
 }
 
-function loop(n) {
-  return function (f) {
-    var result = Array(n);
-
-    for (var i = 0; i < n; i++) {
-      result[i] = f(i);
-    }
-
-    return result;
-  };
-}
-
 function indices(arr) {
   var n = arr.length;
   var result = Array(n);
@@ -523,17 +311,20 @@ function slice(indices) {
   };
 }
 
-function containsSublist(sublist) {
+function count(itemOrPredicate) {
   return function (arr) {
-    var _iterator = _createForOfIteratorHelper(sublist),
+    var counter = 0;
+    var predicate = (0, _typeFunctions.isFunction)(itemOrPredicate) ? itemOrPredicate : (0, _booleanFunctions.equals)(itemOrPredicate);
+
+    var _iterator = _createForOfIteratorHelper(arr),
         _step;
 
     try {
       for (_iterator.s(); !(_step = _iterator.n()).done;) {
         var item = _step.value;
 
-        if (!arr.includes(item)) {
-          return false;
+        if (predicate(item)) {
+          counter += 1;
         }
       }
     } catch (err) {
@@ -542,65 +333,6 @@ function containsSublist(sublist) {
       _iterator.f();
     }
 
-    return true;
-  };
-}
-
-function isSublistOf(arr) {
-  return function (sublist) {
-    return containsSublist(sublist)(arr);
-  };
-}
-
-function count(itemOrPredicate) {
-  return function (arr) {
-    var counter = 0;
-    var predicate = (0, _typeFunctions.isFunction)(itemOrPredicate) ? itemOrPredicate : (0, _booleanFunctions.equals)(itemOrPredicate);
-
-    var _iterator2 = _createForOfIteratorHelper(arr),
-        _step2;
-
-    try {
-      for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-        var item = _step2.value;
-
-        if (predicate(item)) {
-          counter += 1;
-        }
-      }
-    } catch (err) {
-      _iterator2.e(err);
-    } finally {
-      _iterator2.f();
-    }
-
     return counter;
-  };
-}
-
-function intersperse(interspersion) {
-  return function (arr) {
-    if ((0, _lengthFunctions.isEmpty)(arr) || (0, _lengthFunctions.isOfLength)(1)(arr)) {
-      return _toConsumableArray(arr);
-    }
-
-    var arrLength = (0, _lengthFunctions.length)(arr);
-    var newSize = 2 * arrLength - 1;
-    var result = new Array(newSize);
-    var indexArray = 0;
-
-    while (indexArray < arrLength) {
-      result[2 * indexArray] = arr[indexArray];
-      indexArray++;
-    }
-
-    var indexInterspersion = 1;
-
-    while (indexInterspersion < newSize - 1) {
-      result[indexInterspersion] = interspersion;
-      indexInterspersion += 2;
-    }
-
-    return result;
   };
 }
