@@ -5,6 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.update = update;
 exports.updateBy = updateBy;
+exports.swap = swap;
 exports.append = append;
 exports.appendTo = appendTo;
 exports.prepend = prepend;
@@ -50,6 +51,21 @@ function updateBy(f) {
       var copy = arr.slice();
       copy[index] = f(arr[index]);
       return copy;
+    };
+  };
+}
+
+function swap(first) {
+  return function (second) {
+    return function (arr) {
+      if (first >= second) {
+        throw Error('The second index must be greater than the first index.');
+      }
+
+      var beforeFirst = arr.slice(0, first);
+      var between = arr.slice(first + 1, second);
+      var afterSecond = arr.slice(second + 1);
+      return [].concat(_toConsumableArray(beforeFirst), [arr[second]], _toConsumableArray(between), [arr[first]], _toConsumableArray(afterSecond));
     };
   };
 }

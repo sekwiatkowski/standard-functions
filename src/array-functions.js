@@ -1,8 +1,7 @@
 import {fromEntries, keys} from './object-functions'
 import {identity} from './higher-order-functions'
-import {equals, none, not, some} from './boolean-functions'
-import {isArray, isFunction, isNull, isNumber} from './type-functions'
-import {first} from './collections/single-access-functions'
+import {equals} from './boolean-functions'
+import {isFunction} from './type-functions'
 import {isEmpty, isOfLength, isSingle, length} from './collections/length-functions'
 
 export function forEach(f) {
@@ -37,45 +36,6 @@ export function flatMap(f) {
 
 export function flatten(arr) {
     return arr.flat()
-}
-
-export function filter(predicate) {
-    return arr => arr.filter(predicate)
-}
-
-export function filterIndices(predicate) {
-    return arr => {
-        const indices = []
-
-        for (let i = 0; i < arr.length; i++) {
-            if (predicate(arr[i])) {
-                indices.push(i)
-            }
-        }
-
-        return indices
-    }
-}
-
-export function exclude(predicate) {
-    return arr => arr.filter(not(predicate))
-}
-
-export function excludeNull(input) {
-    if (isSingle(arguments)) {
-        if (isNull(input)) {
-            return []
-        }
-        else if (isArray(input)) {
-            return exclude(isNull) (input)
-        }
-        else {
-            return [input]
-        }
-    }
-    else {
-        return excludeNull(Array.prototype.slice.call(arguments))
-    }
 }
 
 export function fold(f) {
@@ -116,33 +76,6 @@ export function reduce(f) {
         }
 
         return acc
-    }
-}
-
-export function unique(arr) {
-    return arr.filter((item, index) => index === arr.indexOf(item))
-}
-
-export function difference(as) {
-    return bs => as.filter(a => !bs.includes(a))
-}
-
-export function intersect(A) {
-    return B => {
-        const uniqueA = unique(A)
-        const uniqueB = unique(B)
-
-        const result = []
-
-        for (const a of uniqueA) {
-            for (const b of uniqueB) {
-                if (a === b) {
-                    result.push(a)
-                }
-            }
-        }
-
-        return result
     }
 }
 
@@ -309,52 +242,6 @@ export function chunk(size) {
 
 export function splitAt(position) {
     return arr => [ arr.slice(0, position), arr.slice(position) ]
-}
-
-export function contains(item) {
-    return arr => some(equals(item)) (arr)
-}
-
-export function isContainedIn(arr) {
-    return item => contains(item) (arr)
-}
-
-export function doesNotContain(item) {
-    return arr => none(equals(item)) (arr)
-}
-
-export function isNotContainedIn(arr) {
-    return item => doesNotContain(item) (arr)
-}
-
-export function containsAll(...candidateItemsOrArray) {
-    if (isSingle(candidateItemsOrArray)) {
-        const firstCandidateItem = first(candidateItemsOrArray)
-        if (isArray(firstCandidateItem)) {
-            return containsAll(...firstCandidateItem)
-        }
-    }
-
-    return (...itemsOrArray) => {
-        if (isSingle(itemsOrArray)) {
-            const firstItem = first(itemsOrArray)
-            if (isArray(firstItem)) {
-                return containsAll(candidateItemsOrArray) (...firstItem)
-            }
-        }
-
-        for (let i = 0; i < candidateItemsOrArray.length; i++) {
-            if (!itemsOrArray.includes(candidateItemsOrArray[i])) {
-                return false
-            }
-        }
-
-        return true
-    }
-}
-
-export function areContainedIn(itemsOrArray) {
-    return candidateItemsOrArray => containsAll(candidateItemsOrArray) (itemsOrArray)
 }
 
 export function cartesianProduct(as) {
@@ -534,62 +421,6 @@ export function containsSublist(sublist) {
 
 export function isSublistOf(arr) {
     return sublist => containsSublist(sublist) (arr)
-}
-
-export function swap(first) {
-    return second => arr => {
-        if (first >= second) {
-            throw Error('The second index must be greater than the first index.')
-        }
-
-        const beforeFirst = arr.slice(0, first)
-        const between = arr.slice(first+1, second)
-        const afterSecond = arr.slice(second+1)
-
-        return [
-            ...beforeFirst,
-            arr[second],
-            ...between,
-            arr[first],
-            ...afterSecond
-        ]
-    }
-}
-
-export function sort(arr) {
-    const copy = arr.slice()
-
-    if (isEmpty(arr)) {
-        return copy
-    }
-
-    if (isNumber(arr[0])) {
-        return copy.sort((a, b) => a - b)
-    }
-
-    return copy.sort()
-}
-
-export function sortDescendingly(arr) {
-    const copy = arr.slice()
-
-    if (isEmpty(arr)) {
-        return copy
-    }
-
-    if (isNumber(arr[0])) {
-        return copy.sort((a, b) => -(a - b))
-    }
-
-    return copy.sort((a, b) => (a > b ? -1 : 1))
-}
-
-export function sortBy(f) {
-    return arr => arr.slice().sort((a, b) => f(a) - f(b))
-}
-
-export function sortDescendinglyBy(f) {
-    return arr => arr.slice().sort((a, b) => -(f(a) - f(b)))
 }
 
 export function count(itemOrPredicate) {

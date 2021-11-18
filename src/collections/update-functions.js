@@ -18,14 +18,36 @@ export function updateBy(f) {
     }
 }
 
+export function swap(first) {
+    return second => arr => {
+        if (first >= second) {
+            throw Error('The second index must be greater than the first index.')
+        }
+
+        const beforeFirst = arr.slice(0, first)
+        const between = arr.slice(first + 1, second)
+        const afterSecond = arr.slice(second + 1)
+
+        return [
+            ...beforeFirst,
+            arr[second],
+            ...between,
+            arr[first],
+            ...afterSecond
+        ]
+    }
+}
+
 export function append(appendix) {
     return original => {
         if (isString(original)) {
             return original + appendix
-        } else {
+        }
+        else {
             if (isArray(appendix)) {
                 return [...original, ...appendix]
-            } else {
+            }
+            else {
                 return [...original, appendix]
             }
         }
@@ -40,10 +62,12 @@ export function prepend(prefix) {
     return original => {
         if (isString(original)) {
             return prefix + original
-        } else {
+        }
+        else {
             if (isArray(prefix)) {
                 return [...prefix, ...original]
-            } else {
+            }
+            else {
                 return [prefix, ...original]
             }
         }

@@ -8,16 +8,9 @@ exports.map = map;
 exports.mapNotNull = mapNotNull;
 exports.flatMap = flatMap;
 exports.flatten = flatten;
-exports.filter = filter;
-exports.filterIndices = filterIndices;
-exports.exclude = exclude;
-exports.excludeNull = excludeNull;
 exports.fold = fold;
 exports.foldWhile = foldWhile;
 exports.reduce = reduce;
-exports.unique = unique;
-exports.difference = difference;
-exports.intersect = intersect;
 exports.find = find;
 exports.findIndex = findIndex;
 exports.indexOf = indexOf;
@@ -29,12 +22,6 @@ exports.minBy = minBy;
 exports.maxBy = maxBy;
 exports.chunk = chunk;
 exports.splitAt = splitAt;
-exports.contains = contains;
-exports.isContainedIn = isContainedIn;
-exports.doesNotContain = doesNotContain;
-exports.isNotContainedIn = isNotContainedIn;
-exports.containsAll = containsAll;
-exports.areContainedIn = areContainedIn;
 exports.cartesianProduct = cartesianProduct;
 exports.zip = zip;
 exports.unzip = unzip;
@@ -51,11 +38,6 @@ exports.lastIndex = lastIndex;
 exports.slice = slice;
 exports.containsSublist = containsSublist;
 exports.isSublistOf = isSublistOf;
-exports.swap = swap;
-exports.sort = sort;
-exports.sortDescendingly = sortDescendingly;
-exports.sortBy = sortBy;
-exports.sortDescendinglyBy = sortDescendinglyBy;
 exports.count = count;
 exports.intersperse = intersperse;
 
@@ -67,9 +49,9 @@ var _booleanFunctions = require("./boolean-functions");
 
 var _typeFunctions = require("./type-functions");
 
-var _singleAccessFunctions = require("./collections/single-access-functions");
-
 var _lengthFunctions = require("./collections/length-functions");
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -83,15 +65,13 @@ function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArra
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function forEach(f) {
   return function (arr) {
@@ -129,46 +109,6 @@ function flatMap(f) {
 
 function flatten(arr) {
   return arr.flat();
-}
-
-function filter(predicate) {
-  return function (arr) {
-    return arr.filter(predicate);
-  };
-}
-
-function filterIndices(predicate) {
-  return function (arr) {
-    var indices = [];
-
-    for (var i = 0; i < arr.length; i++) {
-      if (predicate(arr[i])) {
-        indices.push(i);
-      }
-    }
-
-    return indices;
-  };
-}
-
-function exclude(predicate) {
-  return function (arr) {
-    return arr.filter((0, _booleanFunctions.not)(predicate));
-  };
-}
-
-function excludeNull(input) {
-  if ((0, _lengthFunctions.isSingle)(arguments)) {
-    if ((0, _typeFunctions.isNull)(input)) {
-      return [];
-    } else if ((0, _typeFunctions.isArray)(input)) {
-      return exclude(_typeFunctions.isNull)(input);
-    } else {
-      return [input];
-    }
-  } else {
-    return excludeNull(Array.prototype.slice.call(arguments));
-  }
 }
 
 function fold(f) {
@@ -215,60 +155,6 @@ function reduce(f) {
     }
 
     return acc;
-  };
-}
-
-function unique(arr) {
-  return arr.filter(function (item, index) {
-    return index === arr.indexOf(item);
-  });
-}
-
-function difference(as) {
-  return function (bs) {
-    return as.filter(function (a) {
-      return !bs.includes(a);
-    });
-  };
-}
-
-function intersect(A) {
-  return function (B) {
-    var uniqueA = unique(A);
-    var uniqueB = unique(B);
-    var result = [];
-
-    var _iterator = _createForOfIteratorHelper(uniqueA),
-        _step;
-
-    try {
-      for (_iterator.s(); !(_step = _iterator.n()).done;) {
-        var a = _step.value;
-
-        var _iterator2 = _createForOfIteratorHelper(uniqueB),
-            _step2;
-
-        try {
-          for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-            var b = _step2.value;
-
-            if (a === b) {
-              result.push(a);
-            }
-          }
-        } catch (err) {
-          _iterator2.e(err);
-        } finally {
-          _iterator2.f();
-        }
-      }
-    } catch (err) {
-      _iterator.e(err);
-    } finally {
-      _iterator.f();
-    }
-
-    return result;
   };
 }
 
@@ -447,72 +333,6 @@ function splitAt(position) {
   };
 }
 
-function contains(item) {
-  return function (arr) {
-    return (0, _booleanFunctions.some)((0, _booleanFunctions.equals)(item))(arr);
-  };
-}
-
-function isContainedIn(arr) {
-  return function (item) {
-    return contains(item)(arr);
-  };
-}
-
-function doesNotContain(item) {
-  return function (arr) {
-    return (0, _booleanFunctions.none)((0, _booleanFunctions.equals)(item))(arr);
-  };
-}
-
-function isNotContainedIn(arr) {
-  return function (item) {
-    return doesNotContain(item)(arr);
-  };
-}
-
-function containsAll() {
-  for (var _len = arguments.length, candidateItemsOrArray = new Array(_len), _key = 0; _key < _len; _key++) {
-    candidateItemsOrArray[_key] = arguments[_key];
-  }
-
-  if ((0, _lengthFunctions.isSingle)(candidateItemsOrArray)) {
-    var firstCandidateItem = (0, _singleAccessFunctions.first)(candidateItemsOrArray);
-
-    if ((0, _typeFunctions.isArray)(firstCandidateItem)) {
-      return containsAll.apply(void 0, _toConsumableArray(firstCandidateItem));
-    }
-  }
-
-  return function () {
-    for (var _len2 = arguments.length, itemsOrArray = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-      itemsOrArray[_key2] = arguments[_key2];
-    }
-
-    if ((0, _lengthFunctions.isSingle)(itemsOrArray)) {
-      var firstItem = (0, _singleAccessFunctions.first)(itemsOrArray);
-
-      if ((0, _typeFunctions.isArray)(firstItem)) {
-        return containsAll(candidateItemsOrArray).apply(void 0, _toConsumableArray(firstItem));
-      }
-    }
-
-    for (var i = 0; i < candidateItemsOrArray.length; i++) {
-      if (!itemsOrArray.includes(candidateItemsOrArray[i])) {
-        return false;
-      }
-    }
-
-    return true;
-  };
-}
-
-function areContainedIn(itemsOrArray) {
-  return function (candidateItemsOrArray) {
-    return containsAll(candidateItemsOrArray)(itemsOrArray);
-  };
-}
-
 function cartesianProduct(as) {
   return function (bs) {
     var aLength = as.length;
@@ -530,8 +350,8 @@ function cartesianProduct(as) {
 }
 
 function zip() {
-  for (var _len3 = arguments.length, input = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
-    input[_key3] = arguments[_key3];
+  for (var _len = arguments.length, input = new Array(_len), _key = 0; _key < _len; _key++) {
+    input[_key] = arguments[_key];
   }
 
   // zip([ arr_1, ..., arr_n ])
@@ -589,8 +409,8 @@ function zipObject(as) {
 }
 
 function arrayOf() {
-  for (var _len4 = arguments.length, values = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
-    values[_key4] = arguments[_key4];
+  for (var _len2 = arguments.length, values = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+    values[_key2] = arguments[_key2];
   }
 
   return values;
@@ -690,21 +510,21 @@ function slice(indices) {
 
 function containsSublist(sublist) {
   return function (arr) {
-    var _iterator3 = _createForOfIteratorHelper(sublist),
-        _step3;
+    var _iterator = _createForOfIteratorHelper(sublist),
+        _step;
 
     try {
-      for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-        var item = _step3.value;
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var item = _step.value;
 
         if (!arr.includes(item)) {
           return false;
         }
       }
     } catch (err) {
-      _iterator3.e(err);
+      _iterator.e(err);
     } finally {
-      _iterator3.f();
+      _iterator.f();
     }
 
     return true;
@@ -717,91 +537,26 @@ function isSublistOf(arr) {
   };
 }
 
-function swap(first) {
-  return function (second) {
-    return function (arr) {
-      if (first >= second) {
-        throw Error('The second index must be greater than the first index.');
-      }
-
-      var beforeFirst = arr.slice(0, first);
-      var between = arr.slice(first + 1, second);
-      var afterSecond = arr.slice(second + 1);
-      return [].concat(_toConsumableArray(beforeFirst), [arr[second]], _toConsumableArray(between), [arr[first]], _toConsumableArray(afterSecond));
-    };
-  };
-}
-
-function sort(arr) {
-  var copy = arr.slice();
-
-  if ((0, _lengthFunctions.isEmpty)(arr)) {
-    return copy;
-  }
-
-  if ((0, _typeFunctions.isNumber)(arr[0])) {
-    return copy.sort(function (a, b) {
-      return a - b;
-    });
-  }
-
-  return copy.sort();
-}
-
-function sortDescendingly(arr) {
-  var copy = arr.slice();
-
-  if ((0, _lengthFunctions.isEmpty)(arr)) {
-    return copy;
-  }
-
-  if ((0, _typeFunctions.isNumber)(arr[0])) {
-    return copy.sort(function (a, b) {
-      return -(a - b);
-    });
-  }
-
-  return copy.sort(function (a, b) {
-    return a > b ? -1 : 1;
-  });
-}
-
-function sortBy(f) {
-  return function (arr) {
-    return arr.slice().sort(function (a, b) {
-      return f(a) - f(b);
-    });
-  };
-}
-
-function sortDescendinglyBy(f) {
-  return function (arr) {
-    return arr.slice().sort(function (a, b) {
-      return -(f(a) - f(b));
-    });
-  };
-}
-
 function count(itemOrPredicate) {
   return function (arr) {
     var counter = 0;
     var predicate = (0, _typeFunctions.isFunction)(itemOrPredicate) ? itemOrPredicate : (0, _booleanFunctions.equals)(itemOrPredicate);
 
-    var _iterator4 = _createForOfIteratorHelper(arr),
-        _step4;
+    var _iterator2 = _createForOfIteratorHelper(arr),
+        _step2;
 
     try {
-      for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-        var item = _step4.value;
+      for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+        var item = _step2.value;
 
         if (predicate(item)) {
           counter += 1;
         }
       }
     } catch (err) {
-      _iterator4.e(err);
+      _iterator2.e(err);
     } finally {
-      _iterator4.f();
+      _iterator2.f();
     }
 
     return counter;
