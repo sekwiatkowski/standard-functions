@@ -1,7 +1,8 @@
 import {head, last} from './single-access-functions'
 import {isFunction, isNull} from '../type-functions'
 import {length} from './length-functions'
-import {findIndex, inclusiveRange, range, slice} from '../array-functions'
+import {inclusiveRange, range, slice} from '../array-functions'
+import {findIndex} from '../arrays/search-functions'
 
 export function tail(input) {
     const length = input.length
