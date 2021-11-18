@@ -48,6 +48,8 @@ var _stringOrArrayFunctions = require("./string-or-array-functions");
 
 var _typeFunctions = require("./type-functions");
 
+var _singleAccessFunctions = require("./single-access-functions");
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -185,7 +187,7 @@ function properties() {
 
   return function (obj) {
     if ((0, _stringOrArrayFunctions.isSingle)(keys)) {
-      var singleItem = (0, _arrayFunctions.single)(keys);
+      var singleItem = (0, _singleAccessFunctions.single)(keys);
 
       if ((0, _typeFunctions.isArray)(singleItem)) {
         return properties.apply(void 0, _toConsumableArray(singleItem))(obj);
@@ -360,7 +362,7 @@ function merge() {
   }
 
   if ((0, _stringOrArrayFunctions.isSingle)(firstOrArray)) {
-    var singleItem = (0, _arrayFunctions.single)(firstOrArray);
+    var singleItem = (0, _singleAccessFunctions.single)(firstOrArray);
 
     if ((0, _typeFunctions.isNull)(singleItem) || (0, _typeFunctions.isUndefined)(singleItem)) {
       return {};
@@ -385,7 +387,7 @@ function mergeWith(f) {
     }
 
     if ((0, _stringOrArrayFunctions.isSingle)(firstOrArray)) {
-      var singleItem = (0, _arrayFunctions.single)(firstOrArray);
+      var singleItem = (0, _singleAccessFunctions.single)(firstOrArray);
 
       if ((0, _typeFunctions.isArray)(singleItem)) {
         return mergeWith(f).apply(void 0, _toConsumableArray(singleItem));
@@ -450,7 +452,7 @@ function omit() {
   }
 
   if ((0, _stringOrArrayFunctions.isSingle)(omittedKeys)) {
-    var firstItem = (0, _stringOrArrayFunctions.first)(omittedKeys);
+    var firstItem = (0, _singleAccessFunctions.first)(omittedKeys);
 
     if ((0, _typeFunctions.isArray)(firstItem)) {
       return omit.apply(void 0, _toConsumableArray(firstItem));
@@ -479,7 +481,7 @@ function pick() {
   }
 
   if ((0, _stringOrArrayFunctions.isSingle)(keys)) {
-    var firstItem = (0, _stringOrArrayFunctions.first)(keys);
+    var firstItem = (0, _singleAccessFunctions.first)(keys);
 
     if ((0, _typeFunctions.isArray)(firstItem)) {
       return pick.apply(void 0, _toConsumableArray(firstItem));
@@ -516,7 +518,7 @@ function pickAll() {
   }
 
   if ((0, _stringOrArrayFunctions.isSingle)(keys)) {
-    var firstItem = (0, _stringOrArrayFunctions.first)(keys);
+    var firstItem = (0, _singleAccessFunctions.first)(keys);
 
     if ((0, _typeFunctions.isArray)(firstItem)) {
       return pick.apply(void 0, _toConsumableArray(firstItem));

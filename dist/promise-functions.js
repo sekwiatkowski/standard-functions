@@ -16,6 +16,8 @@ var _stringOrArrayFunctions = require("./string-or-array-functions");
 
 var _typeFunctions = require("./type-functions");
 
+var _singleAccessFunctions = require("./single-access-functions");
+
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -42,7 +44,7 @@ function parallel() {
   }
 
   if ((0, _stringOrArrayFunctions.isSingle)(promises)) {
-    var firstItem = (0, _stringOrArrayFunctions.first)(promises);
+    var firstItem = (0, _singleAccessFunctions.first)(promises);
 
     if ((0, _typeFunctions.isArray)(firstItem)) {
       return parallel.apply(void 0, _toConsumableArray(firstItem));

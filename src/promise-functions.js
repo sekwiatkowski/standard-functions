@@ -1,7 +1,8 @@
 
 import {map} from './array-functions'
-import {first, isSingle} from './string-or-array-functions'
+import {isSingle} from './string-or-array-functions'
 import {isArray, isFunction} from './type-functions'
+import {first} from './single-access-functions'
 
 export function resolve(value) {
     return Promise.resolve(value)

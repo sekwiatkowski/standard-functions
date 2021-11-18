@@ -1,15 +1,7 @@
-
 import {indexOf} from './array-functions'
 import {equals} from './boolean-functions'
 import {isArray, isFunction, isString} from './type-functions'
-
-export function nth(index) {
-    return input => input[index]
-}
-
-export function head(input) {
-    return input[0]
-}
+import {head, last} from './single-access-functions'
 
 export function tail(input) {
     const length = input.length
@@ -46,48 +38,6 @@ export function init(input) {
 
 export function initAndLast(input) {
     return [ init(input), last(input) ]
-}
-
-export function first(predicateOrInput) {
-    if (isFunction(predicateOrInput)) {
-        return input => {
-            for (let i = 0; i < input.length; i++) {
-                const item = input[i]
-
-                if (predicateOrInput(item)) {
-                    return item
-                }
-            }
-
-            return null
-        }
-    }
-    else {
-        return predicateOrInput[0]
-    }
-}
-
-export function second(input) {
-    return input[1]
-}
-
-export function last(predicateOrInput) {
-    if (isFunction(predicateOrInput)) {
-        return input => {
-            for (let i = input.length - 1; i >= 0; i--) {
-                const item = input[i]
-
-                if (predicateOrInput(item)) {
-                    return item
-                }
-            }
-
-            return null
-        }
-    }
-    else {
-        return predicateOrInput[predicateOrInput.length - 1]
-    }
 }
 
 export function take(n) {

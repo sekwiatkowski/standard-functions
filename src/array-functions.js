@@ -1,8 +1,9 @@
-import {first, isEmpty, isOfLength, isSingle, length} from './string-or-array-functions'
+import {isEmpty, isOfLength, isSingle, length} from './string-or-array-functions'
 import {fromEntries, keys} from './object-functions'
 import {identity} from './higher-order-functions'
 import {equals, none, not, some} from './boolean-functions'
 import {isArray, isFunction, isNull, isNumber} from './type-functions'
+import {first} from './single-access-functions'
 
 export function forEach(f) {
     return arr => {
@@ -176,62 +177,6 @@ export function indexOf(item) {
             }
         }
         return null
-    }
-}
-
-export function single(predicateOrInput) {
-    if (isFunction(predicateOrInput)) {
-        return input => {
-            const results = input.filter(predicateOrInput)
-
-            const numberOfResults = results.length
-
-            if (numberOfResults === 0) {
-                throw Error(`Expected a single search result. Found no matching items.`)
-            }
-            else if (numberOfResults > 1) {
-                throw Error(`Expected a single search result. Found ${numberOfResults} matching items.`)
-            }
-
-            return results[0]
-        }
-    }
-    else {
-        const numberOfItems = predicateOrInput.length
-
-        if (numberOfItems === 0) {
-            throw Error(`Expected a single item. Found no items.`)
-        }
-        else if (numberOfItems > 1) {
-            throw Error(`Expected a single item. Found ${numberOfItems} items.`)
-        }
-
-        return predicateOrInput[0]
-    }
-}
-
-export function singleOrNull(predicateOrInput) {
-    if (isFunction(predicateOrInput)) {
-        return input => {
-            const results = input.filter(predicateOrInput)
-
-            const numberOfResults = results.length
-
-            if (numberOfResults > 1) {
-                throw Error(`Expected one or no search results. Found ${numberOfResults} matching items.`)
-            }
-
-            return results[0]
-        }
-    }
-    else {
-        const numberOfItems = predicateOrInput.length
-
-         if (numberOfItems > 1) {
-            throw Error(`Expected one or no items. Found ${numberOfItems} items.`)
-        }
-
-        return predicateOrInput[0]
     }
 }
 
@@ -589,10 +534,6 @@ export function slice(indices) {
 
         return result
     }
-}
-
-export function getItem(index) {
-    return arr => arr[index]
 }
 
 export function setItem(index) {

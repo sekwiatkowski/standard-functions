@@ -3,15 +3,10 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.nth = nth;
-exports.head = head;
 exports.tail = tail;
 exports.headAndTail = headAndTail;
 exports.init = init;
 exports.initAndLast = initAndLast;
-exports.first = first;
-exports.second = second;
-exports.last = last;
 exports.take = take;
 exports.takeFrom = takeFrom;
 exports.takeLast = takeLast;
@@ -48,6 +43,8 @@ var _booleanFunctions = require("./boolean-functions");
 
 var _typeFunctions = require("./type-functions");
 
+var _singleAccessFunctions = require("./single-access-functions");
+
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -59,16 +56,6 @@ function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symb
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function nth(index) {
-  return function (input) {
-    return input[index];
-  };
-}
-
-function head(input) {
-  return input[0];
-}
 
 function tail(input) {
   var length = input.length;
@@ -88,7 +75,7 @@ function tail(input) {
 }
 
 function headAndTail(input) {
-  return [head(input), tail(input)];
+  return [(0, _singleAccessFunctions.head)(input), tail(input)];
 }
 
 function init(input) {
@@ -103,47 +90,7 @@ function init(input) {
 }
 
 function initAndLast(input) {
-  return [init(input), last(input)];
-}
-
-function first(predicateOrInput) {
-  if ((0, _typeFunctions.isFunction)(predicateOrInput)) {
-    return function (input) {
-      for (var i = 0; i < input.length; i++) {
-        var item = input[i];
-
-        if (predicateOrInput(item)) {
-          return item;
-        }
-      }
-
-      return null;
-    };
-  } else {
-    return predicateOrInput[0];
-  }
-}
-
-function second(input) {
-  return input[1];
-}
-
-function last(predicateOrInput) {
-  if ((0, _typeFunctions.isFunction)(predicateOrInput)) {
-    return function (input) {
-      for (var i = input.length - 1; i >= 0; i--) {
-        var item = input[i];
-
-        if (predicateOrInput(item)) {
-          return item;
-        }
-      }
-
-      return null;
-    };
-  } else {
-    return predicateOrInput[predicateOrInput.length - 1];
-  }
+  return [init(input), (0, _singleAccessFunctions.last)(input)];
 }
 
 function take(n) {

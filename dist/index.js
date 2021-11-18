@@ -146,3 +146,16 @@ Object.keys(_promiseFunctions).forEach(function (key) {
     }
   });
 });
+
+var _singleAccessFunctions = require("./single-access-functions");
+
+Object.keys(_singleAccessFunctions).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _singleAccessFunctions[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _singleAccessFunctions[key];
+    }
+  });
+});

@@ -16,3 +16,5 @@ export * from './higher-order-functions'
 export * from './object-functions'
 
 export * from './promise-functions'
+
+export * from './single-access-functions'

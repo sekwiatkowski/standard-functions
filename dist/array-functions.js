@@ -21,8 +21,6 @@ exports.intersect = intersect;
 exports.find = find;
 exports.findIndex = findIndex;
 exports.indexOf = indexOf;
-exports.single = single;
-exports.singleOrNull = singleOrNull;
 exports.singleIndex = singleIndex;
 exports.partition = partition;
 exports.groupBy = groupBy;
@@ -53,7 +51,6 @@ exports.updateBy = updateBy;
 exports.indices = indices;
 exports.lastIndex = lastIndex;
 exports.slice = slice;
-exports.getItem = getItem;
 exports.setItem = setItem;
 exports.containsSublist = containsSublist;
 exports.isSublistOf = isSublistOf;
@@ -78,6 +75,8 @@ var _higherOrderFunctions = require("./higher-order-functions");
 var _booleanFunctions = require("./boolean-functions");
 
 var _typeFunctions = require("./type-functions");
+
+var _singleAccessFunctions = require("./single-access-functions");
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -318,56 +317,6 @@ function indexOf(item) {
   };
 }
 
-function single(predicateOrInput) {
-  if ((0, _typeFunctions.isFunction)(predicateOrInput)) {
-    return function (input) {
-      var results = input.filter(predicateOrInput);
-      var numberOfResults = results.length;
-
-      if (numberOfResults === 0) {
-        throw Error("Expected a single search result. Found no matching items.");
-      } else if (numberOfResults > 1) {
-        throw Error("Expected a single search result. Found ".concat(numberOfResults, " matching items."));
-      }
-
-      return results[0];
-    };
-  } else {
-    var numberOfItems = predicateOrInput.length;
-
-    if (numberOfItems === 0) {
-      throw Error("Expected a single item. Found no items.");
-    } else if (numberOfItems > 1) {
-      throw Error("Expected a single item. Found ".concat(numberOfItems, " items."));
-    }
-
-    return predicateOrInput[0];
-  }
-}
-
-function singleOrNull(predicateOrInput) {
-  if ((0, _typeFunctions.isFunction)(predicateOrInput)) {
-    return function (input) {
-      var results = input.filter(predicateOrInput);
-      var numberOfResults = results.length;
-
-      if (numberOfResults > 1) {
-        throw Error("Expected one or no search results. Found ".concat(numberOfResults, " matching items."));
-      }
-
-      return results[0];
-    };
-  } else {
-    var numberOfItems = predicateOrInput.length;
-
-    if (numberOfItems > 1) {
-      throw Error("Expected one or no items. Found ".concat(numberOfItems, " items."));
-    }
-
-    return predicateOrInput[0];
-  }
-}
-
 function singleIndex(predicate) {
   return function (arr) {
     var matches = [];
@@ -535,7 +484,7 @@ function containsAll() {
   }
 
   if ((0, _stringOrArrayFunctions.isSingle)(candidateItemsOrArray)) {
-    var firstCandidateItem = (0, _stringOrArrayFunctions.first)(candidateItemsOrArray);
+    var firstCandidateItem = (0, _singleAccessFunctions.first)(candidateItemsOrArray);
 
     if ((0, _typeFunctions.isArray)(firstCandidateItem)) {
       return containsAll.apply(void 0, _toConsumableArray(firstCandidateItem));
@@ -548,7 +497,7 @@ function containsAll() {
     }
 
     if ((0, _stringOrArrayFunctions.isSingle)(itemsOrArray)) {
-      var firstItem = (0, _stringOrArrayFunctions.first)(itemsOrArray);
+      var firstItem = (0, _singleAccessFunctions.first)(itemsOrArray);
 
       if ((0, _typeFunctions.isArray)(firstItem)) {
         return containsAll(candidateItemsOrArray).apply(void 0, _toConsumableArray(firstItem));
@@ -763,12 +712,6 @@ function slice(indices) {
     }
 
     return result;
-  };
-}
-
-function getItem(index) {
-  return function (arr) {
-    return arr[index];
   };
 }
 

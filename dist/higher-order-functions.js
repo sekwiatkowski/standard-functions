@@ -12,9 +12,9 @@ exports.constant = constant;
 
 var _stringOrArrayFunctions = require("./string-or-array-functions");
 
-var _arrayFunctions = require("./array-functions");
-
 var _typeFunctions = require("./type-functions");
+
+var _singleAccessFunctions = require("./single-access-functions");
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -68,7 +68,7 @@ function compose() {
   }
 
   if ((0, _stringOrArrayFunctions.isSingle)(functionsOrArray)) {
-    var singleItem = (0, _arrayFunctions.single)(functionsOrArray);
+    var singleItem = (0, _singleAccessFunctions.single)(functionsOrArray);
 
     if ((0, _typeFunctions.isArray)(singleItem)) {
       return compose.apply(void 0, _toConsumableArray(singleItem));
