@@ -1,5 +1,3 @@
-import {isGreaterThan} from '../boolean-functions'
-
 export function length(collection) {
     return collection.length
 }
@@ -17,7 +15,7 @@ export function isLongerThan(expectedLength) {
 }
 
 export const isEmpty = isOfLength(0)
-export const isNotEmpty = isGreaterThan(0)
+export const isNotEmpty = isLongerThan(0)
 export const isSingle = isOfLength(1)
 
 export const isMultiple = isLongerThan(1)
