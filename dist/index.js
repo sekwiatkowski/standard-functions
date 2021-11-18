@@ -159,3 +159,16 @@ Object.keys(_singleAccessFunctions).forEach(function (key) {
     }
   });
 });
+
+var _multiAccessFunctions = require("./multi-access-functions");
+
+Object.keys(_multiAccessFunctions).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _multiAccessFunctions[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _multiAccessFunctions[key];
+    }
+  });
+});

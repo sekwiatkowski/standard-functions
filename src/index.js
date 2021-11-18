@@ -18,3 +18,4 @@ export * from './object-functions'
 export * from './promise-functions'
 
 export * from './single-access-functions'
+export * from './multi-access-functions'
