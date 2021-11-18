@@ -1,6 +1,6 @@
-import {isSingle} from './string-or-array-functions'
 import {isArray} from './type-functions'
 import {single} from './single-access-functions'
+import {isSingle} from './length-functions'
 
 export function applyTo(x) {
     return f => f(x)

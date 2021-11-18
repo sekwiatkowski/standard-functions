@@ -1,5 +1,5 @@
-import {length} from './string-or-array-functions'
 import {isArray} from './type-functions'
+import {length} from './length-functions'
 
 export function toString(input) {
     return input.toString()

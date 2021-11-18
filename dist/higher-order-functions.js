@@ -10,11 +10,11 @@ exports.compose = compose;
 exports.identity = identity;
 exports.constant = constant;
 
-var _stringOrArrayFunctions = require("./string-or-array-functions");
-
 var _typeFunctions = require("./type-functions");
 
 var _singleAccessFunctions = require("./single-access-functions");
+
+var _lengthFunctions = require("./length-functions");
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -67,7 +67,7 @@ function compose() {
     functionsOrArray[_key] = arguments[_key];
   }
 
-  if ((0, _stringOrArrayFunctions.isSingle)(functionsOrArray)) {
+  if ((0, _lengthFunctions.isSingle)(functionsOrArray)) {
     var singleItem = (0, _singleAccessFunctions.single)(functionsOrArray);
 
     if ((0, _typeFunctions.isArray)(singleItem)) {

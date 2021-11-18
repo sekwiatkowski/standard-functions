@@ -44,11 +44,11 @@ var _arrayFunctions = require("./array-functions.js");
 
 var _booleanFunctions = require("./boolean-functions.js");
 
-var _stringOrArrayFunctions = require("./string-or-array-functions");
-
 var _typeFunctions = require("./type-functions");
 
 var _singleAccessFunctions = require("./single-access-functions");
+
+var _lengthFunctions = require("./length-functions");
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
@@ -186,7 +186,7 @@ function properties() {
   }
 
   return function (obj) {
-    if ((0, _stringOrArrayFunctions.isSingle)(keys)) {
+    if ((0, _lengthFunctions.isSingle)(keys)) {
       var singleItem = (0, _singleAccessFunctions.single)(keys);
 
       if ((0, _typeFunctions.isArray)(singleItem)) {
@@ -361,7 +361,7 @@ function merge() {
     firstOrArray[_key2] = arguments[_key2];
   }
 
-  if ((0, _stringOrArrayFunctions.isSingle)(firstOrArray)) {
+  if ((0, _lengthFunctions.isSingle)(firstOrArray)) {
     var singleItem = (0, _singleAccessFunctions.single)(firstOrArray);
 
     if ((0, _typeFunctions.isNull)(singleItem) || (0, _typeFunctions.isUndefined)(singleItem)) {
@@ -386,7 +386,7 @@ function mergeWith(f) {
       firstOrArray[_key3] = arguments[_key3];
     }
 
-    if ((0, _stringOrArrayFunctions.isSingle)(firstOrArray)) {
+    if ((0, _lengthFunctions.isSingle)(firstOrArray)) {
       var singleItem = (0, _singleAccessFunctions.single)(firstOrArray);
 
       if ((0, _typeFunctions.isArray)(singleItem)) {
@@ -451,7 +451,7 @@ function omit() {
     omittedKeys[_key4] = arguments[_key4];
   }
 
-  if ((0, _stringOrArrayFunctions.isSingle)(omittedKeys)) {
+  if ((0, _lengthFunctions.isSingle)(omittedKeys)) {
     var firstItem = (0, _singleAccessFunctions.first)(omittedKeys);
 
     if ((0, _typeFunctions.isArray)(firstItem)) {
@@ -480,7 +480,7 @@ function pick() {
     keys[_key5] = arguments[_key5];
   }
 
-  if ((0, _stringOrArrayFunctions.isSingle)(keys)) {
+  if ((0, _lengthFunctions.isSingle)(keys)) {
     var firstItem = (0, _singleAccessFunctions.first)(keys);
 
     if ((0, _typeFunctions.isArray)(firstItem)) {
@@ -517,7 +517,7 @@ function pickAll() {
     keys[_key6] = arguments[_key6];
   }
 
-  if ((0, _stringOrArrayFunctions.isSingle)(keys)) {
+  if ((0, _lengthFunctions.isSingle)(keys)) {
     var firstItem = (0, _singleAccessFunctions.first)(keys);
 
     if ((0, _typeFunctions.isArray)(firstItem)) {

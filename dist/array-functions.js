@@ -66,8 +66,6 @@ exports.beforeAndAfter = beforeAndAfter;
 exports.upTo = upTo;
 exports.intersperse = intersperse;
 
-var _stringOrArrayFunctions = require("./string-or-array-functions");
-
 var _objectFunctions = require("./object-functions");
 
 var _higherOrderFunctions = require("./higher-order-functions");
@@ -77,6 +75,8 @@ var _booleanFunctions = require("./boolean-functions");
 var _typeFunctions = require("./type-functions");
 
 var _singleAccessFunctions = require("./single-access-functions");
+
+var _lengthFunctions = require("./length-functions");
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -165,7 +165,7 @@ function exclude(predicate) {
 }
 
 function excludeNull(input) {
-  if ((0, _stringOrArrayFunctions.isSingle)(arguments)) {
+  if ((0, _lengthFunctions.isSingle)(arguments)) {
     if ((0, _typeFunctions.isNull)(input)) {
       return [];
     } else if ((0, _typeFunctions.isArray)(input)) {
@@ -483,7 +483,7 @@ function containsAll() {
     candidateItemsOrArray[_key] = arguments[_key];
   }
 
-  if ((0, _stringOrArrayFunctions.isSingle)(candidateItemsOrArray)) {
+  if ((0, _lengthFunctions.isSingle)(candidateItemsOrArray)) {
     var firstCandidateItem = (0, _singleAccessFunctions.first)(candidateItemsOrArray);
 
     if ((0, _typeFunctions.isArray)(firstCandidateItem)) {
@@ -496,7 +496,7 @@ function containsAll() {
       itemsOrArray[_key2] = arguments[_key2];
     }
 
-    if ((0, _stringOrArrayFunctions.isSingle)(itemsOrArray)) {
+    if ((0, _lengthFunctions.isSingle)(itemsOrArray)) {
       var firstItem = (0, _singleAccessFunctions.first)(itemsOrArray);
 
       if ((0, _typeFunctions.isArray)(firstItem)) {
@@ -542,10 +542,10 @@ function zip() {
   }
 
   // zip([ arr_1, ..., arr_n ])
-  if ((0, _stringOrArrayFunctions.isSingle)(input)) {
+  if ((0, _lengthFunctions.isSingle)(input)) {
     var arrayOfArrays = input[0]; /// zip([ arr_1 ])
 
-    if (!(0, _stringOrArrayFunctions.isSingle)(arrayOfArrays)) {
+    if (!(0, _lengthFunctions.isSingle)(arrayOfArrays)) {
       return arrayOfArrays[0];
     } else {
       return zip.apply(void 0, input);
@@ -553,7 +553,7 @@ function zip() {
   }
 
   var numberOArrays = input.length;
-  var minimumLength = Math.min.apply(Math, _toConsumableArray(map(_stringOrArrayFunctions.length)(input)));
+  var minimumLength = Math.min.apply(Math, _toConsumableArray(map(_lengthFunctions.length)(input)));
   var result = new Array(minimumLength);
 
   for (var indexItem = 0; indexItem < minimumLength; indexItem++) {
@@ -571,7 +571,7 @@ function zip() {
 
 function unzip(arr) {
   var numberOfItems = arr.length;
-  var numberOfArrays = Math.min.apply(Math, _toConsumableArray(map(_stringOrArrayFunctions.length)(arr)));
+  var numberOfArrays = Math.min.apply(Math, _toConsumableArray(map(_lengthFunctions.length)(arr)));
   var result = Array(numberOfArrays);
 
   for (var indexArray = 0; indexArray < numberOfArrays; indexArray++) {
@@ -704,7 +704,7 @@ function lastIndex(arr) {
 
 function slice(indices) {
   return function (arr) {
-    var n = (0, _stringOrArrayFunctions.length)(indices);
+    var n = (0, _lengthFunctions.length)(indices);
     var result = Array(n);
 
     for (var i = 0; i < n; i++) {
@@ -772,7 +772,7 @@ function swap(first) {
 function sort(arr) {
   var copy = arr.slice();
 
-  if ((0, _stringOrArrayFunctions.isEmpty)(arr)) {
+  if ((0, _lengthFunctions.isEmpty)(arr)) {
     return copy;
   }
 
@@ -788,7 +788,7 @@ function sort(arr) {
 function sortDescendingly(arr) {
   var copy = arr.slice();
 
-  if ((0, _stringOrArrayFunctions.isEmpty)(arr)) {
+  if ((0, _lengthFunctions.isEmpty)(arr)) {
     return copy;
   }
 
@@ -865,7 +865,7 @@ function after(indexOrPredicate) {
       return [];
     }
 
-    return slice(range(index + 1)((0, _stringOrArrayFunctions.length)(arr)))(arr);
+    return slice(range(index + 1)((0, _lengthFunctions.length)(arr)))(arr);
   };
 }
 
@@ -892,11 +892,11 @@ function upTo(indexOrPredicate) {
 
 function intersperse(interspersion) {
   return function (arr) {
-    if ((0, _stringOrArrayFunctions.isEmpty)(arr) || (0, _stringOrArrayFunctions.isOfLength)(1)(arr)) {
+    if ((0, _lengthFunctions.isEmpty)(arr) || (0, _lengthFunctions.isOfLength)(1)(arr)) {
       return _toConsumableArray(arr);
     }
 
-    var arrLength = (0, _stringOrArrayFunctions.length)(arr);
+    var arrLength = (0, _lengthFunctions.length)(arr);
     var newSize = 2 * arrLength - 1;
     var result = new Array(newSize);
     var indexArray = 0;

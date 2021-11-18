@@ -12,11 +12,11 @@ exports.parallelMap = parallelMap;
 
 var _arrayFunctions = require("./array-functions");
 
-var _stringOrArrayFunctions = require("./string-or-array-functions");
-
 var _typeFunctions = require("./type-functions");
 
 var _singleAccessFunctions = require("./single-access-functions");
+
+var _lengthFunctions = require("./length-functions");
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -43,7 +43,7 @@ function parallel() {
     promises[_key] = arguments[_key];
   }
 
-  if ((0, _stringOrArrayFunctions.isSingle)(promises)) {
+  if ((0, _lengthFunctions.isSingle)(promises)) {
     var firstItem = (0, _singleAccessFunctions.first)(promises);
 
     if ((0, _typeFunctions.isArray)(firstItem)) {

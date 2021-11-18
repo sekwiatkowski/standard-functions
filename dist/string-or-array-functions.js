@@ -4,14 +4,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.concat = concat;
-exports.isEmpty = isEmpty;
-exports.isNotEmpty = isNotEmpty;
-exports.isOfLength = isOfLength;
-exports.isSingleOrEmpty = isSingleOrEmpty;
-exports.isShorterThan = isShorterThan;
-exports.isLongerThan = isLongerThan;
-exports.length = length;
-exports.isMultiple = exports.isSingle = void 0;
 
 var _typeFunctions = require("./type-functions");
 
@@ -49,43 +41,4 @@ function concat() {
   return items.reduce(function (acc, s) {
     return acc.concat(s);
   }, initial);
-}
-
-function isEmpty(collection) {
-  return collection.length === 0;
-}
-
-function isNotEmpty(collection) {
-  return collection.length > 0;
-}
-
-function isOfLength(length) {
-  return function (collection) {
-    return collection.length === length;
-  };
-}
-
-var isSingle = isOfLength(1);
-exports.isSingle = isSingle;
-var isMultiple = isLongerThan(1);
-exports.isMultiple = isMultiple;
-
-function isSingleOrEmpty(collection) {
-  return isEmpty(collection) || isSingle(collection);
-}
-
-function isShorterThan(length) {
-  return function (collection) {
-    return collection.length < length;
-  };
-}
-
-function isLongerThan(length) {
-  return function (collection) {
-    return collection.length > length;
-  };
-}
-
-function length(collection) {
-  return collection.length;
 }

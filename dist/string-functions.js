@@ -26,9 +26,9 @@ exports.repeat = repeat;
 exports.pad = pad;
 exports.surroundWithDoubleQuotes = exports.surroundWithSingleQuotes = exports.surroundWithParentheses = exports.joinWithPlus = exports.joinWithEqualitySign = exports.joinWithNewline = exports.joinWithSpace = exports.joinWithSlash = exports.joinWithSemicolonSpace = exports.joinWithSemicolon = exports.joinWithDot = exports.joinWithDash = exports.joinWithCommaSpace = exports.joinWithComma = exports.joinWithAmpersand = exports.splitByPlus = exports.splitByEqualitySign = exports.splitByNewline = exports.splitBySpace = exports.splitBySlash = exports.splitBySemicolonSpace = exports.splitBySemicolon = exports.splitByDot = exports.splitByDash = exports.splitByCommaSpace = exports.splitByComma = exports.splitByAmpersand = void 0;
 
-var _stringOrArrayFunctions = require("./string-or-array-functions");
-
 var _typeFunctions = require("./type-functions");
+
+var _lengthFunctions = require("./length-functions");
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -238,7 +238,7 @@ function repeat(n) {
 function pad(character) {
   return function (minimumLength) {
     return function (input) {
-      var remaining = minimumLength - (0, _stringOrArrayFunctions.length)(input);
+      var remaining = minimumLength - (0, _lengthFunctions.length)(input);
 
       if (remaining <= 0) {
         return input;

@@ -23,35 +23,3 @@ export function concat(...items) {
     )
 }
 
-export function isEmpty(collection) {
-    return collection.length === 0
-}
-
-export function isNotEmpty(collection) {
-    return collection.length > 0
-}
-
-export function isOfLength(length) {
-    return collection => collection.length === length
-}
-
-export const isSingle = isOfLength(1)
-
-export const isMultiple = isLongerThan(1)
-
-export function isSingleOrEmpty(collection) {
-    return isEmpty(collection) || isSingle(collection)
-}
-
-export function isShorterThan(length) {
-    return collection => collection.length < length
-}
-
-export function isLongerThan(length) {
-    return collection => collection.length > length
-}
-
-export function length(collection) {
-    return collection.length
-}
-
