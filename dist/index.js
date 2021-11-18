@@ -289,3 +289,16 @@ Object.keys(_mappingFunctions).forEach(function (key) {
     }
   });
 });
+
+var _groupingFunctions = require("./arrays/grouping-functions");
+
+Object.keys(_groupingFunctions).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _groupingFunctions[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _groupingFunctions[key];
+    }
+  });
+});
