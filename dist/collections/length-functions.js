@@ -8,6 +8,7 @@ exports.isOfLength = isOfLength;
 exports.isShorterThan = isShorterThan;
 exports.isLongerThan = isLongerThan;
 exports.isSingleOrEmpty = isSingleOrEmpty;
+exports.lastIndex = lastIndex;
 exports.isMultiple = exports.isSingle = exports.isNotEmpty = exports.isEmpty = void 0;
 
 function length(collection) {
@@ -43,4 +44,8 @@ exports.isMultiple = isMultiple;
 
 function isSingleOrEmpty(collection) {
   return isEmpty(collection) || isSingle(collection);
+}
+
+function lastIndex(arr) {
+  return arr.length - 1;
 }

@@ -39,6 +39,7 @@ exports.fromEntries = fromEntries;
 exports.flattenObject = flattenObject;
 exports.unflattenObject = unflattenObject;
 exports.reverseObject = reverseObject;
+exports.zipObject = zipObject;
 
 var _booleanFunctions = require("./boolean-functions.js");
 
@@ -49,6 +50,8 @@ var _singleAccessFunctions = require("./collections/single-access-functions");
 var _lengthFunctions = require("./collections/length-functions");
 
 var _aggregationFunctions = require("./arrays/aggregation-functions");
+
+var _joinFunctions = require("./arrays/join-functions");
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
@@ -659,4 +662,10 @@ function reverseObject(input) {
   }
 
   return reversed;
+}
+
+function zipObject(as) {
+  return function (bs) {
+    return fromEntries((0, _joinFunctions.zip)(as, bs));
+  };
 }

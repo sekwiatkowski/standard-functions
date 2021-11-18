@@ -315,3 +315,16 @@ Object.keys(_joinFunctions2).forEach(function (key) {
     }
   });
 });
+
+var _rangeFunctions = require("./arrays/range-functions");
+
+Object.keys(_rangeFunctions).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _rangeFunctions[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _rangeFunctions[key];
+    }
+  });
+});

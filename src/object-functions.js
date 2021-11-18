@@ -3,6 +3,7 @@ import {isArray, isFunction, isNull, isUndefined} from './type-functions'
 import {first, single} from './collections/single-access-functions'
 import {isSingle} from './collections/length-functions'
 import {fold} from './arrays/aggregation-functions'
+import {zip} from './arrays/join-functions'
 
 export function isObject(input) {
     return typeof input === 'object'
@@ -467,4 +468,8 @@ export function reverseObject(input) {
     }
 
     return reversed
+}
+
+export function zipObject(as) {
+    return bs => fromEntries(zip(as, bs))
 }

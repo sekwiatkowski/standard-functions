@@ -1,6 +1,10 @@
 import {map} from './mapping-functions'
 import {isSingle, length} from '../collections/length-functions'
 
+export function flatten(arr) {
+    return arr.flat()
+}
+
 export function cartesianProduct(as) {
     return bs => {
         const aLength = as.length

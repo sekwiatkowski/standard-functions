@@ -23,3 +23,18 @@ export const isMultiple = isLongerThan(1)
 export function isSingleOrEmpty(collection) {
     return isEmpty(collection) || isSingle(collection)
 }
+
+export function indices(arr) {
+    const n = arr.length
+    const result = Array(n)
+
+    for (let i = 0; i < n; i++) {
+        result[i] = i
+    }
+
+    return result
+}
+
+export function lastIndex(arr) {
+    return arr.length - 1
+}

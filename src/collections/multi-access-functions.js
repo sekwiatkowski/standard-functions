@@ -1,9 +1,21 @@
 import {head, last} from './single-access-functions'
 import {isFunction, isNull} from '../type-functions'
 import {length} from './length-functions'
-import {slice} from '../array-functions'
 import {findIndex} from '../arrays/search-functions'
 import {inclusiveRange, range} from '../arrays/range-functions'
+
+export function slice(indices) {
+    return arr => {
+        const n = length(indices)
+        const result = Array(n)
+
+        for (let i = 0; i < n; i++) {
+            result[i] = arr[indices[i]]
+        }
+
+        return result
+    }
+}
 
 export function tail(input) {
     const length = input.length

@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.slice = slice;
 exports.tail = tail;
 exports.headAndTail = headAndTail;
 exports.init = init;
@@ -28,9 +29,22 @@ var _typeFunctions = require("../type-functions");
 
 var _lengthFunctions = require("./length-functions");
 
-var _arrayFunctions = require("../array-functions");
-
 var _searchFunctions = require("../arrays/search-functions");
+
+var _rangeFunctions = require("../arrays/range-functions");
+
+function slice(indices) {
+  return function (arr) {
+    var n = (0, _lengthFunctions.length)(indices);
+    var result = Array(n);
+
+    for (var i = 0; i < n; i++) {
+      result[i] = arr[indices[i]];
+    }
+
+    return result;
+  };
+}
 
 function tail(input) {
   var length = input.length;
@@ -160,7 +174,7 @@ function before(indexOrPredicate) {
       return [];
     }
 
-    return (0, _arrayFunctions.slice)((0, _arrayFunctions.range)(0)(index))(arr);
+    return slice((0, _rangeFunctions.range)(0)(index))(arr);
   };
 }
 
@@ -172,7 +186,7 @@ function after(indexOrPredicate) {
       return [];
     }
 
-    return (0, _arrayFunctions.slice)((0, _arrayFunctions.range)(index + 1)((0, _lengthFunctions.length)(arr)))(arr);
+    return slice((0, _rangeFunctions.range)(index + 1)((0, _lengthFunctions.length)(arr)))(arr);
   };
 }
 
@@ -193,6 +207,6 @@ function upTo(indexOrPredicate) {
       return [];
     }
 
-    return (0, _arrayFunctions.slice)((0, _arrayFunctions.inclusiveRange)(0)(index))(arr);
+    return slice((0, _rangeFunctions.inclusiveRange)(0)(index))(arr);
   };
 }
