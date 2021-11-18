@@ -19,7 +19,7 @@ exports.product = exports.sum = exports.changeSign = void 0;
 
 var _higherOrderFunctions = require("./higher-order-functions");
 
-var _reductionFunctions = require("./arrays/reduction-functions");
+var _aggregationFunctions = require("./arrays/aggregation-functions");
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -75,7 +75,7 @@ function max(arr) {
 
 function sumBy(f) {
   return function (xs) {
-    return (0, _reductionFunctions.fold)(function (acc, x) {
+    return (0, _aggregationFunctions.fold)(function (acc, x) {
       return acc + f(x);
     })(0)(xs);
   };
@@ -113,7 +113,7 @@ exports.sum = sum;
 
 function productBy(f) {
   return function (xs) {
-    return (0, _reductionFunctions.fold)(function (acc, x) {
+    return (0, _aggregationFunctions.fold)(function (acc, x) {
       return acc * f(x);
     })(1)(xs);
   };

@@ -8,8 +8,6 @@ exports.findLast = findLast;
 exports.findIndex = findIndex;
 exports.indexOf = indexOf;
 exports.singleIndex = singleIndex;
-exports.minBy = minBy;
-exports.maxBy = maxBy;
 
 function find(predicate) {
   return function (arr) {
@@ -82,41 +80,5 @@ function singleIndex(predicate) {
     }
 
     return matches[0];
-  };
-}
-
-function minBy(f) {
-  return function (arr) {
-    var lowestScore = Number.POSITIVE_INFINITY;
-    var index = -1;
-
-    for (var i = 0; i < arr.length; i++) {
-      var score = f(arr[i]);
-
-      if (score < lowestScore) {
-        lowestScore = score;
-        index = i;
-      }
-    }
-
-    return arr[index];
-  };
-}
-
-function maxBy(f) {
-  return function (arr) {
-    var highestScore = Number.NEGATIVE_INFINITY;
-    var index = -1;
-
-    for (var i = 0; i < arr.length; i++) {
-      var score = f(arr[i]);
-
-      if (score > highestScore) {
-        highestScore = score;
-        index = i;
-      }
-    }
-
-    return arr[index];
   };
 }

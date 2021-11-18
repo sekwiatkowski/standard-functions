@@ -1,5 +1,5 @@
 import {identity} from './higher-order-functions'
-import {fold} from './arrays/reduction-functions'
+import {fold} from './arrays/aggregation-functions'
 
 export function greaterThan(value) {
     return x => x > value

@@ -251,15 +251,15 @@ Object.keys(_membershipFunctions).forEach(function (key) {
   });
 });
 
-var _reductionFunctions = require("./arrays/reduction-functions");
+var _aggregationFunctions = require("./arrays/aggregation-functions");
 
-Object.keys(_reductionFunctions).forEach(function (key) {
+Object.keys(_aggregationFunctions).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _reductionFunctions[key]) return;
+  if (key in exports && exports[key] === _aggregationFunctions[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _reductionFunctions[key];
+      return _aggregationFunctions[key];
     }
   });
 });

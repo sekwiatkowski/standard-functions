@@ -1,6 +1,4 @@
 import {fromEntries} from './object-functions'
-import {equals} from './boolean-functions'
-import {isFunction} from './type-functions'
 import {length} from './collections/length-functions'
 import {zip} from './arrays/join-functions'
 
@@ -93,24 +91,6 @@ export function slice(indices) {
         }
 
         return result
-    }
-}
-
-export function count(itemOrPredicate) {
-    return arr => {
-        let counter = 0
-
-        const predicate = isFunction(itemOrPredicate)
-            ? itemOrPredicate
-            : equals(itemOrPredicate)
-
-        for (const item of arr) {
-            if (predicate(item)) {
-                counter += 1
-            }
-        }
-
-        return counter
     }
 }
 
