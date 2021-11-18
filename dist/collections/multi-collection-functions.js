@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.concat = concat;
 
-var _typeFunctions = require("./type-functions");
+var _typeFunctions = require("../type-functions");
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 

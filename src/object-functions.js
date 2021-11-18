@@ -1,8 +1,8 @@
 import {fold} from './array-functions.js'
 import {not} from './boolean-functions.js'
 import {isArray, isFunction, isNull, isUndefined} from './type-functions'
-import {first, single} from './single-access-functions'
-import {isSingle} from './length-functions'
+import {first, single} from './collections/single-access-functions'
+import {isSingle} from './collections/length-functions'
 
 export function isObject(input) {
     return typeof input === 'object'

@@ -12,7 +12,7 @@ exports.second = second;
 exports.last = last;
 exports.nth = void 0;
 
-var _typeFunctions = require("./type-functions");
+var _typeFunctions = require("../type-functions");
 
 function single(predicateOrInput) {
   if ((0, _typeFunctions.isFunction)(predicateOrInput)) {

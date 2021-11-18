@@ -14,9 +14,9 @@ var _arrayFunctions = require("./array-functions");
 
 var _typeFunctions = require("./type-functions");
 
-var _singleAccessFunctions = require("./single-access-functions");
+var _singleAccessFunctions = require("./collections/single-access-functions");
 
-var _lengthFunctions = require("./length-functions");
+var _lengthFunctions = require("./collections/length-functions");
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 

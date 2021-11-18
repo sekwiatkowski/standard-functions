@@ -1,4 +1,4 @@
-import {isArray, isString} from './type-functions'
+import {isArray, isString} from '../type-functions'
 
 export function concat(...items) {
     if (items.length === 1) {
@@ -8,8 +8,7 @@ export function concat(...items) {
             // 2D array with a single item
             if (firstItem.length === 1) {
                 return firstItem[0]
-            }
-            else {
+            } else {
                 return concat(...firstItem)
             }
         }
@@ -22,4 +21,3 @@ export function concat(...items) {
         initial
     )
 }
-

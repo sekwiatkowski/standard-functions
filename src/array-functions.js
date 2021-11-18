@@ -1,10 +1,9 @@
-
 import {fromEntries, keys} from './object-functions'
 import {identity} from './higher-order-functions'
 import {equals, none, not, some} from './boolean-functions'
 import {isArray, isFunction, isNull, isNumber} from './type-functions'
-import {first} from './single-access-functions'
-import {isEmpty, isOfLength, isSingle, length} from './length-functions'
+import {first} from './collections/single-access-functions'
+import {isEmpty, isOfLength, isSingle, length} from './collections/length-functions'
 
 export function forEach(f) {
     return arr => {

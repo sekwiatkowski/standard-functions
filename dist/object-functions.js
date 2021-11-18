@@ -46,9 +46,9 @@ var _booleanFunctions = require("./boolean-functions.js");
 
 var _typeFunctions = require("./type-functions");
 
-var _singleAccessFunctions = require("./single-access-functions");
+var _singleAccessFunctions = require("./collections/single-access-functions");
 
-var _lengthFunctions = require("./length-functions");
+var _lengthFunctions = require("./collections/length-functions");
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 

@@ -1,6 +1,6 @@
-import {isArray, isString} from './type-functions'
-import {equals} from './boolean-functions'
-import {indexOf} from './array-functions'
+import {isArray, isString} from '../type-functions'
+import {equals} from '../boolean-functions'
+import {indexOf} from '../array-functions'
 
 export function append(appendix) {
     return original => {

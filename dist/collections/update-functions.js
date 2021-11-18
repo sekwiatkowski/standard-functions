@@ -14,11 +14,11 @@ exports.removeFirstOccurrence = removeFirstOccurrence;
 exports.removeLastOccurrence = removeLastOccurrence;
 exports.reverse = reverse;
 
-var _typeFunctions = require("./type-functions");
+var _typeFunctions = require("../type-functions");
 
-var _booleanFunctions = require("./boolean-functions");
+var _booleanFunctions = require("../boolean-functions");
 
-var _arrayFunctions = require("./array-functions");
+var _arrayFunctions = require("../array-functions");
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 

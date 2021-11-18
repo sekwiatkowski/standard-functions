@@ -1,4 +1,4 @@
-import {isGreaterThan} from './boolean-functions'
+import {isGreaterThan} from '../boolean-functions'
 
 export function length(collection) {
     return collection.length

@@ -6,8 +6,6 @@ export * from './pair-functions'
 export * from './string-functions'
 export * from './character-functions'
 
-export * from './string-or-array-functions'
-
 export * from './boolean-functions'
 export * from './number-functions'
 
@@ -17,7 +15,8 @@ export * from './object-functions'
 
 export * from './promise-functions'
 
-export * from './single-access-functions'
-export * from './multi-access-functions'
-export * from './update-functions'
-export * from './length-functions'
+export * from './collections/single-access-functions'
+export * from './collections/multi-access-functions'
+export * from './collections/update-functions'
+export * from './collections/length-functions'
+export * from './collections/multi-collection-functions'

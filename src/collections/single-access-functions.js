@@ -1,4 +1,4 @@
-import {isFunction} from './type-functions'
+import {isFunction} from '../type-functions'
 
 export function single(predicateOrInput) {
     if (isFunction(predicateOrInput)) {

@@ -10,7 +10,7 @@ exports.isLongerThan = isLongerThan;
 exports.isSingleOrEmpty = isSingleOrEmpty;
 exports.isMultiple = exports.isSingle = exports.isNotEmpty = exports.isEmpty = void 0;
 
-var _booleanFunctions = require("./boolean-functions");
+var _booleanFunctions = require("../boolean-functions");
 
 function length(collection) {
   return collection.length;

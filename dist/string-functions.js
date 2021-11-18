@@ -28,7 +28,7 @@ exports.surroundWithDoubleQuotes = exports.surroundWithSingleQuotes = exports.su
 
 var _typeFunctions = require("./type-functions");
 
-var _lengthFunctions = require("./length-functions");
+var _lengthFunctions = require("./collections/length-functions");
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
