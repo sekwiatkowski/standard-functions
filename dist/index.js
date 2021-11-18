@@ -17,20 +17,7 @@ Object.keys(_typeFunctions).forEach(function (key) {
   });
 });
 
-var _arrayFunctions = require("./array-functions");
-
-Object.keys(_arrayFunctions).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _arrayFunctions[key]) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _arrayFunctions[key];
-    }
-  });
-});
-
-var _pairFunctions = require("./arrays/pair-functions");
+var _pairFunctions = require("./pair-functions");
 
 Object.keys(_pairFunctions).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -39,6 +26,19 @@ Object.keys(_pairFunctions).forEach(function (key) {
     enumerable: true,
     get: function get() {
       return _pairFunctions[key];
+    }
+  });
+});
+
+var _setFunctions = require("./set-functions");
+
+Object.keys(_setFunctions).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _setFunctions[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _setFunctions[key];
     }
   });
 });
@@ -221,19 +221,6 @@ Object.keys(_filteringFunctions).forEach(function (key) {
     enumerable: true,
     get: function get() {
       return _filteringFunctions[key];
-    }
-  });
-});
-
-var _setFunctions = require("./arrays/set-functions");
-
-Object.keys(_setFunctions).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _setFunctions[key]) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _setFunctions[key];
     }
   });
 });

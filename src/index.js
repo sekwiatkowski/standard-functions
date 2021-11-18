@@ -1,7 +1,7 @@
 export * from './type-functions'
 
-export * from './array-functions'
-export * from './arrays/pair-functions'
+export * from './pair-functions'
+export * from './set-functions'
 
 export * from './string-functions'
 export * from './character-functions'
@@ -23,7 +23,6 @@ export * from './collections/join-functions'
 
 export * from './arrays/sorting-functions'
 export * from './arrays/filtering-functions'
-export * from './arrays/set-functions'
 export * from './arrays/membership-functions'
 export * from './arrays/aggregation-functions'
 export * from './arrays/search-functions'

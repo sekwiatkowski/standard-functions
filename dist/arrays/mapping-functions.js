@@ -7,6 +7,7 @@ exports.map = map;
 exports.mapNotNull = mapNotNull;
 exports.flatMap = flatMap;
 exports.intersperse = intersperse;
+exports.fill = fill;
 
 var _lengthFunctions = require("../collections/length-functions");
 
@@ -71,6 +72,18 @@ function intersperse(interspersion) {
     while (indexInterspersion < newSize - 1) {
       result[indexInterspersion] = interspersion;
       indexInterspersion += 2;
+    }
+
+    return result;
+  };
+}
+
+function fill(value) {
+  return function (n) {
+    var result = Array(n);
+
+    for (var i = 0; i < n; i++) {
+      result[i] = value;
     }
 
     return result;
