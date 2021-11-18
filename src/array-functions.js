@@ -89,41 +89,6 @@ export function groupEntriesBy(computeKey, deserializeKey = identity) {
         ) (zip(groupKeys, deserializedGroupKeys))
     }
 }
-export function minBy(f) {
-    return arr => {
-        let lowestScore = Number.POSITIVE_INFINITY
-        let index = -1
-
-        for (let i = 0; i < arr.length; i++) {
-            const score = f(arr[i])
-
-            if (score < lowestScore) {
-                lowestScore = score
-                index = i
-            }
-        }
-
-        return arr[index]
-    }
-}
-
-export function maxBy(f) {
-    return arr => {
-        let highestScore = Number.NEGATIVE_INFINITY
-        let index = -1
-
-        for (let i = 0; i < arr.length; i++) {
-            const score = f(arr[i])
-
-            if (score > highestScore) {
-                highestScore = score
-                index = i
-            }
-        }
-
-        return arr[index]
-    }
-}
 
 export function chunk(size) {
     return arr => {
@@ -308,22 +273,6 @@ export function slice(indices) {
 
         return result
     }
-}
-
-export function containsSublist(sublist) {
-    return arr => {
-        for (const item of sublist) {
-            if (!arr.includes(item)) {
-                return false
-            }
-        }
-
-        return true
-    }
-}
-
-export function isSublistOf(arr) {
-    return sublist => containsSublist(sublist) (arr)
 }
 
 export function count(itemOrPredicate) {
