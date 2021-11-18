@@ -18,6 +18,10 @@ var _singleAccessFunctions = require("../collections/single-access-functions");
 
 var _typeFunctions = require("../type-functions");
 
+var _someFunctions = require("../booleans/some-functions");
+
+var _noneFunctions = require("../booleans/none-functions");
+
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -32,7 +36,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 function contains(item) {
   return function (arr) {
-    return (0, _booleanFunctions.some)((0, _booleanFunctions.equals)(item))(arr);
+    return (0, _someFunctions.some)((0, _booleanFunctions.equals)(item))(arr);
   };
 }
 
@@ -44,7 +48,7 @@ function isContainedIn(arr) {
 
 function doesNotContain(item) {
   return function (arr) {
-    return (0, _booleanFunctions.none)((0, _booleanFunctions.equals)(item))(arr);
+    return (0, _noneFunctions.none)((0, _booleanFunctions.equals)(item))(arr);
   };
 }
 

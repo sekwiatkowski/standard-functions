@@ -328,3 +328,42 @@ Object.keys(_forEach).forEach(function (key) {
     }
   });
 });
+
+var _allFunctions = require("./booleans/all-functions");
+
+Object.keys(_allFunctions).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _allFunctions[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _allFunctions[key];
+    }
+  });
+});
+
+var _someFunctions = require("./booleans/some-functions");
+
+Object.keys(_someFunctions).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _someFunctions[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _someFunctions[key];
+    }
+  });
+});
+
+var _noneFunctions = require("./booleans/none-functions");
+
+Object.keys(_noneFunctions).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _noneFunctions[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _noneFunctions[key];
+    }
+  });
+});

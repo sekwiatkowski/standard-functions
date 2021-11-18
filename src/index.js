@@ -31,3 +31,7 @@ export * from './arrays/grouping-functions'
 export * from './arrays/join-functions'
 export * from './arrays/range-functions'
 export * from './arrays/for-each'
+
+export * from './booleans/all-functions'
+export * from './booleans/some-functions'
+export * from './booleans/none-functions'
