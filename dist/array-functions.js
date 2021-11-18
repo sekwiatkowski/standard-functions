@@ -12,6 +12,7 @@ exports.fold = fold;
 exports.foldWhile = foldWhile;
 exports.reduce = reduce;
 exports.find = find;
+exports.findLast = findLast;
 exports.findIndex = findIndex;
 exports.indexOf = indexOf;
 exports.singleIndex = singleIndex;
@@ -162,6 +163,20 @@ function find(predicate) {
   return function (arr) {
     for (var i = 0; i < arr.length; i++) {
       var item = arr[i];
+
+      if (predicate(item)) {
+        return item;
+      }
+    }
+
+    return null;
+  };
+}
+
+function findLast(predicate) {
+  return function (input) {
+    for (var i = input.length - 1; i >= 0; i--) {
+      var item = input[i];
 
       if (predicate(item)) {
         return item;

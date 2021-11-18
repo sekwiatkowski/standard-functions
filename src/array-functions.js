@@ -91,6 +91,20 @@ export function find(predicate) {
     }
 }
 
+export function findLast(predicate) {
+    return input => {
+        for (let i = input.length - 1; i >= 0; i--) {
+            const item = input[i]
+
+            if (predicate(item)) {
+                return item
+            }
+        }
+
+        return null
+    }
+}
+
 export function findIndex(predicate) {
     return arr => {
         for (let i = 0; i < arr.length; i++) {

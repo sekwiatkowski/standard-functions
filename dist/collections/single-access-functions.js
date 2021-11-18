@@ -6,11 +6,10 @@ Object.defineProperty(exports, "__esModule", {
 exports.single = single;
 exports.singleOrNull = singleOrNull;
 exports.getItem = getItem;
-exports.head = head;
 exports.first = first;
 exports.second = second;
 exports.last = last;
-exports.nth = void 0;
+exports.head = exports.nth = void 0;
 
 var _typeFunctions = require("../type-functions");
 
@@ -73,46 +72,17 @@ function getItem(index) {
 var nth = getItem;
 exports.nth = nth;
 
-function head(input) {
-  return input[0];
+function first(collection) {
+  return collection[0];
 }
 
-function first(predicateOrInput) {
-  if ((0, _typeFunctions.isFunction)(predicateOrInput)) {
-    return function (input) {
-      for (var i = 0; i < input.length; i++) {
-        var item = input[i];
+var head = first;
+exports.head = head;
 
-        if (predicateOrInput(item)) {
-          return item;
-        }
-      }
-
-      return null;
-    };
-  } else {
-    return predicateOrInput[0];
-  }
+function second(collection) {
+  return collection[1];
 }
 
-function second(input) {
-  return input[1];
-}
-
-function last(predicateOrInput) {
-  if ((0, _typeFunctions.isFunction)(predicateOrInput)) {
-    return function (input) {
-      for (var i = input.length - 1; i >= 0; i--) {
-        var item = input[i];
-
-        if (predicateOrInput(item)) {
-          return item;
-        }
-      }
-
-      return null;
-    };
-  } else {
-    return predicateOrInput[predicateOrInput.length - 1];
-  }
+function last(collection) {
+  return collection[collection.length - 1];
 }

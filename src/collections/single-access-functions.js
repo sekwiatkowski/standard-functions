@@ -58,46 +58,16 @@ export function getItem(index) {
 
 export const nth = getItem
 
-export function head(input) {
-    return input[0]
+export function first(collection) {
+    return collection[0]
 }
 
-export function first(predicateOrInput) {
-    if (isFunction(predicateOrInput)) {
-        return input => {
-            for (let i = 0; i < input.length; i++) {
-                const item = input[i]
+export const head = first
 
-                if (predicateOrInput(item)) {
-                    return item
-                }
-            }
-
-            return null
-        }
-    } else {
-        return predicateOrInput[0]
-    }
+export function second(collection) {
+    return collection[1]
 }
 
-export function second(input) {
-    return input[1]
-}
-
-export function last(predicateOrInput) {
-    if (isFunction(predicateOrInput)) {
-        return input => {
-            for (let i = input.length - 1; i >= 0; i--) {
-                const item = input[i]
-
-                if (predicateOrInput(item)) {
-                    return item
-                }
-            }
-
-            return null
-        }
-    } else {
-        return predicateOrInput[predicateOrInput.length - 1]
-    }
+export function last(collection) {
+    return collection[collection.length - 1]
 }
