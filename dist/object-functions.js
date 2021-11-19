@@ -41,8 +41,6 @@ exports.unflattenObject = unflattenObject;
 exports.reverseObject = reverseObject;
 exports.zipObject = zipObject;
 
-var _booleanFunctions = require("./boolean-functions.js");
-
 var _typeFunctions = require("./type-functions");
 
 var _singleAccessFunctions = require("./collections/single-access-functions");
@@ -52,6 +50,8 @@ var _lengthFunctions = require("./collections/length-functions");
 var _aggregationFunctions = require("./arrays/aggregation-functions");
 
 var _joinFunctions = require("./arrays/join-functions");
+
+var _negationFunctions = require("./booleans/negation-functions");
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
@@ -331,7 +331,7 @@ function filterKeys(predicate) {
 }
 
 function excludeKeys(predicate) {
-  return filterKeys((0, _booleanFunctions.not)(predicate));
+  return filterKeys((0, _negationFunctions.not)(predicate));
 }
 
 function filterValues(predicate) {
@@ -356,7 +356,7 @@ function filterValues(predicate) {
 }
 
 function excludeValues(predicate) {
-  return filterValues((0, _booleanFunctions.not)(predicate));
+  return filterValues((0, _negationFunctions.not)(predicate));
 }
 
 function merge() {
@@ -583,7 +583,7 @@ function fromEntries(entries) {
 
 
 function flattenObject(unflattened) {
-  var stopCondition = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : (0, _booleanFunctions.not)(isObject);
+  var stopCondition = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : (0, _negationFunctions.not)(isObject);
   var parent = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
   var flattened = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
   var unflattenedKeys = Object.keys(unflattened);

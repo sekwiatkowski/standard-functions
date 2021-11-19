@@ -1,6 +1,6 @@
-import {not} from '../boolean-functions'
 import {isSingle} from '../collections/length-functions'
 import {isArray, isNull} from '../type-functions'
+import {not} from '../booleans/negation-functions'
 
 export function filter(predicate) {
     return arr => arr.filter(predicate)

@@ -8,11 +8,11 @@ exports.filterIndices = filterIndices;
 exports.exclude = exclude;
 exports.excludeNull = excludeNull;
 
-var _booleanFunctions = require("../boolean-functions");
-
 var _lengthFunctions = require("../collections/length-functions");
 
 var _typeFunctions = require("../type-functions");
+
+var _negationFunctions = require("../booleans/negation-functions");
 
 function filter(predicate) {
   return function (arr) {
@@ -36,7 +36,7 @@ function filterIndices(predicate) {
 
 function exclude(predicate) {
   return function (arr) {
-    return arr.filter((0, _booleanFunctions.not)(predicate));
+    return arr.filter((0, _negationFunctions.not)(predicate));
   };
 }
 
