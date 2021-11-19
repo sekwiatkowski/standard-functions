@@ -1,9 +1,9 @@
-import {equals} from '../boolean-functions'
 import {isSingle} from '../collections/length-functions'
 import {first} from '../collections/single-access-functions'
 import {isArray} from '../type-functions'
 import {some} from '../booleans/some-functions'
 import {none} from '../booleans/none-functions'
+import {equals} from '../booleans/equality-functions'
 
 export function contains(item) {
     return arr => some(equals(item))(arr)

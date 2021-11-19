@@ -10,8 +10,6 @@ exports.isNotContainedIn = isNotContainedIn;
 exports.containsAll = containsAll;
 exports.areContainedIn = areContainedIn;
 
-var _booleanFunctions = require("../boolean-functions");
-
 var _lengthFunctions = require("../collections/length-functions");
 
 var _singleAccessFunctions = require("../collections/single-access-functions");
@@ -21,6 +19,8 @@ var _typeFunctions = require("../type-functions");
 var _someFunctions = require("../booleans/some-functions");
 
 var _noneFunctions = require("../booleans/none-functions");
+
+var _equalityFunctions = require("../booleans/equality-functions");
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -36,7 +36,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 function contains(item) {
   return function (arr) {
-    return (0, _someFunctions.some)((0, _booleanFunctions.equals)(item))(arr);
+    return (0, _someFunctions.some)((0, _equalityFunctions.equals)(item))(arr);
   };
 }
 
@@ -48,7 +48,7 @@ function isContainedIn(arr) {
 
 function doesNotContain(item) {
   return function (arr) {
-    return (0, _noneFunctions.none)((0, _booleanFunctions.equals)(item))(arr);
+    return (0, _noneFunctions.none)((0, _equalityFunctions.equals)(item))(arr);
   };
 }
 

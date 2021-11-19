@@ -11,7 +11,7 @@ var _typeFunctions = require("../type-functions");
 
 var _allFunctions = require("./all-functions");
 
-var _booleanFunctions = require("../boolean-functions");
+var _equalityFunctions = require("./equality-functions");
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -56,7 +56,7 @@ function none(predicate) {
   };
 }
 
-var allFalse = (0, _allFunctions.all)(_booleanFunctions.isFalse);
+var allFalse = (0, _allFunctions.all)(_equalityFunctions.isFalse);
 exports.allFalse = allFalse;
 
 function allFail() {

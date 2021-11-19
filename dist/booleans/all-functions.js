@@ -9,7 +9,7 @@ exports.allTrue = void 0;
 
 var _typeFunctions = require("../type-functions");
 
-var _booleanFunctions = require("../boolean-functions");
+var _equalityFunctions = require("./equality-functions");
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -54,7 +54,7 @@ function all(predicate) {
   };
 }
 
-var allTrue = all(_booleanFunctions.isTrue);
+var allTrue = all(_equalityFunctions.isTrue);
 exports.allTrue = allTrue;
 
 function allPass() {

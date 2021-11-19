@@ -1,6 +1,6 @@
 import {isArray, isString} from '../type-functions'
-import {equals} from '../boolean-functions'
 import {indexOf} from '../arrays/search-functions'
+import {equals} from '../booleans/equality-functions'
 
 export function update(index) {
     return item => arr => {

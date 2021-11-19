@@ -1,5 +1,5 @@
 import {isArray} from '../type-functions'
-import {isTrue} from '../boolean-functions'
+import {isTrue} from './equality-functions'
 
 export function some(predicate) {
     return (...itemsOrArray) => {

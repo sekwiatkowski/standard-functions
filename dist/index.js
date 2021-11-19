@@ -367,3 +367,16 @@ Object.keys(_noneFunctions).forEach(function (key) {
     }
   });
 });
+
+var _equalityFunctions = require("./booleans/equality-functions");
+
+Object.keys(_equalityFunctions).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _equalityFunctions[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _equalityFunctions[key];
+    }
+  });
+});

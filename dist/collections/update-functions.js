@@ -19,9 +19,9 @@ exports.reverse = reverse;
 
 var _typeFunctions = require("../type-functions");
 
-var _booleanFunctions = require("../boolean-functions");
-
 var _searchFunctions = require("../arrays/search-functions");
+
+var _equalityFunctions = require("../booleans/equality-functions");
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -126,7 +126,7 @@ function remove(item) {
     var i = arr.length - 1;
 
     while (i >= 0) {
-      if ((0, _booleanFunctions.equals)(item)) {
+      if ((0, _equalityFunctions.equals)(item)) {
         copy.splice(i, 1);
       }
 

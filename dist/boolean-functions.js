@@ -3,14 +3,6 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.isFalse = isFalse;
-exports.isTrue = isTrue;
-exports.equals = equals;
-exports.doesNotEqual = doesNotEqual;
-exports.isGreaterThan = isGreaterThan;
-exports.isGreaterThanOrEqualTo = isGreaterThanOrEqualTo;
-exports.isLessThan = isLessThan;
-exports.isLessThanOrEqualTo = isLessThanOrEqualTo;
 exports.not = not;
 exports.negate = negate;
 exports.alwaysTrue = alwaysTrue;
@@ -18,6 +10,8 @@ exports.alwaysFalse = alwaysFalse;
 exports.match = match;
 
 var _typeFunctions = require("./type-functions");
+
+var _equalityFunctions = require("./booleans/equality-functions");
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -40,50 +34,6 @@ function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symb
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function isFalse(input) {
-  return input === false;
-}
-
-function isTrue(input) {
-  return input === true;
-}
-
-function equals(a) {
-  return function (b) {
-    return a === b;
-  };
-}
-
-function doesNotEqual(a) {
-  return function (b) {
-    return a !== b;
-  };
-}
-
-function isGreaterThan(a) {
-  return function (b) {
-    return b > a;
-  };
-}
-
-function isGreaterThanOrEqualTo(a) {
-  return function (b) {
-    return b >= a;
-  };
-}
-
-function isLessThan(a) {
-  return function (b) {
-    return b < a;
-  };
-}
-
-function isLessThanOrEqualTo(a) {
-  return function (b) {
-    return b <= a;
-  };
-}
 
 function not(predicate) {
   return function (x) {
@@ -125,7 +75,7 @@ function match() {
               condition = _step$value[0],
               valueOrFunction = _step$value[1];
 
-          var isMatched = (0, _typeFunctions.isFunction)(condition) && condition(input) || equals(condition)(input);
+          var isMatched = (0, _typeFunctions.isFunction)(condition) && condition(input) || (0, _equalityFunctions.equals)(condition)(input);
 
           if (isMatched) {
             if ((0, _typeFunctions.isFunction)(valueOrFunction)) {

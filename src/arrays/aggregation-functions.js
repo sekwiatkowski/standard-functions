@@ -1,4 +1,4 @@
-import {equals} from '../boolean-functions'
+import {equals} from '../booleans/equality-functions'
 
 export function fold(f) {
     return initialValue => arr => {

@@ -9,7 +9,7 @@ exports.someTrue = void 0;
 
 var _typeFunctions = require("../type-functions");
 
-var _booleanFunctions = require("../boolean-functions");
+var _equalityFunctions = require("./equality-functions");
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -54,7 +54,7 @@ function some(predicate) {
   };
 }
 
-var someTrue = some(_booleanFunctions.isTrue);
+var someTrue = some(_equalityFunctions.isTrue);
 exports.someTrue = someTrue;
 
 function somePass() {

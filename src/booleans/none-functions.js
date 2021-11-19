@@ -1,6 +1,6 @@
 import {isArray} from '../type-functions'
 import {all, allPass} from './all-functions'
-import {isFalse} from '../boolean-functions'
+import {isFalse} from './equality-functions'
 
 export function none(predicate) {
     return (...itemsOrArray) => {
