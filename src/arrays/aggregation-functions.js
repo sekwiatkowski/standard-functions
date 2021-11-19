@@ -113,13 +113,13 @@ export function maxBy(f) {
 }
 
 export function sumBy(f) {
-    return xs => fold((acc, x) => acc + f(x))(0)(xs)
+    return xs => fold((acc, x) => acc + f(x)) (0) (xs)
 }
 
 export const sum = sumBy(identity)
 
 export function productBy(f) {
-    return xs => fold((acc, x) => acc * f(x))(1)(xs)
+    return xs => fold((acc, x) => acc * f(x)) (1) (xs)
 }
 
 export const product = productBy(identity)

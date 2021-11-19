@@ -1,3 +1,8 @@
+import {isSingle} from './collections/length-functions'
+import {is2DArray} from './type-functions'
+import {single} from './collections/single-access-functions'
+import {reduce} from './arrays/aggregation-functions'
+
 export function unique(arr) {
     return arr.filter((item, index) => index === arr.indexOf(item))
 }
@@ -23,4 +28,16 @@ export function intersect(A) {
 
         return result
     }
+}
+
+export function intersection(...sets) {
+    if (isSingle(sets)) {
+        const singleItem = single(sets)
+
+        if (is2DArray(singleItem)) {
+            return intersection(...singleItem)
+        }
+    }
+
+    return reduce((acc, set) => intersect(acc) (set)) (sets)
 }
