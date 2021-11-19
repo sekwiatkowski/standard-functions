@@ -1,12 +1,14 @@
 export * from './type-functions'
 
+export * from './higher-order-functions'
+
 export * from './booleans/all-functions'
 export * from './booleans/some-functions'
 export * from './booleans/none-functions'
 export * from './booleans/equality-functions'
 export * from './booleans/negation-functions'
 export * from './booleans/match'
-export * from './boolean-functions'
+export * from './booleans/constant-functions'
 
 export * from './string-functions'
 export * from './character-functions'
@@ -32,8 +34,6 @@ export * from './arrays/for-each'
 
 export * from './pair-functions'
 export * from './set-functions'
-
-export * from './higher-order-functions'
 
 export * from './object-functions'
 
