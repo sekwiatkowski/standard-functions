@@ -41,3 +41,7 @@ export function is2DArray(input) {
 export function defaultValue(value) {
     return input => input ?? value
 }
+
+export function isObject(input) {
+    return typeof input === 'object'
+}

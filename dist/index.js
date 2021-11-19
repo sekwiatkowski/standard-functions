@@ -225,45 +225,6 @@ Object.keys(_joinFunctions).forEach(function (key) {
   });
 });
 
-var _sortingFunctions = require("./arrays/sorting-functions");
-
-Object.keys(_sortingFunctions).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _sortingFunctions[key]) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _sortingFunctions[key];
-    }
-  });
-});
-
-var _filteringFunctions = require("./arrays/filtering-functions");
-
-Object.keys(_filteringFunctions).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _filteringFunctions[key]) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _filteringFunctions[key];
-    }
-  });
-});
-
-var _membershipFunctions = require("./arrays/membership-functions");
-
-Object.keys(_membershipFunctions).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _membershipFunctions[key]) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _membershipFunctions[key];
-    }
-  });
-});
-
 var _aggregationFunctions = require("./arrays/aggregation-functions");
 
 Object.keys(_aggregationFunctions).forEach(function (key) {
@@ -277,28 +238,15 @@ Object.keys(_aggregationFunctions).forEach(function (key) {
   });
 });
 
-var _searchFunctions = require("./arrays/search-functions");
+var _filteringFunctions = require("./arrays/filtering-functions");
 
-Object.keys(_searchFunctions).forEach(function (key) {
+Object.keys(_filteringFunctions).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _searchFunctions[key]) return;
+  if (key in exports && exports[key] === _filteringFunctions[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _searchFunctions[key];
-    }
-  });
-});
-
-var _mappingFunctions = require("./arrays/mapping-functions");
-
-Object.keys(_mappingFunctions).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _mappingFunctions[key]) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _mappingFunctions[key];
+      return _filteringFunctions[key];
     }
   });
 });
@@ -329,6 +277,32 @@ Object.keys(_joinFunctions2).forEach(function (key) {
   });
 });
 
+var _mappingFunctions = require("./arrays/mapping-functions");
+
+Object.keys(_mappingFunctions).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _mappingFunctions[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _mappingFunctions[key];
+    }
+  });
+});
+
+var _membershipFunctions = require("./arrays/membership-functions");
+
+Object.keys(_membershipFunctions).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _membershipFunctions[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _membershipFunctions[key];
+    }
+  });
+});
+
 var _rangeFunctions = require("./arrays/range-functions");
 
 Object.keys(_rangeFunctions).forEach(function (key) {
@@ -338,6 +312,32 @@ Object.keys(_rangeFunctions).forEach(function (key) {
     enumerable: true,
     get: function get() {
       return _rangeFunctions[key];
+    }
+  });
+});
+
+var _searchFunctions = require("./arrays/search-functions");
+
+Object.keys(_searchFunctions).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _searchFunctions[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _searchFunctions[key];
+    }
+  });
+});
+
+var _sortingFunctions = require("./arrays/sorting-functions");
+
+Object.keys(_sortingFunctions).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _sortingFunctions[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _sortingFunctions[key];
     }
   });
 });
@@ -381,19 +381,6 @@ Object.keys(_setFunctions).forEach(function (key) {
   });
 });
 
-var _objectFunctions = require("./object-functions");
-
-Object.keys(_objectFunctions).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _objectFunctions[key]) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _objectFunctions[key];
-    }
-  });
-});
-
 var _promiseFunctions = require("./promise-functions");
 
 Object.keys(_promiseFunctions).forEach(function (key) {
@@ -403,6 +390,110 @@ Object.keys(_promiseFunctions).forEach(function (key) {
     enumerable: true,
     get: function get() {
       return _promiseFunctions[key];
+    }
+  });
+});
+
+var _accessFunctions = require("./objects/access-functions");
+
+Object.keys(_accessFunctions).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _accessFunctions[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _accessFunctions[key];
+    }
+  });
+});
+
+var _asssociationFunctions = require("./objects/asssociation-functions");
+
+Object.keys(_asssociationFunctions).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _asssociationFunctions[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _asssociationFunctions[key];
+    }
+  });
+});
+
+var _filteringFunctions2 = require("./objects/filtering-functions");
+
+Object.keys(_filteringFunctions2).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _filteringFunctions2[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _filteringFunctions2[key];
+    }
+  });
+});
+
+var _groupingFunctions2 = require("./objects/grouping-functions");
+
+Object.keys(_groupingFunctions2).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _groupingFunctions2[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _groupingFunctions2[key];
+    }
+  });
+});
+
+var _joinFunctions3 = require("./objects/join-functions");
+
+Object.keys(_joinFunctions3).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _joinFunctions3[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _joinFunctions3[key];
+    }
+  });
+});
+
+var _mappingFunctions2 = require("./objects/mapping-functions");
+
+Object.keys(_mappingFunctions2).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _mappingFunctions2[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _mappingFunctions2[key];
+    }
+  });
+});
+
+var _membershipFunctions2 = require("./objects/membership-functions");
+
+Object.keys(_membershipFunctions2).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _membershipFunctions2[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _membershipFunctions2[key];
+    }
+  });
+});
+
+var _updateFunctions2 = require("./objects/update-functions");
+
+Object.keys(_updateFunctions2).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _updateFunctions2[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _updateFunctions2[key];
     }
   });
 });

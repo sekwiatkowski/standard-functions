@@ -29,3 +29,7 @@ export function isLessThan(a) {
 export function isLessThanOrEqualTo(a) {
     return b => b <= a
 }
+
+export function isBetween(start) {
+    return end => x => start <= x && x < end
+}

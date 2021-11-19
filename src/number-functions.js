@@ -1,40 +1,5 @@
-import {identity} from './higher-order-functions'
-import {fold} from './arrays/aggregation-functions'
-
-export function greaterThan(value) {
-    return x => x > value
-}
-
-export function lessThan(value) {
-    return x => x < value
-}
-
-export function isBetween(start) {
-    return end => x => start <= x && x < end
-}
-
 export function abs(value) {
     return Math.abs(value)
-}
-
-export function min(arr) {
-    if (arguments.length > 1) {
-        return min(Array.prototype.slice.call(arguments))
-    }
-
-    return Math.min(...arr)
-}
-
-export function max(arr) {
-    if (arguments.length > 1) {
-        return max(Array.prototype.slice.call(arguments))
-    }
-
-    return Math.max(...arr)
-}
-
-export function sumBy(f) {
-    return xs => fold((acc, x) => acc + f(x)) (0) (xs)
 }
 
 export function add(y) {
@@ -55,10 +20,3 @@ export function divide(y) {
     return x => y / x
 }
 
-export const sum = sumBy(identity)
-
-export function productBy(f) {
-    return xs => fold((acc, x) => acc * f(x)) (1) (xs)
-}
-
-export const product = productBy(identity)

@@ -8,10 +8,25 @@ exports.foldWhile = foldWhile;
 exports.reduce = reduce;
 exports.count = count;
 exports.countBy = countBy;
+exports.min = min;
 exports.minBy = minBy;
+exports.max = max;
 exports.maxBy = maxBy;
+exports.sumBy = sumBy;
+exports.productBy = productBy;
+exports.product = exports.sum = void 0;
 
 var _equalityFunctions = require("../booleans/equality-functions");
+
+var _higherOrderFunctions = require("../higher-order-functions");
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
@@ -95,6 +110,14 @@ function countBy(predicate) {
   };
 }
 
+function min(arr) {
+  if (arguments.length > 1) {
+    return min(Array.prototype.slice.call(arguments));
+  }
+
+  return Math.min.apply(Math, _toConsumableArray(arr));
+}
+
 function minBy(f) {
   return function (arr) {
     var lowestScore = Number.POSITIVE_INFINITY;
@@ -111,6 +134,14 @@ function minBy(f) {
 
     return arr[index];
   };
+}
+
+function max(arr) {
+  if (arguments.length > 1) {
+    return max(Array.prototype.slice.call(arguments));
+  }
+
+  return Math.max.apply(Math, _toConsumableArray(arr));
 }
 
 function maxBy(f) {
@@ -130,3 +161,25 @@ function maxBy(f) {
     return arr[index];
   };
 }
+
+function sumBy(f) {
+  return function (xs) {
+    return fold(function (acc, x) {
+      return acc + f(x);
+    })(0)(xs);
+  };
+}
+
+var sum = sumBy(_higherOrderFunctions.identity);
+exports.sum = sum;
+
+function productBy(f) {
+  return function (xs) {
+    return fold(function (acc, x) {
+      return acc * f(x);
+    })(1)(xs);
+  };
+}
+
+var product = productBy(_higherOrderFunctions.identity);
+exports.product = product;

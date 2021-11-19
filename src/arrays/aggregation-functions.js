@@ -1,4 +1,5 @@
 import {equals} from '../booleans/equality-functions'
+import {identity} from '../higher-order-functions'
 
 export function fold(f) {
     return initialValue => arr => {
@@ -59,6 +60,14 @@ export function countBy(predicate) {
     }
 }
 
+export function min(arr) {
+    if (arguments.length > 1) {
+        return min(Array.prototype.slice.call(arguments))
+    }
+
+    return Math.min(...arr)
+}
+
 export function minBy(f) {
     return arr => {
         let lowestScore = Number.POSITIVE_INFINITY
@@ -75,6 +84,14 @@ export function minBy(f) {
 
         return arr[index]
     }
+}
+
+export function max(arr) {
+    if (arguments.length > 1) {
+        return max(Array.prototype.slice.call(arguments))
+    }
+
+    return Math.max(...arr)
 }
 
 export function maxBy(f) {
@@ -94,3 +111,15 @@ export function maxBy(f) {
         return arr[index]
     }
 }
+
+export function sumBy(f) {
+    return xs => fold((acc, x) => acc + f(x))(0)(xs)
+}
+
+export const sum = sumBy(identity)
+
+export function productBy(f) {
+    return xs => fold((acc, x) => acc * f(x))(1)(xs)
+}
+
+export const product = productBy(identity)

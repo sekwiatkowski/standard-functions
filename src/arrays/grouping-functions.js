@@ -1,7 +1,7 @@
 import {identity} from '../higher-order-functions'
-import {keys} from '../object-functions'
 import {map} from './mapping-functions'
 import {zip} from './join-functions'
+import {keys} from '../objects/access-functions'
 
 export function partition(predicate) {
     return arr => {

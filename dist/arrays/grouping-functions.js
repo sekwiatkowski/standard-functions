@@ -11,11 +11,11 @@ exports.splitAt = splitAt;
 
 var _higherOrderFunctions = require("../higher-order-functions");
 
-var _objectFunctions = require("../object-functions");
-
 var _mappingFunctions = require("./mapping-functions");
 
 var _joinFunctions = require("./join-functions");
+
+var _accessFunctions = require("../objects/access-functions");
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -69,7 +69,7 @@ function groupEntriesBy(computeKey) {
   var deserializeKey = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _higherOrderFunctions.identity;
   return function (arr) {
     var grouped = groupBy(computeKey)(arr);
-    var groupKeys = (0, _objectFunctions.keys)(grouped);
+    var groupKeys = (0, _accessFunctions.keys)(grouped);
     var deserializedGroupKeys = (0, _mappingFunctions.map)(deserializeKey)(groupKeys);
     return (0, _mappingFunctions.map)(function (_ref) {
       var _ref2 = _slicedToArray(_ref, 2),

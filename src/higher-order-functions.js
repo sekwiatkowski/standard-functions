@@ -7,7 +7,7 @@ export function applyTo(x) {
 }
 
 export function applyPair([a, b]) {
-    return f => f(a)(b)
+    return f => f(a) (b)
 }
 
 export function applyPairTo(f) {

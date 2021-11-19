@@ -11,6 +11,7 @@ exports.isGreaterThan = isGreaterThan;
 exports.isGreaterThanOrEqualTo = isGreaterThanOrEqualTo;
 exports.isLessThan = isLessThan;
 exports.isLessThanOrEqualTo = isLessThanOrEqualTo;
+exports.isBetween = isBetween;
 
 function isFalse(input) {
   return input === false;
@@ -53,5 +54,13 @@ function isLessThan(a) {
 function isLessThanOrEqualTo(a) {
   return function (b) {
     return b <= a;
+  };
+}
+
+function isBetween(start) {
+  return function (end) {
+    return function (x) {
+      return start <= x && x < end;
+    };
   };
 }
