@@ -31,7 +31,7 @@ var _lengthFunctions = require("./length-functions");
 
 var _searchFunctions = require("../arrays/search-functions");
 
-var _rangeFunctions = require("../arrays/range-functions");
+var _creationFunctions = require("../arrays/creation-functions");
 
 function slice(indices) {
   return function (arr) {
@@ -174,7 +174,7 @@ function before(indexOrPredicate) {
       return [];
     }
 
-    return slice((0, _rangeFunctions.range)(0)(index))(arr);
+    return slice((0, _creationFunctions.range)(0)(index))(arr);
   };
 }
 
@@ -186,7 +186,7 @@ function after(indexOrPredicate) {
       return [];
     }
 
-    return slice((0, _rangeFunctions.range)(index + 1)((0, _lengthFunctions.length)(arr)))(arr);
+    return slice((0, _creationFunctions.range)(index + 1)((0, _lengthFunctions.length)(arr)))(arr);
   };
 }
 
@@ -207,6 +207,6 @@ function upTo(indexOrPredicate) {
       return [];
     }
 
-    return slice((0, _rangeFunctions.inclusiveRange)(0)(index))(arr);
+    return slice((0, _creationFunctions.inclusiveRange)(0)(index))(arr);
   };
 }

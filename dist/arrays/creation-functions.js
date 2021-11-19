@@ -3,10 +3,23 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.fill = fill;
 exports.range = range;
 exports.inclusiveRange = inclusiveRange;
 exports.steps = steps;
 exports.inclusiveSteps = inclusiveSteps;
+
+function fill(value) {
+  return function (n) {
+    var result = Array(n);
+
+    for (var i = 0; i < n; i++) {
+      result[i] = value;
+    }
+
+    return result;
+  };
+}
 
 function range(inclusiveStart) {
   return function (exclusiveEnd) {

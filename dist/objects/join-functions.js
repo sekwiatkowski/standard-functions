@@ -19,7 +19,7 @@ var _aggregationFunctions = require("../arrays/aggregation-functions");
 
 var _joinFunctions = require("../arrays/join-functions");
 
-var _mappingFunctions = require("./mapping-functions");
+var _creationFunctions = require("./creation-functions");
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -139,6 +139,6 @@ function extendWith(f) {
 
 function zipObject(as) {
   return function (bs) {
-    return (0, _mappingFunctions.fromEntries)((0, _joinFunctions.zip)(as, bs));
+    return (0, _creationFunctions.fromEntries)((0, _joinFunctions.zip)(as, bs));
   };
 }

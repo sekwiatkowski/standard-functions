@@ -238,6 +238,19 @@ Object.keys(_aggregationFunctions).forEach(function (key) {
   });
 });
 
+var _creationFunctions = require("./arrays/creation-functions");
+
+Object.keys(_creationFunctions).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _creationFunctions[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _creationFunctions[key];
+    }
+  });
+});
+
 var _filteringFunctions = require("./arrays/filtering-functions");
 
 Object.keys(_filteringFunctions).forEach(function (key) {
@@ -299,19 +312,6 @@ Object.keys(_membershipFunctions).forEach(function (key) {
     enumerable: true,
     get: function get() {
       return _membershipFunctions[key];
-    }
-  });
-});
-
-var _rangeFunctions = require("./arrays/range-functions");
-
-Object.keys(_rangeFunctions).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _rangeFunctions[key]) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _rangeFunctions[key];
     }
   });
 });
@@ -381,19 +381,6 @@ Object.keys(_setFunctions).forEach(function (key) {
   });
 });
 
-var _promiseFunctions = require("./promise-functions");
-
-Object.keys(_promiseFunctions).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _promiseFunctions[key]) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _promiseFunctions[key];
-    }
-  });
-});
-
 var _accessFunctions = require("./objects/access-functions");
 
 Object.keys(_accessFunctions).forEach(function (key) {
@@ -407,15 +394,15 @@ Object.keys(_accessFunctions).forEach(function (key) {
   });
 });
 
-var _asssociationFunctions = require("./objects/asssociation-functions");
+var _creationFunctions2 = require("./objects/creation-functions");
 
-Object.keys(_asssociationFunctions).forEach(function (key) {
+Object.keys(_creationFunctions2).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _asssociationFunctions[key]) return;
+  if (key in exports && exports[key] === _creationFunctions2[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _asssociationFunctions[key];
+      return _creationFunctions2[key];
     }
   });
 });
@@ -494,6 +481,19 @@ Object.keys(_updateFunctions2).forEach(function (key) {
     enumerable: true,
     get: function get() {
       return _updateFunctions2[key];
+    }
+  });
+});
+
+var _promiseFunctions = require("./promise-functions");
+
+Object.keys(_promiseFunctions).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _promiseFunctions[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _promiseFunctions[key];
     }
   });
 });

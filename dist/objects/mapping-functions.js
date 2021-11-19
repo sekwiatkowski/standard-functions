@@ -7,11 +7,6 @@ exports.mapKeys = mapKeys;
 exports.mapValues = mapValues;
 exports.mapEntries = mapEntries;
 exports.mapObject = mapObject;
-exports.fromProperty = fromProperty;
-exports.fromEntry = fromEntry;
-exports.fromEntries = fromEntries;
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -89,22 +84,4 @@ function mapObject(f) {
 
     return result;
   };
-}
-
-function fromProperty(key) {
-  return function (value) {
-    return _defineProperty({}, key, value);
-  };
-}
-
-function fromEntry(_ref2) {
-  var _ref3 = _slicedToArray(_ref2, 2),
-      key = _ref3[0],
-      value = _ref3[1];
-
-  return _defineProperty({}, key, value);
-}
-
-function fromEntries(entries) {
-  return Object.fromEntries(entries);
 }

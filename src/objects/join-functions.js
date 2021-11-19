@@ -3,7 +3,7 @@ import {single} from '../collections/single-access-functions'
 import {isArray, isNull, isObject, isUndefined} from '../type-functions'
 import {fold} from '../arrays/aggregation-functions'
 import {zip} from '../arrays/join-functions'
-import {fromEntries} from './mapping-functions'
+import {fromEntries} from './creation-functions'
 
 export function merge(...firstOrArray) {
     if (isSingle(firstOrArray)) {

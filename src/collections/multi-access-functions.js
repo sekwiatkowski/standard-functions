@@ -2,7 +2,7 @@ import {head, last} from './single-access-functions'
 import {isFunction, isNull} from '../type-functions'
 import {length} from './length-functions'
 import {findIndex} from '../arrays/search-functions'
-import {inclusiveRange, range} from '../arrays/range-functions'
+import {inclusiveRange, range} from '../arrays/creation-functions'
 
 export function slice(indices) {
     return arr => {

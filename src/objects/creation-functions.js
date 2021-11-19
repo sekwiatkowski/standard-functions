@@ -34,3 +34,15 @@ export function associateWith(f) {
         return obj
     }
 }
+
+export function fromProperty(key) {
+    return value => ({[key]: value})
+}
+
+export function fromEntry([key, value]) {
+    return {[key]: value}
+}
+
+export function fromEntries(entries) {
+    return Object.fromEntries(entries)
+}
