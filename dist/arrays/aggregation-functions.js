@@ -6,19 +6,22 @@ Object.defineProperty(exports, "__esModule", {
 exports.fold = fold;
 exports.foldWhile = foldWhile;
 exports.reduce = reduce;
-exports.count = count;
 exports.countBy = countBy;
+exports.countIf = countIf;
+exports.countOf = countOf;
 exports.min = min;
 exports.minBy = minBy;
 exports.max = max;
 exports.maxBy = maxBy;
 exports.sumBy = sumBy;
 exports.productBy = productBy;
-exports.product = exports.sum = void 0;
+exports.product = exports.sum = exports.count = void 0;
 
 var _equalityFunctions = require("../booleans/equality-functions");
 
 var _higherOrderFunctions = require("../higher-order-functions");
+
+var _typeFunctions = require("../type-functions");
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -81,13 +84,12 @@ function reduce(f) {
   };
 }
 
-function count(item) {
-  return countBy((0, _equalityFunctions.equals)(item));
-}
+var count = countBy(_higherOrderFunctions.identity);
+exports.count = count;
 
-function countBy(predicate) {
+function countBy(f) {
   return function (arr) {
-    var counter = 0;
+    var counts = {};
 
     var _iterator = _createForOfIteratorHelper(arr),
         _step;
@@ -95,10 +97,9 @@ function countBy(predicate) {
     try {
       for (_iterator.s(); !(_step = _iterator.n()).done;) {
         var item = _step.value;
-
-        if (predicate(item)) {
-          counter += 1;
-        }
+        var key = f(item);
+        var currentCount = (0, _typeFunctions.defaultValue)(0)(counts[key]);
+        counts[key] += currentCount + 1;
       }
     } catch (err) {
       _iterator.e(err);
@@ -106,7 +107,38 @@ function countBy(predicate) {
       _iterator.f();
     }
 
+    return counts;
+  };
+}
+
+function countIf(predicate) {
+  return function (arr) {
+    var counter = 0;
+
+    var _iterator2 = _createForOfIteratorHelper(arr),
+        _step2;
+
+    try {
+      for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+        var item = _step2.value;
+
+        if (predicate(item)) {
+          counter += 1;
+        }
+      }
+    } catch (err) {
+      _iterator2.e(err);
+    } finally {
+      _iterator2.f();
+    }
+
     return counter;
+  };
+}
+
+function countOf(value) {
+  return function (arr) {
+    return countIf((0, _equalityFunctions.equals)(value))(arr);
   };
 }
 

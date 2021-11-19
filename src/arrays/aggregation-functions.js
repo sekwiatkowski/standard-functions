@@ -1,5 +1,6 @@
 import {equals} from '../booleans/equality-functions'
 import {identity} from '../higher-order-functions'
+import {defaultValue} from '../type-functions'
 
 export function fold(f) {
     return initialValue => arr => {
@@ -42,11 +43,24 @@ export function reduce(f) {
     }
 }
 
-export function count(item) {
-    return countBy(equals(item))
+export const count = countBy(identity)
+
+export function countBy(f) {
+    return arr => {
+        const counts = {}
+
+        for (const item of arr) {
+            const key = f(item)
+            const currentCount = defaultValue(0) (counts[key])
+
+            counts[key] += currentCount + 1
+        }
+
+        return counts
+    }
 }
 
-export function countBy(predicate) {
+export function countIf(predicate) {
     return arr => {
         let counter = 0
 
@@ -58,6 +72,10 @@ export function countBy(predicate) {
 
         return counter
     }
+}
+
+export function countOf(value) {
+    return arr => countIf(equals(value)) (arr)
 }
 
 export function min(arr) {
