@@ -12,9 +12,9 @@ var _lengthFunctions = require("./collections/length-functions");
 
 var _typeFunctions = require("./type-functions");
 
-var _singleAccessFunctions = require("./collections/single-access-functions");
-
 var _aggregationFunctions = require("./arrays/aggregation-functions");
+
+var _searchFunctions = require("./arrays/search-functions");
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -90,7 +90,7 @@ function intersection() {
   }
 
   if ((0, _lengthFunctions.isSingle)(sets)) {
-    var singleItem = (0, _singleAccessFunctions.single)(sets);
+    var singleItem = (0, _searchFunctions.single)(sets);
 
     if ((0, _typeFunctions.is2DArray)(singleItem)) {
       return intersection.apply(void 0, _toConsumableArray(singleItem));

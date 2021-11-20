@@ -12,9 +12,9 @@ exports.constant = constant;
 
 var _typeFunctions = require("./type-functions");
 
-var _singleAccessFunctions = require("./collections/single-access-functions");
-
 var _lengthFunctions = require("./collections/length-functions");
+
+var _searchFunctions = require("./arrays/search-functions");
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -68,7 +68,7 @@ function compose() {
   }
 
   if ((0, _lengthFunctions.isSingle)(functionsOrArray)) {
-    var singleItem = (0, _singleAccessFunctions.single)(functionsOrArray);
+    var singleItem = (0, _searchFunctions.single)(functionsOrArray);
 
     if ((0, _typeFunctions.isArray)(singleItem)) {
       return compose.apply(void 0, _toConsumableArray(singleItem));
