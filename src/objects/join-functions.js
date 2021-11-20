@@ -1,9 +1,9 @@
 import {isSingle} from '../collections/length-functions'
-import {single} from '../collections/single-access-functions'
 import {isArray, isNull, isObject, isUndefined} from '../type-functions'
 import {fold} from '../arrays/aggregation-functions'
 import {zip} from '../arrays/join-functions'
 import {fromEntries} from './creation-functions'
+import {single} from '../arrays/search-functions'
 
 export function merge(...firstOrArray) {
     if (isSingle(firstOrArray)) {

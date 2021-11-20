@@ -21,9 +21,11 @@ var _equalityFunctions = require("../booleans/equality-functions");
 
 var _typeFunctions = require("../type-functions");
 
-function singleOrNull(predicateOrInput) {
+var _lengthFunctions = require("../collections/length-functions");
+
+function singleOrNull(predicate) {
   return function (input) {
-    var matches = input.filter(predicateOrInput);
+    var matches = input.filter(predicate);
     var numberOfResults = matches.length;
 
     if (numberOfResults === 0) {
@@ -37,15 +39,25 @@ function singleOrNull(predicateOrInput) {
 }
 
 function single(predicateOrInput) {
-  return function (input) {
-    var indexOrNull = singleOrNull(predicateOrInput)(input);
+  if ((0, _typeFunctions.isFunction)(predicateOrInput)) {
+    return function (input) {
+      var indexOrNull = singleOrNull(predicateOrInput)(input);
 
-    if ((0, _typeFunctions.isNull)(indexOrNull)) {
-      throw Error("Expected a single search result. Found no matching items.");
+      if ((0, _typeFunctions.isNull)(indexOrNull)) {
+        throw Error("Expected a single search result. Found no matching items.");
+      }
+
+      return indexOrNull[0];
+    };
+  } else {
+    if ((0, _lengthFunctions.isSingle)(predicateOrInput)) {
+      return predicateOrInput[0];
+    } else if ((0, _lengthFunctions.isEmpty)(predicateOrInput)) {
+      throw Error("Expected a single item. Found no items.");
+    } else {
+      throw Error("Expected a single search result. Found no items.");
     }
-
-    return indexOrNull[0];
-  };
+  }
 }
 
 function singleIndexOrNull(predicate) {
@@ -64,7 +76,7 @@ function singleIndexOrNull(predicate) {
       return null;
     } else if (numberOfResults === 1) {
       return matches[0];
-    } else if (numberOfResults > 1) {
+    } else {
       throw Error("Expected a single search result. Found ".concat(numberOfResults, " matching items."));
     }
   };

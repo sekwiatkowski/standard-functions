@@ -1,10 +1,11 @@
 import {filterIndices} from './filtering-functions'
 import {equals} from '../booleans/equality-functions'
-import {isNull} from '../type-functions'
+import {isFunction, isNull} from '../type-functions'
+import {isEmpty, isSingle} from '../collections/length-functions'
 
-export function singleOrNull(predicateOrInput) {
+export function singleOrNull(predicate) {
     return input => {
-        const matches = input.filter(predicateOrInput)
+        const matches = input.filter(predicate)
 
         const numberOfResults = matches.length
 
@@ -21,14 +22,27 @@ export function singleOrNull(predicateOrInput) {
 }
 
 export function single(predicateOrInput) {
-    return input => {
-        const indexOrNull = singleOrNull(predicateOrInput) (input)
+    if (isFunction(predicateOrInput)) {
+        return input => {
+            const indexOrNull = singleOrNull(predicateOrInput)(input)
 
-        if (isNull(indexOrNull)) {
-            throw Error(`Expected a single search result. Found no matching items.`)
+            if (isNull(indexOrNull)) {
+                throw Error(`Expected a single search result. Found no matching items.`)
+            }
+
+            return indexOrNull[0]
         }
-
-        return indexOrNull[0]
+    }
+    else {
+        if (isSingle(predicateOrInput)) {
+            return predicateOrInput[0]
+        }
+        else if (isEmpty(predicateOrInput)) {
+            throw Error(`Expected a single item. Found no items.`)
+        }
+        else {
+            throw Error(`Expected a single search result. Found no items.`)
+        }
     }
 }
 
@@ -49,7 +63,7 @@ export function singleIndexOrNull(predicate) {
         else if (numberOfResults === 1) {
             return matches[0]
         }
-        else if (numberOfResults > 1) {
+        else {
             throw Error(`Expected a single search result. Found ${numberOfResults} matching items.`)
         }
     }
