@@ -1,7 +1,7 @@
 import {isSingle} from './collections/length-functions'
 import {is2DArray} from './type-functions'
 import {reduce} from './arrays/aggregation-functions'
-import {single} from './arrays/search-functions'
+import {single} from './collections/single-access-functions'
 
 export function unique(arr) {
     return arr.filter((item, index) => index === arr.indexOf(item))

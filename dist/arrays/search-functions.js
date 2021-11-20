@@ -3,10 +3,10 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.singleOrNull = singleOrNull;
-exports.single = single;
-exports.singleIndexOrNull = singleIndexOrNull;
-exports.singleIndex = singleIndex;
+exports.findSingleOrNull = findSingleOrNull;
+exports.findSingle = findSingle;
+exports.findSingleIndexOrNull = findSingleIndexOrNull;
+exports.findSingleIndex = findSingleIndex;
 exports.find = find;
 exports.findLast = findLast;
 exports.findIndex = findIndex;
@@ -21,9 +21,7 @@ var _equalityFunctions = require("../booleans/equality-functions");
 
 var _typeFunctions = require("../type-functions");
 
-var _lengthFunctions = require("../collections/length-functions");
-
-function singleOrNull(predicate) {
+function findSingleOrNull(predicate) {
   return function (input) {
     var matches = input.filter(predicate);
     var numberOfResults = matches.length;
@@ -38,29 +36,19 @@ function singleOrNull(predicate) {
   };
 }
 
-function single(predicateOrInput) {
-  if ((0, _typeFunctions.isFunction)(predicateOrInput)) {
-    return function (input) {
-      var indexOrNull = singleOrNull(predicateOrInput)(input);
+function findSingle(predicate) {
+  return function (input) {
+    var indexOrNull = findSingleOrNull(predicate)(input);
 
-      if ((0, _typeFunctions.isNull)(indexOrNull)) {
-        throw Error("Expected a single search result. Found no matching items.");
-      }
-
-      return indexOrNull[0];
-    };
-  } else {
-    if ((0, _lengthFunctions.isSingle)(predicateOrInput)) {
-      return predicateOrInput[0];
-    } else if ((0, _lengthFunctions.isEmpty)(predicateOrInput)) {
-      throw Error("Expected a single item. Found no items.");
-    } else {
-      throw Error("Expected a single search result. Found no items.");
+    if ((0, _typeFunctions.isNull)(indexOrNull)) {
+      throw Error("Expected a single search result. Found no matching items.");
     }
-  }
+
+    return indexOrNull[0];
+  };
 }
 
-function singleIndexOrNull(predicate) {
+function findSingleIndexOrNull(predicate) {
   return function (arr) {
     var matches = [];
 
@@ -82,9 +70,9 @@ function singleIndexOrNull(predicate) {
   };
 }
 
-function singleIndex(predicate) {
+function findSingleIndex(predicate) {
   return function (arr) {
-    var indexOrNull = singleIndexOrNull(predicate)(arr);
+    var indexOrNull = findSingleIndexOrNull(predicate)(arr);
 
     if ((0, _typeFunctions.isNull)(indexOrNull)) {
       throw Error("Expected a single search result. Found no matching items.");

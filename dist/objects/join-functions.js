@@ -19,7 +19,7 @@ var _joinFunctions = require("../arrays/join-functions");
 
 var _creationFunctions = require("./creation-functions");
 
-var _searchFunctions = require("../arrays/search-functions");
+var _singleAccessFunctions = require("../collections/single-access-functions");
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -53,7 +53,7 @@ function merge() {
   }
 
   if ((0, _lengthFunctions.isSingle)(firstOrArray)) {
-    var singleItem = (0, _searchFunctions.single)(firstOrArray);
+    var singleItem = (0, _singleAccessFunctions.single)(firstOrArray);
 
     if ((0, _typeFunctions.isNull)(singleItem) || (0, _typeFunctions.isUndefined)(singleItem)) {
       return {};
@@ -78,7 +78,7 @@ function mergeWith(f) {
     }
 
     if ((0, _lengthFunctions.isSingle)(firstOrArray)) {
-      var singleItem = (0, _searchFunctions.single)(firstOrArray);
+      var singleItem = (0, _singleAccessFunctions.single)(firstOrArray);
 
       if ((0, _typeFunctions.isArray)(singleItem)) {
         return mergeWith(f).apply(void 0, _toConsumableArray(singleItem));

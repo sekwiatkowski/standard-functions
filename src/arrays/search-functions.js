@@ -1,9 +1,8 @@
 import {filterIndices} from './filtering-functions'
 import {equals} from '../booleans/equality-functions'
-import {isFunction, isNull} from '../type-functions'
-import {isEmpty, isSingle} from '../collections/length-functions'
+import {isNull} from '../type-functions'
 
-export function singleOrNull(predicate) {
+export function findSingleOrNull(predicate) {
     return input => {
         const matches = input.filter(predicate)
 
@@ -21,32 +20,19 @@ export function singleOrNull(predicate) {
     }
 }
 
-export function single(predicateOrInput) {
-    if (isFunction(predicateOrInput)) {
-        return input => {
-            const indexOrNull = singleOrNull(predicateOrInput)(input)
+export function findSingle(predicate) {
+    return input => {
+        const indexOrNull = findSingleOrNull(predicate) (input)
 
-            if (isNull(indexOrNull)) {
-                throw Error(`Expected a single search result. Found no matching items.`)
-            }
+        if (isNull(indexOrNull)) {
+            throw Error(`Expected a single search result. Found no matching items.`)
+        }
 
-            return indexOrNull[0]
-        }
-    }
-    else {
-        if (isSingle(predicateOrInput)) {
-            return predicateOrInput[0]
-        }
-        else if (isEmpty(predicateOrInput)) {
-            throw Error(`Expected a single item. Found no items.`)
-        }
-        else {
-            throw Error(`Expected a single search result. Found no items.`)
-        }
+        return indexOrNull[0]
     }
 }
 
-export function singleIndexOrNull(predicate) {
+export function findSingleIndexOrNull(predicate) {
     return arr => {
         const matches = []
         for (let i = 0; i < arr.length; i++) {
@@ -69,9 +55,9 @@ export function singleIndexOrNull(predicate) {
     }
 }
 
-export function singleIndex(predicate) {
+export function findSingleIndex(predicate) {
     return arr => {
-        const indexOrNull = singleIndexOrNull(predicate) (arr)
+        const indexOrNull = findSingleIndexOrNull(predicate) (arr)
 
         if (isNull(indexOrNull)) {
             throw Error(`Expected a single search result. Found no matching items.`)

@@ -1,7 +1,6 @@
 import {isSingle} from '../collections/length-functions'
-import {first} from '../collections/single-access-functions'
+import {first, single} from '../collections/single-access-functions'
 import {isArray} from '../type-functions'
-import {single} from '../arrays/search-functions'
 
 export function keys(obj) {
     return Object.keys(obj)
