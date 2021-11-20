@@ -1,3 +1,6 @@
+import {filterIndices} from './filtering-functions'
+import {equals} from '../booleans/equality-functions'
+
 export function find(predicate) {
     return arr => {
         for (let i = 0; i < arr.length; i++) {
@@ -44,6 +47,10 @@ export function indexOf(item) {
         }
         return null
     }
+}
+
+export function indicesOf(item) {
+    return arr => filterIndices(equals(item))(arr)
 }
 
 export function singleIndex(predicate) {

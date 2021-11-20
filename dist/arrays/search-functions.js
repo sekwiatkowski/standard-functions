@@ -7,7 +7,12 @@ exports.find = find;
 exports.findLast = findLast;
 exports.findIndex = findIndex;
 exports.indexOf = indexOf;
+exports.indicesOf = indicesOf;
 exports.singleIndex = singleIndex;
+
+var _filteringFunctions = require("./filtering-functions");
+
+var _equalityFunctions = require("../booleans/equality-functions");
 
 function find(predicate) {
   return function (arr) {
@@ -60,6 +65,14 @@ function indexOf(item) {
     return null;
   };
 }
+
+function indicesOf(item) {
+  return function (arr) {
+    return (0, _filteringFunctions.filterIndices)((0, _equalityFunctions.equals)(item))(arr);
+  };
+}
+
+console.log(indicesOf(1)([1, 2, 3, 1, 1]));
 
 function singleIndex(predicate) {
   return function (arr) {
