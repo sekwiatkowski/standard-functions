@@ -1,6 +1,7 @@
 import {isArray, isString} from '../type-functions'
 import {indexOf} from '../arrays/search-functions'
 import {equals} from '../booleans/equality-functions'
+import {exclude} from '../arrays/filtering-functions'
 
 export function update(index) {
     return item => arr => {
@@ -92,21 +93,7 @@ export function insertAt(index) {
 }
 
 export function remove(item) {
-    return arr => {
-        const copy = arr.slice()
-
-        let i = arr.length - 1
-
-        while (i >= 0) {
-            if (equals(item)) {
-                copy.splice(i, 1)
-            }
-
-            i--
-        }
-
-        return copy
-    }
+    return arr => exclude(equals(item)) (arr)
 }
 
 export function removeAt(index) {
@@ -122,7 +109,7 @@ export function removeFirstOccurrence(item) {
     return arr => {
         const index = indexOf(item)(arr)
 
-        return removeAt(index)(arr)
+        return removeAt(index) (arr)
     }
 }
 
@@ -130,7 +117,7 @@ export function removeLastOccurrence(item) {
     return arr => {
         const index = indexOf(item)(arr)
 
-        return removeAt(index)(arr)
+        return removeAt(index) (arr)
     }
 }
 

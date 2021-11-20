@@ -23,6 +23,8 @@ var _searchFunctions = require("../arrays/search-functions");
 
 var _equalityFunctions = require("../booleans/equality-functions");
 
+var _filteringFunctions = require("../arrays/filtering-functions");
+
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -122,20 +124,11 @@ function insertAt(index) {
 
 function remove(item) {
   return function (arr) {
-    var copy = arr.slice();
-    var i = arr.length - 1;
-
-    while (i >= 0) {
-      if ((0, _equalityFunctions.equals)(item)) {
-        copy.splice(i, 1);
-      }
-
-      i--;
-    }
-
-    return copy;
+    return (0, _filteringFunctions.exclude)((0, _equalityFunctions.equals)(item))(arr);
   };
 }
+
+console.log(remove(1)([1, 2, 3]));
 
 function removeAt(index) {
   return function (arr) {
