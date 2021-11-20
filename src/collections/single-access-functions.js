@@ -58,12 +58,6 @@ export function getItem(index) {
 
 export const nth = getItem
 
-export function getItemFrom(array) {
-    return index => getItem(index) (array)
-}
-
-export const nthOf = getItemFrom
-
 export function first(collection) {
     return collection[0]
 }

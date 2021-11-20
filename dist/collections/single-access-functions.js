@@ -6,11 +6,10 @@ Object.defineProperty(exports, "__esModule", {
 exports.single = single;
 exports.singleOrNull = singleOrNull;
 exports.getItem = getItem;
-exports.getItemFrom = getItemFrom;
 exports.first = first;
 exports.second = second;
 exports.last = last;
-exports.head = exports.nthFrom = exports.nth = void 0;
+exports.head = exports.nth = void 0;
 
 var _typeFunctions = require("../type-functions");
 
@@ -72,15 +71,6 @@ function getItem(index) {
 
 var nth = getItem;
 exports.nth = nth;
-
-function getItemFrom(array) {
-  return function (index) {
-    return getItem(index)(array);
-  };
-}
-
-var nthFrom = getItemFrom;
-exports.nthFrom = nthFrom;
 
 function first(collection) {
   return collection[0];

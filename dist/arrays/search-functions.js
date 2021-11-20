@@ -72,8 +72,6 @@ function indicesOf(item) {
   };
 }
 
-console.log(indicesOf(1)([1, 2, 3, 1, 1]));
-
 function singleIndex(predicate) {
   return function (arr) {
     var matches = [];
