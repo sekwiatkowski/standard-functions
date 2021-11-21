@@ -1,4 +1,4 @@
-import {isArray, isString} from '../type-functions'
+import {isString} from '../type-functions'
 import {indexOf} from '../arrays/search-functions'
 import {equals} from '../booleans/equality-functions'
 import {exclude} from '../arrays/filtering-functions'
@@ -45,12 +45,7 @@ export function append(appendix) {
             return original + appendix
         }
         else {
-            if (isArray(appendix)) {
-                return [...original, ...appendix]
-            }
-            else {
-                return [...original, appendix]
-            }
+            return [...original, appendix]
         }
     }
 }
@@ -65,12 +60,7 @@ export function prepend(prefix) {
             return prefix + original
         }
         else {
-            if (isArray(prefix)) {
-                return [...prefix, ...original]
-            }
-            else {
-                return [prefix, ...original]
-            }
+            return [prefix, ...original]
         }
     }
 }

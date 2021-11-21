@@ -77,11 +77,7 @@ function append(appendix) {
     if ((0, _typeFunctions.isString)(original)) {
       return original + appendix;
     } else {
-      if ((0, _typeFunctions.isArray)(appendix)) {
-        return [].concat(_toConsumableArray(original), _toConsumableArray(appendix));
-      } else {
-        return [].concat(_toConsumableArray(original), [appendix]);
-      }
+      return [].concat(_toConsumableArray(original), [appendix]);
     }
   };
 }
@@ -97,11 +93,7 @@ function prepend(prefix) {
     if ((0, _typeFunctions.isString)(original)) {
       return prefix + original;
     } else {
-      if ((0, _typeFunctions.isArray)(prefix)) {
-        return [].concat(_toConsumableArray(prefix), _toConsumableArray(original));
-      } else {
-        return [prefix].concat(_toConsumableArray(original));
-      }
+      return [prefix].concat(_toConsumableArray(original));
     }
   };
 }
@@ -127,8 +119,6 @@ function remove(item) {
     return (0, _filteringFunctions.exclude)((0, _equalityFunctions.equals)(item))(arr);
   };
 }
-
-console.log(remove(1)([1, 2, 3]));
 
 function removeAt(index) {
   return function (arr) {
