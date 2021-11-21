@@ -46,3 +46,5 @@ export * from './objects/membership-functions'
 export * from './objects/update-functions'
 
 export * from './promise-functions'
+
+export * from './result-functions'
