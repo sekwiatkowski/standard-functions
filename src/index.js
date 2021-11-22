@@ -13,6 +13,7 @@ export * from './booleans/constant-functions'
 export * from './strings/creation-functions'
 export * from './strings/join-functions'
 export * from './strings/mapping-functions'
+export * from './strings/membership-functions'
 export * from './strings/update-functions'
 
 export * from './character-functions'
