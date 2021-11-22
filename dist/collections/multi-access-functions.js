@@ -19,27 +19,30 @@ exports.dropLast = dropLast;
 exports.dropLastFrom = dropLastFrom;
 exports.dropWhile = dropWhile;
 exports.before = before;
+exports.beforeIndex = beforeIndex;
 exports.after = after;
-exports.beforeAndAfter = beforeAndAfter;
+exports.afterIndex = afterIndex;
+exports.beforeAndAfterIndex = beforeAndAfterIndex;
 exports.upTo = upTo;
+exports.upToIndex = upToIndex;
 
 var _singleAccessFunctions = require("./single-access-functions");
-
-var _typeFunctions = require("../type-functions");
 
 var _lengthFunctions = require("./length-functions");
 
 var _searchFunctions = require("../arrays/search-functions");
 
+var _typeFunctions = require("../type-functions");
+
 var _creationFunctions = require("../arrays/creation-functions");
 
 function slice(indices) {
-  return function (arr) {
+  return function (input) {
     var n = (0, _lengthFunctions.length)(indices);
     var result = Array(n);
 
     for (var i = 0; i < n; i++) {
-      result[i] = arr[indices[i]];
+      result[i] = input[indices[i]];
     }
 
     return result;
@@ -166,47 +169,76 @@ function dropWhile(predicate) {
   };
 }
 
-function before(indexOrPredicate) {
-  return function (arr) {
-    var index = (0, _typeFunctions.isFunction)(indexOrPredicate) ? (0, _searchFunctions.findIndex)(indexOrPredicate)(arr) : indexOrPredicate;
-
-    if ((0, _typeFunctions.isNull)(index)) {
-      return [];
-    }
-
-    return slice((0, _creationFunctions.range)(0)(index))(arr);
-  };
-}
-
-function after(indexOrPredicate) {
-  return function (arr) {
-    var index = (0, _typeFunctions.isFunction)(indexOrPredicate) ? (0, _searchFunctions.findIndex)(indexOrPredicate)(arr) : indexOrPredicate;
-
-    if ((0, _typeFunctions.isNull)(index)) {
-      return [];
-    }
-
-    return slice((0, _creationFunctions.range)(index + 1)((0, _lengthFunctions.length)(arr)))(arr);
-  };
-}
-
-function beforeAndAfter(separator) {
+function before(predicate) {
   return function (input) {
-    var idx = input.indexOf(separator);
-    var before = input.substring(0, idx);
-    var after = input.substring(idx + separator.length);
+    var index = (0, _searchFunctions.findIndex)(predicate)(input);
+
+    if ((0, _typeFunctions.isNull)(index)) {
+      return [];
+    }
+
+    return beforeIndex(index)(input);
+  };
+}
+
+function beforeIndex(index) {
+  return function (collection) {
+    if (index > (0, _lengthFunctions.lastIndex)(collection)) {
+      return collection;
+    }
+
+    return slice((0, _creationFunctions.range)(0)(index))(collection);
+  };
+}
+
+function after(predicate) {
+  return function (collection) {
+    var index = (0, _searchFunctions.findIndex)(predicate)(collection);
+
+    if ((0, _typeFunctions.isNull)(index)) {
+      return [];
+    }
+
+    return afterIndex(index)(collection);
+  };
+}
+
+function afterIndex(index) {
+  return function (collection) {
+    if (index >= (0, _lengthFunctions.lastIndex)(collection)) {
+      return [];
+    }
+
+    return slice((0, _creationFunctions.range)(index + 1)((0, _lengthFunctions.length)(collection)))(collection);
+  };
+}
+
+function beforeAndAfterIndex(index) {
+  return function (collection) {
+    var before = beforeIndex(index)(collection);
+    var after = afterIndex(index)(collection);
     return [before, after];
   };
 }
 
-function upTo(indexOrPredicate) {
-  return function (arr) {
-    var index = (0, _typeFunctions.isFunction)(indexOrPredicate) ? (0, _searchFunctions.findIndex)(indexOrPredicate)(arr) : indexOrPredicate;
+function upTo(predicate) {
+  return function (collection) {
+    var index = (0, _searchFunctions.findIndex)(predicate)(collection);
 
     if ((0, _typeFunctions.isNull)(index)) {
       return [];
     }
 
-    return slice((0, _creationFunctions.inclusiveRange)(0)(index))(arr);
+    return upToIndex(index)(collection);
+  };
+}
+
+function upToIndex(index) {
+  return function (collection) {
+    if (index >= (0, _lengthFunctions.lastIndex)(collection)) {
+      return collection;
+    }
+
+    return slice((0, _creationFunctions.inclusiveRange)(0)(index))(collection);
   };
 }

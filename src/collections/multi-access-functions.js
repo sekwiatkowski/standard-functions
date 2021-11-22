@@ -1,16 +1,17 @@
 import {head, last} from './single-access-functions'
-import {isFunction, isNull} from '../type-functions'
-import {length} from './length-functions'
+import {lastIndex, length} from './length-functions'
 import {findIndex} from '../arrays/search-functions'
+import {isNull} from '../type-functions'
 import {inclusiveRange, range} from '../arrays/creation-functions'
 
 export function slice(indices) {
-    return arr => {
+    return input => {
         const n = length(indices)
+
         const result = Array(n)
 
         for (let i = 0; i < n; i++) {
-            result[i] = arr[indices[i]]
+            result[i] = input[indices[i]]
         }
 
         return result
@@ -118,49 +119,77 @@ export function dropWhile(predicate) {
     }
 }
 
-export function before(indexOrPredicate) {
-    return arr => {
-        const index = isFunction(indexOrPredicate) ? findIndex(indexOrPredicate)(arr) : indexOrPredicate
-
-        if (isNull(index)) {
-            return []
-        }
-
-        return slice(range(0)(index))(arr)
-    }
-}
-
-export function after(indexOrPredicate) {
-    return arr => {
-        const index = isFunction(indexOrPredicate) ? findIndex(indexOrPredicate)(arr) : indexOrPredicate
-
-        if (isNull(index)) {
-            return []
-        }
-
-        return slice(range(index + 1)(length(arr)))(arr)
-    }
-}
-
-export function beforeAndAfter(separator) {
+export function before(predicate) {
     return input => {
-        const idx = input.indexOf(separator)
+        const index = findIndex(predicate) (input)
 
-        const before = input.substring(0, idx)
-        const after = input.substring(idx + separator.length)
+        if (isNull(index)) {
+            return []
+        }
+
+        return beforeIndex(index) (input)
+    }
+}
+
+export function beforeIndex(index) {
+    return collection => {
+        if (index > lastIndex(collection)) {
+            return collection
+        }
+
+        return slice(range(0) (index)) (collection)
+    }
+}
+
+export function after(predicate) {
+    return collection => {
+        const index = findIndex(predicate) (collection)
+
+        if (isNull(index)) {
+            return []
+        }
+
+        return afterIndex(index) (collection)
+    }
+}
+
+export function afterIndex(index) {
+    return collection => {
+        if (index >= lastIndex(collection)) {
+            return []
+        }
+
+        return slice(range(index + 1)(length(collection))) (collection)
+    }
+}
+
+export function beforeAndAfterIndex(index) {
+    return collection => {
+        const before = beforeIndex(index) (collection)
+        const after = afterIndex(index) (collection)
 
         return [before, after]
     }
 }
 
-export function upTo(indexOrPredicate) {
-    return arr => {
-        const index = isFunction(indexOrPredicate) ? findIndex(indexOrPredicate)(arr) : indexOrPredicate
+export function upTo(predicate) {
+    return collection => {
+        const index = findIndex(predicate)(collection)
 
         if (isNull(index)) {
             return []
         }
 
-        return slice(inclusiveRange(0)(index))(arr)
+        return upToIndex(index) (collection)
+    }
+}
+
+export function upToIndex(index) {
+    return collection => {
+        if (index >= lastIndex(collection)) {
+            return collection
+        }
+
+        return slice(inclusiveRange(0)(index)) (collection)
     }
 }
