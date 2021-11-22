@@ -30,6 +30,10 @@ export function isFunction(input) {
     return typeof input === 'function'
 }
 
+export function isObject(input) {
+    return typeof input === 'object'
+}
+
 export function isArray(input) {
     return Array.isArray(input)
 }
@@ -40,8 +44,4 @@ export function is2DArray(input) {
 
 export function defaultValue(value) {
     return input => input ?? value
-}
-
-export function isObject(input) {
-    return typeof input === 'object'
 }

@@ -121,15 +121,54 @@ Object.keys(_constantFunctions).forEach(function (key) {
   });
 });
 
-var _stringFunctions = require("./string-functions");
+var _creationFunctions = require("./strings/creation-functions");
 
-Object.keys(_stringFunctions).forEach(function (key) {
+Object.keys(_creationFunctions).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _stringFunctions[key]) return;
+  if (key in exports && exports[key] === _creationFunctions[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _stringFunctions[key];
+      return _creationFunctions[key];
+    }
+  });
+});
+
+var _joinFunctions = require("./strings/join-functions");
+
+Object.keys(_joinFunctions).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _joinFunctions[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _joinFunctions[key];
+    }
+  });
+});
+
+var _mappingFunctions = require("./strings/mapping-functions");
+
+Object.keys(_mappingFunctions).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _mappingFunctions[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _mappingFunctions[key];
+    }
+  });
+});
+
+var _updateFunctions = require("./strings/update-functions");
+
+Object.keys(_updateFunctions).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _updateFunctions[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _updateFunctions[key];
     }
   });
 });
@@ -186,15 +225,15 @@ Object.keys(_multiAccessFunctions).forEach(function (key) {
   });
 });
 
-var _updateFunctions = require("./collections/update-functions");
+var _updateFunctions2 = require("./collections/update-functions");
 
-Object.keys(_updateFunctions).forEach(function (key) {
+Object.keys(_updateFunctions2).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _updateFunctions[key]) return;
+  if (key in exports && exports[key] === _updateFunctions2[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _updateFunctions[key];
+      return _updateFunctions2[key];
     }
   });
 });
@@ -212,15 +251,15 @@ Object.keys(_lengthFunctions).forEach(function (key) {
   });
 });
 
-var _joinFunctions = require("./collections/join-functions");
+var _joinFunctions2 = require("./collections/join-functions");
 
-Object.keys(_joinFunctions).forEach(function (key) {
+Object.keys(_joinFunctions2).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _joinFunctions[key]) return;
+  if (key in exports && exports[key] === _joinFunctions2[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _joinFunctions[key];
+      return _joinFunctions2[key];
     }
   });
 });
@@ -238,15 +277,15 @@ Object.keys(_aggregationFunctions).forEach(function (key) {
   });
 });
 
-var _creationFunctions = require("./arrays/creation-functions");
+var _creationFunctions2 = require("./arrays/creation-functions");
 
-Object.keys(_creationFunctions).forEach(function (key) {
+Object.keys(_creationFunctions2).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _creationFunctions[key]) return;
+  if (key in exports && exports[key] === _creationFunctions2[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _creationFunctions[key];
+      return _creationFunctions2[key];
     }
   });
 });
@@ -277,28 +316,28 @@ Object.keys(_groupingFunctions).forEach(function (key) {
   });
 });
 
-var _joinFunctions2 = require("./arrays/join-functions");
+var _joinFunctions3 = require("./arrays/join-functions");
 
-Object.keys(_joinFunctions2).forEach(function (key) {
+Object.keys(_joinFunctions3).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _joinFunctions2[key]) return;
+  if (key in exports && exports[key] === _joinFunctions3[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _joinFunctions2[key];
+      return _joinFunctions3[key];
     }
   });
 });
 
-var _mappingFunctions = require("./arrays/mapping-functions");
+var _mappingFunctions2 = require("./arrays/mapping-functions");
 
-Object.keys(_mappingFunctions).forEach(function (key) {
+Object.keys(_mappingFunctions2).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _mappingFunctions[key]) return;
+  if (key in exports && exports[key] === _mappingFunctions2[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _mappingFunctions[key];
+      return _mappingFunctions2[key];
     }
   });
 });
@@ -394,15 +433,15 @@ Object.keys(_accessFunctions).forEach(function (key) {
   });
 });
 
-var _creationFunctions2 = require("./objects/creation-functions");
+var _creationFunctions3 = require("./objects/creation-functions");
 
-Object.keys(_creationFunctions2).forEach(function (key) {
+Object.keys(_creationFunctions3).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _creationFunctions2[key]) return;
+  if (key in exports && exports[key] === _creationFunctions3[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _creationFunctions2[key];
+      return _creationFunctions3[key];
     }
   });
 });
@@ -433,28 +472,28 @@ Object.keys(_groupingFunctions2).forEach(function (key) {
   });
 });
 
-var _joinFunctions3 = require("./objects/join-functions");
+var _joinFunctions4 = require("./objects/join-functions");
 
-Object.keys(_joinFunctions3).forEach(function (key) {
+Object.keys(_joinFunctions4).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _joinFunctions3[key]) return;
+  if (key in exports && exports[key] === _joinFunctions4[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _joinFunctions3[key];
+      return _joinFunctions4[key];
     }
   });
 });
 
-var _mappingFunctions2 = require("./objects/mapping-functions");
+var _mappingFunctions3 = require("./objects/mapping-functions");
 
-Object.keys(_mappingFunctions2).forEach(function (key) {
+Object.keys(_mappingFunctions3).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _mappingFunctions2[key]) return;
+  if (key in exports && exports[key] === _mappingFunctions3[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _mappingFunctions2[key];
+      return _mappingFunctions3[key];
     }
   });
 });
@@ -472,15 +511,15 @@ Object.keys(_membershipFunctions2).forEach(function (key) {
   });
 });
 
-var _updateFunctions2 = require("./objects/update-functions");
+var _updateFunctions3 = require("./objects/update-functions");
 
-Object.keys(_updateFunctions2).forEach(function (key) {
+Object.keys(_updateFunctions3).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _updateFunctions2[key]) return;
+  if (key in exports && exports[key] === _updateFunctions3[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _updateFunctions2[key];
+      return _updateFunctions3[key];
     }
   });
 });

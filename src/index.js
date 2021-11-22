@@ -10,7 +10,11 @@ export * from './booleans/negation-functions'
 export * from './booleans/match'
 export * from './booleans/constant-functions'
 
-export * from './string-functions'
+export * from './strings/creation-functions'
+export * from './strings/join-functions'
+export * from './strings/mapping-functions'
+export * from './strings/update-functions'
+
 export * from './character-functions'
 
 export * from './number-functions'
