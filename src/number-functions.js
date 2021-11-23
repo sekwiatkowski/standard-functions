@@ -1,5 +1,5 @@
-export function mod(divisor) {
-    return dividend => divisor % dividend
+export function mod(dividend) {
+    return divisor => divisor % dividend
 }
 
 export function abs(value) {

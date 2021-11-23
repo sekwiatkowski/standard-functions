@@ -3,12 +3,19 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.mod = mod;
 exports.abs = abs;
 exports.add = add;
 exports.subtract = subtract;
 exports.multiply = multiply;
 exports.divide = divide;
 exports.changeSign = void 0;
+
+function mod(dividend) {
+  return function (divisor) {
+    return divisor % dividend;
+  };
+}
 
 function abs(value) {
   return Math.abs(value);
