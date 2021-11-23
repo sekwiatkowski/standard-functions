@@ -5,9 +5,9 @@ import {zip} from '../arrays/join-functions'
 import {fromEntries} from './creation-functions'
 import {single} from '../collections/single-access-functions'
 
-export function merge(...firstOrArray) {
-    if (isSingle(firstOrArray)) {
-        const singleItem = single(firstOrArray)
+export function merge(...objectsOrArray) {
+    if (isSingle(objectsOrArray)) {
+        const singleItem = single(objectsOrArray)
 
         if (isNull(singleItem) || isUndefined(singleItem)) {
             return {}
@@ -23,14 +23,14 @@ export function merge(...firstOrArray) {
             (isNull(obj) || isUndefined(obj))
                 ? acc
                 : {...acc, ...obj}
-        )({})(firstOrArray)
+        )({})(objectsOrArray)
     }
 }
 
 export function mergeWith(f) {
-    return (...firstOrArray) => {
-        if (isSingle(firstOrArray)) {
-            const singleItem = single(firstOrArray)
+    return (...objectsOrArray) => {
+        if (isSingle(objectsOrArray)) {
+            const singleItem = single(objectsOrArray)
 
             if (isArray(singleItem)) {
                 return mergeWith(f)(...singleItem)
@@ -57,7 +57,7 @@ export function mergeWith(f) {
 
                 return merged
 
-            })({})(firstOrArray)
+            })({})(objectsOrArray)
         }
     }
 }

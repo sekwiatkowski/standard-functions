@@ -2,6 +2,10 @@ import {isArray} from './type-functions'
 import {isSingle} from './collections/length-functions'
 import {single} from './collections/single-access-functions'
 
+export function apply(f) {
+    return x => f(x)
+}
+
 export function applyTo(x) {
     return f => f(x)
 }

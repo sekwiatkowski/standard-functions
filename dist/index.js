@@ -160,6 +160,19 @@ Object.keys(_mappingFunctions).forEach(function (key) {
   });
 });
 
+var _membershipFunctions = require("./strings/membership-functions");
+
+Object.keys(_membershipFunctions).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _membershipFunctions[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _membershipFunctions[key];
+    }
+  });
+});
+
 var _updateFunctions = require("./strings/update-functions");
 
 Object.keys(_updateFunctions).forEach(function (key) {
@@ -342,15 +355,15 @@ Object.keys(_mappingFunctions2).forEach(function (key) {
   });
 });
 
-var _membershipFunctions = require("./arrays/membership-functions");
+var _membershipFunctions2 = require("./arrays/membership-functions");
 
-Object.keys(_membershipFunctions).forEach(function (key) {
+Object.keys(_membershipFunctions2).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _membershipFunctions[key]) return;
+  if (key in exports && exports[key] === _membershipFunctions2[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _membershipFunctions[key];
+      return _membershipFunctions2[key];
     }
   });
 });
@@ -498,15 +511,15 @@ Object.keys(_mappingFunctions3).forEach(function (key) {
   });
 });
 
-var _membershipFunctions2 = require("./objects/membership-functions");
+var _membershipFunctions3 = require("./objects/membership-functions");
 
-Object.keys(_membershipFunctions2).forEach(function (key) {
+Object.keys(_membershipFunctions3).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _membershipFunctions2[key]) return;
+  if (key in exports && exports[key] === _membershipFunctions3[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _membershipFunctions2[key];
+      return _membershipFunctions3[key];
     }
   });
 });

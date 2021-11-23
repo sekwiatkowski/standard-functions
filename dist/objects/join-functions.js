@@ -48,12 +48,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 function merge() {
-  for (var _len = arguments.length, firstOrArray = new Array(_len), _key = 0; _key < _len; _key++) {
-    firstOrArray[_key] = arguments[_key];
+  for (var _len = arguments.length, objectsOrArray = new Array(_len), _key = 0; _key < _len; _key++) {
+    objectsOrArray[_key] = arguments[_key];
   }
 
-  if ((0, _lengthFunctions.isSingle)(firstOrArray)) {
-    var singleItem = (0, _singleAccessFunctions.single)(firstOrArray);
+  if ((0, _lengthFunctions.isSingle)(objectsOrArray)) {
+    var singleItem = (0, _singleAccessFunctions.single)(objectsOrArray);
 
     if ((0, _typeFunctions.isNull)(singleItem) || (0, _typeFunctions.isUndefined)(singleItem)) {
       return {};
@@ -67,18 +67,18 @@ function merge() {
   } else {
     return (0, _aggregationFunctions.fold)(function (acc, obj) {
       return (0, _typeFunctions.isNull)(obj) || (0, _typeFunctions.isUndefined)(obj) ? acc : _objectSpread(_objectSpread({}, acc), obj);
-    })({})(firstOrArray);
+    })({})(objectsOrArray);
   }
 }
 
 function mergeWith(f) {
   return function () {
-    for (var _len2 = arguments.length, firstOrArray = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-      firstOrArray[_key2] = arguments[_key2];
+    for (var _len2 = arguments.length, objectsOrArray = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      objectsOrArray[_key2] = arguments[_key2];
     }
 
-    if ((0, _lengthFunctions.isSingle)(firstOrArray)) {
-      var singleItem = (0, _singleAccessFunctions.single)(firstOrArray);
+    if ((0, _lengthFunctions.isSingle)(objectsOrArray)) {
+      var singleItem = (0, _singleAccessFunctions.single)(objectsOrArray);
 
       if ((0, _typeFunctions.isArray)(singleItem)) {
         return mergeWith(f).apply(void 0, _toConsumableArray(singleItem));
@@ -106,7 +106,7 @@ function mergeWith(f) {
         }
 
         return merged;
-      })({})(firstOrArray);
+      })({})(objectsOrArray);
     }
   };
 }
