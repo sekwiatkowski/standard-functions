@@ -7,7 +7,7 @@ export * from './booleans/some-functions'
 export * from './booleans/none-functions'
 export * from './booleans/equality-functions'
 export * from './booleans/negation-functions'
-export * from './booleans/conditionality-function'
+export * from './booleans/conditionality-functions'
 export * from './booleans/constant-functions'
 
 export * from './strings/creation-functions'

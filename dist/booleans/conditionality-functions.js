@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.merge = merge;
+exports.match = match;
 exports.ifElse = ifElse;
 
 var _typeFunctions = require("../type-functions");
@@ -32,7 +32,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-function merge() {
+function match() {
   for (var _len = arguments.length, cases = new Array(_len), _key = 0; _key < _len; _key++) {
     cases[_key] = arguments[_key];
   }
@@ -40,7 +40,7 @@ function merge() {
   var firstItem = cases[0];
 
   if ((0, _typeFunctions.is2DArray)(firstItem)) {
-    return merge.apply(void 0, _toConsumableArray(firstItem));
+    return match.apply(void 0, _toConsumableArray(firstItem));
   }
 
   return function (defaultFunctionOrValue) {

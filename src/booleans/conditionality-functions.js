@@ -1,10 +1,10 @@
 import {is2DArray, isFunction} from '../type-functions'
 import {equals} from './equality-functions'
 
-export function merge(...cases) {
+export function match(...cases) {
     const firstItem = cases[0]
     if (is2DArray(firstItem)) {
-        return merge(...firstItem)
+        return match(...firstItem)
     }
 
     return defaultFunctionOrValue => input => {
