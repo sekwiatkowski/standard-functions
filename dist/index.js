@@ -95,15 +95,15 @@ Object.keys(_negationFunctions).forEach(function (key) {
   });
 });
 
-var _match = require("./booleans/match");
+var _conditionalityFunction = require("./booleans/conditionality-function");
 
-Object.keys(_match).forEach(function (key) {
+Object.keys(_conditionalityFunction).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _match[key]) return;
+  if (key in exports && exports[key] === _conditionalityFunction[key]) return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _match[key];
+      return _conditionalityFunction[key];
     }
   });
 });
