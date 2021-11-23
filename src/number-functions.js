@@ -1,3 +1,7 @@
+export function mod(divisor) {
+    return dividend => divisor % dividend
+}
+
 export function abs(value) {
     return Math.abs(value)
 }
