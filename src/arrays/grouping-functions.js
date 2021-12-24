@@ -58,10 +58,12 @@ export function chunk(size) {
     return arr => {
         const chunks = []
 
+        const numberOfItems = arr.length
+
         let i = 0
-        while (i < arr.length) {
+        while (i < numberOfItems) {
             const chunk = []
-            for (let step = 0; step < size; step++) {
+            for (let step = 0; step < size && i < numberOfItems; step++) {
                 chunk.push(arr[i])
                 i++
             }
