@@ -22,13 +22,13 @@ export function findSingleOrNull(predicate) {
 
 export function findSingle(predicate) {
     return input => {
-        const indexOrNull = findSingleOrNull(predicate) (input)
+        const singleOrNull = findSingleOrNull(predicate) (input)
 
-        if (isNull(indexOrNull)) {
+        if (isNull(singleOrNull)) {
             throw Error(`Expected a single search result. Found no matching items.`)
         }
 
-        return indexOrNull[0]
+        return singleOrNull
     }
 }
 
@@ -115,7 +115,6 @@ export function findLastIndex(predicate) {
         return null
     }
 }
-
 
 export function indexOf(item) {
     return arr => {
